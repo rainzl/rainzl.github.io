@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+p {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#file {
+	position: relative;
+}
+#file li {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	border: 1px solid transparent;
+}
+#file span {
+	display: inline-block;
+	vertical-align: top;
+	width: 20px;
+	height: 30px;
+	background: url(img2/0.png);
+}
+#file p {
+	width: 100%;
+	font: 12px/20px "宋体";
+}
+#file .over {
+	border: 1px solid rgba(150,200,250,.4);
+	background-color: rgba(150,200,250,.1);
+}
+#file .clik {
+	border: 1px solid rgba(80,150,220,.5);
+	background-color: rgba(150,200,250,.3);
+}
+#file .out {
+	border: 1px solid rgba(80,150,220,.5);
+	background-color: rgba(150,200,250,.2);
+}
+</style>
+</head>
+<body>
+	<ul id="file">
+		<li>
+			<span></span>
+			<p>文件夹1</p>
+		</li>
+		<li>
+			<span></span>
+			<p>文件夹1</p>
+		</li>
+		<li>
+			<span></span>
+			<p>文件夹1</p>
+		</li>
+	</ul>
+<script>
+(function(d){
+	var f = d.getElementById('file');
+	var aLis = f.getElementsByTagName('li');
+	
+	initLi();//设置li的top值
+	
+	
+	//给每个li添加鼠标事件
+	for (var i=0; i<aLis.length; i++) {
+		aLis[i].addEventListener('mouseover',fnOver);
+		aLis[i].addEventListener('click',fnCancel);
+		aLis[i].addEventListener('mouseout',fnOut);
+		fnDrag(aLis[i]);
+	}
+	document.onclick = function (ev){
+		for (var i=0; i<aLis.length; i++) {
+			aLis[i].clik = false;
+			aLis[i].className = '';
+		}
+	}
+	
+	function fnDrag(obj) {
+		
+		obj.addEventListener('mousedown',fnDown);
+		function fnDown(ev) {
+			var ev = ev || event;
+			var disX = ev.pageX - this.offsetLeft,
+				disY = ev.pageY - this.offsetTop;
+				
+			var newObj = null;
+			console.log(ev);
+			/*document.onmousemove = function (ev) {
+				var ev = ev || event;
+				if ( ev.pageX - disX > obj.offsetWidth || ev.pageY - disY > obj.offsetHeight ) {
+					if (!newObj) {
+						newObj = obj.cloneNode(true);
+						newObj.style.opacity = 0.8;
+						newObj.className = '';
+					}
+					obj.parentNode.appendChild(newObj);
+					newObj.style.left = ev.pageX - disX + 'px';
+					newObj.style.top = ev.pageY - disY + 'px';
+				}
+			}
+			document.onmouseup = function(ev) {
+				if (newObj) {
+					obj.style.left = newObj.offsetLeft + 'px';
+					obj.style.top = newObj.offsetTop + 'px';
+					obj.parentNode.removeChild(newObj);
+				} else {		
+					obj.clik = true;
+					obj.className = 'clik';
+				}
+				
+				document.onmousemove = null;
+				document.onmouseup = null;
+			}*/
+			
+			
+			document.addEventListener('mousemove',fnMove);
+			document.addEventListener('mouseup',fnUp);
+			newObj = obj.cloneNode(true);
+			newObj.style.opacity = 0.8;
+			newObj.className = '';
+			function fnMove(ev) {
+				
+				obj.parentNode.appendChild(newObj);
+				var ev = ev || event;
+				newObj.style.left = ev.pageX - disX + 'px';
+				newObj.style.top = ev.pageY - disY + 'px';
+			}
+			function fnUp(ev) {
+				obj.style.left = newObj.offsetLeft + 'px';
+				obj.style.top = newObj.offsetTop + 'px';
+				obj.parentNode.removeChild(newObj);
+				document.removeEventListener('mousemove',fnMove);
+				document.removeEventListener('mouseup',fnUp);
+				ev.preventDefault();
+			}
+			ev.preventDefault();
+		}
+		
+	}
+	//阻止每个文件夹的点击事件冒泡
+	function fnCancel(ev) {
+		var ev = ev || event;
+		ev.cancelBubble = true;
+	}
+	
+	function fnOut() {
+		if (this.clik) {
+			this.className = 'out';
+		} else {
+			this.className = '';
+		}
+	}
+	
+	function fnOver() {
+		if (this.clik) {
+			this.className = 'clik';
+		} else {
+			this.className = 'over';
+		}
+	}
+	function initLi() {
+		for ( var i=0; i<aLis.length; i++ ) {
+			aLis[i].style.top = (aLis[i].offsetHeight+10)*i +10 + 'px';
+		}
+	}
+	/* //失败版:原因： 无法判断当目标点是否是li的子孙节点。
+	window.addEventListener('mouseover',fnOver);
+	window.addEventListener('click',fnClick);
+	window.addEventListener('mouseout',fnOut);
+	function fnOut(ev) {
+		var ev = ev || event;
+		if ( indexOf(ev.target,Array.from(aLis)) ) {
+			ev.target.onclick = function () {
+				
+			}
+			if (ev.target.clik) {
+				ev.target.className = 'clik';
+			} else {
+				ev.target.className = '';
+			}
+		}
+	}
+	
+	function fnOver(ev) {
+		var ev = ev || event;
+		if ( indexOf(ev.target,Array.from(aLis)) ) {
+			if (ev.target.clik) {
+				ev.target.className = 'clik';
+			} else {
+				ev.target.className = 'over';
+			}
+		}
+	}
+	
+	function indexOf(obj,arr) {
+		if ( arr.indexOf(obj) === -1 ) {
+			return false;
+		} else {
+			return true;
+		}
+	}*/
+	
+	
+	
+	
+	
+	
+})(document)
+</script>
+</body>
+</html>
