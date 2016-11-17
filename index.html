@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="icon" href="favicon.ico" />
+	<link href="img2/favicon.ico" rel="icon"/>
 	<title></title>
 <style>
 p {
@@ -103,7 +103,7 @@ ul {
 				disY = ev.pageY - this.offsetTop;
 				
 			var newObj = null;
-			/*document.onmousemove = function (ev) {
+			document.onmousemove = function (ev) {
 				var ev = ev || event;
 				if ( ev.pageX - disX > obj.offsetWidth || ev.pageY - disY > obj.offsetHeight ) {
 					if (!newObj) {
@@ -128,10 +128,10 @@ ul {
 				
 				document.onmousemove = null;
 				document.onmouseup = null;
-			}*/
+			}
 			
 			
-			document.addEventListener('mousemove',fnMove);
+			/*document.addEventListener('mousemove',fnMove);
 			document.addEventListener('mouseup',fnUp);
 			newObj = obj.cloneNode(true);
 			newObj.style.opacity = 0.8;
@@ -150,7 +150,7 @@ ul {
 				document.removeEventListener('mousemove',fnMove);
 				document.removeEventListener('mouseup',fnUp);
 				ev.preventDefault();
-			}
+			}*/
 			ev.preventDefault();
 		}
 		
