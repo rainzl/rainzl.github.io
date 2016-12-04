@@ -2,228 +2,163 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="img2/favicon.ico" rel="icon"/>
-	<title></title>
-<style>
-p {
-	margin: 0;
-}
-ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-#file {
-	position: relative;
-}
-#file li {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 50px;
-	height: 50px;
-	text-align: center;
-	border: 1px solid transparent;
-}
-#file span {
-	display: inline-block;
-	vertical-align: top;
-	width: 20px;
-	height: 30px;
-	background: url(img2/0.png);
-}
-#file p {
-	width: 100%;
-	font: 12px/20px "宋体";
-}
-#file .over {
-	border: 1px solid rgba(150,200,250,.4);
-	background-color: rgba(150,200,250,.1);
-}
-#file .clik {
-	border: 1px solid rgba(80,150,220,.5);
-	background-color: rgba(150,200,250,.3);
-}
-#file .out {
-	border: 1px solid rgba(80,150,220,.5);
-	background-color: rgba(150,200,250,.2);
-}
-#head {
-	padding-top: 20px;
-	text-align: center;
-	font: 20px/60px "楷体";
-	color: #00BFFF;
-}
-</style>
+<link href="img2/favicon.ico" rel="icon"/>
+<link rel="stylesheet" href="css/cloudDisk.css" />
 </head>
 <body>
-	<header id="head">欢迎来到张兵军的小窝O(∩_∩)O~~</header>
-	<ul id="file">
-		<li>
-			<span></span>
-			<p>文件夹1</p>
-		</li>
-		<li>
-			<span></span>
-			<p>文件夹1</p>
-		</li>
-		<li>
-			<span></span>
-			<p>文件夹1</p>
-		</li>
-	</ul>
-<script>
-(function(d){
-	var f = d.getElementById('file');
-	var aLis = f.getElementsByTagName('li');
-	
-	initLi();//设置li的top值
-	
-	
-	//给每个li添加鼠标事件
-	for (var i=0; i<aLis.length; i++) {
-		aLis[i].addEventListener('mouseover',fnOver);
-		aLis[i].addEventListener('click',fnCancel);
-		aLis[i].addEventListener('mouseout',fnOut);
-		fnDrag(aLis[i]);
-	}
-	document.onclick = function (ev){
-		for (var i=0; i<aLis.length; i++) {
-			aLis[i].clik = false;
-			aLis[i].className = '';
-		}
-	}
-	
-	function fnDrag(obj) {
-		
-		obj.addEventListener('mousedown',fnDown);
-		function fnDown(ev) {
-			var ev = ev || event;
-			var disX = ev.pageX - this.offsetLeft,
-				disY = ev.pageY - this.offsetTop;
-				
-			var newObj = null;
-			document.onmousemove = function (ev) {
-				var ev = ev || event;
-				if ( ev.pageX - disX > obj.offsetWidth || ev.pageY - disY > obj.offsetHeight ) {
-					if (!newObj) {
-						newObj = obj.cloneNode(true);
-						newObj.style.opacity = 0.8;
-						newObj.className = '';
-					}
-					obj.parentNode.appendChild(newObj);
-					newObj.style.left = ev.pageX - disX + 'px';
-					newObj.style.top = ev.pageY - disY + 'px';
-				}
-			}
-			document.onmouseup = function(ev) {
-				if (newObj) {
-					obj.style.left = newObj.offsetLeft + 'px';
-					obj.style.top = newObj.offsetTop + 'px';
-					obj.parentNode.removeChild(newObj);
-				} else {		
-					obj.clik = true;
-					obj.className = 'clik';
-				}
-				
-				document.onmousemove = null;
-				document.onmouseup = null;
-			}
-			
-			
-			/*document.addEventListener('mousemove',fnMove);
-			document.addEventListener('mouseup',fnUp);
-			newObj = obj.cloneNode(true);
-			newObj.style.opacity = 0.8;
-			newObj.className = '';
-			function fnMove(ev) {
-				
-				obj.parentNode.appendChild(newObj);
-				var ev = ev || event;
-				newObj.style.left = ev.pageX - disX + 'px';
-				newObj.style.top = ev.pageY - disY + 'px';
-			}
-			function fnUp(ev) {
-				obj.style.left = newObj.offsetLeft + 'px';
-				obj.style.top = newObj.offsetTop + 'px';
-				obj.parentNode.removeChild(newObj);
-				document.removeEventListener('mousemove',fnMove);
-				document.removeEventListener('mouseup',fnUp);
-				ev.preventDefault();
-			}*/
-			ev.preventDefault();
-		}
-		
-	}
-	//阻止每个文件夹的点击事件冒泡
-	function fnCancel(ev) {
-		var ev = ev || event;
-		ev.cancelBubble = true;
-	}
-	
-	function fnOut() {
-		if (this.clik) {
-			this.className = 'out';
-		} else {
-			this.className = '';
-		}
-	}
-	
-	function fnOver() {
-		if (this.clik) {
-			this.className = 'clik';
-		} else {
-			this.className = 'over';
-		}
-	}
-	function initLi() {
-		for ( var i=0; i<aLis.length; i++ ) {
-			aLis[i].style.top = (aLis[i].offsetHeight+10)*i +10 + 'px';
-		}
-	}
-	/* //失败版:原因： 无法判断当目标点是否是li的子孙节点。
-	window.addEventListener('mouseover',fnOver);
-	window.addEventListener('click',fnClick);
-	window.addEventListener('mouseout',fnOut);
-	function fnOut(ev) {
-		var ev = ev || event;
-		if ( indexOf(ev.target,Array.from(aLis)) ) {
-			ev.target.onclick = function () {
-				
-			}
-			if (ev.target.clik) {
-				ev.target.className = 'clik';
-			} else {
-				ev.target.className = '';
-			}
-		}
-	}
-	
-	function fnOver(ev) {
-		var ev = ev || event;
-		if ( indexOf(ev.target,Array.from(aLis)) ) {
-			if (ev.target.clik) {
-				ev.target.className = 'clik';
-			} else {
-				ev.target.className = 'over';
-			}
-		}
-	}
-	
-	function indexOf(obj,arr) {
-		if ( arr.indexOf(obj) === -1 ) {
-			return false;
-		} else {
-			return true;
-		}
-	}*/
-	
-	
-	
-	
-	
-	
-})(document)
-</script>
+	<header id="header" class="clear">
+		<h1 class="headerLogo left"><a href="javascript:;">百度网盘</a></h1>
+		<nav class="headNav left">
+			<a _href="#" class="active">网盘<i></i></a>
+			<a _href="#">分享<i></i></a>
+			<a _href="#">更多<i></i></a>
+		</nav>
+		<div class="headRight right">
+			<div class="headInfo">
+				<span class="headImg"><img /></span>
+				<span class="headName">天使120</span>
+				<span class="headGradeIcon"><a href="javascript:;"></a></span>
+				<i class="icon icon-dropdown-arrow"></i>
+			</div>
+			<i class="headRightLine"></i>
+			<div class="headFn">
+				<a href="javascript:;" class="headDownLoad">客户端下载</a>
+				<p class="headFns">
+					<a class="icon icon-notice" href="javascript:;"></a>
+					<a class="icon icon-feedback" href="javascript:;"></a>
+					<a class="icon icon-theme" href="javascript:;"></a>
+				</p>
+				<a href="javascript:;" class="headMember">会员中心</a>
+			</div>
+		</div>
+		<a class="headBar right" href="javascript:;">超级会员 限时优惠</a>
+	</header>
+	<section class="wrap clear" id="tBody">
+		<div class="contRight">
+			<ul id="aside">
+				<li class="asideAll active"><i class="icon icon-disk"></i><span>全部文件</span></li>
+				<li><span>图片</span></li>
+				<li><span>文档</span></li>
+				<li><span>视频</span></li>
+				<li><span>种子</span></li>
+				<li><span>音乐</span></li>
+				<li><span>其他</span></li>
+				<li class="asideMyShare"><i class="icon icon-my-share"></i><span>我的分享</span></li>
+				<li class="asideRecycle"><i class="icon icon-delete"></i><span>回收站</span></li>
+			</ul>
+			<footer class="contRightFoot">
+				<div class="contRightCapacity">
+					<div class="CapacityBar">
+						<span></span>
+					</div>
+					<div class="contRightCapacityInfo">
+						<p class="left"><span class="UsedAmount">75.78</span>G/<span class="allAmount">2055</span>G</p>
+						<a class="right" href="javascript:;">扩容</a>
+					</div>
+				</div>
+				<div class="contRightDownload">
+					<a class="icon icon-yunguanjia" href="javascript:;" title="下载百度网盘PC版"></a>
+					<a class="icon icon-android" href="javascript:;" title="下载百度网盘Android版"></a>
+					<a class="icon icon-apple" href="javascript:;" title="下载百度网盘iPhone版"></a>
+					<a class="icon icon-more" href="javascript:;"></a>
+				</div>
+			</footer>
+		</div>
+		<section id="filesList">
+			<header class="filesListHeader">
+				<div class="filesListHeadBtnsR left">
+					<span class="filesUpLoad"><i class="icon icon-upload"></i>上传</span>
+					<span><i class="icon icon-newfolder"></i>新建文件夹</span>
+					<span><i class="icon icon-download"></i>离线下载</span>
+					<span><i class="icon icon-device"></i>我的设备</span>
+				</div>
+				<div class="filesListHeadBtnsL right">
+					<form>
+						<input class="txt" type="text" />
+						<a class="submit icon icon-search" href="javascript:;"></a>
+					</form>
+					<span class="filesSort icon icon-order"></span>
+					<span class="filesShowStyle icon icon-grid"></span>
+				</div>
+			</header>
+			<div class="filesPath">
+				<div class="filesListRoute left"><span>全部文件</span></div>
+				<div class="filesListCount right"><span>已加载100个</span></div>
+			</div>
+			<div class="filesBody">
+				<div id="fileScrollBar">
+					<span></span>
+				</div>
+				<table class="files">
+					<thead>
+						<tr>
+							<td width="60%">
+								<em class="filesBtn"></em>
+								<span>文件名</span>
+								<i class="icon downtitle-icon icon-downtitle"></i>
+							</td>
+							<td width="16%">
+								<span>大小</span>
+							</td>
+							<td>
+								<span>修改日期</span>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<em class="filesBtn"></em>
+								<i></i>
+								<span>照片</span>
+								<div class="filesFns right">
+									<a class="icon icon-share" href="javascript:;">分享</a>
+									<a class="icon icon-download" href="javascript:;">下载</a>
+									<a class="icon icon-more" href="javascript:;">更多</a>
+								</div>
+							</td>
+							<td>
+								<span>-</span>
+							</td>
+							<td>
+								<span>2016-12-04 15:26</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<em class="filesBtn"></em>
+								<i></i>
+								<span>我的文件夹</span>
+								<div class="filesFns right">
+									<a href="javascript:;">分享</a>
+									<a href="javascript:;">下载</a>
+									<a href="javascript:;">更多</a>
+								</div>
+							</td>
+							<td>
+								<span>2.1M</span>
+							</td>
+							<td>
+								<span>2016-12-04 15:26</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</section>
 </body>
+<script>
+(function(){
+	setBodyHei();
+	function setBodyHei() {
+		var oWrap = document.getElementById('tBody');
+		var oHeader = document.getElementById('header');
+		var H = document.documentElement.clientHeight || document.body.clientHeight;
+		var h = H - oHeader.offsetHeight < 500? 500: H - oHeader.offsetHeight;
+		oWrap.style.height = h + 'px';	
+	}
+	
+})()
+</script>
 </html>
