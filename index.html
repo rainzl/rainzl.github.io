@@ -2,23 +2,50 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<title></title>
 <link href="img2/favicon.ico" rel="icon"/>
-<link rel="stylesheet" href="css/cloudDisk.css" />
+<link rel="stylesheet" href="css/yunDisk.css" />
 </head>
 <body>
 	<header id="header" class="clear">
 		<h1 class="headerLogo left"><a href="javascript:;">百度网盘</a></h1>
 		<nav class="headNav left">
-			<a _href="#" class="active">网盘<i></i></a>
-			<a _href="#">分享<i></i></a>
-			<a _href="#">更多<i></i></a>
+			<a href="javascript:;" class="active">网盘<i></i></a>
+			<a href="#">分享<i></i></a>
+			<a href="#">更多<i></i></a>
 		</nav>
 		<div class="headRight right">
-			<div class="headInfo">
-				<span class="headImg"><img /></span>
-				<span class="headName">天使120</span>
-				<span class="headGradeIcon"><a href="javascript:;"></a></span>
-				<i class="icon icon-dropdown-arrow"></i>
+			<div id="headIn">
+				<div class="headInfo">
+					<span class="headImg"><img /></span>
+					<span class="headName">天使120</span>
+					<span class="headGradeIcon"><a href="javascript:;"></a></span>
+					<i class="icon icon-dropdown-arrow"></i>
+				</div>
+				<div class="headInfoCaption">
+					<mark></mark>
+					<div class="top">
+						<span class="headImg"><img /></span><span class="headName">天使120</span><span class="headGradeIcon"><a href="javascript:;"></a></span>
+					</div>
+					<div class="bottom">
+						<div class="bottomHead">
+							超级会员尊享特权：
+							<a href="javascript:;">开通超级会员</a>
+						</div>
+						<div class="bottomPrivilege">
+							<a href="javascript:;">开通超级会员</a>
+							<a href="javascript:;">开通超级会员</a>
+							<a href="javascript:;">开通超级会员</a>
+							<a href="javascript:;">开通超级会员</a>
+							<a href="javascript:;">开通超级会员</a>
+						</div>
+						<ul class="bottomDesc">
+							<li><a href="javascript:;">个人资料</a></li>
+							<li><a href="javascript:;">帮助中心</a></li>
+							<li><a href="javascript:;">退出</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			<i class="headRightLine"></i>
 			<div class="headFn">
@@ -37,12 +64,12 @@
 		<div class="contRight">
 			<ul id="aside">
 				<li class="asideAll active"><i class="icon icon-disk"></i><span>全部文件</span></li>
-				<li><span>图片</span></li>
-				<li><span>文档</span></li>
-				<li><span>视频</span></li>
-				<li><span>种子</span></li>
-				<li><span>音乐</span></li>
-				<li><span>其他</span></li>
+				<li class="asideImg"><span>图片</span></li>
+				<li class="asideText"><span>文档</span></li>
+				<li class="asidevideo"><span>视频</span></li>
+				<li class="asideSeed"><span>种子</span></li>
+				<li class="asideMusic"><span>音乐</span></li>
+				<li class="asideOther"><span>其他</span></li>
 				<li class="asideMyShare"><i class="icon icon-my-share"></i><span>我的分享</span></li>
 				<li class="asideRecycle"><i class="icon icon-delete"></i><span>回收站</span></li>
 			</ul>
@@ -68,32 +95,91 @@
 			<header class="filesListHeader">
 				<div class="filesListHeadBtnsR left">
 					<span class="filesUpLoad"><i class="icon icon-upload"></i>上传</span>
-					<span><i class="icon icon-newfolder"></i>新建文件夹</span>
-					<span><i class="icon icon-download"></i>离线下载</span>
-					<span><i class="icon icon-device"></i>我的设备</span>
+					<span class="filesCreate"><i class="icon icon-newfolder"></i>新建文件夹</span>
+					<div class="filesListHeadChangBtn">
+						<span class="headDownLoad"><i class="icon icon-download"></i>离线下载</span>
+						<span class="headMyDevice"><i class="icon icon-device"></i>我的设备</span>
+					</div>
+					<div class="filesListHeadChangChose">
+						<span class="headShare"><i class="icon icon-share"></i>分享</span>
+						<span class="headDownLoad"><i class="icon icon-download"></i>下载</span>
+						<span class="headDelete"><i class="icon icon-delete"></i>删除</span>
+						<span class="headResetName">重命名</span>
+						<span class="headCopy">复制到</span>
+						<span class="headMyDevice"><i class="icon icon-more"></i>更多</span>
+						
+					</div>
 				</div>
 				<div class="filesListHeadBtnsL right">
-					<form>
+					<form id="fileSearch">
 						<input class="txt" type="text" />
 						<a class="submit icon icon-search" href="javascript:;"></a>
 					</form>
-					<span class="filesSort icon icon-order"></span>
-					<span class="filesShowStyle icon icon-grid"></span>
+					<span class="filesSort icon icon-order" id="filesSortId">
+						<span class="filesSortList">
+							<span>
+								<i class="show icon icon-sort-select"></i>
+								文件名
+							</span>
+							<span>
+								<i class="icon icon-sort-select"></i>
+								大小
+							</span>
+							<span>
+								<i class="icon icon-sort-select"></i>
+								修改日期
+							</span>
+						</span>
+					</span>
+					<!--<span class="filesShowStyle icon icon-grid"></span>-->
+					<span id="showList" class="filesShowStyle icon icon-grid"></span>
+					
 				</div>
 			</header>
-			<div class="filesPath">
-				<div class="filesListRoute left"><span>全部文件</span></div>
+			<div class="filesPath" id="filesHead">
+				<div class="filesListRoute left">
+					<!--<a class="filesListReturn" href="javascript:;">返回上一级</a>
+					<i>|</i>
+					<a href="javascript:;">全部文件</a>
+					<i>></i>
+					<a href="javascript:;">妙味</a>
+					<i>></i>
+					<span>全部文件</span>-->
+				</div>
 				<div class="filesListCount right"><span>已加载100个</span></div>
 			</div>
 			<div class="filesBody">
+				<div class="blankBg"></div>
 				<div id="fileScrollBar">
 					<span></span>
 				</div>
-				<table class="files">
-					<thead>
+				<ul id="tHead">
+					<li>
+						<em class="filesBtn"></em>
+						<span>文件名</span>
+						<i class="icon downtitle-icon icon-downtitle"></i>
+					</li>
+					<li>
+						<span>大小</span>
+					</li>
+					<li>
+						<span>修改日期</span>
+					</li>
+					<li id="checkAll"></li>
+				</ul>
+				
+				<!--<dl>
+					<dd>
+						<em class="filesBtn filesChecked"></em>
+						<i class="icon downtitle-icon icon-downtitle"></i>
+						<span>文件名</span>
+					</dd>
+				</dl>-->
+				<table class="files" >
+					<!--<thead>
 						<tr>
 							<td width="60%">
-								<em class="filesBtn"></em>
+								<em class="filesBtn filesChecked"></em>
 								<span>文件名</span>
 								<i class="icon downtitle-icon icon-downtitle"></i>
 							</td>
@@ -104,12 +190,12 @@
 								<span>修改日期</span>
 							</td>
 						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
+					</thead>-->
+					<tbody id="filesTab">
+						<!--<tr class="active">
+							<td width="60%">
 								<em class="filesBtn"></em>
-								<i></i>
+								<i class="fileIcon"></i>
 								<span>照片</span>
 								<div class="filesFns right">
 									<a class="icon icon-share" href="javascript:;">分享</a>
@@ -117,7 +203,7 @@
 									<a class="icon icon-more" href="javascript:;">更多</a>
 								</div>
 							</td>
-							<td>
+							<td width="16%">
 								<span>-</span>
 							</td>
 							<td>
@@ -127,7 +213,7 @@
 						<tr>
 							<td>
 								<em class="filesBtn"></em>
-								<i></i>
+								<i class="fileIcon"></i>
 								<span>我的文件夹</span>
 								<div class="filesFns right">
 									<a href="javascript:;">分享</a>
@@ -141,24 +227,31 @@
 							<td>
 								<span>2016-12-04 15:26</span>
 							</td>
-						</tr>
+						</tr>-->
 					</tbody>
+					
 				</table>
+				<div id="moduleFlieName">
+					<div>
+						<input type="text" />
+						<span>
+							<i class="icon icon-border"></i>
+							<i class="icon icon-checksmall"></i>
+						</span>
+						<span>
+							<i class="icon icon-border"></i>
+							<i class="icon icon-cancel"></i>
+						</span>
+					</div>
+				</div>
 			</div>
 		</section>
 	</section>
+	<div id="frameSelect"></div>
 </body>
-<script>
-(function(){
-	setBodyHei();
-	function setBodyHei() {
-		var oWrap = document.getElementById('tBody');
-		var oHeader = document.getElementById('header');
-		var H = document.documentElement.clientHeight || document.body.clientHeight;
-		var h = H - oHeader.offsetHeight < 500? 500: H - oHeader.offsetHeight;
-		oWrap.style.height = h + 'px';	
-	}
-	
-})()
-</script>
+<script src="js/data.js"></script>
+<script src="js/mYtools.js"></script>
+<script src="js/myHandData.js"></script>
+<script src="js/myRander.js"></script>
+<script src="js/myIndex.js"></script>
 </html>
