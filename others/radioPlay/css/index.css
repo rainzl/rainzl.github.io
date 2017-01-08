@@ -1,0 +1,575 @@
+/*css reset */
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+form {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+img {
+	border: none;
+	vertical-align: top;
+}
+input {
+	outline: none;
+}
+a {
+	text-decoration: none;
+}
+
+/*public css*/
+body {
+	width: 100%;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    min-width: 320px;
+    min-height: 320px;
+    font-family: 'Raleway','Helvetica',sans-serif;
+    font-weight: 400;
+    background-color: #fff;
+    color: #292a2a;
+    overflow: hidden;
+}
+.wrap {
+	box-sizing: border-box;
+	padding: 0 86px;
+	/*display: flex;
+	justify-content: center;*/
+	width: 100%;
+	position: relative;
+	z-index: 2;
+}
+#header {
+	position: relative;
+	box-sizing: border-box;
+	padding: 18px 0;
+	z-index: 2;
+}
+@media screen and (max-width: 581px) {
+	#header {
+		padding: 8px 0;
+	}
+	#switchPage {
+	    left: 8px;/*根据导航padding设置left值*/
+	}
+}
+@media screen and (max-height: 513px) {
+	#header {
+		padding-bottom: 17px;
+	}
+}
+@media screen and (max-width: 665px), 
+screen and (max-height: 513px) {
+	.wrap {
+		padding: 0 60px;
+	}
+}
+#header h1 {
+	width: 112px;
+	height: 40px;
+	overflow: hidden;
+	line-height: 1000px;
+	background: url(../img/logo.png) no-repeat rgba(255,255,255,.6);
+	background-size: 112px 40px;
+	border-radius: 50%;
+}
+.headR {
+	width: 300px;
+}
+@media screen and (max-width: 581px), 
+screen and (max-height: 463px) {
+	.wrap {
+		padding: 0 12px;
+	}
+	#header h1 {
+		width: 84px;
+		height: 30px;
+		background-size: 84px 30px;
+	}
+	.headR {
+		width: 160px;
+	}
+	#otherBtn {
+		margin-top: -12px;
+		margin-right: 12px;
+	}
+}
+#nav {
+	position: relative;
+	z-index: 1;
+}
+#nav li {
+	float: left;
+	display: block;
+    padding: 12px;
+    /*width: 54px;
+	height: 30px;*/
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+#nav li a {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	/*width: 54px;
+	height: 30px;*/
+	color: #292a2a;
+	/*font-weight: bold;*/
+	z-index: 2;
+}
+.nav{
+	top:12px;
+	left:12px;
+	position: absolute;
+	z-index: 0;
+}
+@media screen and (max-width: 783px), 
+screen and (max-height: 577px) {
+	#nav li {
+		padding: 12px;
+	    font-size: 13px;
+	    line-height: 30px;
+	    font-weight: 700;
+	}
+}
+#nav .active a {
+	color: #eeeeee;
+}
+#otherBtn {
+	width: 72px;
+	height: 54px;
+	position: relative;
+	z-index: 10;
+}
+.search {
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	top: 12px;
+	right: 42px;
+	border-radius: 15px;
+	background-color: #292a2a;
+	transition: .5s;
+	z-index: 10;
+}
+.search span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    z-index: 5;
+    overflow: hidden;
+    cursor: pointer;
+}
+.search span i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+    line-height: 1000px;
+    background: url(../img/iconHead.png) no-repeat 9px 9px;
+    background-size: 12px 12px;
+}
+.search input {
+	position: absolute;
+	top: 0;
+	left: 15px;
+	font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    height: 18px;
+    border: 0;
+    padding: 0;
+    margin: 6px 20px;
+    width: calc(100% - 70px);
+    color: rgba(255,255,255,1);
+    background-color: transparent;
+    z-index: 2;
+}
+.searchClose {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 238px;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+.searchClose i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../img/iconHead-2.png);
+    background-size: 100% 100%;
+    border-radius: 50%;
+}
+#otherBtn .sActive {
+	width: 268px;
+	z-index: 100;
+}
+.helpBtn {
+	position: absolute;
+	top: 12px;
+	left: 42px;
+	width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border-radius: 15px;
+	background-color: #292a2a;
+	cursor: pointer;
+}
+.helpBtn i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	line-height: 1000px;
+    overflow: hidden;
+    background: url(../img/iconHead-3.png) no-repeat 0 0;
+    background-size: 100% 100%;
+}
+.hid {
+	width: 0;
+}
+.show {
+	width: 100px;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.clear {
+	zoom: 1;
+}
+.clear:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+#switchPage {
+	position: absolute;
+    right: 15px;
+    top: 50%;
+    margin: -90px 0 0 0;
+	width: 54px;
+    height: 184px;
+    overflow: hidden;
+    -webkit-transition-property: -webkit-transform;
+    z-index: 20;
+}
+#switchPage .prev {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50px;
+	height: 50px;
+	border: 2px solid #292a2a;
+	border-radius: 50%;	
+	cursor: pointer;
+	overflow: hidden;
+}
+#switchPage .prev i {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50px;
+	height: 50px;
+	background: url(../img/iconPrev.png) no-repeat center center;
+	background-size: 60% 60%;
+	border-radius: 50%;
+}
+#switchPage .next {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 50px;
+	height: 50px;
+	border: 2px solid #292a2a;
+	border-radius: 50%;
+	cursor: pointer;
+	overflow: hidden;
+}
+#switchPage .next i {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50px;
+	height: 50px;
+	background: url(../img/iconNext.png) no-repeat center center;
+	background-size: 60% 60%;
+	border-radius: 50%;
+}
+#switchPage p {
+	position: absolute;
+    left: 0;
+    top: 50%;
+	margin: -15px 0 0 0;
+	width: 100%;
+	height: 30px;
+    line-height: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    z-index: 2;
+}
+@media screen and (max-width: 783px), 
+screen and (max-height: 577px) { 
+	#switchPage  {
+		width: 44px;
+	    height: 144px;
+	    z-index: 20;
+	    right: 10px;
+	    top: 50%;
+	    margin: -70px 0 0 0;
+	}
+	#switchPage .prev {
+		width: 40px;
+    	height: 40px;
+	}
+	#switchPage .prev i {
+		width: 40px;
+    	height: 40px;
+	}
+	#switchPage .next {
+		width: 40px;
+    	height: 40px;
+	}
+	#switchPage .next i {
+		width: 40px;
+    	height: 40px;
+	}
+	#switchPage p {
+		font-size: 12px;
+	}
+}
+@media screen and (max-width: 581px), 
+screen and (max-height: 463px) {
+	#switchPage {
+		width: 124px;
+	    height: 34px;
+	    right: auto;
+	    /*left: 0;在head样式部分根据导航padding设置left值*/
+	    top: 50px;
+	    margin: 0;
+	}
+	#switchPage .prev {
+		width: 30px;
+    	height: 30px;
+	}
+	#switchPage .prev i {
+		width: 30px;
+    	height: 30px;
+	}
+	#switchPage .next {
+		width: 30px;
+    	height: 30px;
+    	left: auto;
+	    right: 0;
+	    bottom: 0;
+	}
+	#switchPage .next i {
+		width: 30px;
+    	height: 30px;
+	}
+}
+/*help css*/
+#help {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0);
+	z-index: 0;
+	transition: .5s;
+	display: none;
+}
+#help .helpClose {
+	position: absolute;
+	left: 30px;
+    top: 50%;
+    margin-top: -25px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ffffff;
+	border-radius: 50%;
+    cursor: pointer;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+#help .helpClose i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../img/iconHelpClose-2.png) no-repeat center center;
+	background-size: 50% 50%;
+	border-radius: 50%;
+}
+#help .closeHover {
+	background-color: #fff;
+}
+#help .closeHover i {
+	background: url(../img/iconHelpClose.png) no-repeat center center #fff;
+	background-size: 50% 50%;
+}
+@media screen and (max-width: 949px), 
+screen and (max-height: 649px) {
+	#help .helpClose {
+		left: auto;
+	    right: 30px;
+	    top: 30px;
+	    margin-top: 0;
+	}
+}
+@media screen and (max-width: 665px), 
+screen and (max-height: 513px) {
+	#help .helpClose {
+		right: 20px;
+	    top: 20px;
+	    width: 40px;
+	    height: 40px;
+	}
+}
+@media screen and (max-width: 581px), 
+screen and (max-height: 463px) {
+	#help .helpClose {
+		width: 30px;
+	    height: 30px;
+	}
+}
+#help .keyTable {
+	display: table;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#help .keyCell {
+    display: table-cell;
+    vertical-align: middle;
+} 
+#help .swipeDom {
+	display: inline-block;
+    vertical-align: middle;
+    margin: 0 110px 0 0;
+}
+#help .swipeDom i {
+	display: block;
+    margin: 0 0 0 17px;
+    width: 186px;
+    height: 186px;
+    background-size: 100% 100%;
+    background: url(../img/iconHelpImg.png) no-repeat;
+    background-size: 100% 100%;
+}
+#help .swipeDom p {
+    width: 220px;
+    padding: 30px 0 0 0;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+}
+#help .keyDom {
+	display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+#help .keyDom li {
+	height: 30px;
+    margin: 0 0 12px 0;
+}
+#help .keyIcon {
+	width: 68px;
+    height: 30px;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+}
+#help .keyIcon i {
+	width: 30px;
+    height: 30px;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 3px solid #fff;
+    border-radius: 5px;
+    background-size: 30px 30px;
+    background-position: center center;
+}
+#help .keyIcon i:last-child {
+	margin-left: 8px;
+}
+#help .keyDom li p:nth-of-type(2) {
+	display: inline-block;
+	padding: 0 0 0 18px;
+    height: 30px;
+    vertical-align: middle;
+    line-height: 30px;
+    font-weight: 700;
+    font-size: 12px;
+    color: #fff;
+}
+#help .keyF {
+	background: url(../img/iconKeyF.png) no-repeat;
+}
+#help .keyV {
+	background: url(../img/iconKeyV.png) no-repeat;
+}
+#help .keyS {
+	background: url(../img/iconKeyS.png) no-repeat;
+}
+#help .keyUp {
+	background: url(../img/iconKeyUp.png) no-repeat;
+}
+#help .keyDown {
+	background: url(../img/iconKeyDown.png) no-repeat;
+}
+#help .keyLeft {
+	background: url(../img/iconKeyLeft.png) no-repeat;
+}
+#help .keyRight {
+	background: url(../img/iconKeyRight.png) no-repeat;
+}
+@media screen and (max-width: 783px), screen and (max-height: 577px) {
+	#help .swipeDom {
+	    margin: 0 80px 0 0;
+	}
+}
+@media screen and (max-width: 665px), screen and (max-height: 513px){
+	#help .swipeDom {
+	    margin: 0 40px 0 0;
+	}
+}
+@media screen and (max-width: 581px), screen and (max-height: 463px){
+	#help .swipDom {
+	    margin: 0;
+	}
+	#help .keyDom {
+	display: none;
+}
+}

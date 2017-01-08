@@ -1,0 +1,441 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <style type="text/css">
+    html {
+        height: 100%;
+    }
+
+    body {
+        position: relative;
+    }
+
+    #videoStrip {
+        width: 10.5rem;
+        height: 0.0625rem;
+        background: #fff;
+        border: none;
+        background: #bebfbf;
+        margin: 0.5rem 0.07rem 0 0.140625rem;
+        outline: none;
+        border-radius: 0.03rem;
+    }
+
+    .start {
+        width: .5rem;
+        height: .5rem;
+        margin: 0.234375rem 0 0 .75rem;
+        border: 0.03rem solid #000;
+        border-radius: 50%;
+    }
+
+    .startChild {
+        width: .2rem;
+        height: .2rem;
+        margin: .14rem 0 0 .16rem;
+        background: url(img/start1.png) no-repeat;
+        background-size: 100%;
+    }
+
+    #control .ad {
+        width: .5rem;
+        height: .5rem;
+        border: .03rem solid #000;
+        border-radius: 50%;
+        margin: .234375rem 0 0 .1rem;
+    }
+
+    #control .adChild {
+        width: .2rem;
+        height: .2rem;
+        background: url(img/ad.png) no-repeat;
+        background-size: 100%;
+        margin: .14rem 0 0 .14rem;
+    }
+
+    #musicStrip {
+        width: .625rem;
+        height: .0625rem;
+        background: #fff;
+        border: 1px solid #ccc;
+        outline: none;
+        margin: .499rem 0 0 0.1rem;
+    }
+
+    #control .full {
+        width: .5rem;
+        height: .5rem;
+        border: .03rem solid #000;
+        border-radius: 50%;
+        margin: .234375rem 0 0 0.12rem;
+    }
+
+    #control .fullCon {
+        width: .2rem;
+        height: .2rem;
+        background: url(img/full.png) no-repeat center center;
+        background-size: 100%;
+        margin: .14rem 0 0 .14rem;
+    }
+
+    #control .chaining {
+        width: .5rem;
+        height: .5rem;
+        border: .03rem solid #000;
+        border-radius: 50%;
+        margin: .234375rem 0 0 0.12rem;
+    }
+
+    #control .chainingChild {
+        width: .2rem;
+        height: .3rem;
+        background: url(img/home.png) no-repeat;
+        background-size: 100%;
+        margin: .14rem 0 0 .14rem;
+    }
+
+    .Gcolor1,
+    .Gcolor2 {
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        height: .0625rem;
+        width: 0;
+        background: #000;
+        outline: none;
+        border: none;
+        border-radius: 0.03rem;
+    }
+
+    .Gcolor1 {
+        left: 1.44rem;
+        top: .499rem;
+    }
+
+    .Gcolor2 {
+        width: .625rem;
+        left: 13.155rem;
+        top: .499rem;
+    }
+
+    #control span,
+    #control input {
+        float: left;
+    }
+
+    #control {
+        position: relative;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        /*     height: 1.3rem; */
+    }
+
+    #video {
+        position: relative;
+        width: 100%;
+        /*     height: 5.6rem; */
+        background: #292a2a;
+        text-align: center;
+        display: none;
+    }
+
+    #skip {
+        width: 100%;
+        /*     height: 5.6rem; */
+        margin: 0;
+        padding: 0;
+    }
+    /*   #header {
+    height: 1rem;
+  } */
+    /*   #vd {
+    width: 1433px;
+    height: 5.6rem;
+     margin: 0.4rem 0 0 0;
+  } */
+
+    #control .videoTime {
+        width: 0.4rem;
+        height: 0.4rem;
+        margin-top: 0.43rem;
+        font-size: .18rem;
+    }
+
+    .GuImg {
+        position: absolute;
+        top: 0;
+        /*      left: 1.08rem; */
+        /*      width: 13.848125rem; */
+        /*      height: 5.6rem; */
+        /*background: url(img/0.jpg) no-repeat;*/
+        background-size: 100%;
+    }
+    </style>
+</head>
+
+<body>
+    <!--nav start-->
+    <header class="wrap">
+        <div id="header" class="clear">
+            <h1 class="left">��ζ����</h1>
+            <div class="right headR">
+                <ul id="nav" class="left">
+                    <li>
+                        <a _href="../indexMain.html">Motions</a>
+                    </li>
+                    <li >
+                        <a href="../dev/index.html">Develop</a>
+                    </li>
+                </ul>
+                <div id="otherBtn" class="right">
+                    <form class="search">
+                        <span><i>����</i></span>
+                        <input class="show" type="text" placeholder="Type to Search" />
+                        <em class="searchClose"><i></i></em>
+                    </form>
+                    <span class="helpBtn"><i>����</i></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--nav end-->
+    <!-- video -->
+    <div id="video">
+        <video id="vd" style="min-width:320px;min-height:320px" autobuffer allowfullscreen>
+            <source src="mp4/WalkIn.mp4" />
+        </video>
+        <div class="GuImg"></div>
+        <div id="wrap">
+            <section class="center">
+                <div class="vidiuChange">
+                    <img src="img/img01.jpg" class="vidiuPrev" style="width:316px;height:194px;opacity:0">
+                    <img src="img/t0.jpg" class="vidiu" style="width:13.848125rem;height:490px;opacity:1">
+                    <img src="img/img03.jpg" class="vidiuNext" style="width:316px;height:194px;opacity:0">
+                </div>
+                <div class="hzFloat">
+                    <div class="hzShadow"></div>
+                    <div class="hzTitle">
+                        <div class="hzTitle-left">
+                            <h2>Talking about it</h2>
+                            <p>James Taylor</p>
+                            <nav class="hzShare">
+                                <a href="javascript:;"><i>f</i></a>
+                                <a href="javascript:;"><i>t</i></a>
+                                <a href="javascript:;"><i>g</i></a>
+                            </nav>
+                        </div>
+                        <div class="hzTitle-right">
+                            <a href="javascript:;" class="prev"><i><</i></a>
+                            <span class="all"><i>10</i>/<i>20</i></span>
+                            <a href="javascript:;" class="next"><i>></i></a>
+                        </div>
+                    </div>
+                    <div class="hzChange">
+                        <ul class="hzChange-left">
+                            <li class="dif">
+                                <a class="back" href="javascript:;">
+                                    <em></em>
+                                    <em></em>
+                                    <em></em>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="hzChange-right">
+                            <li class="difR">
+                                <a class="backR" href="javascript:;">
+                                    <em></em>
+                                    <em></em>
+                                    <em></em>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <canvas id="skip"></canvas>
+    <!-- video -->
+    <!-- footer -->
+    <div id="control">
+        <span class="start">
+    <span class="startChild"></span>
+        </span>
+        <input type="button" id="videoStrip">
+        <span class="videoTime">0:00</span>
+        <span class="ad">
+    <span class="adChild"></span>
+        </span>
+        <input type="button" id="musicStrip">
+        <span class="full">
+    <span class="fullCon"></span>
+        </span>
+        <input type="button" class="Gcolor1">
+        <input type="button" class="Gcolor2">
+        <span class="chaining">
+     <span class="chainingChild"></span>
+        </span>
+    </div>
+    <div id="help">
+        <span class="helpClose"><i></i></span>
+        <div class="keyTable">
+            <div class="keyCell">
+                <div class="swipeDom">
+                    <i></i>
+                    <p>Swipe for next/prev on touch screen</p>
+                </div>
+                <ul class="keyDom">
+                    <li>
+                        <p class="keyIcon"><i class="keyF"></i></p>
+                        <p>Full screen (if supported)</p>
+                    </li>
+                    <li>
+                        <p class="keyIcon"><i class="keyV"></i></p>
+                        <p>Volume on/off (if supported)</p>
+                    </li>
+                    <li>
+                        <p class="keyIcon"><i class="keyS"></i></p>
+                        <p>Search</p>
+                    </li>
+                    <li>
+                        <p class="keyIcon"><i class="keyUp"></i><i class="keyDown"></i></p>
+                        <p>Next/Prev on the list</p>
+                    </li>
+                    <li>
+                        <p class="keyIcon"><i class="keyLeft"></i><i class="keyRight"></i></p>
+                        <p>Next/Prev on the view</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+</body>
+<script>
+var data = [{
+    mp4: 'mp4/iceAge.mp4',
+    img: 'img/0.jpg'
+}, {
+    mp4: 'mp4/WalkIn.mp4',
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'mp4/WalkIn.mp4',
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}, {
+    mp4: 'iceAge.mp4'
+}
+]
+var img = ['img/img01.jpg','img/img02.jpg','img/img03.jpg','img/img04.jpg',
+		'img/img05.jpg','img/img06.jpg','img/img07.jpg','img/img08.jpg','img/img09.jpg',
+		'img/img1.gif','img/img2.gif','img/img3.gif','img/img4.gif','img/img5.gif',
+		'img/img6.gif','img/img7.gif','img/img8.gif','img/img9.gif','img/img2.gif',
+		'img/img4.gif','img/img8.gif'
+	];//21
+</script>
+<script type="text/javascript" src="../js/data.js"></script>
+<script src="../js/tabPage.js"></script>
+<script type="text/javascript" src="../js/publicMain.js"></script>
+<script type="text/javascript" src="js/video.js"></script>
+<script src="../js/textSty.js"></script>
+<script src="../js/main.js"></script>
+<script type="text/javascript" src="js/miaov.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script>
+var skip = document.getElementById('skip');
+var videoPar = document.getElementById('video');
+var chaining = document.getElementsByClassName('chaining')[0];
+
+var nowHash = parseInt(window.location.hash.slice(1));
+chaining.onclick = function() {
+	skip.style.display = 'block';
+	videoPar.style.display = 'none';
+	tab(
+		skip,{
+		    img: "../" + data[nowHash].bigImg,
+			imgW: 260,
+			imgH: 150,
+			color: '#292a2a'
+		},'g',function (){ window.location.href = '../info/Talking about it.html#'+nowHash }
+	);
+}
+videoPar.style.display = 'none';
+	setNav('#fff');
+	tab(skip, {
+	    img: "../" +data[nowHash].bigImg,
+	imgW: 260,
+	imgH: 150,
+	color: '#292a2a'
+	}, 'k', showMv);
+    
+   	navClick();
+    function showMv() {
+        setTimeout(function() {
+            skip.style.display = 'none';
+            videoPar.style.display = 'block';
+        }, 300)
+
+    }
+    
+	function navClick() {
+		var oNav = document.getElementById('nav');
+		var skip = document.getElementById('skip');
+		aNavAs = Array.from(oNav.getElementsByTagName('a'));
+		
+		aNavAs.forEach(function(item,i){
+			item.addEventListener('click',fnClick);
+			function fnClick() {
+				if (skip) {
+					skip.style.display = 'block';
+					videoPar.style.display = 'none';
+					
+					tab(
+						skip,{
+						    img: "../" + data[nowHash].bigImg,
+							imgW: 260,
+							imgH: 150,
+							color: '#292a2a'
+						},'g',function (){ window.location.href = item.getAttribute('_href') }
+					);
+				}
+			}
+		});
+	}
+</script>
+</html>

@@ -1,0 +1,258 @@
+@charset="utf-8";
+body,
+p,
+h2 {
+    margin: 0;
+    font-family: 'Raleway', 'Helvetica', sans-serif;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+i {
+    font-style: normal;
+    position: relative;
+}
+
+#wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.center {
+    position: relative;
+/*     height: 447px; */
+    overflow: hidden;
+}
+
+.hzFloat {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.center img {
+    position: absolute;
+    left: 1.08rem;
+}
+
+.center .vidiuPrev {
+    left: -800px;
+}
+
+/* .center .vidiuNext {
+    left: 1400px;
+}
+ */
+.hzShadow {
+    height: 70%;
+    box-shadow: inset 0 460px 310px -390px #000;
+}
+
+.hzTitle {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    top: -130px;
+    left: 0;
+    padding: 20px 30px 0 30px;
+    height: 160px;
+    color: #fff;
+}
+
+.hzTitle h2 {
+    font-weight: 700;
+    font-size: 0.3rem;
+    line-height: 0.5rem;
+}
+
+.hzTitle p {
+    font-weight: 700;
+    font-size: 0.2rem;
+    line-height: 0.4rem;
+}
+
+.hzTitle .hzShare a {
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: .15rem;
+    line-height: .25rem;
+    margin-top: 10px;
+    margin-right: 10px;
+    float: left;
+    width: .25rem;
+    height: .25rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.hzTitle .hzShare a:hover {
+    background: #fff;
+    color: #000;
+}
+
+.hzTitle-left {
+    float: left;
+}
+
+.hzTitle-right {
+    float: right;
+}
+
+.hzTitle-right a {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border: .03rem solid #fff;
+    border-radius: 50%;
+    vertical-align: middle;
+    color: #fff;
+    text-align: center;
+    font-size: .3rem;
+    line-height: .6rem;
+}
+
+.hzTitle-right a:hover {
+    background: #fff;
+    color: #000;
+}
+
+.hzTitle-right span {
+    display: inline-block;
+    height: 50px;
+    width: 70px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.hzChange {
+    position: absolute;
+    height: 200px;
+    width: 100%;
+    top: 160px;
+    left: 0;
+}
+
+.hzChange img {
+    position: absolute;
+    left: 400px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.hzChange .back {
+    position: absolute;
+    display: inline-block;
+    width: 50px;
+    left: 0px;
+    top: 0;
+}
+
+.back em {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.hzChange-left {
+    position: absolute;
+    left: -130px;
+}
+
+.hzChange-left li {
+    position: absolute;
+    box-sizing: border-box;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 0.04rem solid #fff;
+    font: 60px/130px arial;
+    text-align: center;
+}
+
+.hzChange-left li a,
+.hzChange-right li a {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: -7px;
+    left: -7px;
+    border-radius: 50%;
+}
+
+.hzChange-left .dif {
+    width: 50px;
+    height: 20px;
+    background: none;
+    left: -50px;
+    top: 50px;
+    border: none;
+    font: 20px/20px arial;
+}
+
+.hzChange-right {
+    position: absolute;
+    width: 8%;
+    height: 0;
+}
+
+.hzChange-right li {
+    position: absolute;
+    box-sizing: border-box;
+    width: 1.5rem;
+    height: 1.5rem;
+    left: -10px;
+    background: blue;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    font: 60px/130px arial;
+    text-align: center;
+}
+
+.hzChange-right .difR {
+    width: 50px;
+    height: 20px;
+    background: none;
+    top: 55px;
+    right: 0px;
+    border: none;
+    font: 20px/20px arial;
+}
+
+.hzChange .backR {
+    position: absolute;
+    display: inline-block;
+    width: 50px;
+    padding: 20px 0 20px 0;
+    left: 50px;
+    top: -20px;
+}
+
+.backR em {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+}

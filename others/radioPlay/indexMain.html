@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<link rel="stylesheet" href="css/index.css" />
+<style>
+/*index css*/
+#zbjListC {
+	position: relative;
+	width: 100%;
+}
+#zbjListC canvas {
+	pointer-events: none;
+}
+#zbjListC .zbjlistA a {
+	position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 0;
+	width: 210px;
+    height: 210px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 949px), 
+screen and (max-height: 649px) {
+	#zbjListC .zbjlistA a  {
+		width: 184px;
+	    height: 184px;
+	}
+}
+@media screen and (max-width: 783px), 
+screen and (max-height: 577px) { 
+	#zbjListC .zbjlistA a  {
+		width: 162px;
+	    height: 162px;
+	}
+}
+@media screen and (max-width: 665px), 
+screen and (max-height: 513px) {
+	#zbjListC .zbjlistA a {
+	    width: 142px;
+	    height: 142px;
+	}
+}
+@media screen and (max-width: 581px), 
+screen and (max-height: 463px) {
+	#zbjListC .zbjlistA a {
+	    width: 120px;
+	    height: 120px;
+	}
+}
+#imgWrap {
+	display: none;
+}
+.left{cursor:pointer;}
+</style>
+</head>
+<body>
+	<!--nav start-->
+	<header class="wrap">
+		<div id="header" class="clear">
+			<h1 class="left">��ζ����</h1>
+			<div class="right headR">
+				<ul id="nav" class="left">
+					<li class="active">
+						<a href="javascript:;">Motions</a>
+					</li>
+					<li>
+						<a href="dev/index.html">Develop</a>
+					</li>
+				</ul>
+				<div id="otherBtn" class="right">
+					<form class="search">
+						<span><i>����</i></span>
+						<input class="show" type="text" placeholder="Type to Search" />
+						<em class="searchClose"><i></i></em>
+					</form>
+					<span class="helpBtn"><i>����</i></span>
+				</div>
+			</div>
+		</div>
+		
+	</header>
+	<!--nav end-->
+	<section class="wrap">
+		<div id="zbjListC">
+			<canvas></canvas>
+			<div class="zbjlistA">
+				<a></a>
+				<a></a>
+			</div>
+		</div>
+	</section>
+	<div id="switchPage">
+		<span class="prev"><i></i></span>
+		<p><i class="numP">1</i>/<em>11</em></p>
+		<span class="next"><i></i></span>
+	</div>
+	<div id="help">
+		<span class="helpClose"><i></i></span>
+		<div class="keyTable">
+			<div class="keyCell">
+				<div class="swipeDom">
+					<i></i>
+					<p>Swipe for next/prev on touch screen</p>
+				</div>
+				<ul class="keyDom">
+					<li>
+						<p class="keyIcon"><i class="keyF"></i></p>
+						<p>Full screen (if supported)</p>
+					</li>
+					<li>
+						<p class="keyIcon"><i class="keyV"></i></p>
+						<p>Volume on/off (if supported)</p>
+					</li>
+					<li>
+						<p class="keyIcon"><i class="keyS"></i></p>
+						<p>Search</p>
+					</li>
+					<li>
+						<p class="keyIcon"><i class="keyUp"></i><i class="keyDown"></i></p>
+						<p>Next/Prev on the list</p>
+					</li>
+					<li>
+						<p class="keyIcon"><i class="keyLeft"></i><i class="keyRight"></i></p>
+						<p>Next/Prev on the view</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="imgWrap">
+
+	</div>
+<script src="js/data.js"></script>
+<script src="js/publicMain.js"></script>
+<script src="js/main.js"></script>
+<script src="js/textSty.js"></script>
+<script>
+
+setNav('#fff');
+
+</script>
+
+<script src="js/index.js"></script>
+</body>
+</html>

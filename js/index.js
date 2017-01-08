@@ -153,25 +153,25 @@ if (device) {
 			addEvent:function(obj) {
 				var startX, disX, num = 0;
 				var _this = this;
-				obj.addEventListener('touchstart',function(ev){
+				obj.off('touchstart').on('touchstart',function(ev){
 					var ev = ev || event;
 					
-					if (ImgEvent(obj,ev.changedTouches[0].pageX,ev.changedTouches[0].pageY)){
+					if (ImgEvent(obj[0],ev.changedTouches[0].pageX,ev.changedTouches[0].pageY)){
 						startX = _this.touchStart(ev);
 					}
 				});
-				obj.addEventListener('touchmove',function(ev){
+				obj.off('touchmove').on('touchmove',function(ev){
 					var ev = ev || event;
 					disX = _this.touchsMove(ev,disX,startX);
 				});
-				obj.addEventListener('touchend',function(){
+				obj.off('touchend').on('touchend',function(){
 					var ev = ev || event;
 					_this.touchsEnd(disX);
 				});
 			}
 		})
-		imgTab.addEvent($('#hat')[0]);
-		imgTab.addEvent($('#shoes')[0]);
+		imgTab.addEvent($('#hat'));
+		imgTab.addEvent($('#shoes'));
 		
 		//点击图片，弹出/隐藏详情框
 		;(function(factory) {
@@ -181,16 +181,15 @@ if (device) {
 				var fileId = $(this).attr('fileId');
 				factory($productList);
 			})
-			$('#hat').click(function(ev){
+			$('#hat').off('click').click(function(ev){
 				var ev = ev || event;
 				if (ImgEvent(this,ev.pageX,ev.pageY)) {
-					
 					var li = findEle($productList,ev.pageX,ev.pageY);
 					var fileId = $(li).attr('fileId');
 					factory($productList,fileId);
 				}
 			})
-			$('#shoes').click(function(ev){
+			$('#shoes').off('click').click(function(ev){
 				var ev = ev || event;
 				if (ImgEvent(this,ev.pageX,ev.pageY)) {
 					
@@ -286,7 +285,7 @@ if (device) {
 		canvasClick();
 		//点击上下canvas操作
 		function canvasClick(obj) {
-			$('#hat').click(function(ev){
+			$('#hat').off('click').click(function(ev){
 				var ev = ev || event;
 				if (ImgEvent(this,ev.pageX,ev.pageY)) {
 					
@@ -294,7 +293,7 @@ if (device) {
 					window.location.href = a.href;
 				}
 			})
-			$('#shoes').click(function(ev){
+			$('#shoes').off('click').click(function(ev){
 				var ev = ev || event;
 				if (ImgEvent(this,ev.pageX,ev.pageY)) {
 					
@@ -359,6 +358,9 @@ if (device) {
 	
 	//页面进来加载: 有loading，需要执行loading动画，没有loading直接获取logo的位置
 	function loading() {
+		
+		move.css($wrap.find('.tBody')[0],'translateY','0');
+		
 		if ( $body.hasClass('loading') ) {//前两个页面有loading
 			var num = 0;
 			$(data).each(function(i,e){

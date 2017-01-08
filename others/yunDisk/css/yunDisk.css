@@ -1,0 +1,943 @@
+
+/*reset css*/
+body,
+h1,
+p,
+form {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+table {
+	border-collapse: collapse;
+}
+input {
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+td,th {
+	padding: 0;
+}
+/*public css*/
+html,
+body {
+	width: 100%;
+	min-width: 1050px;
+	height: 100%;
+	font: 12px/18px "Microsoft YaHei", arial, SimSun;
+	background-color: #eff4f8;
+	overflow: hidden;
+	color: #424e67;
+}
+@font-face{
+	font-family:yunfont;
+	src:url(../css/fontface/yunfont.eot) format('embedded-opentype'),
+		url(../css/fontface/yunfont.ttf) format('truetype'),
+		url(../css/fontface/yunfont.woff) format('woff');
+	font-weight:400;font-style:normal;
+}
+.icon{
+	font-family:yunfont!important;
+	speak:none;font-style:normal;
+	font-weight:400;font-variant:normal;
+	text-transform:none;
+	line-height:1;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+.icon-mac:before{content:"\e93c"}
+.icon-circle:before{content:"\e93b"}
+.icon-border:before{content:"\e908"}
+.icon-downtitle:before{content:"\e938"}
+.icon-up:before{content:"\e939"}
+.icon-friendlist:before{content:"\e934"}
+.icon-checkgridsmall:before{content:"\e935"}
+.icon-mboxchate:before{content:"\e936"}
+.icon-checksmall:before{content:"\e937"}
+.icon-dropdown-arrow:before{content:"\e933"}
+.icon-sort-select:before{content:"\e932"}
+.icon-share-community:before{content:"\e92e"}
+.icon-share-email:before{content:"\e92f"}
+.icon-share-link:before{content:"\e930"}
+.icon-share-friend:before{content:"\e931"}
+.icon-minimize:before{content:"\e92c"}
+.icon-maximizing:before{content:"\e92d"}
+.icon-close:before{content:"\e92b"}
+.icon-small-lock:before{content:"\e92a"}
+.icon-search-del:before{content:"\e929"}
+.icon-feedback:before{content:"\e928"}
+.icon-poly:before{content:"\e927"}
+.icon-recovery:before{content:"\e923"}
+.icon-mosaic:before{content:"\e924"}
+.icon-speed:before{content:"\e925"}
+.icon-play:before{content:"\e926"}
+.icon-my-share:before{content:"\e900"}
+.icon-history:before{content:"\e921"}
+.icon-edit:before{content:"\e91e"}
+.icon-save-disk:before{content:"\e91f"}
+.icon-list:before{content:"\e920"}
+.icon-share-cancel:before{content:"\e91b"}
+.icon-qrcode:before{content:"\e91c"}
+.icon-beauty:before{content:"\e91d"}
+.icon-disk:before{content:"\e901"}
+.icon-share:before{content:"\e902"}
+.icon-delete:before{content:"\e903"}
+.icon-theme:before{content:"\e904"}
+.icon-search:before{content:"\e905"}
+.icon-newfolder:before{content:"\e906"}
+.icon-upload:before{content:"\e915"}
+.icon-download:before{content:"\e907"}
+.icon-down:before{content:"\e908"}
+.icon-copy:before{content:"\e914"}
+.icon-face:before{content:"\e909"}
+.icon-yunguanjia:before{content:"\e916"}
+.icon-android:before{content:"\e90a"}
+.icon-apple:before{content:"\e90b"}
+.icon-iPad:before{content:"\e917"}
+.icon-device:before{content:"\e90c"}
+.icon-win:before{content:"\e918"}
+.icon-sync:before{content:"\e91a"}
+.icon-check:before{content:"\e90d"}
+.icon-cancel:before{content:"\e90e"}
+.icon-print:before{content:"\e90f"}
+.icon-order:before{content:"\e910"}
+.icon-grid:before{content:"\e911"}
+.icon-right:before{content:"\e912"}
+.icon-more:before{content:"\e913"}
+.icon-mail:before{content:"\e919"}
+.icon-notice:before{content:"\e922"}
+.icon {
+	font-family: yunfont!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+.clear {
+	zoom: 1;
+}
+.clear:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+/*header css*/
+#header {
+	position: relative;
+	padding: 11px 0;
+	width: 100%;
+    height: 40px;
+    min-width: 1050px;
+    font-size: 12px;
+    font-family: microsoft yahei,tahoma,arial;
+    z-index: 10;
+}
+.headerLogo {
+	position: relative;
+	margin: 4px 0 4px 20px;
+	width: 142px;
+	height: 32px;
+	overflow: hidden;
+}
+.headerLogo a {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	line-height: 1000px;
+	background: url(../img/logo.png) no-repeat;
+}
+.headNav {
+	width: auto;
+    height: 100%;
+    padding-left: 34px;
+    text-align: center;
+}
+.headNav a {
+	position: relative;
+	float: left;
+	height: 40px;
+	width: 36px;
+	margin: 0 25px;
+	font: 16px/38px microsoft yahei,tahoma,arial;
+	color: #424e67;
+}
+.headNav a:hover {
+	opacity: .8;
+}
+.headNav i {
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	border-radius: 5px;
+}
+.headNav .active {
+	color: #3b8cff;
+}
+.headNav .active i {
+	background-color: #3b8cff;
+}
+.headRight {
+	height: 40px;
+	padding-right: 10px;
+	font-size: 12px;
+	line-height: 40px;
+	color: #424e67;
+}
+#headIn {
+	position: relative;
+	float: left;
+	margin-right: 15px;
+	height: 42px;
+	vertical-align: middle;
+}
+.headInfo {
+	height: 42px;
+	overflow: hidden;
+}
+.headImg {
+	display: inline-block;
+	padding: 2px;
+	width: 30px;
+    height: 30px;
+    background: rgba(0,0,0,.1);
+    background-position: center center;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.headImg img {
+	width: 30px;
+    height: 30px;
+    background: url(../img/img1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
+}
+.headName {
+	margin-left: 10px;
+	vertical-align: middle;
+	max-width: 122px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.headGradeIcon {
+	position: relative;
+	width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.headGradeIcon a {
+	position: absolute;
+	top: -3px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../img/headGrage.png) no-repeat;
+	background-size: contain;
+}
+.headInfo i {
+	position: relative;
+	display: inline-block;
+    vertical-align: middle;
+   	transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform-origin: 50% 50% 0;
+    transition: transform .2s ease-in 0s;
+}
+.headInShow .headInfo i{
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+}
+.headInShow .headInfoCaption {
+	display: block;
+}
+.headInfoCaption {
+	position: absolute;
+	top: 60px;
+	top: 150%;
+	left: 0;
+	width: 240px;
+	height: auto;
+	background-color: #fff;
+	box-shadow: 0 0 10px 2px rgba(150,150,150,.8);
+	border-radius: 5px;
+	display: none;
+}
+.headInfoCaption mark {
+	position: absolute;
+	top: -20px;
+	left: 25px;
+	border: 10px solid transparent;
+	border-bottom-color: #3e81e0;
+	background-color: transparent;
+}
+.headInfoCaption .top {
+	padding: 20px 0 0 15px;
+	height: 70px;
+    border-radius: 5px 5px 0 0;
+    background-color: #3e81e0;
+	color: #fff;
+}
+.headInfoCaption .headImg {
+	margin-right: 10px;
+	padding: 3px;
+	width: 45px;
+    height: 45px;
+    background: rgba(0,0,0,.1);
+    border-radius: 50%;
+}
+.headInfoCaption .headImg img {
+	width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+.headInfoCaption .headName {
+	max-width: 122px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fff;
+}
+.headInfoCaption .bottom {
+	position: relative;
+	margin: 5px 10px 5px 12px;
+    line-height: 50px;
+    color: #424e67;
+}
+.headInfoCaption .bottomHead a {
+	position: absolute;
+    top: 13px;
+    right: 3px;
+	padding: 0 11px;
+    margin: 0;
+	height: 24px;
+    border-radius: 15px;
+    line-height: 24px;
+    color: #fff;
+    background: #f8645c;
+}
+.headInfoCaption .bottomPrivilege {
+	font-size: 0;
+	height: 31px;
+    margin: 5px -12px 0 0;
+    color: #424e67;
+}
+.headInfoCaption .bottomPrivilege a {
+	float: left;
+    width: 31px;
+    height: 31px;
+    margin: 0 15px 0 0;
+    background: url(../img/headVipIcon.png) no-repeat;
+    background-size: 31px auto;
+    background-position: 0 0;
+}
+.headInfoCaption .bottomPrivilege a:nth-of-type(1) {
+	background-position: 0 -63px;
+}
+.headInfoCaption .bottomPrivilege a:nth-of-type(2) {
+	background-position: 0 -31px;
+}
+.headInfoCaption .bottomPrivilege a:nth-of-type(4) {
+	background-position: 0 -94px;
+}
+.headInfoCaption .bottomPrivilege a:nth-of-type(5) {
+	background-position: 0 -125px;
+}
+.headInfoCaption .bottomDesc {
+	padding-top: 10px;
+}
+.headInfoCaption .bottomDesc a {
+	display: block;
+	line-height: 35px;
+    color: #424e67;
+}
+.headRightLine {
+	float: left;
+    width: 1px;
+    height: 12px;
+    margin-top: 15px;
+    margin-bottom: -1px;
+    background-color: #adb3be;
+}
+.headFn {
+	float: right;
+}
+.headFn a {
+	margin-left: 15px;
+	color: #424e67;
+}
+.headDownLoad {
+	float: left;
+}
+.headFns{
+	float: left;
+}
+.headFns a {
+	margin-left: 20px;
+	font-size: 18px;
+	line-height: 40px;
+}
+.headFns a:nth-last-of-type(1) {
+	margin-left: 16px;
+	font-size: 19px;
+}
+.headFn .headMember {
+	padding: 5px 15px;
+	border-radius: 20px;
+	line-height: 40px;
+    margin-left: 20px;
+    color: #fff;
+    background: #f8645c;
+}
+.headBar {
+    margin-right: 10px;	
+    line-height: 40px;
+    text-decoration: underline;
+	color: #f8645c;
+	vertical-align: middle;
+}
+
+
+/*wrap css*/
+.wrap {
+	position: relative;
+	width: 100%;
+	/*高度需要js设置*/
+	overflow: hidden;
+	z-index: 1;
+}
+.contRight {
+	position: absolute;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	padding-top: 10px;
+	width: 194px;
+	height: 100%;
+}
+#aside {
+	font-size: 14px;
+	line-height: 38px;
+}
+#aside li {
+	position: relative;
+	padding-left: 15px;
+	height: 38px;
+	color: #424e67;
+}
+#aside i {
+	position: absolute;
+	left: 25px;
+	top: 12px;
+	width: ;
+	font-size: 16px;
+}
+#aside span {
+	padding-left: 38px;
+}
+#aside .active {
+	background: rgba(0,0,0,.05);
+	color: #3b8cff;
+}
+.contRightFoot {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 90px;
+}
+.contRightCapacity {
+	padding: 8px 20px 0;
+	height: 34px;
+}
+.CapacityBar {
+	height: 8px;
+	background: rgba(0,0,0,.1);
+	border-radius: 10px;
+}
+.CapacityBar span {
+	display: block;
+	height: 8px;
+	width: 8px;
+	border-radius: 10px;
+	background: rgb(146, 239, 85);
+}
+.contRightCapacityInfo {
+	padding-top: 7px;
+	height: 18px;
+}
+.contRightCapacityInfo a {
+	width: 40px;
+	text-align: right;
+	color: #3b8cff;
+}
+.contRightDownload {
+	height: 44px;
+	padding-left: 10px;
+	text-align: center;
+}
+.contRightDownload a {
+	float: left;
+	padding-right: 4px;
+    width: 42px;
+    height: 20px;
+    color: #b2bbcc;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+
+/*files css*/
+#filesList {
+	position: absolute;
+	top: 0;
+    left: 194px;
+    bottom: 0px;
+    right: 10px;
+    margin-left: -1px;
+    background: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top: 1px solid #d8dfea;
+    border-left: 1px solid #d8dfea;
+    border-right: 1px solid #d8dfea;
+}
+.filesListHeader {
+	position: relative;
+	padding: 14px 10px;
+	height: 33px;
+	z-index: 10;
+}
+.filesListHeadBtnsR span {
+	position: relative;
+	/*display: inline-block;*/
+	float: left;
+    margin: 0 5px;
+    padding: 0 15px;
+    border-radius: 4px;
+    height: 32px;
+    line-height: 32px;
+    text-indent: 20px;
+    background-color: #fff;
+    border: 1px solid #c0d9fe;
+    color: #3b8cff;
+    cursor: pointer;
+}
+.filesListHeadBtnsR .hoverNone {
+	color: #c0d9fe;
+	cursor: default;
+}
+.filesListHeadBtnsR span:hover {
+	color: #c0d9fe;
+}
+.filesListHeadBtnsR .filesUpLoad {
+	background-color: #3b8cff;
+	color: #fff;
+}
+.filesListHeadBtnsR i {
+	position: absolute;
+	top: 0;
+	left: 15px;
+	font-size: 16px;
+	line-height: 32px;
+	text-indent: 0;
+}
+.filesListHeadBtnsR div {
+	float: left;
+}
+.filesListHeadChangBtn {
+	/*display: none;*/
+}
+.filesListHeadChangChose {
+	display: none;
+	margin: 0 5px;
+    border-radius: 4px;
+    border: 1px solid #c0d9fe;
+    overflow: hidden;
+}
+.filesListHeadChangChose span {
+	margin: 0;
+	border: none;
+	border-right: 1px solid #c0d9fe;
+	border-radius: 0;
+}
+.filesListHeadChangChose span:nth-last-of-type(1) {
+	border: none;
+}
+.filesListHeadChangChose .headResetName,
+.filesListHeadChangChose .headCopy {
+	text-indent: 0;
+}
+.filesListHeadBtnsL form {
+	float: left;
+	position: relative;
+	width: 226px;
+    min-width: 165px;
+    max-width: 315px;
+    height: 30px;
+    margin-right: 8px;
+    background: #f1f2f4;
+    border-radius: 33px;
+}
+.filesListHeadBtnsL .txt {
+	position: absolute;
+	top: 0;
+	left: 15px;
+	right: 50px;
+	height: 100%;
+	border: 0;
+	outline: none;
+	background-color: transparent;
+	font-size: 12px;
+	line-height: 29px;
+	color: #666;
+}
+.filesListHeadBtnsL .submit {
+	position: absolute;
+	top: 0;
+    right: 13px;
+    width: 20px;
+    height: 100%;
+    font-size: 14px;
+    line-height: 30px;
+    color: #666;
+}
+.filesListHeadBtnsL>span {
+	margin-right: 5px;
+	float: left;
+	width: 30px;
+	height: 30px;
+	font-size: 16px;
+	line-height: 30px;
+}
+.filesListHeadBtnsL .filesSort {
+	position: relative;
+	font-size: 24px;
+	line-height: 30px;
+}
+.filesSortList {
+	position: absolute;
+	top: 38px;
+	right: 0;
+	width: 100px;
+	background: #fff;
+    border-radius: 4px;
+    border: 1px solid #c0d9fe;
+    display: none;
+}
+.filesSortListShow {
+	display: block;
+}
+.filesSortList span {
+	position: relative;
+	display: block;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+    color: #3B8CFF;
+    text-indent: 23px;
+    cursor: pointer;
+}
+.filesSortList i {
+	position: absolute;
+    left: 10px;
+    top: 8px;
+    text-indent: 0;
+    display: none;
+}
+.filesSortList .active {
+	background-color: #f6faff;
+}
+.filesSortList .show {
+	display: inline;
+}
+.filesPath {
+	padding: 0 16px;
+    height: 16px;
+    line-height: 16px;
+    margin-bottom: 5px;
+    color: #666;
+}
+.filesListRoute i {
+	margin: 0 5px 0 3px;
+	font-style: normal;
+	color: #c5d8f3;
+}
+.filesListRoute a {
+	color: #4287ed;
+}
+.filesListRoute a:hover {
+	text-decoration: underline;
+}
+.filesListCount {
+	margin-right: 5px;
+}
+.filesBody {
+	position: relative;
+	margin-top: 1px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#fileScrollBar {
+	position: absolute;
+	right: 0;
+	top: 37px;
+	height: 100%;
+	width: 10px;
+	background-color: #fff;
+}
+#fileScrollBar span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 8px;
+	height: 26px;
+	background-color: rgba(160,160,160,1);
+	border-radius: 10px;
+}
+.files {
+	width: 100%;
+}
+
+#tHead {
+	position: relative;
+	width: 100%;
+	height: 36px;
+	line-height: 34px;
+	color: #888;
+}
+#tHead li {
+	float: left;
+	height: 36px;
+	vertical-align: middle;
+}
+#tHead li:nth-of-type(1) {
+	width: 60%;
+}
+#tHead li:nth-of-type(2) {
+	width: 16%;
+}
+#tHead li:nth-of-type(3) {
+	width: 22%;
+}
+#tHead #checkAll {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 42px;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+#tHead li:hover,
+.files tr:hover {
+	background-color: #f6faff;
+}
+.files tr:hover .filesFns {
+	display: block;
+}
+#tHead i {
+	margin-left: 5px;
+	color: #3b8cff;;
+}
+.files tr {
+	height: 44px;
+    line-height: 44px;
+	border-bottom: 1px solid #f2f6fd;
+}
+.files tr td:nth-of-type(1) {
+	width: 60%;
+}
+.files tr td:nth-of-type(2) {
+	width: 16%;
+}
+.filesBtn {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	padding: 11px 14px;
+	background: url(../img/filesCheckBtn.png) no-repeat transparent;
+	background-position: 13px 11px;
+	float: left;
+}
+.files .filesBtn {
+	margin: 4px 0;
+}
+.filesChecked {
+	background-position: -27px 11px;
+}
+.files .fileIcon {
+	float: left;
+	margin: 9px 12px 9px 0;
+	width: 26px;
+	height: 26px;
+	background: url(../img/filesIcon.png) no-repeat;
+}
+.files .imgIcon {
+	float: left;
+	margin: 7px 12px 7px 0;
+	width: 26px;
+	height: 30px;
+	background: url(../img/filesIcon.png) no-repeat 0 -40px;
+}
+.files .txtIcon {
+	float: left;
+	margin: 7px 12px 7px 0;
+	width: 26px;
+	height: 30px;
+	background: url(../img/filesIcon.png) no-repeat 0 -80px;
+}
+.files .videoIcon {
+	float: left;
+	margin: 7px 12px 7px 0;
+	width: 26px;
+	height: 30px;
+	background: url(../img/filesIcon.png) no-repeat -30px 0;
+}
+.files .seedIcon {
+	float: left;
+	margin: 7px 12px 7px 0;
+	width: 26px;
+	height: 30px;
+	background: url(../img/filesIcon.png) no-repeat -30px -40px;
+}
+.files .musicIcon {
+	float: left;
+	margin: 7px 12px 7px 0;
+	width: 26px;
+	height: 30px;
+	background: url(../img/filesIcon.png) no-repeat -30px -80px;
+}
+.files .otherIcon {
+	float: left;
+	margin: 7px 12px 7px 0;
+	width: 26px;
+	height: 30px;
+	background: url(../img/filesIcon.png) no-repeat 0 -120px;
+}
+.files span {
+	font-family: arial,'宋体';
+	color: #424e67;
+}
+.filesFns {
+	display: none;
+	margin-top: 10px;
+	margin-right: 12px;	
+}
+.filesFns a {
+	float: left;
+	width: 20px;
+	height: 29px;
+	margin-right: 12px;
+	font-size: 16px;
+	line-height: 29px;
+	color: #06c;
+	overflow: hidden;
+}
+#filesTab .active {
+	background: #f6faff;
+}
+.blankBg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(../img/blankBg.png) no-repeat center center;
+	display: none;
+}
+#moduleFlieName {
+	display: none;
+    position: absolute;
+    top: 37px;
+    left: 0;
+    box-sizing: border-box;
+    padding-left: 78px;
+    width: 99%;
+    z-index: 4;
+}
+#moduleFlieName div {
+	background-color: #f6faff;
+}
+#moduleFlieName input {
+	margin: 9px 0;
+    padding: 0 0 0 5px;
+    width: 200px;
+    height: 24px;
+    vertical-align: middle;
+    border: 1px solid #3b8cff;
+    border: 1px solid rgba(58,140,255,.3);
+    background: #fff;
+    border-radius: 2px;
+}
+#moduleFlieName span {
+	width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 8px 2px 8px 5px;
+    cursor: pointer;
+    position: relative;
+}
+#moduleFlieName span:hover .icon-border {
+	filter: alpha(opacity=60);
+    -moz-opacity: .6;
+    opacity: .6;
+}
+#moduleFlieName i {
+	position: absolute;
+	color: #3b8cff;
+}
+#moduleFlieName .icon-border {
+	top: 0;
+    left: 0;
+    font-size: 24px;
+    filter: alpha(opacity=30);
+    -moz-opacity: .3;
+    opacity: .3;
+}
+#moduleFlieName .icon-checksmall,
+#moduleFlieName .icon-cancel {
+	position: absolute;
+}
+#moduleFlieName .icon-checksmall {
+	top: 4px;
+    left: 3px;
+	font-size: 16px;
+}
+#moduleFlieName .icon-cancel {
+	top: 6px;
+    left: 6px;
+	font-size: 12px;
+}
+#frameSelect {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	border: 1px #c0d9fe solid;
+	background-color: rgba(192,217,254,.3);
+	z-index: 100;
+}

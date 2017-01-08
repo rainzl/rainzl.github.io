@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scolable=no" />
+<title></title>
+<style>
+body,
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+img {
+	vertical-align: top;
+	border: none;
+}
+body {
+	background: 
+		url(img/bg-band-top.png) repeat-x 0 0, 
+		url(img/bg-clouds.jpg) repeat-x right 0 ,
+		url(img/body-bg.png) repeat 
+	;
+}
+.clearfix:after {
+	content: " ";
+	display: block;
+	clear: both;
+}
+.overFlowHid {
+	overflow: hidden;
+}
+.borBtmDotted {
+	padding-bottom: 4px;
+	background: url(img/border-bg1.png) repeat-x 0 bottom;
+}
+.borBtmsolid {
+	background: url(img/rule-solid-worn.png) repeat-x 0 bottom;
+}
+.borDashedRight {
+	background: url(img/borRight.png) repeat-y right 0, url(img/borRight.png) repeat-y left 0;
+}
+.borDashedRight {
+	background: url(img/borRight.png) repeat-y right 0;
+}
+.wrap {
+	width: 1200px;
+	margin: 0 auto;
+}
+@media all and ( max-width:1248px ) {
+	.wrap {
+		margin: 0 24px;
+		width: auto;
+	}
+}
+.logo {
+	float: left;
+	width: 25%;
+	height: 87px;
+}
+.logo a {
+	display: inline-block;
+	margin-top: 25px;
+	width: 58px;
+	height: 58px;
+	background: url(img/logo-sc.png) no-repeat 0 0;
+}
+@media all and ( max-width:860px ) {
+	.logo {
+		float: none;
+		text-align: center;
+		width: 100%;
+	}
+}
+.nav {
+	float: left;
+	margin-left: 5px;
+	padding: 13px 0;
+	width: 68%;
+}
+.nav li {
+	vertical-align: top;
+	box-sizing: border-box;
+	float: left;
+	margin-right: -1px;
+	padding-left: 30px;
+	height: 87px;
+	width: 25%;
+}
+.nav a {
+	color: #000 ;
+}
+.nav strong {
+	display: block;
+	margin-top: 16px;
+}
+
+@media all and ( max-width:860px ) {
+	.nav {
+		float: none;
+		width: 100%;
+	}
+	.nav li {
+		padding-left: 24px;
+	}
+}
+@media all and (  max-width:480px ) {
+	.nav {
+		padding-bottom: 0;
+	}
+	.nav li {
+		float: none;
+		margin: 0;
+		padding: 0;
+		height: 42px;
+		width: 100%;
+		border: none;
+		line-height: 42px;
+	}
+	.nav strong {
+		margin: 0;
+	}
+	.nav span {
+		display: none;
+	}
+}
+#banner img {
+	padding: 24px 0 26px;
+	width: 100%;
+	-webkit-mask-image: url(img/hero-mask.png) ;
+}
+#promoNav ul {
+	padding: 24px 0 22px;
+	margin-right: -2%;
+}
+#promoNav li {
+	box-sizing: border-box;
+	float: left;
+	margin-right: 2%;
+	padding-left: 25px;
+	width: 23%;
+	height: 227px;
+	border-radius: 6px;
+	background: url(img/hero-mask.png);
+}
+#promoNav a {
+	color: #ffffe6;
+}
+#promoNav h2 {
+	overflow: hidden;
+	margin-top: 58px;
+	height: 30px;
+	background: url(img/promo-title-contact.png) no-repeat 0 0;
+	line-height: 300px;
+}
+@media all and ( max-width:860px) {
+	#promoNav ul {
+		margin-right: -1.5%;
+	}
+	#promoNav li {
+		width: 48.6%;
+		margin-right: 1.4%;
+		margin-bottom: 18px;
+		height: 130px;
+	}
+	#promoNav h2 {
+		margin-top: 30px;
+	}
+}
+@media all and (  max-width:480px ) {
+	#promoNav {
+		display: none;
+	}
+}
+#information .wrap {
+	padding: 24px 0 22px;
+}
+.informationL {
+	float: left;
+	padding-right: 30px;
+	width: 63%;
+	border-right: 1px dashed #bfbfad;
+}
+.contentH2 {
+	padding-bottom: 26px;
+}
+.informationList li {
+	padding-top: 24px;
+}
+.informationList li:nth-of-type(1) {
+	height: 100px;
+}
+.informationList li:nth-of-type(2) {
+	height: 88px;
+}
+.informationList li:nth-of-type(3) {
+	height: 64px;
+}
+.informationList p {
+	float: left;
+	width: 26%;
+}
+.informationList li p:last-of-type {
+	width: 22%;
+}
+.informationList div {
+	float: left;
+}
+.informationList strong {
+	display: block;
+	padding-top: 18px;
+	font: 18px/18px "宋体";
+}
+.informationList a {
+	color: #370032;
+}
+@media all and ( max-width:860px) {
+	.informationL {
+		float: none;
+		width: 100%;
+		padding-bottom: 24px;
+		background: url(img/border-bg1.png) repeat-x 0 bottom;
+	}
+}
+@media all and (  max-width:480px ) {
+	.informationL {
+		display: none;
+	}
+}
+.informationR {
+	float: right;
+	width: 32%;	
+}
+.ifArticleContent {
+	padding-top: 23px;
+	font: 12px/18px arial;
+}
+.ifArticleContent p:nth-of-type(2) {
+	text-indent: 18px;
+}
+.ifArticleContent img {
+	float: left;
+	padding-right: 5px;
+}
+@media all and ( max-width:860px) {
+	.informationR {
+		width: 100%;
+	}
+	.ifArticleContent {
+		width: 100%;
+		-moz-column-count: 2;
+		-webkit-column-count:2;
+		column-count:2;
+	}
+	
+}
+@media all and (  max-width:480px ) {
+	.ifArticleContent {
+		-webkit-column-width: auto;
+	}
+}
+#footer {
+	padding: 24px 0 65px;
+	background: url(img/bg-band-top.png) repeat-x 0 bottom, url(img/bg-desert.jpg) no-repeat right bottom;
+}
+.bannerLink {
+	float: left;
+	width: 14.5%;
+	height: 180px;
+}
+.bannerLink li {
+	float: left;
+	width: 100%;
+	height: 20px;
+}
+.bannerLink a {
+	float: left;
+	width: 84px;
+	height: 16px;
+	background: url(img/so-twitter.gif) no-repeat 0 0;
+}
+.footerArticle {
+	float: left;
+	width: 25.5%;
+	height: 180px;
+}
+.footerArticle h3 {
+	padding-left: 30px;
+}
+.footerArticle p {
+	padding: 10px 0 0 30px;
+	font: 12px/15px arial;
+}
+.footerArticle p a {
+	background-color: #ffff99;
+	color: #000000;
+}
+@media all and ( max-width:860px) {
+	#footer {
+		padding-bottom: 216px;
+	}
+	.bannerLink {
+		width: 50%;
+		height: 106px;
+	}
+	.bannerLink li {
+		width: 50%;
+	}
+	.footerArticle {
+		width: 48%;
+		background: none;
+	}
+}
+@media all and (  max-width:480px ) {
+	#footer {
+		padding-bottom: 222px;
+	}
+	.bannerLink {
+		padding-bottom: 24px;
+		width: 100%;
+		height: 100%;
+		background: none;
+	}
+	.bannerLink li {
+		width: 50%;
+	}
+	.footerArticle {
+		width: 100%;
+	}
+	.footerArticle h3 {
+		padding: 0;
+		padding-top: 23px;
+	}
+	.footerArticle p {
+		padding-left: 0;
+	}
+	.borTopDashed {
+		background: url(img/borBtm2.png) repeat-x 0 top;
+	}
+}
+</style>
+</head>
+<body>
+	<header id="header">
+		<div class="borBtmDotted wrap clearfix">
+			<h1 class="logo">
+				<a href="#"></a>
+			</h1>
+			<ul class="nav clearfix">
+				<li class="borTopDashed borDashedRight">
+					<a href="#">
+						<strong>Portfolio</strong>
+						<span>Selected Works<br> on Display</span>
+					</a>
+				</li>
+				<li class="borTopDashed borDashedRight">
+					<a href="#">
+						<strong>Portfolio</strong>
+						<span>Selected Works<br> on Display</span>
+					</a>
+				</li>
+				<li class="borTopDashed borDashedRight">
+					<a href="#">
+						<strong>Portfolio</strong>
+						<span>Selected Works<br> on Display</span>
+					</a>
+				</li>
+				<li class="borTopDashed borDashedRight">
+					<a href="#">
+						<strong>Portfolio</strong>
+						<span>Selected Works<br> on Display</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<section id="banner">
+		<div class="borBtmDotted wrap">
+			<a href="#"><img src="img/hero-home.png"></a>
+		</div>
+	</section>
+	<section id="promoNav">
+		<div class="borBtmDotted wrap overFlowHid">
+			<ul class="clearfix">
+				<li>
+					<a href="#">
+						<h2>PORTFOLIO</h2>
+						<p>Selected works <br />on Display</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<h2>PORTFOLIO</h2>
+						<p>Selected works <br />on Display</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<h2>PORTFOLIO</h2>
+						<p>Selected works <br />on Display</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<h2>PORTFOLIO</h2>
+						<p>Selected works <br />on Display</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section id="information">
+		<div class="borBtmDotted overFlowHid wrap clearfix">
+			<div class="informationL">
+				<h2 class="contentH2 borBtmsolid "><a href="#"><img src="img/title-vitals.gif"></a></h2>
+				<ul class="informationList">
+					<li class="borBtmsolid clearfix">
+						<p>
+							<a href="#"><img src="img/vitals-001.gif"></a>
+						</p>
+						<p>
+							<a href="#"><img src="img/vitals-file-photo.jpg"></a>
+						</p>
+					</li>
+					<li class="borBtmsolid clearfix">
+						<p>
+							<a href="#">
+								<img src="img/vitals-002.gif">
+								<strong>STEPHEN</strong>
+							</a>
+						</p>
+						<p>
+							<a href="#">
+								<img src="img/vitals-003.gif">
+								<strong>STEPHEN</strong>
+							</a>
+						</p>
+						<p>
+							<a href="#">
+								<img src="img/vitals-003.gif">
+								<strong>STEPHEN</strong>
+							</a>
+						</p>
+						<p>
+							<a href="#">
+								<img src="img/vitals-003.gif">
+								<strong>STEPHEN</strong>
+							</a>
+						</p>
+					</li>
+					<li class="clearfix">
+						<p>
+							<a href="#">
+								<img src="img/vitals-002.gif">
+								<strong>STEPHEN</strong>
+							</a>
+						</p>
+						<p>
+							<a href="#">
+								<img src="img/vitals-003.gif">
+								<strong>STEPHEN</strong>
+							</a>
+						</p>
+						<p>
+							<a href="#">
+								<img src="img/vitals-003.gif">
+								<strong>STEPHEN</strong>
+							</a>
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="informationR">
+				<article>
+					<h2 class="contentH2 borBtmsolid "><a href="#"><img src="img/title-vitals.gif"></a></h2>
+					<div class="ifArticleContent">
+						<p><img src="img/dropcap-d.gif" alt="D" />esigner-developer Stephen Caver has been interested in the inner workings of the web since he was a kid. His attention to detail is evident in his site designs, which emphasize clean displays of content while facilitating great user experience. Stephen has experience in information architecture, interaction design, <span class="caps">HTML</span> and <span class="caps">CSS</span>. He has worked with clients such as the World Wide Web Consortium, Change.org and the Mozilla Creative Collective.</p>
+						<p>When he’s not designing beautiful websites, Stephen can be found passionately following the Los Angeles Dodgers, killing things on Xbox, and spending time watching history and science-based reality shows.</p>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+	<footer id="footer">
+		<div class="wrap clearfix">
+			<ul class="bannerLink borDashedRight">
+				<li>
+					<a class="bannerLinkOne" href="#"></a>
+				</li>
+				<li>
+					<a class="bannerLinkOne" href="#"></a>
+				</li>
+				<li>
+					<a class="bannerLinkOne" href="#"></a>
+				</li>
+				<li>
+					<a class="bannerLinkOne" href="#"></a>
+				</li>
+				<li>
+					<a class="bannerLinkOne" href="#"></a>
+				</li>
+				<li>
+					<a class="bannerLinkOne" href="#"></a>
+				</li>
+				<li>
+					<a class="bannerLinkOne" href="#"></a>
+				</li>
+				<li>
+					<a class="bannerLinkOne" href="#"></a>
+				</li>
+				<li>
+					<a class="bannerLinkOne" href="#"></a>
+				</li>
+			</ul>		
+			<article class="footerArticle borTopDashed borDashedRight">
+				<h3>
+					<span>&copy;</span>Copyright Stephen Caver
+				</h3>
+				<p>This includes all content and original design work, including the distinctive typographic style, layout and composition of this website. <a href="#">Background sky and desert imagery</a> is gracious released by <a href="#">Paul Hockett</a> under a <a href="#">Attribution-Noncommercial-Share Alike Creative Commons license</a>. Thanks Paul!</p>
+			</article>
+		</div>
+	</footer>
+</body>
+</html>

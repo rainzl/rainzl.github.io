@@ -1,0 +1,404 @@
+@charset "utf-8";
+/* CSS Document */
+/*  Clear Style  */
+body {
+  margin: 0;
+}
+img {
+  border: none;
+  vertical-align: top;
+}
+body {
+	width: 100%;
+	overflow: hidden;
+}
+/*  End Clear Style  */
+
+/*  start all Style  */
+#hy {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200%;
+	height: 100%;
+}
+#hy .first {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1200px;
+	height: 100%;
+}
+#hy .sec {
+	position: absolute;
+	top: 0;
+	left: 1200px;
+	width: 1200px;
+	height: 100%;
+}
+/*  end all Style  */
+
+
+/*  start first Style  */
+#hyLeft {
+  position: absolute;
+  left: 400px;
+  top: 0;
+  width: 610px;
+  height: 100%;
+}
+.hyBg {
+  position: absolute;
+  top: 160px;
+  left: 15px;
+  width: 580px;
+  height: 420px;
+  z-index: -2;
+}
+.hyBg img {
+  width: 580px;
+  height: 420px;
+}
+.hyMur {
+  position: absolute;
+  top: 236px;
+  left: 72px;
+  width: 358px;
+  height: 240px;
+  z-index: 3;
+}
+.hyMur img {
+  width: 358px;
+  height: 240px;
+}
+.hyPanier {
+  position: absolute;
+  top: 273px;
+  left: -100px;
+  width: 240px;
+  height: 205px;
+  z-index: 4;
+}
+.hyPanier img {
+  width: 240px;
+  height: 205px;
+}
+.hySol {
+	position: absolute;
+  top: 470px;
+  left: -100px;
+  width: 697px;
+  height: 7px;
+  z-index: 4;
+}
+.hySol img {
+	height: 697px;
+  height: 7px;
+}
+.hyLampe {
+	position: absolute;
+  top: -130px;
+  left: 190px;
+  width: 83px;
+  height: 404px;
+  z-index: 5;
+}
+.hyLampe img {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 83px;
+  height: 404px;
+}
+.hyLampe img:nth-of-type(2) {
+	display: none;
+}
+.hyLueur {
+	position: absolute;
+  top: 100px;
+  left: 50px;
+  width: 400px;
+	height: 400px;
+	z-index: 6;
+}
+.hyLueur img {
+	width: 400px;
+	height: 400px;
+}
+/*  end first Style  */
+
+/*  start sec Style  */
+#hySec {
+	position: absolute;
+  left: 250px;
+  top: 0;
+  width: 780px;
+  height: 100%;
+}
+.hySecBg {
+	position: absolute;
+  left: 0;
+  top: 180px;
+  width: 780px;
+  height: 440px;
+}
+.hySecBg img {
+	width: 780px;
+  height: 440px;
+}
+.hyEiffel {
+	position: absolute;
+  left: 175px;
+  /*top: 100px;*/
+  top: -500px;
+  width: 173px;
+  height: 370px;
+}
+.hyEiffel img {
+	width: 173px;
+	height: 370px;
+}
+.hyParasol {
+	position: absolute;
+  left: 230px;
+  top: 180px;
+  width: 200px;
+  height: 225px;
+  transform: rotate(30deg);
+}
+.hyParasol img {
+	width: 210px;
+	height: 225px;
+}
+.hyBuilding {
+	position: absolute;
+  left: 300px;
+  /*top: 290px;*/
+  top: -380px;
+  width: 195px;
+	height: 177px;
+}
+.hyBuilding img {
+	 width: 195px;
+	 height: 177px;
+}
+.hyAvion {
+	position: absolute;
+  /*left: 293px;*/
+  /*left: 1000px;*/
+ 	left: 0px;
+  top: 65px;
+  width: 468px;
+	height: 82px;
+}
+.hyAvion img {
+	position: absolute;
+	left: 0;
+  top: 0;
+	width: 468px;
+	height: 82px;
+}
+.hyPlatane {
+	position: absolute;
+  left: 448px;
+  top: 215px;
+  width: 200px;
+	height: 250px;
+}
+.hyPlatane img {
+	width: 200px;
+	height: 250px;
+}
+.hyReverbere {
+	position: absolute;
+  left: 472px;
+  /*top: 175px;*/
+  top: -480px;
+  width: 37px;
+	height: 300px;
+}
+.hyReverbere img {
+	width: 37px;
+	height: 300px;
+}
+.hyBanc {
+	position: absolute;
+  left: 528px;
+  top: 378px;
+  width: 180px;
+	height: 88px;
+}
+.hyBanc img {
+	width: 180px;
+	height: 88px;
+}
+.hyTrotoir {
+	position: absolute;
+  left: 36px;
+  top: 465px;
+  width: 670px;
+	height: 88px;
+}
+.hyTrotoir img {
+	width: 670px;
+}
+.hyVelo {
+	position: absolute;
+  left: 35px;
+  top: 355px;
+  width: 198px;
+	height: 120px;
+}
+.hyVelo img {
+	width: 198px;
+	height: 120px;
+}
+.hyBall {
+	position: absolute;
+  left: 630px;
+  /*top: 417px;*/
+  top: -470px;
+  width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	box-shadow: 0 0 3px #000;
+	transform-origin: center center; 
+}
+.hyBall img {
+	width: 50px;
+	height: 50px;
+}
+
+/*  end sec Style  */
+
+/*  start truck Style  */
+#hyTruck {
+	position: absolute;
+	top: 364px;
+	left: 550px;
+	width: 196px;
+	height: 105px; 
+	z-index: 2;
+	transform-origin: bottom right; 
+}
+.hyShadow {
+	position: absolute;
+	bottom: 0;
+	left: 15px;
+	width: 170px;
+	height: 2px; 
+}
+.hyShadow img {
+	width: 170px;
+	height: 2px; 
+}
+.hySmoke1 {
+	position: absolute;
+	top: 75px;
+	left: -20px;
+	width: 12px;
+	height: 12px;
+	z-index: -1;
+}
+.hySmoke1 img {
+	width: 12px;
+	height: 12px;
+}
+.hySmoke2 {
+	position: absolute;
+	top: 80px;
+	left: -40px;
+	width: 14px;
+	height: 14px;
+	z-index: -1;
+}
+.hySmoke2 img {
+	width: 14px;
+	height: 14px;
+}
+.hySmoke3 {
+	position: absolute;
+	top: 85px;
+	left: -70px;
+	width: 22px;
+	height: 18px;
+	z-index: -1;
+}
+.hySmoke3 img {
+	width: 22px;
+	height: 18px;
+}
+.hyCar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 196px;
+	height: 105px; 
+}
+.hyCar .light {
+	position: absolute;
+	top: 68px;
+	left: 0;
+	width: 12px;
+	height: 12px;
+	z-index: -1;
+}
+.hyCar .light img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 12px;
+	height: 12px;
+}
+.hyCar img {
+	width: 196px;
+	height: 105px;
+}
+.hyWheel {
+	position: absolute;
+	bottom: 0;
+	left: 18px;
+	width: 30px;
+	height: 30px;
+}
+.hyWheel img {
+	transform-origin: center center; 
+	width: 30px;
+	height: 30px;
+}
+.hyFront {
+	left: 156px;
+}
+.hyBack {
+	left: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

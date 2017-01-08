@@ -56,6 +56,10 @@
 		});
 		this.settings.imgParObj.addEventListener('touchmove',function(ev){
 			disX = _this.touchsMove(ev,disX,startX);
+			/*if ( disX >= 10 ) {
+				console.log(60);
+				clearInterval(this.timer);
+			}*/
 		});
 		this.settings.imgParObj.addEventListener('touchend',function(){
 			_this.touchsEnd(disX);
@@ -64,7 +68,6 @@
 	}
 	TabImg.prototype.touchStart = function (ev) {
 		var touchs = ev.changedTouches[0];
-		clearInterval(this.timer)
 		return touchs.pageX;
 	}
 	TabImg.prototype.touchsMove = function(ev,disX,startX) {
@@ -94,6 +97,7 @@
 		return disX;
 	}
 	TabImg.prototype.touchsEnd = function (disX) {
+		var _this = this;
 		if ( Math.abs(disX) >= this.width/3 ) {
 			disX>0? move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear'):
 				move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear');
@@ -102,15 +106,22 @@
 			disX>0? move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear'):
 				move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear');
 		}
+		/*console.log(6)
+		this.timer = setInterval(function(){
+			console.log(1)
+			_this.nextBtn();
+		},1600)*/
 	}
 	TabImg.prototype.overOutPar = function () {
 		var _this = this;
 		this.obj.addEventListener('mouseenter',function(){
+			console.log(118);
 			clearInterval(_this.timer);
 		});
 		
 		this.obj.addEventListener('mouseleave',function(){
 			clearInterval(_this.timer);
+			console.log(124)
 			_this.timer = setInterval(function(){
 				_this.nextBtn();
 			},1600)
@@ -119,9 +130,11 @@
 	TabImg.prototype.setTime = function () {
 		var _this = this;
 		clearInterval(this.timer);
+		
 		this.timer = setInterval(function(){
-			//_this.settings.callBack();
+			
 			_this.nextBtn();
+			
 		},1600)
 	}
 	TabImg.prototype.fnSubCode = function () {
@@ -150,6 +163,7 @@
 	TabImg.prototype.nextBtn = function (num) {
 		//如果home不存在，清除定时器
 		if (!document.getElementById('home')) {
+			console.log(166);
 			clearInterval(this.timer);
 			return;
 		};
