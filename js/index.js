@@ -415,7 +415,7 @@ function main(){
 					var $img = $('<img src="'+e.img+'"/>');
 					$img.off().on('load',function(){
 						num ++;
-						if ( num === data.length ) {
+						if ( num === data.length-2 ) {
 							$('#logo').css({'transition':'top .7s ease','-webkit-transition':'top .7s ease',})
 							$body.removeClass('loading').addClass('loaded');
 							//setTimeout(setSquareHeight,800);
