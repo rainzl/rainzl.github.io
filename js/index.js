@@ -179,7 +179,7 @@ if (device) {
 			$productList[0].parentNode.onOff = true;
 			$productList.on('click',function(ev){
 				var fileId = $(this).attr('fileId');
-				factory($productList);
+				factory($productList,fileId);
 			})
 			$('#hat').off('click').click(function(ev){
 				var ev = ev || event;
@@ -195,11 +195,13 @@ if (device) {
 					
 					var li = findEle($productList,ev.pageX,ev.pageY);
 					var fileId = $(li).attr('fileId');
+					
 					factory($productList,fileId);
 				}
 			})
 		})(function($productList,fileId){
 			if ( $productList[0].parentNode.onOff ) {
+				
 				fnProductShow(fileId);
 			} else {
 				fnProductHid();
@@ -208,11 +210,12 @@ if (device) {
 		//弹出详情框
 		function fnProductShow(fileId) {
 			if (!$('#home')[0]) return;
+			var index = tools.arrIndexOf(fileId,data);
 			hat.init({now:'activeData',last:'loadedData'},{time:500});
 			shoes.init({now:'activeData',last:'loadedData'},{onOff:true,time:500});
 			
-			fnShowHint(data,true,false);
 			
+			fnShowHint(data[index],true,false);
 			
 			$('#home').find('.productList')[0].onOff = false;
 			$('#footer').find('.blogroll').addClass('top');

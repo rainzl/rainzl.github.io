@@ -115,13 +115,11 @@
 	TabImg.prototype.overOutPar = function () {
 		var _this = this;
 		this.obj.addEventListener('mouseenter',function(){
-			console.log(118);
 			clearInterval(_this.timer);
 		});
 		
 		this.obj.addEventListener('mouseleave',function(){
 			clearInterval(_this.timer);
-			console.log(124)
 			_this.timer = setInterval(function(){
 				_this.nextBtn();
 			},1600)
@@ -163,7 +161,6 @@
 	TabImg.prototype.nextBtn = function (num) {
 		//如果home不存在，清除定时器
 		if (!document.getElementById('home')) {
-			console.log(166);
 			clearInterval(this.timer);
 			return;
 		};
