@@ -99,7 +99,7 @@
 			disX>0? move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear'):
 				move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear');
 			this.index = num;
-		} else {
+		} else if (Math.abs(disX)>10) {
 			disX>0? move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear'):
 				move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear');
 		}
@@ -112,10 +112,12 @@
 	TabImg.prototype.overOutPar = function () {
 		var _this = this;
 		this.obj.addEventListener('mouseenter',function(){
+			
 			clearInterval(_this.timer);
 		});
 		
 		this.obj.addEventListener('mouseleave',function(){
+			
 			clearInterval(_this.timer);
 			_this.timer = setInterval(function(){
 				_this.nextBtn();
@@ -163,7 +165,7 @@
 		};
 		num = typeof(num) === 'undefined'? this.index +1: num;
 		num %= this.settings.data.length;
-		
+		console.log(num)
 		move.css(this.settings.imgParObj,'translateX',0);
 		this.imgs[0].parentNode.setAttribute('fileId',data[this.index].id);
 		this.imgs[0].src = this.settings.data[this.index].img;

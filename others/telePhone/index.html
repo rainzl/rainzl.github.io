@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="" />
+<!--<mate name="x5-orientation" content="porarait"></mate>qq浏览器
+<mate name="x5-fullscreen" content="true"></mate>qq浏览器
+<mate name="screen-orientation" content="portrait"></mate>uc浏览器     //portrait:强制竖屏
+<mate name="full-screen" content="yes"></mate>qq浏览器
+<mate name="fo"></mate>
+<a href="tel:12132432"></a>
+<a href="mailto: xxxx@ddd.com"></a>
+//手机端清除inputhe button的圆角appearance:none
+//禁止选中：webkit-user-select:none;
+-webkit-text-size-adjust:none //禁用户改变我们的字体大小，保证文字在横竖屏时，大小不被缩放。
+font-family:Helvetiva //手机端只支持这一种字体
+font-Boosting:文字莫名被放大。//如果遇到了，若可以设置高度，尽量设量设置高度，如果不能，请加最大高度。若UC下遇到这样的问题，最小字号不能小于16
+
+
+
+-->
+<title></title>
+<script>
+
+fnRem();
+addEventListener('resize',fnRem);
+function fnRem (){
+	var html = document.querySelector('html');
+	var width = html.getBoundingClientRect().width;
+	html.style.fontSize = width/16 +'px';
+}
+
+!function() {
+	var scale = 1;
+	var ratio = window.devicePixelRatio;
+	scale = scale / window.devicePixelRatio;
+	var meta = document.createElement("meta");
+	meta.setAttribute("name","viewport");
+	meta.setAttribute("content","width=device-width,initial-scale = "+scale+",minimum-scale = "+scale+", maximum-scale = "+scale+", user-scalable = no");
+	document.head.appendChild(meta);
+}();
+/*
+ 《
+ * */
+</script>
+<style>
+/*reset.css start*/
+html,
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dd {
+	margin: 0;
+}
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+img {
+	border: none;
+	vertical-align: top;
+}
+input,
+textarea {
+	padding: 0;
+	margin: 0;
+	outline: none;
+	resize: none;
+}
+input,
+button,
+a {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+input,
+button {
+	-webkit-appearance: none;
+}
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	background-color: #f3f3f3;
+}
+
+/*reset.css end*/
+
+	
+	
+/*public.css strat*/
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.indexBg1 {
+	background: url(img/index-bg1.png) no-repeat;
+	background-size: 2.5rem auto;
+}
+.indexBg2 {
+	background: url(img/indexJpg.jpg) no-repeat;
+	background-size: 4rem auto;
+}
+.indexBg3 {
+	background: url(img/index-bg3.png) no-repeat;
+	background-size: 3.75rem auto;
+}
+.indexH2Bg {
+	background: url(img/indexH2jpg.jpg) no-repeat;
+	background-size: 16rem auto;
+}
+.idH2 {
+	overflow: hidden;
+	width: 16rem;
+	line-height: 10rem;
+}
+.idH3One {
+	padding-top: .425rem;
+	font: bold .675rem/.875rem helvetica;
+	color: #1e1e1e;
+}
+.idH3Two {
+	padding-top: .375rem;
+	font: bold .675rem/.875rem helvetica;
+	color: #1e1e1e;
+}
+.idP {
+	font: .525rem/.725rem helvetica;
+	color: #707070;
+}
+.textImg {
+	position: relative;
+}
+.bannerText {
+	position: absolute;
+	top: .425rem;
+	left: .4rem;
+}
+.bannerText h4 {
+	font: bold .7rem/.9rem "微软雅黑";
+	color: #343434;
+}
+.bannerText p {
+	font: .525rem/.675rem "微软雅黑";
+	color: #787878;
+}
+.textImg img {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	max-width: 100%;
+	max-height: 100%;
+}	
+
+/*public.css end*/
+
+	
+	
+/*index.css start*/
+#header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 2.2rem;
+	width: 16rem;
+	box-shadow: 0 .05rem .1rem rgba(203,203,203,1) ;
+	background-color: #fefefe;
+	text-align: center;
+	font: .45rem/.65rem helvetica;
+	z-index: 3;
+}
+#header a {
+	color: #4d4d4d;
+	position: relative;
+}
+#header a span {
+	position: absolute;
+	top: .375rem;
+	left: 50%;
+	margin-left: -.45rem;
+	width: .9rem;
+	height: .875rem;
+}
+.headBtn1 {
+	float: left;
+	padding-top: 1.225rem;
+	height: .974rem;
+	width: 1.925rem;
+}
+.headBtn1 span {
+	background-position: 0 0;
+}
+#header form {
+	float: left;
+	margin-top: .3rem;
+	padding-left: 1.5rem;
+	height: 1.55rem;
+	width: 10.625rem;
+	border-radius: .2rem;
+	background-color: #e9e9e9;
+	background-position: -1.225rem -1.25rem;
+}
+#search {
+	float: left;
+	border: none;
+	padding-top: .1rem;
+	background-color: transparent;
+	height: 1.45rem;
+	width: 9.125rem;
+	font:  .45rem/1.45rem helvetica;;
+}
+#search::-webkit-input-placeholder {
+	height: 100%;
+	font: .5rem/1.45rem helvetica;
+	color: #b0b4bb;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#search::-moz-placeholder {
+	font: .65rem/1 helvetica;
+	color: #b0b4bb;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.searchYY {
+	float: left;
+	padding-top: .4rem;
+	padding-left: .4rem;
+	width: 1.1rem;
+	height: 1.15rem;
+}
+.searchYY span {
+	display: inline-block;
+	width: .6rem;
+	height: .75rem;
+	background-position: -1.25rem 0;
+}
+.headBtn2 {
+	float: right;
+	padding-top: 1.225rem;
+	height: .974rem;
+	width: 1.925rem;
+}
+.headBtn2 span {
+	background-position: 0 -1.25rem;
+}
+#footer {
+	box-sizing: border-box;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 2.5rem;
+	width: 16rem;
+	border-top: 1px solid #cbcbcb;
+	background-color: #ffffff;
+	box-shadow: 0 0 .5rem rgba(203,203,203,1);
+	font: .5rem/.8rem helvetica;
+	text-align: center;
+	z-index: 2;
+}
+#footer a {
+	position: relative;
+	box-sizing: border-box;
+	float: left;
+	padding-top: .375rem;
+	width: 20%;
+	height: 100%;
+	color: #232326;
+}
+#footer a span:nth-child(1) {
+	display: inline-block;
+	vertical-align: top;
+	width: 1.3rem;
+	height: 1.1rem;
+}
+#footer a:nth-child(1) span:nth-child(1) {
+	background-position: 0 -2.55rem;
+}
+#footer a:nth-child(2) span:nth-child(1) {
+	background-position: 0 -3.8rem;
+}
+#footer a:nth-child(3) span:nth-child(1) {
+	background-position: 0 -5.05rem;
+}
+#footer a:nth-child(4) span:nth-child(1) {
+	background-position: 0 -6.3rem;
+}
+#footer a:nth-child(5) span:nth-child(1) {
+	background-position: 0 -7.55rem;
+}
+#footer .footerActive {
+	color: #f23030;
+}
+.footFind {
+	position: absolute;
+	top: .25rem;
+	left: 50%;
+	width: .4rem;
+	height: .4rem;
+	margin-left: .45rem;
+	background: #f02b2b;
+	border-radius: .4rem;
+}
+.footPayCar {
+	position: absolute;
+	top: .225rem;
+	left: 50%;
+	margin-left: .0875rem;
+	width: .9rem;
+	height: .6rem;
+	background-color: #f02b2b;
+	border-radius: .5rem;
+	font: .4rem/.6rem helvetica;
+	color: #fff;
+}
+#wrap {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 2.5rem;
+	margin-top: 2.2rem;
+	width: 16rem;
+	z-index: 1;
+}
+#idBannerImg {
+	position: relative;
+	height: 7.5rem;
+	width: 16rem;
+}
+.indexBannerImg img {
+	width: 16rem;
+	height: 7.5rem;
+}
+#idBannerImg p {
+	position: absolute;
+	bottom: .35rem;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+#idBannerImg p span {
+	display: inline-block;
+	width: .25rem;
+	height: .25rem;
+	margin: 0 .175rem;
+	background-color: rgba(255,255,255,.5);
+	border-radius: .25rem;
+}
+#idBannerImg .idBannerAction {
+	background-color: rgba(255,255,255,1);
+}
+#idNav {
+	padding-top: .4rem;
+	width: 16rem;
+	font: .5rem/1rem helvetica;
+	text-align: center;
+}
+#idNav a {
+	float: left;
+	margin-right: .05rem;
+	height: 2.85rem;
+	width: 3.15rem;
+	color: #6c6a6b;
+}
+#idNav span {
+	display: inline-block;
+	vertical-align: top;
+	width: 1.8rem;
+	height: 1.8rem;
+	border-radius: .4rem;
+	
+}
+#idNav a:nth-child(1) span {
+	background-position: 0 0;
+}
+#idNav a:nth-child(2) span {
+	background-position: -2rem 0;
+}
+#idNav a:nth-child(3) span {
+	background-position: 0 -2rem;
+}
+#idNav a:nth-child(4) span {
+	background-position: -2rem -2rem;
+}
+#idNav a:nth-child(5) span {
+	background-position: 0 -4rem;
+}
+#idNav a:nth-child(6) span {
+	background-position: -2rem -4rem;
+}
+#idNav a:nth-child(7) span {
+	background-position: 0 -6rem;
+}
+#idNav a:nth-child(8) span {
+	background-position: -2rem -6rem;
+}
+#idNav a:nth-child(9) span {
+	background-position: 0 -8rem;
+}
+#idNav a:nth-child(10) span {
+	background-position: -2rem -8rem;
+}
+#idNav strong {
+	display: block;
+	font-weight: normal;
+}
+#idJDNewsFlash {
+	overflow: hidden;
+	margin: 0 .4rem;
+	width: 15.2rem;
+	height: 1.55rem;
+	border-radius: .25rem;
+	background-color: #fff;
+	font: .7rem/1.55rem helvetica;
+}
+.idJDNFtitle {
+	float: left;
+	width: 3.725rem;
+	line-height: 10rem;
+	overflow: hidden;
+}
+#idJDNewsFlash .idJDNewsNewtext {
+	padding: 0 .275rem;
+	font-size: .65rem;
+	color: #f26161;
+}
+#idJDNewsFlash p {
+	float: left;
+	width: 9.25rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#idJDNewsFlash p a{
+	float: left;
+	width: 9.25rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#idJDNewsFlash a {
+	color: #373737;
+}
+#idJDNewsFlash .idJDNFmore {
+	float: right;
+	padding-left: .25rem;
+	border-left: 1px solid #dddddd;
+	width: 1.65rem;
+	margin: .375rem 0;
+	font: .65rem/.8rem helvetica;
+}
+#idSeckill {
+	overflow: hidden;
+	margin-top: .375rem;
+	padding-left: .325rem;
+	width: 15.675rem;
+	background-color: #ffffff;
+}
+#idSeckill header {
+	padding: .3rem 0 .65rem;
+	height: .755rem;
+	width: 15.675rem;
+}
+#idSeckill header a {
+	float: left;
+	height: .755rem;
+	color: #2a2a2a;
+}
+#idSeckill header a:nth-of-type(1) {
+	overflow: hidden;
+	width: 3.5rem;
+	line-height: 10rem;
+	overflow: hidden;
+	background-position: 0 -2rem;
+}
+#idSeckill header a:nth-of-type(2) {
+	font: .575rem/.755rem helvetica;
+}
+#idSeckill time {
+	padding-left: .275rem;
+	text-align: center;
+}
+#idSeckill time span {
+	display: inline-block;
+	width: .875rem;
+	height: .725rem;
+	border: 1px solid #c6c6c6;
+}
+#idSeckill header a:nth-of-type(3) {
+	float: right;
+	width: 5.05rem;
+	font: .55rem/.8rem helvetica;
+	color: #f14141;
+}
+#idSeckill header mark {
+	float: right;
+	margin: .125rem .4rem .1rem .125rem;
+	width: .525rem;
+	height: .525rem;
+	background-position: -1.5rem -3.75rem;
+}
+.idSeckImg {
+	margin-right: -16rem;
+	text-align: center;
+}
+.idSeckImg a {
+	position: relative;
+	float: left;
+	margin-right: .7rem;
+	width: 3.85rem;
+}
+.idSeckImg img {
+	width: 3.85rem;
+	height: 3.9rem;
+}
+.idSeckImg mark {
+	position: absolute;
+	top: 3.3rem;
+	left: 0;
+	width: 1.025rem;
+	height: .6rem;
+	font: .4rem/.6rem helvetica;
+	color: #fff;
+}
+.idSeckImg .idSkillOverflow {
+	background-color: #2dbbfc;
+}
+.idSeckImg .idSkillHot {
+	background-color: #ff8400;
+}
+.idSeckImg .idSkillRecommed {
+	background-color: #7a44fb;
+}
+.idSeckImg strong {
+	display: block;
+	padding-top: .3rem;
+	height: .95rem;
+	font: bold .7rem/.95rem helvetica;
+	color: #f02b2b;
+}
+.idSeckImg strong em {
+	font: bold .5rem/.95rem helvetica;
+}
+.idSeckImg span {
+	display: block;
+	height: .9rem;
+	font: .6rem/.9rem helvetica;
+	text-decoration: line-through;
+	color: #acacac;
+}
+.idSeckImg span em {
+	font: bold .4rem/.95rem helvetica;
+}
+#idCenter {
+	margin-top: 1px;
+	width: 100%;
+	overflow: hidden;
+}
+.idSubBanner100 {
+	width: 100%;
+}
+.idSubBanner100 img {
+	width: 100%;
+	height: 4.9rem;
+}
+.idSubBanner50 {
+	box-sizing: border-box;
+	float: left;
+	width: 50%;
+	border-bottom: 1px solid #f3f3f3;
+	background-color: #fff;
+}
+#idCenter .idSubBanner50 {
+	height: 4.55rem;
+}
+#idCenter .idSubBanner50 img {
+	height: 100%;
+}
+.idCentListTop {
+	width: 16rem;
+}
+.idCentListTop a:nth-of-type(even){
+	border-left: 1px solid #f3f3f3;
+}
+#idCenter .idH2 {
+	height: 1.65rem;
+	background-position: 0 0;
+}
+.idCentLive {
+	width: 16rem;
+}
+.idCentLive a:nth-of-type(odd) {
+	box-sizing: border-box;
+	border-right: 1px solid #f3f3f3;
+	width: 8rem;
+}  
+.idSubBanner25 {
+	float: left;
+	width: 25%;
+	box-sizing: border-box;
+	border-left: 1px solid #f3f3f3;
+	background-color: #fff;
+}
+.idSubBanner25 img {
+	width: 100%;
+}
+#idCenter .idSubBanner25 {
+	height: 4.525rem;
+}
+.idCentListBottom {
+	width: 16rem;
+}
+.idLinkImg {
+	margin: .275rem;
+	margin-bottom: 0;
+}
+.idLinkImg img {
+	width: 15.45rem;
+	height: 4.35rem;
+}
+#idQuality .idH2 {
+	height: 1.675rem;
+	background-position: 0 -2rem;
+}
+#idQuality .idSubBanner50 {
+	height: 4.55rem;
+}
+.idBanLinkCont {
+	width: 16rem;
+}
+
+#idFeature .idH2 {
+	height: 1.65rem;
+	background-position: 0 -4rem;
+}
+.idBanFeatCont {
+	width: 16rem;
+}
+.idSubBanner33 {
+	box-sizing: border-box;
+	float: left;
+	width: 33%;
+	height: 5.7rem;
+	border-right: 1px solid #f3f3f3;
+	border-bottom: 1px solid #f3f3f3;
+	background-color: #fff;
+}
+.idSubBanner33 img {
+	width: 100%;
+}
+.idBanFeatCont a:nth-of-type(3n) {
+	border-right: none;
+}
+.idBanFeatCont mark {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: .6rem;
+	padding: 0 .125rem;
+	font: .4rem/.6rem helvetica;
+	color: #fff;
+}
+.idQualMarkNew {
+	background-color: #f02b2b;
+}
+.idQualMarkHot {
+	background-color: #ff8400;
+}
+#idMegamall .idH2 {
+	position: relative;
+	height: 1.675rem;
+	background-position: 0 -6rem;
+}
+.idBanLinkTitMore {
+	position: absolute;
+	top: .69rem;
+	left: 8.6rem;
+	width: 2.775rem;
+	font: .55rem/.75rem "微软雅黑";
+	color: #959595;
+}
+.idBanMegaCont {
+	width: 16rem;
+}
+#idMegamall .idSubBanner50 {
+	height: 6.075rem;
+}
+
+.idBanMegaCont a:nth-of-type(even) {
+	border-left: 1px solid #f3f3f3;
+}
+.idBanMegaCont25 {
+	width: 16rem;
+}
+#idMegamall .idSubBanner25 {
+	height: 5.15rem;
+}
+#idMegamall .idBanMegaCont25 a:nth-of-type(4n) {
+	border-left-color: #fff;
+}  
+#idRecommend {
+	width: 16rem;
+	overflow: hidden;
+}
+#idRecommend .idH2 {
+	margin-top: .375rem;
+	height: 1.65rem;
+	background-position: 0 -8rem;
+}
+#idRecomGoodShop {
+	height: 5.8rem;
+	margin-right: -40rem;
+	font: .6rem/.75rem helvetica;
+}
+#idRecomGoodShop h3 {
+	float: left;
+	margin-right: .25rem;
+	padding-top: 1rem;
+	width: 1.075rem;
+	height: 4.8rem;
+	background-color: #9662fa;
+	text-align: center;
+	color: #fff;
+}
+#idRecomGoodShop h3 span {
+	display: inline-block;
+	margin-top: .25rem;
+	width: .55rem;
+	height: .55rem;
+	border-radius: .55rem;
+	background-color: #ffffff;
+	background-position: -2rem -5rem;
+}
+#idRecomGoodShop ul {
+	float: left;
+	height: 5.8rem;
+}
+#idRecomGoodShop li {
+	float: left;
+	height: 5.8rem;
+	width: 10.925rem;
+	padding-right: .475rem;
+	background-position: right -8.75rem;
+}
+#idRecomGoodShop li img {
+	height: 5.8rem;
+	width: 10.925rem;
+}
+.idRecomGSMore {
+	float: right;
+}
+.idRecomTit {
+	width: 16rem;
+	height: 1.55rem;
+	font: .525rem/1.55rem helvetica;
+	text-align: center;
+	color: #aaaaaa;
+}
+#idRecomProduct {
+	padding: 0 .05rem;
+	width: 15.9rem;
+}
+#idRecomProduct li {
+	position: relative;
+	float: left;
+	margin: 0 .15rem .3rem;
+	width: 7.65rem;
+	height: 10.55rem;
+	background-color: #fff;
+}
+#idRecomProduct img {
+	width: 7.65rem;
+	height: 7.65rem;
+}
+#idRecomProduct strong {
+	display: block;
+	padding-top: .35rem;
+	font: .6rem/1.3rem helvetica;
+	text-indent: .325rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #242427;
+}
+#idRecomProduct em {
+	display: block;
+	font: .65rem/1rem helvetica;
+	text-indent: .45rem;
+	color: #f23030;
+}
+#idRecomProduct em span {
+	font-size: .55rem;
+	padding-right: .25rem;
+}
+.idRecomBtn {
+	position: absolute;
+	bottom: .25rem;
+	right: .3rem;
+	width: 2.65rem;
+	height: .95rem;
+	border: 1px solid #e0e0e0;
+	border-radius: .15rem;
+	font: .6rem/1rem helvetica;
+	text-align: center;
+	color: #686868;
+}
+#loading {
+	height: 2rem;
+	width: 16rem;
+	background-position: center -3rem;
+}
+#fixed {
+	position: absolute;
+	bottom: 3rem;
+	right: .75rem;
+	width: 1.875rem;
+	height: 1.875rem;
+	border: 1px solid #888a8d;
+	border-radius: 1.875rem;
+	background-position: .5rem -4.475rem;
+	background-color: #fff;
+	z-index: 3;
+}
+/*index.css end*/
+	
+	
+	
+</style>
+</head>
+<body>
+	<!--头部搜索start-->
+	<header id="header" class="clearfix">
+		<a class="headBtn1" href="#"><span class="indexBg1"></span>扫啊扫</a>
+		<form class="indexBg1">
+			<input id="search" type="text" name="" placeholder="超级单品联想小新air pro品联想小新air pro..." >
+			<a class="searchYY" href="#"><span class="indexBg1"></span></a>
+		</form>
+		<a class="headBtn2" href="#"><span class="indexBg1"></span>消息</a>
+	</header>
+	<!--头部搜索end-->
+	
+	<!--返回顶部按钮start-->
+	<div id="fixed" class="indexBg3"></div>
+	<!--返回顶部按钮end-->
+	
+	
+	<!--底部功能导航入口start-->
+	<footer id="footer">
+		<a class="footerActive" href="#"><span class="indexBg1"></span><br><span>首页</span></a>
+		<a href="#"><span class="indexBg1"></span><br><span>分类</span></a>
+		<a href="#"><span class="indexBg1"></span><br><span>发现</span><mark class="footFind"></mark></a>
+		<a href="#"><span class="indexBg1"></span><br><span>购物车</span><mark class="footPayCar">3</mark></a>
+		<a href="#"><span class="indexBg1"></span><br><span>我的</span></a>
+	</footer>
+	<!--底部功能导航入口end-->
+	
+	<section id="wrap">
+		<!--头部图片切换start-->
+		<section id="idBannerImg">
+			<div class="indexBannerImg">
+				<a href="#"><img class="idBannerImgL" src="img/indeximg/topBanner1.jpg"></a>
+			</div>
+			<p>
+				<span class="idBannerAction"></span>
+				<span></span>
+				<span></span>
+			</p>
+		</section>
+		<!--头部图片切换end-->
+		
+		
+		<!--头部分类导航入口start-->
+		<nav id="idNav" class="clearfix">
+			<a href="#">
+				<span class="indexBg2"></span>
+				<strong>京东超市</strong>
+			</a>
+			<a href="#">
+				<span class="indexBg2"></span>
+				<strong>全球购</strong>
+			</a>
+			<a href="#">
+				<span class="indexBg2"></span>
+				<strong>服装城</strong>
+			</a>
+			<a href="#">
+				<span class="indexBg2"></span>
+				<strong>京东生鲜</strong>
+			</a>
+			<a href="#">
+				<span  class="indexBg2"></span>
+				<strong>京东到家</strong>
+			</a>
+			<a href="#">
+				<span class="indexBg2"></span>
+				<strong>充值中心</strong>
+			</a>
+			<a href="#">
+				<span class="indexBg2"></span>
+				<strong>领京豆</strong>
+			</a>
+			<a href="#">
+				<span class="indexBg2"></span>
+				<strong>领券</strong>
+			</a>
+			<a href="#">
+				<span class="indexBg2"></span>
+				<strong>京东金融</strong>
+			</a>
+			<a href="#">
+				<span class="indexBg2"></span>
+				<strong>全部</strong>
+			</a>
+		</nav>
+		<!--头部分类导航入口end-->
+		
+		
+		
+		<!--京东快报切换条start-->
+		<div id="idJDNewsFlash" class="clearfix">
+			<a class="idJDNFtitle indexBg3" href="#">京东快报</a>
+			<p>
+				<a href="#"><span class="idJDNewsNewtext">新</span>京东首届智能节，调满调满调满调满</a>
+				<!--<a href="#">京东首届智能节，调满调满调满调满</a>-->
+			</p>
+			<a class="idJDNFmore" href="#">更多</a>
+		</div>
+		<!--京东快报切换条end-->
+		
+		
+		<!--秒杀专场start-->
+		<section id="idSeckill">
+			<header>
+				<a class="indexBg3" href="#">秒杀</a>
+				<a href="#">16点场<time><span>02</span> : <span>54</span> : <span>26</span></time></a>
+				<a href="#">联想小新秒首发<mark class="indexBg1"></mark></a>
+			</header>
+			<div class="idSeckImg clearfix">
+				<a class="clearfix" >
+					<img src="img/indeximg/img-1.jpg">
+					<mark class="idSkillOverflow">超值</mark>
+					<strong><em>￥</em>36.9</strong>
+					<span><em>￥</em>49</span>
+				</a>
+				<a class="clearfix" >
+					<img src="img/indeximg/img-2.jpg">
+					<mark class="idSkillHot">热卖</mark>
+					<strong><em>￥</em>36.9</strong>
+					<span><em>￥</em>49</span>
+				</a>
+				<a class="clearfix" >
+					<img src="img/indeximg/img-3.jpg">
+					<mark class="idSkillRecommed">推荐</mark>
+					<strong><em>￥</em>36.9</strong>
+					<span><em>￥</em>49</span>
+				</a>
+				<a class="clearfix" >
+					<img src="img/indeximg/img-1.jpg">
+					<strong><em>￥</em>36.9</strong>
+					<span><em>￥</em>49</span>
+				</a>
+				<a href="#">查看更多</a>
+			</div>
+		</section>
+		<!--秒杀专场end-->
+		
+		
+		
+		<!--广告店铺入口start-->
+		<section id="idCenter">
+			<a class="idSubBanner100" href="#"><img src="img/indeximg/centerBanner1.jpg"></a>
+			<div class="idCentListTop clearfix">
+				<a class="idSubBanner50" href="#"><img src="img/indeximg/img-4.jpg"></a>
+				<a class="idSubBanner50" href="#"><img src="img/indeximg/img-5.jpg"></a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>排行榜</h4>
+						<p>热卖直降中</p>
+					</div>
+					<img src="img/indeximg/img-18.jpg" />
+				</a>
+				<a class="idSubBanner50 textImg" href="#">
+					<div class="bannerText">
+						<h4>排行榜</h4>
+						<p>热卖直降中</p>
+					</div>
+					<img src="img/indeximg/img-18.jpg" />
+				</a>
+			</div>
+			<div class="idCentLive clearfix">
+				<h2 class="idH2 indexH2Bg">爱生活</h2>
+				<a class="idSubBanner50 textImg" href="#">
+					<div class="bannerText">
+						<h4>排行榜</h4>
+						<p>热卖直降中</p>
+					</div>
+					<img src="img/indeximg/img-18.jpg" />
+				</a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>排行榜</h4>
+						<p>热卖直降中</p>
+					</div>
+					<img src="img/indeximg/img-18.jpg" />
+				</a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>排行榜</h4>
+						<p>热卖直降中</p>
+					</div>
+					<img src="img/indeximg/img-18.jpg" />
+				</a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>排行榜</h4>
+						<p>热卖直降中</p>
+					</div>
+					<img src="img/indeximg/img-18.jpg" />
+				</a>
+			</div>
+			<div class="idCentListBottom">
+				<a class="textImg idSubBanner25" href="#">
+					<div class="bannerText">
+						<h4>爱宝宝</h4>
+						<p>每满99减30</p>
+					</div>
+					<img src="img/indeximg/img-19.jpg" />
+				</a>
+				<a class="textImg idSubBanner25" href="#">
+					<div class="bannerText">
+						<h4>爱宝宝</h4>
+						<p>每满99减30</p>
+					</div>
+					<img src="img/indeximg/img-19.jpg" />
+				</a>
+				<a class="textImg idSubBanner25" href="#">
+					<div class="bannerText">
+						<h4>爱宝宝</h4>
+						<p>每满99减30</p>
+					</div>
+					<img src="img/indeximg/img-19.jpg" />
+				</a>
+				<a class="textImg idSubBanner25" href="#">
+					<div class="bannerText">
+						<h4>爱宝宝</h4>
+						<p>每满99减30</p>
+					</div>
+					<img src="img/indeximg/img-19.jpg" />
+				</a>
+			</div>
+		</section>
+		<!--广告店铺入口end-->
+		
+		
+		<!--享品质start-->
+		<section id="idQuality">
+			<header class="idLinkImg">
+				<a href="#"><img src="img/indeximg/idBannerLink1.jpg"></a>
+			</header>
+			<h2 class="idH2 indexH2Bg">享品质</h2>
+			<div class="idBanLinkCont clearfix">
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>全球购自营</h4>
+						<p>靠谱奶粉直降</p>
+					</div>
+					<img src="img/indeximg/img-20.jpg" />
+				</a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>全球购自营</h4>
+						<p>靠谱奶粉直降</p>
+					</div>
+					<img src="img/indeximg/img-20.jpg" />
+				</a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>全球购自营</h4>
+						<p>靠谱奶粉直降</p>
+					</div>
+					<img src="img/indeximg/img-20.jpg" />
+				</a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>全球购自营</h4>
+						<p>靠谱奶粉直降</p>
+					</div>
+					<img src="img/indeximg/img-20.jpg" />
+				</a>
+			</div>
+		</section>
+		<!--享品质end-->
+		
+		
+		
+		<!--购特色start-->
+		<section id="idFeature">
+			<header class="idLinkImg">
+				<a href="#"><img src="img/indeximg/idBannerLink2.jpg"></a>
+			</header>
+			<h2 class="idH2 indexH2Bg">购特色</h2>
+			<div class="idBanFeatCont clearfix">
+				<a class="textImg idSubBanner33" href="#">
+					<div class="bannerText">
+						<h4>团购</h4>
+						<p>6.9元秒杀</p>
+					</div>
+					<img src="img/indeximg/img-21.jpg" />
+				</a>
+				<a class="textImg idSubBanner33" href="#">
+					<div class="bannerText">
+						<h4>团购</h4>
+						<p>6.9元秒杀</p>
+					</div>
+					<img src="img/indeximg/img-21.jpg" />
+					<mark class="idQualMarkNew">新奇特</mark>
+				</a>
+				<a class="textImg idSubBanner33" href="#">
+					<div class="bannerText">
+						<h4>团购</h4>
+						<p>6.9元秒杀</p>
+					</div>
+					<img src="img/indeximg/img-21.jpg" />
+				</a>
+				<a class="textImg idSubBanner33" href="#">
+					<div class="bannerText">
+						<h4>团购</h4>
+						<p>6.9元秒杀</p>
+					</div>
+					<img src="img/indeximg/img-21.jpg" />
+					<mark class="idQualMarkHot">热拍中</mark>
+				</a>
+				<a class="textImg idSubBanner33" href="#">
+					<div class="bannerText">
+						<h4>团购</h4>
+						<p>6.9元秒杀</p>
+					</div>
+					<img src="img/indeximg/img-21.jpg" />
+				</a>
+				<a class="textImg idSubBanner33" href="#">
+					<div class="bannerText">
+						<h4>团购</h4>
+						<p>6.9元秒杀</p>
+					</div>
+					<img src="img/indeximg/img-21.jpg" />
+				</a>
+			</div>
+		</section>
+		<!--购特色end-->
+		
+		
+		<!--逛商场start-->
+		<section id="idMegamall">
+			<header class="idLinkImg">
+				<a href="#"><img src="img/indeximg/idBannerLink3.jpg"></a>
+			</header>
+			<h2 class="idH2 indexH2Bg">逛商场
+				<a class="idBanLinkTitMore" href="#">更多热门</a>
+			</h2>
+			<div class="idBanMegaCont clearfix">
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>母婴馆</h4>
+						<p>用品每满99减30</p>
+					</div>
+					<img src="img/indeximg/img-22.jpg" />
+				</a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>母婴馆</h4>
+						<p>用品每满99减30</p>
+					</div>
+					<img src="img/indeximg/img-22.jpg" />
+				</a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>母婴馆</h4>
+						<p>用品每满99减30</p>
+					</div>
+					<img src="img/indeximg/img-22.jpg" />
+				</a>
+				<a class="textImg idSubBanner50" href="#">
+					<div class="bannerText">
+						<h4>母婴馆</h4>
+						<p>用品每满99减30</p>
+					</div>
+					<img src="img/indeximg/img-22.jpg" />
+				</a>
+			</div>
+			<div class="idBanMegaCont25 clearfix">
+				<a class="textImg idSubBanner25" href="#">
+					<div class="bannerText">
+						<h4>鞋靴箱包</h4>
+						<p>低至99元</p>
+					</div>
+					<img src="img/indeximg/img-23.jpg" />
+				</a>
+				<a class="textImg idSubBanner25" href="#">
+					<div class="bannerText">
+						<h4>鞋靴箱包</h4>
+						<p>低至99元</p>
+					</div>
+					<img src="img/indeximg/img-23.jpg" />
+				</a>
+				<a class="textImg idSubBanner25" href="#">
+					<div class="bannerText">
+						<h4>鞋靴箱包</h4>
+						<p>低至99元</p>
+					</div>
+					<img src="img/indeximg/img-23.jpg" />
+				</a>
+				<a class="textImg idSubBanner25" href="#">
+					<div class="bannerText">
+						<h4>鞋靴箱包</h4>
+						<p>低至99元</p>
+					</div>
+					<img src="img/indeximg/img-23.jpg" />
+				</a>
+			</div>
+			<a class="idSubBanner100" href="#"><img src="img/indeximg/idBannerLink4.jpg"></a>
+		</section>
+		<!--逛商场end-->
+		
+		
+		
+		<!--专属推荐start-->
+		<section id="idRecommend">
+			<h2 class="indexH2Bg idH2">专属推荐</h2>	
+			<div id="idRecomGoodShop" class="clearfix">
+				<h3>发现好店<span class="indexBg1"></span></h3>
+				<ul>
+					<li class="indexBg1"><a href="#"><img src="img/indeximg/img-15.jpg"></a></li>
+					<li class="indexBg1"><a href="#"><img src="img/indeximg/img-15.jpg"></a></li>
+					<li class="indexBg1"><a href="#"><img src="img/indeximg/img-15.jpg"></a></li>
+				</ul>
+				<a class="idRecomGSMore" href="#">查看更多</a>
+			</div>
+			<p class="idRecomTit">/为你推荐/</p>
+			<ul id="idRecomProduct">
+				<li>
+					<a href="#">
+						<img src="img/indeximg/img-16.jpg">
+						<strong>梦之腾2016新款可爱短款睡衣</strong>
+						<em><span>￥</span>118.<span>00</span></em>
+					</a>
+					<a class="idRecomBtn" href="#">看相似</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/indeximg/img-16.jpg">
+						<strong>梦之腾2016新款可爱短款睡衣</strong>
+						<em><span>￥</span>118.<span>00</span></em>
+					</a>
+					<a class="idRecomBtn" href="#">看相似</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/indeximg/img-16.jpg">
+						<strong>李宁旗舰店2016新品环新品环</strong>
+						<em><span>￥</span>499.<span>00</span></em>
+					</a>
+					<a class="idRecomBtn" href="#">看相似</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/indeximg/img-16.jpg">
+						<strong>李宁旗舰店2016新品环新品环</strong>
+						<em><span>￥</span>499.<span>00</span></em>
+					</a>
+					<a class="idRecomBtn" href="#">看相似</a>
+				</li>
+			</ul>
+		</section>
+		<!--专属推荐end-->
+		<!--加载中-->
+		<!--<div class="indexBg3" id="loading"></div>-->
+	</section>
+</body>
+</html>

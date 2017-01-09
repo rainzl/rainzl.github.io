@@ -34,6 +34,18 @@ var data = [
 				'难点: body背景以及文字背景的实现'
 			],
 		href: 'others/media/index.html'
+	},
+	{
+		id:4,
+		img: 'img/telePhone.png',
+		info: 
+			[
+				'项目名称: 响应式Luckis',
+				'技术: media响应式布局,css3',
+				'介绍: 为分辨率大于1248、1248-860、860-480、480以下的屏幕实现了不同展示效果',
+				'难点: body背景以及文字背景的实现'
+			],
+		href: 'others/telePhone/index.html'
 	}
 ];
 var worksData = [
@@ -88,9 +100,3 @@ var aboutData = {
 		'兴趣爱好: 旅游、看书、敲代码'
 	]
 };
-var introductionData = [
-	'个人介绍',
-	'毕业院校: 河北北方学院',
-	'工作年限: 3年',
-	'兴趣爱好: 旅游、看书、敲代码'
-]

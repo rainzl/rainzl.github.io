@@ -168,7 +168,7 @@ body.contact #logo {
 	height: 60%;
 	transform: translateY(-50%);
 	-webkit-transform: translateY(-50%);
-	perspective: 500px;
+	perspective: 300px;
 	z-index: 1;
 }
 #menu .menuList ul {
@@ -176,8 +176,8 @@ body.contact #logo {
 	opacity: .4;
     -webkit-transform: translateY(-25%) rotateX(35deg);
     transform: translateY(-25%) rotateX(35deg);
-    -webkit-transition: -webkit-transform .5s,opacity .5s;
-    transition: transform .5s,opacity .5s;
+    -webkit-transition: -webkit-transform .8s,opacity .6s;
+    transition: transform .8s,opacity .6s;
 }
 #menu .menuList li {
 	height: 25%;
@@ -220,8 +220,8 @@ body.contact #logo {
     transform: translateY(25%) rotateX(-50deg);
 }
 #menu.active .menuList ul {
-	transform: rotateX(0deg);
-	-webkit-transform: rotateX(0deg);
+	transform: translateY(0%) rotateX(0deg);
+	-webkit-transform: translateY(0%) rotateX(0deg);
 	opacity: 1;
 }
 #hat {
