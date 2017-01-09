@@ -165,7 +165,6 @@
 		};
 		num = typeof(num) === 'undefined'? this.index +1: num;
 		num %= this.settings.data.length;
-		console.log(num)
 		move.css(this.settings.imgParObj,'translateX',0);
 		this.imgs[0].parentNode.setAttribute('fileId',data[this.index].id);
 		this.imgs[0].src = this.settings.data[this.index].img;
@@ -286,12 +285,12 @@
 			
 			move.css(this.obj,'translateZ',.01);//作用：优化用3d
 			
-			obj.addEventListener('touchstart',function(ev){
+			$(obj).off('touchstart').on('touchstart',function(ev){
 				var touchs = ev.changedTouches[0];
 				disTime = disMouse = 0;
 				disY = touchs.pageY - move.css(_this.obj,'translateY');
 			})
-			obj.addEventListener('touchmove',function(ev){
+			$(obj).off('touchmove').on('touchmove',function(ev){
 				var touchs = ev.changedTouches[0];
 				var nowTime = new Date().getTime();
 				var nowMouse = touchs.pageY;
@@ -302,7 +301,7 @@
 				disMouse = nowMouse - lastMouse;
 				lastMouse = nowMouse;
 			})
-			obj.addEventListener('touchend',function(ev){
+			$(obj).off('touchend').on('touchend',function(ev){
 				
 				var s = disMouse / disTime;
 				s = (isNaN(s) || s == 0 )? 0.01: s;

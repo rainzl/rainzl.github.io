@@ -7,7 +7,7 @@ var hat = new drawHat('hat',move.css($('#logo')[0],'height')/2+30);
 var shoesTop = window.innerHeight - $('#navConvas').offset().top - $('#navConvas').outerHeight()/2;
 var shoes = new drawHat('shoes',shoesTop);
 var lastHatstatus = 'loading';
-
+var hash = (window.location.hash && window.location.hash.substr(1)) || 'home';
 
 if (device) {
 	(function(){
@@ -60,7 +60,7 @@ if (device) {
 			move.css($a[i],'rotate',-45);
 		}
 		window.addEventListener('hashchange',function(){
-			var hash = (window.location.hash && window.location.hash.substr(1)) || 'home';
+			hash = (window.location.hash && window.location.hash.substr(1)) || 'home';
 			
 			for ( var i=0; i<$a.length; i++ ) {
 				if ( $($a[i]).hasClass(hash) ) {
@@ -98,40 +98,6 @@ if (device) {
 			lastIndex = index;
 			
 		})
-		/*$a.off('click').on('click',function(){
-			if ( !$(this).hasClass('active') ) {
-				var index = $(this).index();
-				var className = $(this).attr('class');
-				var disIndex = Math.abs(lastIndex-index);
-				
-				$(this).addClass('active').siblings().removeClass('active');
-				move.mTween($navBase[0],{'rotate':-(index*90-45)},disIndex*400,'linear',function(){
-					//画导航背景
-					drawNav('navConvas',-index*90);
-					$body.removeClass(htmlName).addClass(className);//替换body上的class
-					if ( className === 'home' || className === 'works' ) {
-						lastHatstatus = 'loading';
-						$('#logo').css({'transition':'','-webkit-transition':''});
-						$('#hint').css({
-							'width':'0',
-							'height':'0',
-							'top': '40%'
-						});
-						$body.addClass('loading').removeClass('loaded');//替换body上的class
-					}
-					$wrap.find('.tBody').attr('id',className);//替换tBody上的id
-					htmlName = className;
-					//页面切换,执行的操作
-					factory(global,htmlName);
-				});
-				move.mTween($navBg[0],{'rotate':-index*90},disIndex*400,'linear');
-				move.mTween($navList[0],{'rotate':-(index*90-45)},disIndex*400,'linear');
-				for ( var i=0; i<$a.length; i++ ) {
-					move.mTween($a[i],{'rotate':(index*90+45)-90},disIndex*400,'linear');
-				}
-				lastIndex = index;
-			}
-		})*/
 	}
 	
 	
@@ -151,7 +117,8 @@ if (device) {
 	//设置底部的链接列表top
 	setBlogroll ((htmlName==='home'?false:true));
 	
-	//
+	window.addEventListener('resize',setSquareHeight);
+	
 	showHtml();
 	
 	function showHtml() {
@@ -411,7 +378,6 @@ if (device) {
 					if ( num === data.length ) {
 						$('#logo').css({'transition':'top .7s ease','-webkit-transition':'top .7s ease',})
 						$body.removeClass('loading').addClass('loaded');
-						//setTimeout(setSquareHeight,800);
 					}
 				})
 			})
