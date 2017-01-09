@@ -33,16 +33,7 @@ if (device) {
 	})()
 }
 
-randLoad(introductionData);
-function randLoad(data) {
-	var arrObj = [];
-	var div = document.createElement('div');
-	$body[0].appendChild(div);
-	
-	for ( var i=0; i<data.length; i++ ) {
-		p = document.createElement('p');
-		arrObj.push(div.appendChild(p));
-	}
+
 	
 
 ;(function(global,factory){
