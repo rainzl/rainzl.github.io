@@ -38,6 +38,7 @@
 	global.drawNav = function (id,de) {
 		de = de || 0;
 		var c = document.getElementById(id);
+		console.log(c,id)
 		var W = c.offsetWidth/10,
 			H = c.offsetHeight/10;
 		c.width = 10*W;

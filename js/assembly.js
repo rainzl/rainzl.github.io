@@ -43,9 +43,6 @@
 		window.addEventListener('resize',fnRsize);
 		function fnRsize(){
 			_this.width = document.documentElement.clientWidth || document.body.clientWidth;
-			if (document.getElementById('home')) {
-				window.removeEventListener('resize',fnRsize);
-			}
 		}
 	}
 	TabImg.prototype.touchFn = function () {
