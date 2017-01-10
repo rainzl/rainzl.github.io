@@ -249,7 +249,7 @@ if (device) {
 			var str = '';
 			
 			str += '<span class="prev"></span>'+
-					'<span class="next"></span><ul class="productList">';
+					'<span class="next"></span><ul class="productList" id="idBannerImg">';
 			str +=	'<li fileId="'+data[0].id+'"><img src="'+data[0].img+'"/></li><li fileId="'+data[1].id+'"><img src="'+data[1].img+'"/></li>'	
 			str +=	'</ul><p class="subCode"></p>';
 			
@@ -371,8 +371,11 @@ if (device) {
 		
 		if ( $body.hasClass('loading') ) {//前两个页面有loading
 			var num = 0;
-			$(data).each(function(i,e){
+			$('#logo').css({'transition':'top .7s ease','-webkit-transition':'top .7s ease',})
+			$body.removeClass('loading').addClass('loaded');
+			/*$(data).each(function(i,e){
 				var $img = $('<img src="'+e.img+'"/>');
+				console.log($img)
 				$img.off().on('load',function(){
 					num ++;
 					if ( num === data.length ) {
@@ -380,7 +383,7 @@ if (device) {
 						$body.removeClass('loading').addClass('loaded');
 					}
 				})
-			})
+			})*/
 		}
 		
 		setSquareHeight();

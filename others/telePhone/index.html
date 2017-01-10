@@ -336,23 +336,34 @@ body {
 	width: 16rem;
 	z-index: 1;
 }
+#tBody {
+	position: absolute;
+}
 #idBannerImg {
 	position: relative;
 	height: 7.5rem;
-	width: 16rem;
+	width: 32rem;
+}
+.indexBannerImg {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.indexBannerImg a {
+	float: left;
 }
 .indexBannerImg img {
 	width: 16rem;
 	height: 7.5rem;
 }
-#idBannerImg p {
+.indexBannerCode {
 	position: absolute;
 	bottom: .35rem;
 	left: 0;
-	width: 100%;
+	width: 16rem;
 	text-align: center;
 }
-#idBannerImg p span {
+.indexBannerCode span {
 	display: inline-block;
 	width: .25rem;
 	height: .25rem;
@@ -360,7 +371,7 @@ body {
 	background-color: rgba(255,255,255,.5);
 	border-radius: .25rem;
 }
-#idBannerImg .idBannerAction {
+#idBannerImg .active {
 	background-color: rgba(255,255,255,1);
 }
 #idNav {
@@ -869,425 +880,476 @@ body {
 	<!--底部功能导航入口end-->
 	
 	<section id="wrap">
-		<!--头部图片切换start-->
-		<section id="idBannerImg">
-			<div class="indexBannerImg">
-				<a href="#"><img class="idBannerImgL" src="img/indeximg/topBanner1.jpg"></a>
+		<div id="tBody">
+			<!--头部图片切换start-->
+			<section id="idBannerImg">
+				<div class="indexBannerImg">
+					<a href="#"><img class="idBannerImgL" src="img/indeximg/topBanner1.jpg"></a>
+					<a href="#"><img class="idBannerImgL" src="img/indeximg/topBanner2.jpg"></a>
+				</div>
+				<p class="indexBannerCode">
+					<span class="active"></span>
+					<span></span>
+					<span></span>
+				</p>
+			</section>
+			<!--头部图片切换end-->
+			
+			
+			<!--头部分类导航入口start-->
+			<nav id="idNav" class="clearfix">
+				<a href="#">
+					<span class="indexBg2"></span>
+					<strong>京东超市</strong>
+				</a>
+				<a href="#">
+					<span class="indexBg2"></span>
+					<strong>全球购</strong>
+				</a>
+				<a href="#">
+					<span class="indexBg2"></span>
+					<strong>服装城</strong>
+				</a>
+				<a href="#">
+					<span class="indexBg2"></span>
+					<strong>京东生鲜</strong>
+				</a>
+				<a href="#">
+					<span  class="indexBg2"></span>
+					<strong>京东到家</strong>
+				</a>
+				<a href="#">
+					<span class="indexBg2"></span>
+					<strong>充值中心</strong>
+				</a>
+				<a href="#">
+					<span class="indexBg2"></span>
+					<strong>领京豆</strong>
+				</a>
+				<a href="#">
+					<span class="indexBg2"></span>
+					<strong>领券</strong>
+				</a>
+				<a href="#">
+					<span class="indexBg2"></span>
+					<strong>京东金融</strong>
+				</a>
+				<a href="#">
+					<span class="indexBg2"></span>
+					<strong>全部</strong>
+				</a>
+			</nav>
+			<!--头部分类导航入口end-->
+			
+			
+			
+			<!--京东快报切换条start-->
+			<div id="idJDNewsFlash" class="clearfix">
+				<a class="idJDNFtitle indexBg3" href="#">京东快报</a>
+				<p>
+					<a href="#"><span class="idJDNewsNewtext">新</span>京东首届智能节，调满调满调满调满</a>
+					<!--<a href="#">京东首届智能节，调满调满调满调满</a>-->
+				</p>
+				<a class="idJDNFmore" href="#">更多</a>
 			</div>
-			<p>
-				<span class="idBannerAction"></span>
-				<span></span>
-				<span></span>
-			</p>
-		</section>
-		<!--头部图片切换end-->
-		
-		
-		<!--头部分类导航入口start-->
-		<nav id="idNav" class="clearfix">
-			<a href="#">
-				<span class="indexBg2"></span>
-				<strong>京东超市</strong>
-			</a>
-			<a href="#">
-				<span class="indexBg2"></span>
-				<strong>全球购</strong>
-			</a>
-			<a href="#">
-				<span class="indexBg2"></span>
-				<strong>服装城</strong>
-			</a>
-			<a href="#">
-				<span class="indexBg2"></span>
-				<strong>京东生鲜</strong>
-			</a>
-			<a href="#">
-				<span  class="indexBg2"></span>
-				<strong>京东到家</strong>
-			</a>
-			<a href="#">
-				<span class="indexBg2"></span>
-				<strong>充值中心</strong>
-			</a>
-			<a href="#">
-				<span class="indexBg2"></span>
-				<strong>领京豆</strong>
-			</a>
-			<a href="#">
-				<span class="indexBg2"></span>
-				<strong>领券</strong>
-			</a>
-			<a href="#">
-				<span class="indexBg2"></span>
-				<strong>京东金融</strong>
-			</a>
-			<a href="#">
-				<span class="indexBg2"></span>
-				<strong>全部</strong>
-			</a>
-		</nav>
-		<!--头部分类导航入口end-->
-		
-		
-		
-		<!--京东快报切换条start-->
-		<div id="idJDNewsFlash" class="clearfix">
-			<a class="idJDNFtitle indexBg3" href="#">京东快报</a>
-			<p>
-				<a href="#"><span class="idJDNewsNewtext">新</span>京东首届智能节，调满调满调满调满</a>
-				<!--<a href="#">京东首届智能节，调满调满调满调满</a>-->
-			</p>
-			<a class="idJDNFmore" href="#">更多</a>
-		</div>
-		<!--京东快报切换条end-->
-		
-		
-		<!--秒杀专场start-->
-		<section id="idSeckill">
-			<header>
-				<a class="indexBg3" href="#">秒杀</a>
-				<a href="#">16点场<time><span>02</span> : <span>54</span> : <span>26</span></time></a>
-				<a href="#">联想小新秒首发<mark class="indexBg1"></mark></a>
-			</header>
-			<div class="idSeckImg clearfix">
-				<a class="clearfix" >
-					<img src="img/indeximg/img-1.jpg">
-					<mark class="idSkillOverflow">超值</mark>
-					<strong><em>￥</em>36.9</strong>
-					<span><em>￥</em>49</span>
-				</a>
-				<a class="clearfix" >
-					<img src="img/indeximg/img-2.jpg">
-					<mark class="idSkillHot">热卖</mark>
-					<strong><em>￥</em>36.9</strong>
-					<span><em>￥</em>49</span>
-				</a>
-				<a class="clearfix" >
-					<img src="img/indeximg/img-3.jpg">
-					<mark class="idSkillRecommed">推荐</mark>
-					<strong><em>￥</em>36.9</strong>
-					<span><em>￥</em>49</span>
-				</a>
-				<a class="clearfix" >
-					<img src="img/indeximg/img-1.jpg">
-					<strong><em>￥</em>36.9</strong>
-					<span><em>￥</em>49</span>
-				</a>
-				<a href="#">查看更多</a>
-			</div>
-		</section>
-		<!--秒杀专场end-->
-		
-		
-		
-		<!--广告店铺入口start-->
-		<section id="idCenter">
-			<a class="idSubBanner100" href="#"><img src="img/indeximg/centerBanner1.jpg"></a>
-			<div class="idCentListTop clearfix">
-				<a class="idSubBanner50" href="#"><img src="img/indeximg/img-4.jpg"></a>
-				<a class="idSubBanner50" href="#"><img src="img/indeximg/img-5.jpg"></a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>排行榜</h4>
-						<p>热卖直降中</p>
-					</div>
-					<img src="img/indeximg/img-18.jpg" />
-				</a>
-				<a class="idSubBanner50 textImg" href="#">
-					<div class="bannerText">
-						<h4>排行榜</h4>
-						<p>热卖直降中</p>
-					</div>
-					<img src="img/indeximg/img-18.jpg" />
-				</a>
-			</div>
-			<div class="idCentLive clearfix">
-				<h2 class="idH2 indexH2Bg">爱生活</h2>
-				<a class="idSubBanner50 textImg" href="#">
-					<div class="bannerText">
-						<h4>排行榜</h4>
-						<p>热卖直降中</p>
-					</div>
-					<img src="img/indeximg/img-18.jpg" />
-				</a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>排行榜</h4>
-						<p>热卖直降中</p>
-					</div>
-					<img src="img/indeximg/img-18.jpg" />
-				</a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>排行榜</h4>
-						<p>热卖直降中</p>
-					</div>
-					<img src="img/indeximg/img-18.jpg" />
-				</a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>排行榜</h4>
-						<p>热卖直降中</p>
-					</div>
-					<img src="img/indeximg/img-18.jpg" />
-				</a>
-			</div>
-			<div class="idCentListBottom">
-				<a class="textImg idSubBanner25" href="#">
-					<div class="bannerText">
-						<h4>爱宝宝</h4>
-						<p>每满99减30</p>
-					</div>
-					<img src="img/indeximg/img-19.jpg" />
-				</a>
-				<a class="textImg idSubBanner25" href="#">
-					<div class="bannerText">
-						<h4>爱宝宝</h4>
-						<p>每满99减30</p>
-					</div>
-					<img src="img/indeximg/img-19.jpg" />
-				</a>
-				<a class="textImg idSubBanner25" href="#">
-					<div class="bannerText">
-						<h4>爱宝宝</h4>
-						<p>每满99减30</p>
-					</div>
-					<img src="img/indeximg/img-19.jpg" />
-				</a>
-				<a class="textImg idSubBanner25" href="#">
-					<div class="bannerText">
-						<h4>爱宝宝</h4>
-						<p>每满99减30</p>
-					</div>
-					<img src="img/indeximg/img-19.jpg" />
-				</a>
-			</div>
-		</section>
-		<!--广告店铺入口end-->
-		
-		
-		<!--享品质start-->
-		<section id="idQuality">
-			<header class="idLinkImg">
-				<a href="#"><img src="img/indeximg/idBannerLink1.jpg"></a>
-			</header>
-			<h2 class="idH2 indexH2Bg">享品质</h2>
-			<div class="idBanLinkCont clearfix">
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>全球购自营</h4>
-						<p>靠谱奶粉直降</p>
-					</div>
-					<img src="img/indeximg/img-20.jpg" />
-				</a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>全球购自营</h4>
-						<p>靠谱奶粉直降</p>
-					</div>
-					<img src="img/indeximg/img-20.jpg" />
-				</a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>全球购自营</h4>
-						<p>靠谱奶粉直降</p>
-					</div>
-					<img src="img/indeximg/img-20.jpg" />
-				</a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>全球购自营</h4>
-						<p>靠谱奶粉直降</p>
-					</div>
-					<img src="img/indeximg/img-20.jpg" />
-				</a>
-			</div>
-		</section>
-		<!--享品质end-->
-		
-		
-		
-		<!--购特色start-->
-		<section id="idFeature">
-			<header class="idLinkImg">
-				<a href="#"><img src="img/indeximg/idBannerLink2.jpg"></a>
-			</header>
-			<h2 class="idH2 indexH2Bg">购特色</h2>
-			<div class="idBanFeatCont clearfix">
-				<a class="textImg idSubBanner33" href="#">
-					<div class="bannerText">
-						<h4>团购</h4>
-						<p>6.9元秒杀</p>
-					</div>
-					<img src="img/indeximg/img-21.jpg" />
-				</a>
-				<a class="textImg idSubBanner33" href="#">
-					<div class="bannerText">
-						<h4>团购</h4>
-						<p>6.9元秒杀</p>
-					</div>
-					<img src="img/indeximg/img-21.jpg" />
-					<mark class="idQualMarkNew">新奇特</mark>
-				</a>
-				<a class="textImg idSubBanner33" href="#">
-					<div class="bannerText">
-						<h4>团购</h4>
-						<p>6.9元秒杀</p>
-					</div>
-					<img src="img/indeximg/img-21.jpg" />
-				</a>
-				<a class="textImg idSubBanner33" href="#">
-					<div class="bannerText">
-						<h4>团购</h4>
-						<p>6.9元秒杀</p>
-					</div>
-					<img src="img/indeximg/img-21.jpg" />
-					<mark class="idQualMarkHot">热拍中</mark>
-				</a>
-				<a class="textImg idSubBanner33" href="#">
-					<div class="bannerText">
-						<h4>团购</h4>
-						<p>6.9元秒杀</p>
-					</div>
-					<img src="img/indeximg/img-21.jpg" />
-				</a>
-				<a class="textImg idSubBanner33" href="#">
-					<div class="bannerText">
-						<h4>团购</h4>
-						<p>6.9元秒杀</p>
-					</div>
-					<img src="img/indeximg/img-21.jpg" />
-				</a>
-			</div>
-		</section>
-		<!--购特色end-->
-		
-		
-		<!--逛商场start-->
-		<section id="idMegamall">
-			<header class="idLinkImg">
-				<a href="#"><img src="img/indeximg/idBannerLink3.jpg"></a>
-			</header>
-			<h2 class="idH2 indexH2Bg">逛商场
-				<a class="idBanLinkTitMore" href="#">更多热门</a>
-			</h2>
-			<div class="idBanMegaCont clearfix">
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>母婴馆</h4>
-						<p>用品每满99减30</p>
-					</div>
-					<img src="img/indeximg/img-22.jpg" />
-				</a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>母婴馆</h4>
-						<p>用品每满99减30</p>
-					</div>
-					<img src="img/indeximg/img-22.jpg" />
-				</a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>母婴馆</h4>
-						<p>用品每满99减30</p>
-					</div>
-					<img src="img/indeximg/img-22.jpg" />
-				</a>
-				<a class="textImg idSubBanner50" href="#">
-					<div class="bannerText">
-						<h4>母婴馆</h4>
-						<p>用品每满99减30</p>
-					</div>
-					<img src="img/indeximg/img-22.jpg" />
-				</a>
-			</div>
-			<div class="idBanMegaCont25 clearfix">
-				<a class="textImg idSubBanner25" href="#">
-					<div class="bannerText">
-						<h4>鞋靴箱包</h4>
-						<p>低至99元</p>
-					</div>
-					<img src="img/indeximg/img-23.jpg" />
-				</a>
-				<a class="textImg idSubBanner25" href="#">
-					<div class="bannerText">
-						<h4>鞋靴箱包</h4>
-						<p>低至99元</p>
-					</div>
-					<img src="img/indeximg/img-23.jpg" />
-				</a>
-				<a class="textImg idSubBanner25" href="#">
-					<div class="bannerText">
-						<h4>鞋靴箱包</h4>
-						<p>低至99元</p>
-					</div>
-					<img src="img/indeximg/img-23.jpg" />
-				</a>
-				<a class="textImg idSubBanner25" href="#">
-					<div class="bannerText">
-						<h4>鞋靴箱包</h4>
-						<p>低至99元</p>
-					</div>
-					<img src="img/indeximg/img-23.jpg" />
-				</a>
-			</div>
-			<a class="idSubBanner100" href="#"><img src="img/indeximg/idBannerLink4.jpg"></a>
-		</section>
-		<!--逛商场end-->
-		
-		
-		
-		<!--专属推荐start-->
-		<section id="idRecommend">
-			<h2 class="indexH2Bg idH2">专属推荐</h2>	
-			<div id="idRecomGoodShop" class="clearfix">
-				<h3>发现好店<span class="indexBg1"></span></h3>
-				<ul>
-					<li class="indexBg1"><a href="#"><img src="img/indeximg/img-15.jpg"></a></li>
-					<li class="indexBg1"><a href="#"><img src="img/indeximg/img-15.jpg"></a></li>
-					<li class="indexBg1"><a href="#"><img src="img/indeximg/img-15.jpg"></a></li>
+			<!--京东快报切换条end-->
+			
+			
+			<!--秒杀专场start-->
+			<section id="idSeckill">
+				<header>
+					<a class="indexBg3" href="#">秒杀</a>
+					<a href="#">16点场<time><span>02</span> : <span>54</span> : <span>26</span></time></a>
+					<a href="#">联想小新秒首发<mark class="indexBg1"></mark></a>
+				</header>
+				<div class="idSeckImg clearfix">
+					<a class="clearfix" >
+						<img src="img/indeximg/img-1.jpg">
+						<mark class="idSkillOverflow">超值</mark>
+						<strong><em>￥</em>36.9</strong>
+						<span><em>￥</em>49</span>
+					</a>
+					<a class="clearfix" >
+						<img src="img/indeximg/img-2.jpg">
+						<mark class="idSkillHot">热卖</mark>
+						<strong><em>￥</em>36.9</strong>
+						<span><em>￥</em>49</span>
+					</a>
+					<a class="clearfix" >
+						<img src="img/indeximg/img-3.jpg">
+						<mark class="idSkillRecommed">推荐</mark>
+						<strong><em>￥</em>36.9</strong>
+						<span><em>￥</em>49</span>
+					</a>
+					<a class="clearfix" >
+						<img src="img/indeximg/img-1.jpg">
+						<strong><em>￥</em>36.9</strong>
+						<span><em>￥</em>49</span>
+					</a>
+					<a href="#">查看更多</a>
+				</div>
+			</section>
+			<!--秒杀专场end-->
+			
+			
+			
+			<!--广告店铺入口start-->
+			<section id="idCenter">
+				<a class="idSubBanner100" href="#"><img src="img/indeximg/centerBanner1.jpg"></a>
+				<div class="idCentListTop clearfix">
+					<a class="idSubBanner50" href="#"><img src="img/indeximg/img-4.jpg"></a>
+					<a class="idSubBanner50" href="#"><img src="img/indeximg/img-5.jpg"></a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>排行榜</h4>
+							<p>热卖直降中</p>
+						</div>
+						<img src="img/indeximg/img-18.jpg" />
+					</a>
+					<a class="idSubBanner50 textImg" href="#">
+						<div class="bannerText">
+							<h4>排行榜</h4>
+							<p>热卖直降中</p>
+						</div>
+						<img src="img/indeximg/img-18.jpg" />
+					</a>
+				</div>
+				<div class="idCentLive clearfix">
+					<h2 class="idH2 indexH2Bg">爱生活</h2>
+					<a class="idSubBanner50 textImg" href="#">
+						<div class="bannerText">
+							<h4>排行榜</h4>
+							<p>热卖直降中</p>
+						</div>
+						<img src="img/indeximg/img-18.jpg" />
+					</a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>排行榜</h4>
+							<p>热卖直降中</p>
+						</div>
+						<img src="img/indeximg/img-18.jpg" />
+					</a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>排行榜</h4>
+							<p>热卖直降中</p>
+						</div>
+						<img src="img/indeximg/img-18.jpg" />
+					</a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>排行榜</h4>
+							<p>热卖直降中</p>
+						</div>
+						<img src="img/indeximg/img-18.jpg" />
+					</a>
+				</div>
+				<div class="idCentListBottom">
+					<a class="textImg idSubBanner25" href="#">
+						<div class="bannerText">
+							<h4>爱宝宝</h4>
+							<p>每满99减30</p>
+						</div>
+						<img src="img/indeximg/img-19.jpg" />
+					</a>
+					<a class="textImg idSubBanner25" href="#">
+						<div class="bannerText">
+							<h4>爱宝宝</h4>
+							<p>每满99减30</p>
+						</div>
+						<img src="img/indeximg/img-19.jpg" />
+					</a>
+					<a class="textImg idSubBanner25" href="#">
+						<div class="bannerText">
+							<h4>爱宝宝</h4>
+							<p>每满99减30</p>
+						</div>
+						<img src="img/indeximg/img-19.jpg" />
+					</a>
+					<a class="textImg idSubBanner25" href="#">
+						<div class="bannerText">
+							<h4>爱宝宝</h4>
+							<p>每满99减30</p>
+						</div>
+						<img src="img/indeximg/img-19.jpg" />
+					</a>
+				</div>
+			</section>
+			<!--广告店铺入口end-->
+			
+			
+			<!--享品质start-->
+			<section id="idQuality">
+				<header class="idLinkImg">
+					<a href="#"><img src="img/indeximg/idBannerLink1.jpg"></a>
+				</header>
+				<h2 class="idH2 indexH2Bg">享品质</h2>
+				<div class="idBanLinkCont clearfix">
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>全球购自营</h4>
+							<p>靠谱奶粉直降</p>
+						</div>
+						<img src="img/indeximg/img-20.jpg" />
+					</a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>全球购自营</h4>
+							<p>靠谱奶粉直降</p>
+						</div>
+						<img src="img/indeximg/img-20.jpg" />
+					</a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>全球购自营</h4>
+							<p>靠谱奶粉直降</p>
+						</div>
+						<img src="img/indeximg/img-20.jpg" />
+					</a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>全球购自营</h4>
+							<p>靠谱奶粉直降</p>
+						</div>
+						<img src="img/indeximg/img-20.jpg" />
+					</a>
+				</div>
+			</section>
+			<!--享品质end-->
+			
+			
+			
+			<!--购特色start-->
+			<section id="idFeature">
+				<header class="idLinkImg">
+					<a href="#"><img src="img/indeximg/idBannerLink2.jpg"></a>
+				</header>
+				<h2 class="idH2 indexH2Bg">购特色</h2>
+				<div class="idBanFeatCont clearfix">
+					<a class="textImg idSubBanner33" href="#">
+						<div class="bannerText">
+							<h4>团购</h4>
+							<p>6.9元秒杀</p>
+						</div>
+						<img src="img/indeximg/img-21.jpg" />
+					</a>
+					<a class="textImg idSubBanner33" href="#">
+						<div class="bannerText">
+							<h4>团购</h4>
+							<p>6.9元秒杀</p>
+						</div>
+						<img src="img/indeximg/img-21.jpg" />
+						<mark class="idQualMarkNew">新奇特</mark>
+					</a>
+					<a class="textImg idSubBanner33" href="#">
+						<div class="bannerText">
+							<h4>团购</h4>
+							<p>6.9元秒杀</p>
+						</div>
+						<img src="img/indeximg/img-21.jpg" />
+					</a>
+					<a class="textImg idSubBanner33" href="#">
+						<div class="bannerText">
+							<h4>团购</h4>
+							<p>6.9元秒杀</p>
+						</div>
+						<img src="img/indeximg/img-21.jpg" />
+						<mark class="idQualMarkHot">热拍中</mark>
+					</a>
+					<a class="textImg idSubBanner33" href="#">
+						<div class="bannerText">
+							<h4>团购</h4>
+							<p>6.9元秒杀</p>
+						</div>
+						<img src="img/indeximg/img-21.jpg" />
+					</a>
+					<a class="textImg idSubBanner33" href="#">
+						<div class="bannerText">
+							<h4>团购</h4>
+							<p>6.9元秒杀</p>
+						</div>
+						<img src="img/indeximg/img-21.jpg" />
+					</a>
+				</div>
+			</section>
+			<!--购特色end-->
+			
+			
+			<!--逛商场start-->
+			<section id="idMegamall">
+				<header class="idLinkImg">
+					<a href="#"><img src="img/indeximg/idBannerLink3.jpg"></a>
+				</header>
+				<h2 class="idH2 indexH2Bg">逛商场
+					<a class="idBanLinkTitMore" href="#">更多热门</a>
+				</h2>
+				<div class="idBanMegaCont clearfix">
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>母婴馆</h4>
+							<p>用品每满99减30</p>
+						</div>
+						<img src="img/indeximg/img-22.jpg" />
+					</a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>母婴馆</h4>
+							<p>用品每满99减30</p>
+						</div>
+						<img src="img/indeximg/img-22.jpg" />
+					</a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>母婴馆</h4>
+							<p>用品每满99减30</p>
+						</div>
+						<img src="img/indeximg/img-22.jpg" />
+					</a>
+					<a class="textImg idSubBanner50" href="#">
+						<div class="bannerText">
+							<h4>母婴馆</h4>
+							<p>用品每满99减30</p>
+						</div>
+						<img src="img/indeximg/img-22.jpg" />
+					</a>
+				</div>
+				<div class="idBanMegaCont25 clearfix">
+					<a class="textImg idSubBanner25" href="#">
+						<div class="bannerText">
+							<h4>鞋靴箱包</h4>
+							<p>低至99元</p>
+						</div>
+						<img src="img/indeximg/img-23.jpg" />
+					</a>
+					<a class="textImg idSubBanner25" href="#">
+						<div class="bannerText">
+							<h4>鞋靴箱包</h4>
+							<p>低至99元</p>
+						</div>
+						<img src="img/indeximg/img-23.jpg" />
+					</a>
+					<a class="textImg idSubBanner25" href="#">
+						<div class="bannerText">
+							<h4>鞋靴箱包</h4>
+							<p>低至99元</p>
+						</div>
+						<img src="img/indeximg/img-23.jpg" />
+					</a>
+					<a class="textImg idSubBanner25" href="#">
+						<div class="bannerText">
+							<h4>鞋靴箱包</h4>
+							<p>低至99元</p>
+						</div>
+						<img src="img/indeximg/img-23.jpg" />
+					</a>
+				</div>
+				<a class="idSubBanner100" href="#"><img src="img/indeximg/idBannerLink4.jpg"></a>
+			</section>
+			<!--逛商场end-->
+			
+			
+			
+			<!--专属推荐start-->
+			<section id="idRecommend">
+				<h2 class="indexH2Bg idH2">专属推荐</h2>	
+				<div id="idRecomGoodShop" class="clearfix">
+					<h3>发现好店<span class="indexBg1"></span></h3>
+					<ul>
+						<li class="indexBg1"><a href="#"><img src="img/indeximg/img-15.jpg"></a></li>
+						<li class="indexBg1"><a href="#"><img src="img/indeximg/img-15.jpg"></a></li>
+						<li class="indexBg1"><a href="#"><img src="img/indeximg/img-15.jpg"></a></li>
+					</ul>
+					<a class="idRecomGSMore" href="#">查看更多</a>
+				</div>
+				<p class="idRecomTit">/为你推荐/</p>
+				<ul id="idRecomProduct">
+					<li>
+						<a href="#">
+							<img src="img/indeximg/img-16.jpg">
+							<strong>梦之腾2016新款可爱短款睡衣</strong>
+							<em><span>￥</span>118.<span>00</span></em>
+						</a>
+						<a class="idRecomBtn" href="#">看相似</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/indeximg/img-16.jpg">
+							<strong>梦之腾2016新款可爱短款睡衣</strong>
+							<em><span>￥</span>118.<span>00</span></em>
+						</a>
+						<a class="idRecomBtn" href="#">看相似</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/indeximg/img-16.jpg">
+							<strong>李宁旗舰店2016新品环新品环</strong>
+							<em><span>￥</span>499.<span>00</span></em>
+						</a>
+						<a class="idRecomBtn" href="#">看相似</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/indeximg/img-16.jpg">
+							<strong>李宁旗舰店2016新品环新品环</strong>
+							<em><span>￥</span>499.<span>00</span></em>
+						</a>
+						<a class="idRecomBtn" href="#">看相似</a>
+					</li>
 				</ul>
-				<a class="idRecomGSMore" href="#">查看更多</a>
-			</div>
-			<p class="idRecomTit">/为你推荐/</p>
-			<ul id="idRecomProduct">
-				<li>
-					<a href="#">
-						<img src="img/indeximg/img-16.jpg">
-						<strong>梦之腾2016新款可爱短款睡衣</strong>
-						<em><span>￥</span>118.<span>00</span></em>
-					</a>
-					<a class="idRecomBtn" href="#">看相似</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/indeximg/img-16.jpg">
-						<strong>梦之腾2016新款可爱短款睡衣</strong>
-						<em><span>￥</span>118.<span>00</span></em>
-					</a>
-					<a class="idRecomBtn" href="#">看相似</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/indeximg/img-16.jpg">
-						<strong>李宁旗舰店2016新品环新品环</strong>
-						<em><span>￥</span>499.<span>00</span></em>
-					</a>
-					<a class="idRecomBtn" href="#">看相似</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="img/indeximg/img-16.jpg">
-						<strong>李宁旗舰店2016新品环新品环</strong>
-						<em><span>￥</span>499.<span>00</span></em>
-					</a>
-					<a class="idRecomBtn" href="#">看相似</a>
-				</li>
-			</ul>
-		</section>
+			</section>
 		<!--专属推荐end-->
+		</div>
 		<!--加载中-->
 		<!--<div class="indexBg3" id="loading"></div>-->
 	</section>
+<script src="../../js/jquery-3.1.1.js"></script>
+<script src="../../js/tools.js"></script>
+<script src="../../js/move.js"></script>
+<script src="../../js/assembly.js"></script>
+<script>
+var imgArr = [
+	{
+		id:1,
+		img:'img/indeximg/topBanner1.jpg'
+	},
+	{
+		id:2,
+		img:'img/indeximg/topBanner2.jpg'
+	},
+	{
+		id:3,
+		img:'img/indeximg/topBanner3.jpg'
+	},
+	{
+		id:4,
+		img:'img/indeximg/topBanner4.jpg'
+	},
+	{
+		id:5,
+		img:'img/indeximg/topBanner5.jpg'
+	}
+];
+	var wheel = new Scroll('tBody');
+	var tabImgs = new TabImg('idBannerImg');
+	wheel.init();
+	tabImgs.init({
+		data:imgArr,
+		imgParObj: $('#idBannerImg').find('.indexBannerImg')[0],
+		subTag:'span',
+		subParCode: $('#idBannerImg').find('.indexBannerCode')[0]
+	});
+	/*
+	 this.settings = {
+			data: [],
+			imgParObj: null,
+			subTag: 'i',
+			subParCode: null,
+			nextBtn: null,
+			prevBtn: null,
+			callBack: function(){}
+		}
+	*/
+</script>
 </body>
 </html>

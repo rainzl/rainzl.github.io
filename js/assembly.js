@@ -34,7 +34,7 @@
 		this.settings.subParCode && this.fnSubCode();
 		this.settings.nextBtn && this.nextPrevBtn();
 		this.setTime();
-		this.overOutPar();
+		this.settings.nextBtn && this.overOutPar();
 		this.touchFn();
 		this.imgs = this.obj.getElementsByTagName('img');
 		var _this = this;
@@ -65,6 +65,7 @@
 	}
 	TabImg.prototype.touchStart = function (ev) {
 		var touchs = ev.changedTouches[0];
+		clearInterval(this.timer);
 		return touchs.pageX;
 	}
 	TabImg.prototype.touchsMove = function(ev,disX,startX) {
@@ -74,20 +75,20 @@
 		if ( disX>0 ) {
 			num = this.index -1;
 			num = num<0? this.settings.data.length-1: num;
-			this.imgs[1].parentNode.setAttribute('fileId',data[this.index].id);
+			this.imgs[1].parentNode.setAttribute('fileId',this.settings.data[this.index].id);
 			this.imgs[1].src = this.settings.data[this.index].img;
 			
-			this.imgs[0].parentNode.setAttribute('fileId',data[num].id);
+			this.imgs[0].parentNode.setAttribute('fileId',this.settings.data[num].id);
 			this.imgs[0].src = this.settings.data[num].img;
 			move.css(this.settings.imgParObj,'translateX',-this.width+disX);
 		
 		} else if ( disX<0 ) {
 			num = this.index +1;
 			num %= this.settings.data.length;
-			this.imgs[0].parentNode.setAttribute('fileId',data[this.index].id);
+			this.imgs[0].parentNode.setAttribute('fileId',this.settings.data[this.index].id);
 			this.imgs[0].src = this.settings.data[this.index].img;
 			
-			this.imgs[1].parentNode.setAttribute('fileId',data[num].id);
+			this.imgs[1].parentNode.setAttribute('fileId',this.settings.data[num].id);
 			this.imgs[1].src = this.settings.data[num].img;
 			move.css(this.settings.imgParObj,'translateX',disX);
 		}
@@ -103,11 +104,9 @@
 			disX>0? move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear'):
 				move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear');
 		}
-		/*console.log(6)
 		this.timer = setInterval(function(){
-			console.log(1)
 			_this.nextBtn();
-		},1600)*/
+		},1600)
 	}
 	TabImg.prototype.overOutPar = function () {
 		var _this = this;
@@ -129,7 +128,7 @@
 		clearInterval(this.timer);
 		
 		this.timer = setInterval(function(){
-			
+			console.log(1)
 			_this.nextBtn();
 			
 		},1600)
@@ -159,18 +158,18 @@
 	}
 	TabImg.prototype.nextBtn = function (num) {
 		//如果home不存在，清除定时器
-		if (!document.getElementById('home')) {
+		if (!document.getElementById('idBannerImg')) {
 			clearInterval(this.timer);
 			return;
 		};
 		num = typeof(num) === 'undefined'? this.index +1: num;
 		num %= this.settings.data.length;
 		move.css(this.settings.imgParObj,'translateX',0);
-		this.imgs[0].parentNode.setAttribute('fileId',data[this.index].id);
+		this.imgs[0].parentNode.setAttribute('fileId',this.settings.data[this.index].id);
 		this.imgs[0].src = this.settings.data[this.index].img;
 		
 		this.subCodeClear(num);
-		this.imgs[1].parentNode.setAttribute('fileId',data[num].id);
+		this.imgs[1].parentNode.setAttribute('fileId',this.settings.data[num].id);
 		this.imgs[1].src = this.settings.data[num].img;
 		move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear');
 		this.index = num;
@@ -252,7 +251,6 @@
 			this.wheel(function(upDown){
 				var nowY = move.css(_this.obj,'translateY');
 				nowY = upDown? nowY-15: nowY + 15;
-				
 				if ( -nowY>=_this.obj.scrollHeight+140-window.innerHeight ) {
 					nowY = -(_this.obj.scrollHeight+140-window.innerHeight);
 				} else if (nowY>=0) {
