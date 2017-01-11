@@ -510,7 +510,9 @@ if (device) {
 	}
 });
 
-
+document.addEventListener('touchstart',function(ev){
+	ev.preventDefault();
+})
 function mobilecheck() {
     var check = false;
     (function (a) {
