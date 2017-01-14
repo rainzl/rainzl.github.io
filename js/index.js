@@ -23,8 +23,9 @@ if (device) {
 		$('#hint').find('.hintBtn')[0].style.width = 92/r + 'rem';
 		$('#hint').find('.hintBtn')[0].style.height = 32/r + 'rem';
 		$('#hint').find('.hintBtn')[0].style.lineHeight = 30/r + 'rem';
-		
+		$('#hint').find('.hintBtn').find('mark')[0].style.width = 92/r + 'rem';
 		$('#footer').find('.blogroll').hide();
+		
 	})()
 }
 
@@ -248,10 +249,10 @@ if (device) {
 		function rander(data,obj) {
 			var str = '';
 			
-			str += '<span class="prev"></span>'+
-					'<span class="next"></span><ul class="productList" id="idBannerImg">';
+			str += '<span class="prev" style="display:'+(device?"none":"block")+'"></span>'+
+					'<span class="next" style="display:'+(device?"none":"block")+'"></span><ul class="productList" id="idBannerImg">';
 			str +=	'<li fileId="'+data[0].id+'"><img src="'+data[0].img+'"/></li><li fileId="'+data[1].id+'"><img src="'+data[1].img+'"/></li>'	
-			str +=	'</ul><p class="subCode"></p>';
+			str +=	'</ul><p style="display:'+(device?"none":"block")+'" class="subCode"></p>';
 			
 			$tabHome.html(str);
 		}
@@ -336,13 +337,55 @@ if (device) {
 	//contact页面操作
 	function fnContact() {
 		var $tabContact = $('#contact');
+		var $hint = $('#hint');
+		
+		render();
 		$tabContact.html('');
-		fnShowHint(aboutData,false,true);
+		$hint.css({
+			'opacity': '1',
+			'width':$('#hint').prop('width'),
+			'height':$('#hint').prop('width'),
+			'top': $('#hint').prop('top')
+		});
+		
+		function render() {
+			var str = `
+				<div class="hintTitle">
+					<h3>Concact</h3>
+				</div>
+				<div class="showText">
+					<div class="clear">
+						<dl>
+							<dt>Tel:</dt>
+							<dd>17310360285</dd>
+						</dl>
+						<dl>
+							<dt>Email:</dt>
+							<dd>369857686@qq.com</dd>
+						</dl>
+					</div>
+					<div>
+						<div class="dt">Message:</div>
+						<textarea></textarea>
+					</div>
+				</div>
+				<div class="smallSwitch">
+					<span class="line"></span>
+					<i class="leftOne"></i>
+					<i class="leftTwo"></i>
+					<i class="rightTwo"></i>
+					<i class="rightOne"></i>
+				</div>
+				<a class="hintBtn" href="javascript:;">SEND<span><mark>SEND</mark></span></a>
+			`;
+			$hint.find('.contChild').html(str);
+		
+		}
 	}
 	
 	//页面hint的相关操作
 	function fnShowHint(data,isObjAnimat,isTextAnimat) {
-		
+		rendHint();
 		if (isObjAnimat) {
 			$('#hint').animate({
 				'opacity': '1',
@@ -362,7 +405,20 @@ if (device) {
 		$('#hint').find('a').attr('href',data.href)
 		creatText(data.info,$('#hint').find('.showText')[0],isTextAnimat);
 	}
-	
+	function rendHint() {
+		var str = `
+			<div class="showText"></div>
+			<div class="smallSwitch">
+				<span class="line"></span>
+				<i class="leftOne"></i>
+				<i class="leftTwo"></i>
+				<i class="rightTwo"></i>
+				<i class="rightOne"></i>
+			</div>
+			<a class="hintBtn" href="javascript:;" target="_blank">WEBSITE<span><mark>WEBSITE</mark></span></a>
+		`;
+		$('#hint').find('.contChild').html(str);
+	}
 	
 	//页面进来加载: 有loading，需要执行loading动画，没有loading直接获取logo的位置
 	function loading() {

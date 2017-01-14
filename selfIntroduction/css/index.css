@@ -1,0 +1,86 @@
+body {
+	margin: 0;
+}
+ul,
+dl,
+dd,
+dt {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+h1,
+h2,
+h3 {
+	margin: 0;
+}
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+body {
+	position: relative;
+}
+.wrap {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#info {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 500%;
+}
+#info li {
+	width: 100%;
+	height: 20%;
+	text-align: center;
+	background: #fff;
+	display: table;
+}
+#info .cell {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+#info dl {
+	margin: 10px auto;
+	width: 60%;
+}
+#info dt {
+	font: 30px/50px bold arial;
+}
+#info dd {
+	margin: 6px 6px;
+	padding: 0 10px;
+	display: inline-block;
+	font: 16px/30px arial;
+	background-color: #ccc;
+}
+.welcome h1 {
+	height: 100px;
+	font: 50px/100px bold arial;
+}
+#info .add dl {
+	margin-bottom: 0;
+}
+#info .add dt {
+	display: inline-block;
+	font: 20px/30px "微软雅黑";
+	width: 35%;
+	text-align: right;
+}
+#info .add dd {
+	padding: 0;
+	width: 60%;
+	box-sizing: border-box;
+	text-align: left;
+	background-color: transparent;
+}
+#info .describe dd {
+	background-color: transparent;
+}
