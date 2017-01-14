@@ -50,13 +50,10 @@
 		var _this = this;
 		this.settings.imgParObj.addEventListener('touchstart',function(ev){
 			startX = _this.touchStart(ev);
+			
 		});
 		this.settings.imgParObj.addEventListener('touchmove',function(ev){
 			disX = _this.touchsMove(ev,disX,startX);
-			/*if ( disX >= 10 ) {
-				console.log(60);
-				clearInterval(this.timer);
-			}*/
 		});
 		this.settings.imgParObj.addEventListener('touchend',function(){
 			_this.touchsEnd(disX);
@@ -104,9 +101,8 @@
 			disX>0? move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear'):
 				move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear');
 		}
-		this.timer = setInterval(function(){
-			_this.nextBtn();
-		},1600)
+		this.subCodeClear(this.index);
+		this.setTime()
 	}
 	TabImg.prototype.overOutPar = function () {
 		var _this = this;
@@ -117,10 +113,7 @@
 		
 		this.obj.addEventListener('mouseleave',function(){
 			
-			clearInterval(_this.timer);
-			_this.timer = setInterval(function(){
-				_this.nextBtn();
-			},1600)
+			_this.setTime();
 		});
 	}
 	TabImg.prototype.setTime = function () {
@@ -128,7 +121,7 @@
 		clearInterval(this.timer);
 		
 		this.timer = setInterval(function(){
-			console.log(1)
+			
 			_this.nextBtn();
 			
 		},1600)
@@ -303,7 +296,7 @@
 				
 				var s = disMouse / disTime;
 				s = (isNaN(s) || s == 0 )? 0.01: s;
-				var target = parseInt(Math.abs(s*30))*(Math.abs(s*10)/(s*10));
+				var target = parseInt(Math.abs(s*50))*(Math.abs(s*10)/(s*10));
 				
 				nowY  = target + nowY;
 				if ( nowY>=0 ) {

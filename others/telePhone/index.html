@@ -30,7 +30,7 @@ function fnRem (){
 	html.style.fontSize = width/16 +'px';
 }
 
-!function() {
+/*!function() {
 	var scale = 1;
 	var ratio = window.devicePixelRatio;
 	scale = scale / window.devicePixelRatio;
@@ -38,7 +38,7 @@ function fnRem (){
 	meta.setAttribute("name","viewport");
 	meta.setAttribute("content","width=device-width,initial-scale = "+scale+",minimum-scale = "+scale+", maximum-scale = "+scale+", user-scalable = no");
 	document.head.appendChild(meta);
-}();
+}();*/
 /*
  《
  * */
@@ -449,16 +449,22 @@ body {
 	font-size: .65rem;
 	color: #f26161;
 }
-#idJDNewsFlash p {
+#idJDNewsFlash div {
+	position: relative;
 	float: left;
 	width: 9.25rem;
+	height: 1.55rem;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-#idJDNewsFlash p a{
-	float: left;
-	width: 9.25rem;
+#idJDNewsFlash p {
+	position: absolute;
+	width: 100%;
+}
+#idJDNewsFlash div a{
+	display: block;
+	width: 100%;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -946,10 +952,13 @@ body {
 			<!--京东快报切换条start-->
 			<div id="idJDNewsFlash" class="clearfix">
 				<a class="idJDNFtitle indexBg3" href="#">京东快报</a>
-				<p>
-					<a href="#"><span class="idJDNewsNewtext">新</span>京东首届智能节，调满调满调满调满</a>
-					<!--<a href="#">京东首届智能节，调满调满调满调满</a>-->
-				</p>
+				<div>
+					<p>
+						<a href="#"><span class="idJDNewsNewtext">新</span>京东首届智能节，调满调满调满调满</a>
+						<a href="#"><span class="idJDNewsNewtext">新</span>京东首届智能节，调满调满调满调满</a>
+						<!--<a href="#">京东首届智能节，调满调满调满调满</a>-->
+					</p>
+				</div>
 				<a class="idJDNFmore" href="#">更多</a>
 			</div>
 			<!--京东快报切换条end-->
@@ -1307,6 +1316,7 @@ body {
 <script src="../../js/tools.js"></script>
 <script src="../../js/move.js"></script>
 <script src="../../js/assembly.js"></script>
+<script src="js/index.js"></script>
 <script>
 var imgArr = [
 	{
@@ -1339,17 +1349,9 @@ var imgArr = [
 		subTag:'span',
 		subParCode: $('#idBannerImg').find('.indexBannerCode')[0]
 	});
-	/*
-	 this.settings = {
-			data: [],
-			imgParObj: null,
-			subTag: 'i',
-			subParCode: null,
-			nextBtn: null,
-			prevBtn: null,
-			callBack: function(){}
-		}
-	*/
+window.addEventListener('touchmove',function(ev){
+	ev.preventDefault()
+})
 </script>
 </body>
 </html>
