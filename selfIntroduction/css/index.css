@@ -14,6 +14,14 @@ h2,
 h3 {
 	margin: 0;
 }
+img {
+	vertical-align: top;
+	border: none;
+}
+a {
+	text-decoration: none;
+	color: #666;
+}
 html,
 body {
 	width: 100%;
@@ -21,6 +29,8 @@ body {
 }
 body {
 	position: relative;
+	font-family: "Source Han Sans",Helvetica,Tahoma,Arial,"Hiragino Sans GB","Microsoft YaHei",SimSun,Heiti,sans-serif;
+	color: #666;
 }
 .wrap {
 	position: absolute;
@@ -36,11 +46,15 @@ body {
 	height: 500%;
 }
 #info li {
+	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 20%;
 	text-align: center;
 	background: #fff;
 	display: table;
+	z-index: 0;
 }
 #info .cell {
 	display: table-cell;
@@ -52,35 +66,77 @@ body {
 	width: 60%;
 }
 #info dt {
-	font: 30px/50px bold arial;
+	font-size: 30px;
+	line-height: 50px;
 }
 #info dd {
 	margin: 6px 6px;
 	padding: 0 10px;
 	display: inline-block;
-	font: 16px/30px arial;
-	background-color: #ccc;
-}
-.welcome h1 {
-	height: 100px;
-	font: 50px/100px bold arial;
-}
-#info .add dl {
-	margin-bottom: 0;
-}
-#info .add dt {
-	display: inline-block;
-	font: 20px/30px "微软雅黑";
-	width: 35%;
-	text-align: right;
-}
-#info .add dd {
-	padding: 0;
-	width: 60%;
-	box-sizing: border-box;
-	text-align: left;
-	background-color: transparent;
+	font-size: 16px;
+	line-height: 30px;
+	background-color: #ddd;
 }
 #info .describe dd {
 	background-color: transparent;
+}
+.welcome h1 {
+	height: 100px;
+	font-size: 50px;
+	line-height: 100px;
+	font-weight: 500;
+	background-color: #4e10d9;
+	color: #fff;
+	box-shadow: 0 0 10px #666;
+}
+#info .welcome {
+	background-color: #eed570;
+}
+#info .portrait {
+	margin: 0 auto 50px;
+	width: 160px;
+	height: 160px;
+	padding: 3px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+#info .portrait img {
+	width: 100%;
+	height: 100%;
+	background: url(../img/195.JPG) no-repeat center;
+	background-size: cover;
+	border-radius: 50%;
+}
+#info .interest {
+	background-color: #6aaae0;
+}
+#info .interest dl {
+	margin: 50px auto;
+}
+#info .add {
+	background-color: #2bb87b;
+}
+#info .add dt {
+	font-size: 36px;
+}
+#info .add dd,
+#info .add dd a {
+	font-size: 26px;
+	background-color: #0066CC;
+	color: #ddd;
+}
+#info .skill {
+	background-color: #26756e;
+}
+#info .skill dt,
+#info .describe dt {
+	color: #fff;
+	margin: 0 auto 50px;
+}
+#info .describe {
+	background-color: #4529d2;
+}
+#info .describe dt,
+#info .describe dd {
+	color: #ddd;
 }
