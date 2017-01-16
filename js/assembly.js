@@ -15,7 +15,7 @@
 	window.TabImg = function(id) {
 		this.obj = document.getElementById(id);
 		this.index = 0;
-		this.timer = null;
+		this.obj.timer = this.obj.timer || null;
 		this.subCode = null;
 		this.width = document.documentElement.clientWidth || document.body.clientWidth;
 		this.settings = {
@@ -50,7 +50,7 @@
 		var _this = this;
 		this.settings.imgParObj.addEventListener('touchstart',function(ev){
 			startX = _this.touchStart(ev);
-			
+			disX = 0;
 		});
 		this.settings.imgParObj.addEventListener('touchmove',function(ev){
 			disX = _this.touchsMove(ev,disX,startX);
@@ -62,7 +62,7 @@
 	}
 	TabImg.prototype.touchStart = function (ev) {
 		var touchs = ev.changedTouches[0];
-		clearInterval(this.timer);
+		clearInterval(this.obj.timer);
 		return touchs.pageX;
 	}
 	TabImg.prototype.touchsMove = function(ev,disX,startX) {
@@ -97,9 +97,10 @@
 			disX>0? move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear'):
 				move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear');
 			this.index = num;
-		} else if (Math.abs(disX)>10) {
+			
+		} else if (Math.abs(disX)>=1) {
 			disX>0? move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear'):
-				move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear');
+			move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear');
 		}
 		this.subCodeClear(this.index);
 		this.setTime()
@@ -108,7 +109,7 @@
 		var _this = this;
 		this.obj.addEventListener('mouseenter',function(){
 			
-			clearInterval(_this.timer);
+			clearInterval(_this.obj.timer);
 		});
 		
 		this.obj.addEventListener('mouseleave',function(){
@@ -118,9 +119,8 @@
 	}
 	TabImg.prototype.setTime = function () {
 		var _this = this;
-		clearInterval(this.timer);
-		
-		this.timer = setInterval(function(){
+		clearInterval(this.obj.timer);
+		this.obj.timer = setInterval(function(){
 			
 			_this.nextBtn();
 			
@@ -152,10 +152,13 @@
 	TabImg.prototype.nextBtn = function (num) {
 		//如果home不存在，清除定时器
 		if (!document.getElementById('idBannerImg')) {
-			clearInterval(this.timer);
+			clearInterval(this.obj.timer);
 			return;
 		};
+		
+		var _this = this;
 		num = typeof(num) === 'undefined'? this.index +1: num;
+		
 		num %= this.settings.data.length;
 		move.css(this.settings.imgParObj,'translateX',0);
 		this.imgs[0].parentNode.setAttribute('fileId',this.settings.data[this.index].id);
@@ -164,7 +167,7 @@
 		this.subCodeClear(num);
 		this.imgs[1].parentNode.setAttribute('fileId',this.settings.data[num].id);
 		this.imgs[1].src = this.settings.data[num].img;
-		move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear');
+		move.mTween(this.settings.imgParObj,{'translateX': -this.width},500,'linear');
 		this.index = num;
 		this.settings.callBack();
 	}
@@ -280,6 +283,7 @@
 				var touchs = ev.changedTouches[0];
 				disTime = disMouse = 0;
 				disY = touchs.pageY - move.css(_this.obj,'translateY');
+				ev.preventDefault();
 			})
 			$(obj).off('touchmove').on('touchmove',function(ev){
 				var touchs = ev.changedTouches[0];
@@ -291,6 +295,7 @@
 				lastTime = nowTime;
 				disMouse = nowMouse - lastMouse;
 				lastMouse = nowMouse;
+				ev.preventDefault();
 			})
 			$(obj).off('touchend').on('touchend',function(ev){
 				

@@ -8,19 +8,24 @@ var shoesTop = window.innerHeight - $('#navConvas').offset().top - $('#navConvas
 var shoes = new drawHat('shoes',shoesTop);
 var lastHatstatus = 'loading';
 var hash = (window.location.hash && window.location.hash.substr(1)) || 'home';
+var r = 20; 
 
 if (device) {
 	(function(){
 		var html = document.documentElement;
-		var r = 20; 
+		var sH3 = 'margin-bottom:'+20/r+'rem;font-size: '+30/r+'rem;';
+		
 		html.style.fontsize = html.clientWidth/16;
 		
 		$('#hint')[0].style.padding = 5/r+'rem 0';
 		$('#hint')[0].style.minHeight = 39/r+'rem';
 		$('#hint')[0].style.font = 16/r+'rem/'+20/r+'rem helvetica';
+		$('#hint').find('h3')[0].style.cssText = sH3;
+		$('#hint').find('.showText')[0].style.fontSize = 12/r+'rem';
+		$('#hint').find('.showText')[0].style.lineHeight = 22/r+'rem';
 		
 		$('#hint').find('.hintBtn')[0].style.marginTop = 15/r + 'rem';
-		$('#hint').find('.hintBtn')[0].style.width = 92/r + 'rem';
+		//$('#hint').find('.hintBtn')[0].style.width = 92/r + 'rem';
 		$('#hint').find('.hintBtn')[0].style.height = 32/r + 'rem';
 		$('#hint').find('.hintBtn')[0].style.lineHeight = 30/r + 'rem';
 		$('#hint').find('.hintBtn').find('mark')[0].style.width = 92/r + 'rem';
@@ -62,7 +67,6 @@ if (device) {
 		}
 		window.addEventListener('hashchange',function(){
 			hash = (window.location.hash && window.location.hash.substr(1)) || 'home';
-			
 			for ( var i=0; i<$a.length; i++ ) {
 				if ( $($a[i]).hasClass(hash) ) {
 					index = $($a[i]).index();
@@ -141,8 +145,11 @@ if (device) {
 	//home页面操作
 	function fnHome() {
 		var $tabHome = $('#home');
+		
 		//渲染页面
 		rander(data,$tabHome);
+		
+		var $productList = $('#home').find('.productList').find('li');
 		
 		var imgTab = new TabImg('home');
 		//图片切换
@@ -164,14 +171,30 @@ if (device) {
 					if (ImgEvent(obj[0],ev.changedTouches[0].pageX,ev.changedTouches[0].pageY)){
 						startX = _this.touchStart(ev);
 					}
+					ev.preventDefault();
 				});
 				obj.off('touchmove').on('touchmove',function(ev){
 					var ev = ev || event;
 					disX = _this.touchsMove(ev,disX,startX);
+					
 				});
-				obj.off('touchend').on('touchend',function(){
+				obj.off('touchend').on('touchend',function(ev){
 					var ev = ev || event;
 					_this.touchsEnd(disX);
+					
+					if ( (typeof disX==='undefined' || Math.abs(disX)<1) && ImgEvent(obj[0],ev.changedTouches[0].pageX,ev.changedTouches[0].pageY) ) {
+						//--------------
+						var li = findEle($productList,ev.changedTouches[0].pageX,ev.changedTouches[0].pageY);
+						var fileId = $(li).attr('fileId');
+						
+						if ( $productList[0].parentNode.onOff ) {
+							
+							fnProductShow(fileId);
+						} else {
+							fnProductHid();
+						}
+						//--------------
+					}
 				});
 			}
 		})
@@ -206,6 +229,7 @@ if (device) {
 				}
 			})
 		})(function($productList,fileId){
+			
 			if ( $productList[0].parentNode.onOff ) {
 				
 				fnProductShow(fileId);
@@ -216,6 +240,8 @@ if (device) {
 		//弹出详情框
 		function fnProductShow(fileId) {
 			if (!$('#home')[0]) return;
+			$('#home').find('.productList')[0].onOff = false;
+			
 			var index = tools.arrIndexOf(fileId,data);
 			hat.init({now:'activeData',last:'loadedData'},{time:500});
 			shoes.init({now:'activeData',last:'loadedData'},{onOff:true,time:500});
@@ -223,7 +249,7 @@ if (device) {
 			
 			fnShowHint(data[index],true,false);
 			
-			$('#home').find('.productList')[0].onOff = false;
+			
 			$('#footer').find('.blogroll').addClass('top');
 		}
 		//隐藏详情框
@@ -238,9 +264,11 @@ if (device) {
 					'height':0,
 					'top': Math.round($body.innerHeight()*.4),
 					'opacity': 0
-				},500,'linear');
+				},500,'linear',function(){
+					$('#home').find('.productList')[0].onOff = true;
+				});
 				
-				$('#home').find('.productList')[0].onOff = true;
+				
 				$('#footer').find('.blogroll').removeClass('top');
 			}
 		}
@@ -255,6 +283,11 @@ if (device) {
 			str +=	'</ul><p style="display:'+(device?"none":"block")+'" class="subCode"></p>';
 			
 			$tabHome.html(str);
+			$('#hint').find('.hintBtn').html('WEBSITE<span><mark>WEBSITE</mark></span>');
+			$('#hint').find('h3').html('Product').css('color','#222');
+			
+			//$('#hint').find('.hintBtn').html('RESUME<span><mark>RESUME</mark></span>');
+			//$('#hint').find('h3').html('About').css('color','#222');
 		}
 	}
 	//works页面操作
@@ -294,6 +327,7 @@ if (device) {
 		canvasClick();
 		//点击上下canvas操作
 		function canvasClick(obj) {
+			
 			$('#hat').off('click').click(function(ev){
 				var ev = ev || event;
 				if (ImgEvent(this,ev.pageX,ev.pageY)) {
@@ -332,6 +366,9 @@ if (device) {
 		
 		$tabAbout.html('');
 		fnShowHint(aboutData,false,true);
+		
+		$('#hint').find('.hintBtn').html('RESUME<span><mark>RESUME</mark></span>');
+		$('#hint').find('h3').html('About').css('color','#222');
 	}
 	
 	//contact页面操作
@@ -349,43 +386,37 @@ if (device) {
 		});
 		
 		function render() {
+			var sDl= '', sDt= '',sDd= '',sText= '';
+			if(device){
+				sDl = 'height: '+30/r+'rem;';
+				sDt = 'line-height:'+10/r+'rem;';
+				sDd = 'height: '+20/r+'rem;line-height: '+20/r+'rem;top:'+10/r+'rem;';
+				sText = 'margin: '+5/r+'rem '+0/r+'rem '+20/r+'rem;font-size: '+12/r+'rem;line-height: '+20/r+'rem;height:'+100/r+'rem;'
+			}
 			var str = `
-				<div class="hintTitle">
-					<h3>Concact</h3>
-				</div>
-				<div class="showText">
 					<div class="clear">
-						<dl>
-							<dt>Tel:</dt>
-							<dd>17310360285</dd>
+						<dl style=${sDl}>
+							<dt style="${sDt}">Tel:</dt>
+							<dd style="${sDd}">17310360285</dd>
 						</dl>
-						<dl>
-							<dt>Email:</dt>
-							<dd>369857686@qq.com</dd>
+						<dl style=${sDl}>
+							<dt style="${sDt}">Email:</dt>
+							<dd style="${sDd}">369857686@qq.com</dd>
 						</dl>
 					</div>
 					<div>
-						<div class="dt">Message:</div>
-						<textarea></textarea>
+						<div class="dt"  style="${sDt}">Message:</div>
+						<textarea style="${sText}"></textarea>
 					</div>
-				</div>
-				<div class="smallSwitch">
-					<span class="line"></span>
-					<i class="leftOne"></i>
-					<i class="leftTwo"></i>
-					<i class="rightTwo"></i>
-					<i class="rightOne"></i>
-				</div>
-				<a class="hintBtn" href="javascript:;">SEND<span><mark>SEND</mark></span></a>
 			`;
-			$hint.find('.contChild').html(str);
-		
+			$hint.find('#hintCont').html(str);
+			$hint.find('.hintBtn').attr('href','javascript:;').html('SEND<span><mark>SEND</mark></span>');
+			$hint.find('h3').html('Concact').css('color','#fff');
 		}
 	}
 	
 	//页面hint的相关操作
 	function fnShowHint(data,isObjAnimat,isTextAnimat) {
-		rendHint();
 		if (isObjAnimat) {
 			$('#hint').animate({
 				'opacity': '1',
@@ -401,23 +432,8 @@ if (device) {
 				'top': $('#hint').prop('top')
 			});
 		}
-		
 		$('#hint').find('a').attr('href',data.href)
-		creatText(data.info,$('#hint').find('.showText')[0],isTextAnimat);
-	}
-	function rendHint() {
-		var str = `
-			<div class="showText"></div>
-			<div class="smallSwitch">
-				<span class="line"></span>
-				<i class="leftOne"></i>
-				<i class="leftTwo"></i>
-				<i class="rightTwo"></i>
-				<i class="rightOne"></i>
-			</div>
-			<a class="hintBtn" href="javascript:;" target="_blank">WEBSITE<span><mark>WEBSITE</mark></span></a>
-		`;
-		$('#hint').find('.contChild').html(str);
+		creatText(data.info,$('#hintCont')[0],isTextAnimat);
 	}
 	
 	//页面进来加载: 有loading，需要执行loading动画，没有loading直接获取logo的位置
@@ -529,10 +545,13 @@ if (device) {
 			randText(0,arrObj[0]);
 			function randText(n,p){
 				var index = 0,timer= null,curTimer=null ;
-				//var p = document.createElement('p');
 				var i = document.createElement('i');
+				if ( device ) {
+					p.style.padding = 5/r+'rem 0';
+					i.style.height = 22/r+'rem';
+				}
+				
 				p.appendChild(i);
-				//obj.appendChild(p);
 				timer = setInterval(function(){
 					var txt = document.createTextNode(data[n].charAt(index));
 					p.insertBefore(txt,i);

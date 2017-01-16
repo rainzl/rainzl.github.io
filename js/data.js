@@ -13,7 +13,7 @@ var data = [
 	},
 	{
 		id: 2,
-		img: 'img/baidu.png',
+		img: 'img/baidu.jpg',
 		info: 
 			[
 				'项目名称: 百度云盘',
@@ -37,13 +37,13 @@ var data = [
 	},
 	{
 		id:4,
-		img: 'img/telePhone.png',
+		img: 'img/jd.jpg',
 		info: 
 			[
-				'项目名称: 响应式Luckis',
-				'技术: media响应式布局,css3',
-				'介绍: 为分辨率大于1248、1248-860、860-480、480以下的屏幕实现了不同展示效果',
-				'难点: body背景以及文字背景的实现'
+				'项目名称: 京东移动端',
+				'技术: rem适配、touch事件、react构建页面、ecma6标准',
+				'介绍: 完成了滑屏、轮播图、ajax请求数据、、图片预加载的功能',
+				'难点: 数据复杂，处理起来比较繁琐'
 			],
 		href: 'others/telePhone/index.html'
 	}
@@ -105,11 +105,11 @@ var worksData = [
 	
 ];
 var aboutData = {
-	href: 'javascript:;',
+	href: 'selfIntroduction/selfIntroduction.html',
 	info: [
 		'个人介绍',
 		'毕业院校: 河北北方学院',
 		'工作年限: 3年',
-		'兴趣爱好: 旅游、看书、敲代码'
+		'兴趣爱好: 旅游、看书、coding'
 	]
 };

@@ -583,11 +583,19 @@ body.contact #hint {
 	height: 70%;
 	text-align: center;
 }
+#hint .showText {
+	font: 12px/26px arial,'宋体';
+	height: 60%;
+	text-align: left;
+}
+#hintCont {
+	height: 100%;
+	overflow: hidden;
+}
 #hint .showText p {
 	padding: 5px 0;
-	min-height: 37px;
+	min-height: 20%;
 	border-bottom: 1px solid #ccc;
-	font: 16px/26px arial,'宋体';
 	text-align: left;
 }
 #hint .showText i {
@@ -708,18 +716,16 @@ body.contact #hint .smallSwitch .rightTwo {
     font-size: 36px;
     color: #fff;
 }
-#hint .showText {
-	text-align: left;
-	font-size: 12px;
-}
-#hint .showText dl:nth-child(1)  {
+#hint .showText dl {
+	position: relative;
 	float: left;
 	width: 50%;
-	padding : 0 0 10px 0;
+	height: 30px;
 }
-#hint .showText dl:nth-last-child(1) {
-	float: right;
-	padding-right: 10px;
+#hint .showText dt {
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 #hint .showText dt,
 #hint .showText .dt {
@@ -730,6 +736,9 @@ body.contact #hint .smallSwitch .rightTwo {
     color: #fcfae3;
 }
 #hint .showText dd {
+	position: absolute;
+	top: 10px;
+	left: 0;
 	height: 20px;
 	font-family: 'Open Sans',sans-serif;
 	line-height: 20px;

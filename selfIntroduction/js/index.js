@@ -1,17 +1,21 @@
+
 (function(){
 	var oInfo = document.getElementById('info');
 	var aLis = oInfo.getElementsByTagName('li');
 	var num = 0;//当前显示第几个
-	var W = window.innerHeight;
+	var H = window.innerHeight;
 	var len = aLis.length;
-	
-	//通过改变translateY对li的位置进行初始化
+	alert(H)
+	//设置元素的rem值
 	setRem();
 	
+	//通过改变translateY对li的位置进行初始化
 	initLis();
 	
+	//滚轮事件，切换显示内容
 	pChange();
 	
+	//移动端滑动屏幕，切换显示内容
 	nChange();
 	
 	
@@ -19,33 +23,51 @@
 	
 	//通过改变translateY对li的位置进行初始化
 	function initLis() {
-		for (let i=0; i<aLis.length; i++) {
+		for (var i=0; i<aLis.length; i++) {
 			if ( i === num ) {
 				move.css(aLis[i],'translateY',0);
 			} else if (i>num) {
-				move.css(aLis[i],'translateY',W);
+				move.css(aLis[i],'translateY',H);
 			} else {
-				move.css(aLis[i],'translateY',-W);
+				move.css(aLis[i],'translateY',-H);
 			}
+			move.css(aLis[i],'rotateX',0);
+			move.css(aLis[i],'opacity',100);
 		}
 	}
 	
 	//滚轮事件，切换显示内容
 	function pChange() {
 		var onOff = true;
-		
+		var origin = 'top';
+		var deg = 90;
 		wheel(document,fnWheel);
 		
 		function fnWheel(down) {
 			if (!onOff) return;
+			var nowNum = num;
 			onOff = false;
 			
 			if ( down ) {
 				num ++;
-				num = num > aLis.length-1? aLis.length-1: num;
+				if (num > aLis.length-1){
+					num = aLis.length-1;
+					onOff = true;
+					return;
+				};
+				origin = 'top';
+				deg = -90;
+				//aLis[nowNum].style.transformOrigin = 'top';
+				//move.mTween(aLis[nowNum],{'rotateX':-90},800,'easeOut');
 			} else {
 				num --;
-				num = num < 0? 0: num;
+				if(num < 0){
+					num = 0;
+					onOff = true;
+					return;
+				};
+				origin = 'bottom';
+				deg = 90;
 			}
 			aLis[num].style.zIndex = 10;
 			move.mTween(aLis[num],{'translateY':0},800,'easeOut',function(){
@@ -53,6 +75,8 @@
 				aLis[num].style.zIndex = 0;
 				initLis();
 			})
+			aLis[nowNum].style.transformOrigin = origin;
+			move.mTween(aLis[nowNum],{'rotateX':deg},800,'easeOut');
 		}
 	}
 	
@@ -60,6 +84,9 @@
 	function nChange() {
 		var onOff = true;
 		var startY, disY, nowNum;
+		var origin = 'top';
+		var deg = 90;
+		
 		slide({
 			fnStart:fnStart,
 			fnMove:fnMove,
@@ -74,34 +101,46 @@
 			if (!onOff) return;
 			if ( obj.y > 0 ) {
 				if (num === 0) return;
-				if ( aLis[num+1] && move.css(aLis[num+1],'translateY')<W ) {
+				if ( aLis[num+1] && move.css(aLis[num+1],'translateY')<H ) {
 					aLis[num+1].style.zIndex = 0;
-					move.css(aLis[num+1],'translateY',W);
+					move.css(aLis[num+1],'translateY',H);
 				}
 				nowNum = num - 1;
 				aLis[nowNum].style.zIndex = 10;
-				move.css(aLis[nowNum],'translateY',-W+obj.y);
+				move.css(aLis[nowNum],'translateY',-H+obj.y);
+				
+				origin = 'bottom';
+				//deg = 90;
 			} else {
 				if (num === aLis.length-1) return;
-				if ( aLis[num-1] && move.css(aLis[num-1],'translateY')>-W ) {
+				if ( aLis[num-1] && move.css(aLis[num-1],'translateY')>-H ) {
 					aLis[num-1].style.zIndex = 0;
-					move.css(aLis[num-1],'translateY',W)
+					move.css(aLis[num-1],'translateY',H)
 				}
 				
 				nowNum = num + 1;
 				aLis[nowNum].style.zIndex = 10;
-				move.css(aLis[nowNum],'translateY',W+obj.y);
+				move.css(aLis[nowNum],'translateY',H+obj.y);
+				origin = 'top';
 			}
+			
+			deg = (obj.y/H)*90;
+			
+			aLis[num].style.transformOrigin = origin;
+			move.css(aLis[num],'rotateX',deg);
 		}
 		function fnEnd(obj) {
 			if (!onOff) return;
-			num = nowNum;
+			if (deg!==0) {move.mTween(aLis[num],{'rotateX':90*(deg/Math.abs(deg))},800,'easeOut')}
+			
 			onOff = false;
-			move.mTween(aLis[num],{'translateY':0},800,'easeOut',function(){
+			move.mTween(aLis[nowNum],{'translateY':0},800,'easeOut',function(){
 				onOff = true;
-				aLis[num].style.zIndex = 0;
+				aLis[nowNum].style.zIndex = 0;
 				initLis();
-			})
+			});
+			
+			num = nowNum;
 		}
 	}
 	
@@ -124,12 +163,14 @@
 			startX = obj.pageX;
 			startY = obj.pageY;
 			settings.fnStart({x:startX,y:startY});
+			
 		}
 		function fnMove(ev) {
 			var obj = ev.changedTouches[0];
 			disX = obj.pageX - startX;
 			disY = obj.pageY - startY;
 			settings.fnMove({x:disX,y:disY});
+			ev.preventDefault();
 		}
 		function fnEnd(ev) {
 			settings.fnEnd({x:disX,y:disY});
@@ -151,6 +192,7 @@
 			callBack(down);
 		}
 	}
+	//设置元素的rem值
 	function setRem() {
 		var html = document.documentElement;
 		var r = 20; 
