@@ -1,7 +1,7 @@
 var data = [
 	{
 		id: 1,
-		img: 'img/music.png',
+		img: 'img/music.jpg',
 		info: 
 			[
 				'项目名称: 音频播放网站',
@@ -25,7 +25,7 @@ var data = [
 	},
 	{
 		id: 3,
-		img: 'img/media.png',
+		img: 'img/media.jpg',
 		info: 
 			[
 				'项目名称: 响应式Luckis',

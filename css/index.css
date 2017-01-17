@@ -380,7 +380,7 @@ body.contact #logo {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 35%;
+	/*height: 35%;*/
 	/*background-color: #fff;*/
 	
 }
@@ -543,10 +543,6 @@ body.contact #logo {
     text-align: center;
 }
 
-#shoes {
-	/*background-color: #fff;*/
-	height: 100%;
-}
 
 #hint {
 	position: absolute;
@@ -830,4 +826,52 @@ screen and (max-height: 700px) {
 	#home .subCode {
 		display: none;
 	}
+	#footer .blogroll {
+		display: none;
+	}
 } 
+
+
+@-webkit-keyframes move{
+	0% {
+		background-position: 0 0, 0 0;
+	}
+	100% {
+		background-position: 120px 0 , 0 0;
+	}
+}
+@keyframes move{
+	0% {
+		background-position: 0 0, 0 0;
+	}
+	100% {
+		background-position: 640px 0 , 0 0;
+	}
+}
+#loadingBar {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: 60px;
+	width: 60px;
+	height: 6px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	transform: translateX(-50%);
+	display: block;
+	overflow: hidden;
+}
+#loadingBar p {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateX(-100%);
+	width: 60px;
+	height: 100%;
+	background: repeating-linear-gradient(45deg, yellow 0,yellow 3px,skyblue 3px, skyblue 6px);
+	animation: 20s move linear infinite;
+	transition: transform ease .2s;
+}
+body.loaded #loadingBar {
+	display: none;
+}

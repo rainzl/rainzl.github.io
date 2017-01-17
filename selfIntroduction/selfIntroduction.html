@@ -6,18 +6,169 @@
 	<title>个人简历</title>
 <link href="../css/myfontFace.css" rel="stylesheet" />
 <link href="css/index.css" rel="stylesheet" />
+<style>
+@keyframes hintMove{
+	0%{
+		top: 0;
+		opacity: 1;
+	}
+	25%{
+		top: -10%;
+	}
+	50%{
+		top: 0;
+		opacity: .5;
+	}
+	75%{
+		top: 10%;
+	}
+	100%{
+		top: 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes hintMove{
+	0%{
+		top: 0;
+		opacity: 1;
+	}
+	25%{
+		top: -10%;
+	}
+	50%{
+		top: 0;
+		opacity: .5;
+	}
+	75%{
+		top: 10%;
+	}
+	100%{
+		top: 0;
+		opacity: 1;
+	}
+}
+@keyframes hintText{
+	0%{
+		text-shadow: 0 0 2px #666;
+	}
+	50%{
+		text-shadow: 0 0 0 #666;
+	}
+	100% {
+		text-shadow: 0 0 2px #666;
+	}
+
+}
+#subCode {
+	position: absolute;
+	top: 50%;
+	left: 1%;
+	transform: translateY(-50%);
+	width: 10px;
+	z-index: 20;
+}
+#subCode span {
+	display: block;
+	margin: 2px 0;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #8abfe7;
+}
+#subCode .active {
+	display: block;
+	margin: 2px 0;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #256ba0;
+}
+#hint>div {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	z-index: 20;	
+}
+#hint .scrollHint {
+	bottom: 0;
+	left: 50%;
+	margin-left: -25px;
+	cursor: pointer;
+} 
+#hint .scrollCont {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	animation: hintMove 1.5s infinite ease-in-out;
+}
+#hint .scrollHint p {
+	position: absolute;
+	top: -30px;
+	left: 50%;
+	margin-left: -50px;
+	width: 100px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	animation: hintText 1.5s infinite ease-in-out;
+	color: #dfd;
+} 
+#hint .scrollHint span {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+} 
+#hint .scrollHint i {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: url(img/downW.png) no-repeat;
+	background-size: 100% 100%;
+	
+} 
+#hint .returnTop {
+	position: absolute;
+	right: 1%;
+	bottom: 10%;
+	overflow: hidden;
+	cursor: pointer;
+}
+#hint .returnTop i {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(img/upB.png) no-repeat;
+	background-size: 100% 100%;
+	animation: hintMove 1.5s infinite ease-in-out;
+}
+</style>
 </head>
 <body class="loading screen works">
 	<!--位置、背景均可变的logo-->
 	<section class="wrap">
 		<div id="subCode">
-			<span class="active"></span>
-			<span></span>
 		</div>
 		<div id="hint">
-			<span>
+			<div class="scrollHint">
+				<div class="scrollCont">
+					<p>滚动滚轮</p>
+					<span>
+						<i></i>
+					</span>
+				</div>
+			</div>
+			<div class="returnTop">
 				<i></i>
-			</span>
+			</div>
 		</div>
 		<ul id="info">
 			<li class="welcome">
@@ -92,7 +243,7 @@
 	</section>
 </body>
 <script src="../js/move.js"></script>
-<script src="http://web-6.xyz/selfIntroduction/js/index.js"></script>
+<script src="js/index.js"></script>
 
 
 </html>

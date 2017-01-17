@@ -275,42 +275,63 @@
 		},
 		touchFn: function (obj,callBack) {
 			var _this = this;
-			var disY, nowY, lastTime, disTime, lastMouse, disMouse;
+			var settings = {
+				disY:0,nowY:0,lastTime:0,disTime:0,lastMouse:0,disMouse:0
+			}
 			
 			move.css(this.obj,'translateZ',.01);//作用：优化用3d
 			
-			$(obj).off('touchstart').on('touchstart',function(ev){
-				var touchs = ev.changedTouches[0];
-				disTime = disMouse = 0;
-				disY = touchs.pageY - move.css(_this.obj,'translateY');
-				ev.preventDefault();
-			})
-			$(obj).off('touchmove').on('touchmove',function(ev){
-				var touchs = ev.changedTouches[0];
-				var nowTime = new Date().getTime();
-				var nowMouse = touchs.pageY;
-				nowY = touchs.pageY - disY;
-				move.css(_this.obj,'translateY',nowY);
-				disTime = nowTime - lastTime;
-				lastTime = nowTime;
-				disMouse = nowMouse - lastMouse;
-				lastMouse = nowMouse;
-				ev.preventDefault();
-			})
-			$(obj).off('touchend').on('touchend',function(ev){
-				
-				var s = disMouse / disTime;
-				s = (isNaN(s) || s == 0 )? 0.01: s;
-				var target = parseInt(Math.abs(s*50))*(Math.abs(s*10)/(s*10));
-				
-				nowY  = target + nowY;
-				if ( nowY>=0 ) {
-					nowY = 0;
-				} else if (nowY<=-(_this.obj.scrollHeight+140-window.innerHeight)) {
-					nowY=-(_this.obj.scrollHeight+140-window.innerHeight);
-				}
-				move.mTween(_this.obj,{'translateY':nowY},nowY*20,'easeOut');
-			})
+			obj.addEventListener('touchstart',fnStart);
+			obj.addEventListener('touchmove',fnMove);
+			obj.addEventListener('touchend',fnEnd);
+			
+			function fnStart(ev) {
+				_this.fnStart(ev,settings);
+			}
+			function fnMove(ev) {
+				_this.fnMove(ev,settings);
+			}
+			function fnEnd(ev) {
+				_this.fnEnd(ev,settings);
+			}
+			
+		},
+		fnStart: function(ev,settings) {
+			var touchs = ev.changedTouches[0];
+			settings.disTime = settings.disMouse = 0;
+			settings.disY = touchs.pageY - move.css(this.obj,'translateY');
+			ev.preventDefault();
+		},
+		fnMove: function(ev,settings) {
+			var touchs = ev.changedTouches[0];
+			var nowTime = new Date().getTime();
+			var nowMouse = touchs.pageY;
+			settings.nowY = touchs.pageY - settings.disY;
+			
+			if ( settings.nowY>window.innerHeight/3 ) {
+				settings.nowY = window.innerHeight/3;
+			} else if (settings.nowY<=-(this.obj.scrollHeight+140-window.innerHeight*2/3)) {
+				settings.nowY = -(this.obj.scrollHeight+140-window.innerHeight*2/3);
+			}
+			move.css(this.obj,'translateY',settings.nowY);
+			settings.disTime = nowTime - settings.lastTime;
+			settings.lastTime = nowTime;
+			settings.disMouse = nowMouse - settings.lastMouse;
+			settings.lastMouse = nowMouse;
+		},
+		fnEnd: function(ev,settings) {
+			if ( settings.disMouse === 0 && settings.disTime === 0 ) return;
+			var s = settings.disMouse / settings.disTime;
+			s = (isNaN(s) || s == 0 )? 0.01: s;
+			var target = parseInt(Math.abs(s*100))*(Math.abs(s*10)/(s*10));
+			
+			settings.nowY  = target + settings.nowY;
+			if ( settings.nowY>=0 ) {
+				settings.nowY = 0;
+			} else if (settings.nowY<=-(this.obj.scrollHeight+140-window.innerHeight)) {
+				settings.nowY=-(this.obj.scrollHeight+140-window.innerHeight);
+			}
+			move.mTween(this.obj,{'translateY':settings.nowY},settings.nowY*30,'easeOut');
 		},
 		extend: function (obj1,obj2,onOff) {
 			if ( arguments.length === 1 && window.toString.call(arguments[0]) === '[object Object]' ) {
@@ -369,6 +390,7 @@
 			}
 			arrOpacity[Math.floor(i/width)].push(data[i*4+3]); 
 		}
+		
 		return arrOpacity[Math.round(y-oTop)][Math.round(x-oLeft)] === 0? true: false;
 	}
 	

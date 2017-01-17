@@ -297,19 +297,35 @@ if (device) {
 		var listWheel = new Scroll('works');
 		listWheel.init();
 		listWheel.extend({
-			a: function(obj){
+			fnCanvas: function(obj){
+				//this.touchFn(obj);
+				var settings = {
+					disY:0,nowY:0,lastTime:0,disTime:0,lastMouse:0,disMouse:0
+				}
 				var _this = this;
-				//obj.addEventListener('touchstart',function(ev){
-					//var ev = ev || event;
+				
+				fnCanvas(obj,'touchstart',function(x,y,ev){
+					var a = findEle($tabWorks.find('a'),x,y);
+					window.location.href = a.href;
 					
-					//if (ImgEvent(obj,ev.changedTouches[0].pageX,ev.changedTouches[0].pageY)){
-						_this.touchFn(obj);
-					//}
-				//});
+					_this.fnStart(ev,settings);
+				})
+				
+				obj.off('touchmove').on('touchmove',function(ev){
+					var ev = ev || event;
+					_this.fnMove(ev,settings);
+				})
+				obj.off('touchend').on('touchend',function(ev){
+					var ev = ev || event;
+						
+					_this.fnEnd(ev,settings);
+				})
+				
+				
 			}
 		})
-		listWheel.a($('#hat')[0]);
-		listWheel.a($('#shoes')[0]);
+		listWheel.fnCanvas($('#hat'));
+		listWheel.fnCanvas($('#shoes'));
 		
 		
 		
@@ -317,33 +333,35 @@ if (device) {
 		rander(worksData,$tabWorks);
 		var $aAs = $tabWorks.find('a');
 		
-		$aAs.on('mouseover',function(){
+		$aAs.off('mouseenter').on('mouseenter',function(){
 			$(this).css({'transform':'scale(1.3)','-webkit-transform':'scale(1.3)'});
 		});
-		$aAs.on('mouseout',function(){
+		$aAs.off('mouseleave').on('mouseleave',function(){
 			$(this).css({'transform':'scale(1)','-webkit-transform':'scale(1)'});
 		});
+		canvasClick('mouseenter',function(x,y){
+			var a = findEle($tabWorks.find('a'),x,y);
+			$(a).css({'transform':'scale(1.3)','-webkit-transform':'scale(1.3)'});
+		});
+		$('#shoes').off('mouseleave').on('mouseleave',function(ev){
+			var a = findEle($tabWorks.find('a'),ev.pageX,ev.pageY);
+			$(a).css({'transform':'scale(1)','-webkit-transform':'scale(1)'});
+		});
+		$('#hat').off('mouseleave').on('mouseleave',function(ev){
+			var a = findEle($tabWorks.find('a'),ev.pageX,ev.pageY);
+			$(a).css({'transform':'scale(1)','-webkit-transform':'scale(1)'});
+		});
 		
-		canvasClick();
+		
+		
+		canvasClick('click',function(x,y){
+			var a = findEle($tabWorks.find('a'),x,y);
+			window.location.href = a.href;
+		});
 		//点击上下canvas操作
-		function canvasClick(obj) {
-			
-			$('#hat').off('click').click(function(ev){
-				var ev = ev || event;
-				if (ImgEvent(this,ev.pageX,ev.pageY)) {
-					
-					var a = findEle($tabWorks.find('a'),ev.pageX,ev.pageY);
-					window.location.href = a.href;
-				}
-			})
-			$('#shoes').off('click').click(function(ev){
-				var ev = ev || event;
-				if (ImgEvent(this,ev.pageX,ev.pageY)) {
-					
-					var a = findEle($tabWorks.find('a'),ev.pageX,ev.pageY);
-					window.location.href = a.href;
-				}
-			})
+		function canvasClick(Event,fn) {
+			fnCanvas($('#shoes'),Event,fn);
+			fnCanvas($('#hat'),Event,fn);
 		}
 		
 		
@@ -393,27 +411,37 @@ if (device) {
 				sDd = 'height: '+20/r+'rem;line-height: '+20/r+'rem;top:'+10/r+'rem;';
 				sText = 'margin: '+5/r+'rem '+0/r+'rem '+20/r+'rem;font-size: '+12/r+'rem;line-height: '+20/r+'rem;height:'+100/r+'rem;'
 			}
-			var str = `
-					<div class="clear">
-						<dl style=${sDl}>
-							<dt style="${sDt}">Tel:</dt>
-							<dd style="${sDd}">17310360285</dd>
-						</dl>
-						<dl style=${sDl}>
-							<dt style="${sDt}">Email:</dt>
-							<dd style="${sDd}">369857686@qq.com</dd>
-						</dl>
-					</div>
-					<div>
-						<div class="dt"  style="${sDt}">Message:</div>
-						<textarea style="${sText}"></textarea>
-					</div>
-			`;
+			var str = '<div class="clear">'
+						+'<dl style="'+sDl+'">'
+							+'<dt style="'+sDt+'">Tel:</dt>'
+							+'<dd style="'+sDd+'">17310360285</dd>'
+						+'</dl>'
+						+'<dl style="'+sDl+'">'
+							+'<dt style="'+sDt+'">Email:</dt>'
+							+'<dd style="'+sDd+'">369857686@qq.com</dd>'
+						+'</dl>'
+					+'</div>'
+					+'<div>'
+						+'<div class="dt"  style="'+sDt+'">Message:</div>'
+						+'<textarea style="'+sText+'"></textarea>'
+					+'</div>';
 			$hint.find('#hintCont').html(str);
 			$hint.find('.hintBtn').attr('href','javascript:;').html('SEND<span><mark>SEND</mark></span>');
 			$hint.find('h3').html('Concact').css('color','#fff');
 		}
 	}
+	
+	//上下两个canvas加事件函数
+	function fnCanvas(obj,Event,fn) {
+		obj.off(Event).on(Event,function(ev){
+			var ev = ev || event;
+			var tag = ( Event === 'touchstart' || Event === 'touchmove' || Event === 'touchend' )? ev.changedTouches[0]:ev;
+			if (ImgEvent(this,tag.pageX,tag.pageY)) {
+				fn(tag.pageX,tag.pageY,ev);
+			}
+		})
+	}
+	
 	
 	//页面hint的相关操作
 	function fnShowHint(data,isObjAnimat,isTextAnimat) {
@@ -442,18 +470,25 @@ if (device) {
 		move.css($wrap.find('.tBody')[0],'translateY','0');
 		
 		if ( $body.hasClass('loading') ) {//前两个页面有loading
+			var $bar = $('#loadingBar');
+			var $barP = $bar.find('p');
+			var $W = $bar.innerWidth()/loadData.length; 
 			var num = 0;
-			
 			$(loadData).each(function(i,e){
-				
+			
 				var $img = $('<img src="'+e+'"/>');
 				
 				$img.off().on('load',function(){
 					num ++;
-					
-					if ( num === data.length ) {
-						$('#logo').css({'transition':'top .7s ease','-webkit-transition':'top .7s ease',})
-						$body.removeClass('loading').addClass('loaded');
+					var scal = (num - loadData.length)*$W;
+					move.css($barP[0],'translateX',scal);
+					if ( num === loadData.length ) {
+						setTimeout(function(){
+							$('#logo').css({'transition':'top .7s ease','-webkit-transition':'top .7s ease',})
+							$body.removeClass('loading').addClass('loaded');
+							move.css($barP[0],'translateX',-$bar.innerWidth());
+						},200)
+						return;
 					}
 				})
 			})
