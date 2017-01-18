@@ -96,18 +96,18 @@
 		oUpHint.addEventListener(Event,fnBtnUp);
 		
 		function fnBtnDown(ev) {
-			alert(1);
+			
 			fnWheel(true);
 			
 		}
 		
 		function fnBtnUp(ev) {
 			var timer = setInterval(function(){
-				fnWheel(false);
+				fnWheel(false,200);
 				if ( num === 0 ) {
 					clearInterval(timer);
 				}
-			},850);
+			},250);
 		}
 	}
 	
@@ -115,17 +115,20 @@
 	
 	
 	//滚轮事件，切换显示内容
-	function fnWheel(down) {
-		alert(2);
+	function fnWheel(down,delay) {
+		
 		if (!onOff) return;
 		var nowNum = num;
+		console.log(onOff);
 		onOff = false;
+		console.log(onOff);
+		delay = delay || 800;
 		
 		if ( down ) {
 			num ++;
 			if (num > aLis.length-1){
 				num = aLis.length-1;
-				onOff = true;
+				//onOff = true;
 				return;
 			};
 			origin = 'top';
@@ -136,7 +139,7 @@
 			num --;
 			if(num < 0){
 				num = 0;
-				onOff = true;
+				//onOff = true;
 				return;
 			};
 			origin = 'bottom';
@@ -144,13 +147,13 @@
 		}
 		
 		aLis[num].style.zIndex = 10;
-		move.mTween(aLis[num],{'translateY':0},800,'easeOut',function(){
+		move.mTween(aLis[num],{'translateY':0},delay,'easeOut',function(){
 			onOff = true;
 			aLis[num].style.zIndex = 0;
 			initLis();
 		})
 		aLis[nowNum].style.transformOrigin = origin;
-		move.mTween(aLis[nowNum],{'rotateX':deg},800,'easeOut');
+		move.mTween(aLis[nowNum],{'rotateX':deg},delay,'easeOut');
 		
 		
 		//根据当前num显示隐藏hint按钮
@@ -162,10 +165,10 @@
 	
 	//移动端滑动屏幕，切换显示内容
 	function nChange() {
-		var onOff = true;
+		//var onOff = true;
 		var startY, disY, nowNum;
 		var origin = 'top';
-		var deg = 90;
+		var deg = 0;
 		
 		slide({
 			fnStart:fnStart,
@@ -176,8 +179,10 @@
 		function fnStart(obj) {
 			nowNum = num;
 			startY = obj.y;
+			deg = 0;
 		}
 		function fnMove(obj) {
+			
 			if (!onOff) return;
 			if ( obj.y > 0 ) {
 				if (num === 0) return;
@@ -210,10 +215,13 @@
 			move.css(aLis[num],'rotateX',deg);
 		}
 		function fnEnd(obj) {
-			if (!onOff) return;
-			if (deg!==0) {move.mTween(aLis[num],{'rotateX':90*(deg/Math.abs(deg))},800,'easeOut')}
+			if (!onOff || deg ===0 ) return;
+			console.log(deg)
+			move.mTween(aLis[num],{'rotateX':90*(deg/Math.abs(deg))},800,'easeOut')
 			
+			console.log(onOff)
 			onOff = false;
+			console.log(onOff)
 			move.mTween(aLis[nowNum],{'translateY':0},800,'easeOut',function(){
 				onOff = true;
 				aLis[nowNum].style.zIndex = 0;
@@ -248,14 +256,14 @@
 			startX = obj.pageX;
 			startY = obj.pageY;
 			settings.fnStart({x:startX,y:startY});
-			ev.preventDefault();
+			
 		}
 		function fnMove(ev) {
 			var obj = ev.changedTouches[0];
 			disX = obj.pageX - startX;
 			disY = obj.pageY - startY;
 			settings.fnMove({x:disX,y:disY});
-			
+			ev.preventDefault();
 		}
 		function fnEnd(ev) {
 			settings.fnEnd({x:disX,y:disY});

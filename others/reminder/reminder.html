@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+body {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+em {
+	font-style: normal;
+}
+body,
+html {
+	width: 100%;
+	height: 100%;
+	background-color: #e3cab4;
+}
+.tBody {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	transform: translateY(-50%);
+}
+.textList {
+	height: 100px;
+	width: 100%;
+}
+.textList li {
+	width: 450px;
+	margin: 0 auto;
+	height: 30px;
+	font: 16px/30px "微软雅黑";
+	color: #a88239;
+}
+.linkList {
+	margin-top: 20px;
+	height: 100px;
+	width: 100%;
+	text-align: center;
+}
+.linkList li {
+	display: inline-block;
+	width: 120px;
+	padding: 10px;
+}
+.linkList span {
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+}
+.chrome span {
+	background: url(img/chrome.png) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+.firefox span {
+	background: url(img/firefox.png) no-repeat;
+	background-size: 100% 100%;
+}
+.edge span {
+	background: url(img/edge.png) no-repeat;
+	background-size: 100% 100%;
+}
+.linkList em {
+	display: block;
+	color: #a88239;
+}
+</style>
+</head>
+<body>
+	<section class="tBody">
+		<ul class="textList">
+			<li>我使用了最新的技术来搭建网站,使网站更快,更容易使用.</li>
+			<li>不幸的是,您的浏览器不支持这些技术.</li>
+			<li>下载以下其中一种伟大的浏览器,您就可以正常访问了.</li>
+		</ul>
+		<ul class="linkList">
+			<li class="chrome">
+				<a href="http://sw.bos.baidu.com/sw-search-sp/software/13d93a08a2990/ChromeStandalone_55.0.2883.87_Setup.exe">
+					<span></span>
+					<em>Google Chrome</em>
+				</a>
+			</li>
+			<li class="firefox">
+				<a href="http://www.firefox.com.cn/">
+					<span></span>
+					<em>Firefox</em>
+				</a>
+			</li>
+			<li class="edge">
+				<a href="javascript:;">
+					<span></span>
+					<em>Microsoft Edge</em>
+				</a>
+			</li>
+		</ul>
+	</section>
+</body>
+</html>

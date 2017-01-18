@@ -1,5 +1,7 @@
 
 //重写------------start------------------------
+
+
 const device = mobilecheck(); 
 var $body = $(document.body);
 var $wrap = $('#wrap');
@@ -629,6 +631,7 @@ function mobilecheck() {
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
 }
+
 
 //重写------------end------------------------
 
