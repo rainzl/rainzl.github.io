@@ -134,6 +134,7 @@ if (device) {
 					var scal = (num - loadData.length)*$W;
 					move.css($barP[0],'translateX',scal);
 					if ( num === loadData.length ) {
+						init();
 						setTimeout(function(){
 							$('#logo').css({'transition':'top .7s ease','-webkit-transition':'top .7s ease',})
 							$body.removeClass('loading').addClass('loaded');
@@ -143,6 +144,8 @@ if (device) {
 					}
 				})
 			})
+		} else {
+			init();
 		}
 		
 		setSquareHeight();
