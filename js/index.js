@@ -147,8 +147,6 @@ if (device) {
 		} else {
 			init();
 		}
-		
-		setSquareHeight();
 	}
 	
 	function init() {
@@ -161,9 +159,13 @@ if (device) {
 		//设置底部的链接列表top
 		setBlogroll ((htmlName==='home'?false:true));
 		
+		setSquareHeight();
+		
 		window.addEventListener('resize',setSquareHeight);
 		
 		showHtml();
+		
+		
 	}
 	
 	
@@ -407,26 +409,29 @@ if (device) {
 		//移出的时候，不需要对canvas进行检测
 		$('#shoes').off('mouseleave').on('mouseleave',function(ev){
 		 	var div = findEle($tabWorks.find('.imgList'),ev.pageX,ev.pageY);
-			
+		 	
+		 	if (!div) return; 
+			div.rects = div.getBoundingClientRect();
 			fnOutEle(div,ev.clientX,ev.clientY);
 		});
 		$('#hat').off('mouseleave').on('mouseleave',function(ev){
 			var div = findEle($tabWorks.find('.imgList'),ev.pageX,ev.pageY);
 			
+			if (!div) return;
+			div.rects = div.getBoundingClientRect();
 			fnOutEle(div,ev.clientX,ev.clientY);
 		});
 		
 		function fnWorksList() {
 			var aImgList = $tabWorks[0].getElementsByClassName('imgList');
-			console.log($tabWorks[0])
 			for ( var i=0; i<len; i++ ) {
 				aImgList[i].addEventListener('mouseenter',function(ev){
-					console.log(this)
+					
 					this.rects = this.getBoundingClientRect();
 					fnOverEle(this,ev.clientX,ev.clientY);
 				});
 				aImgList[i].addEventListener('mouseleave',function(ev){
-					console.log(this)
+					
 					fnOutEle(this,ev.clientX,ev.clientY);
 				});
 			}
@@ -440,17 +445,9 @@ if (device) {
 		});
 		
 		
-		//点击上下canvas操作
-		function canvasClick(Event,fn) {
-			fnCanvas($('#shoes'),Event,fn);
-			fnCanvas($('#hat'),Event,fn);
-		}
-		
-		
 		//鼠标移入需要执行的方法
 		function fnOverEle(ele,x,y) {
 			var mark = ele.getElementsByTagName('mark')[0];
-			
 			var json = {
 				'left':Math.abs(x-ele.rects.left),
 				'right':Math.abs(x-(ele.rects.left+ele.rects.width)),
@@ -505,13 +502,6 @@ if (device) {
 					+'</a>'
 				+'</div>';
 			}
-			/*for ( var i=0; i<worksData.length; i++ ) {
-				str += '<div class="imgList">'+
-							'<a href="'+data[i].href+'">'+
-								'<img src="'+data[i].img+'" />'+
-							'</a>'+
-						'</div>';
-			}*/
 			obj.html(str);
 		}
 	}
@@ -525,6 +515,15 @@ if (device) {
 		
 		$('#hint').find('.hintBtn').html('RESUME<span><mark>RESUME</mark></span>');
 		$('#hint').find('h3').html('About').css('color','#222');
+		
+		clearEvent($('#hat'),'mouseenter');
+		clearEvent($('#shoes'),'mouseenter');
+		clearEvent($('#hat'),'mouseleave');
+		clearEvent($('#shoes'),'mouseleave');
+		clearEvent($('#hat'),'touchstart');
+		clearEvent($('#shoes'),'touchstart');
+		clearEvent($('#hat'),'click');
+		clearEvent($('#shoes'),'click');
 	}
 	
 	//contact页面操作
@@ -540,6 +539,15 @@ if (device) {
 			'height':$('#hint').prop('width'),
 			'top': $('#hint').prop('top')
 		});
+		
+		clearEvent($('#hat'),'mouseenter');
+		clearEvent($('#shoes'),'mouseenter');
+		clearEvent($('#hat'),'mouseleave');
+		clearEvent($('#shoes'),'mouseleave');
+		clearEvent($('#hat'),'touchstart');
+		clearEvent($('#shoes'),'touchstart');
+		clearEvent($('#hat'),'click');
+		clearEvent($('#shoes'),'click');
 		
 		function render() {
 			var sDl= '', sDt= '',sDd= '',sText= '';
@@ -569,6 +577,18 @@ if (device) {
 		}
 	}
 	
+	
+	//清除某个对象上的事件函数
+	function clearEvent(obj,Event) {
+		obj.off(Event).on(Event,function(){});
+	}
+	
+	//点击上下canvas操作
+	function canvasClick(Event,fn) {
+		fnCanvas($('#shoes'),Event,fn);
+		fnCanvas($('#hat'),Event,fn);
+	}
+	
 	//上下两个canvas加事件函数
 	function fnCanvas(obj,Event,fn) {
 		obj.off(Event).on(Event,function(ev){
@@ -583,6 +603,7 @@ if (device) {
 	
 	//页面hint的相关操作
 	function fnShowHint(data,isObjAnimat,isTextAnimat) {
+		
 		if (isObjAnimat) {
 			$('#hint').animate({
 				'opacity': '1',
@@ -597,6 +618,7 @@ if (device) {
 				'height':$('#hint').prop('width'),
 				'top': $('#hint').prop('top')
 			});
+			console.log($('#hint').prop('width'),$('#hint').prop('width'),$('#hint').prop('top'))
 		}
 		$('#hint').find('a').attr('href',data.href)
 		creatText(data.info,$('#hintCont')[0],isTextAnimat);
