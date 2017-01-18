@@ -64,6 +64,8 @@ em {
 }
 .roundPng {
 	background: url(../img/background/rounds.png) no-repeat;
+	transition: 1.6s linear;
+	-webkit-transition: 1.6s linear;
 }
 .sctpng {
 	background: url(../img/background/sct1move.png) no-repeat;
@@ -453,10 +455,11 @@ em {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	right: auto;
 	margin-top: -50px;
 	margin-left: -60px;
-	transition: .5s ease;
-	-webkit-transition: .5s ease;
+	transition: 2s ease-in-out;
+	-webkit-transition: 2s ease-in-out;
 }
 .HQL {
 	width: 85px;
@@ -526,27 +529,27 @@ em {
 }
 #idGreenDiamond.active .add {
 	top: 440px;
-	right: 194px;
+	left: 781px;
 }
 #idGreenDiamond.active .cloudM {
 	top: 351px;
-	right: 0;
+	left: 963px;
 }
 #idGreenDiamond.active .cloud {
 	top: 207px;
-	right: 222px;
+	left: 770px;
 }
 #idGreenDiamond.active .HQb {
 	top: 2px;
-	right: 58px;
+	left: 909px;
 }
 #idGreenDiamond.active .crown {
 	top: 96px;
-	right: 263px;
+	left: 738px;
 }
 #idGreenDiamond.active .sctiMoveMin {
 	top: 241px;
-	right: 111px;
+	left: 888px;
 }
 	/*index idGreenDiamond end*/
 	
@@ -591,8 +594,8 @@ em {
 	width: 115px;
 	height: 175px;
 	background: url(../img/background/indexMusicWrite.png) no-repeat 0 0 ;
-	transition: .8s ease;
-	-webkit-transition: .8s ease;
+	transition: 1.8s linear;
+	-webkit-transition: 1.8s linear;
 }
 #idMusic.active .sctR .write {
 	top: 50px;
@@ -604,8 +607,8 @@ em {
 	left: 110px;
 	width: 116px;
 	height: 116px;
-	-webkit-transition: .5s ease;
-	transition: .5s ease;
+	-webkit-transition: 1s ease;
+	transition: 1s ease;
 }
 .sctR .HQcd {
 	background-position: -420px -420px;
@@ -649,10 +652,16 @@ em {
 }
 .CbigRounds {
 	position: absolute;
-	top: 257px;
+	top: 0px;
 	left: -30px;
 	width: 597px;
 	height: 600px;
+	transition: all 1.8s ease-in-out;
+	-webkit-transition: all 1.8s ease-in-out;
+}
+#idConcert.active .CbigRounds {
+	top: 257px;
+	left: -30px;
 }
 .CbigRounds span {
 	position: absolute;
@@ -724,11 +733,16 @@ em {
 }	
 .gRounds {
 	position: absolute;
-	top: 80px;
+	top: 0;
 	right: 0;
 	width: 626px;
 	height: 226px;
+	transition: 1s ease all;
+	-webkit-transition: 1s ease all;
 }
+#idGame.active .gRounds {
+	top: 80px;
+} 
 .gRounds span {
 	position: absolute;
 }
@@ -759,6 +773,7 @@ em {
 	width: 100%;
 	height: 706px;
 	background: url(../img/background/indexIdentity.jpg) no-repeat center #f9f9f9;
+	overflow: hidden;
 }
 #idIdentity .wrap {
 	position: relative;
@@ -773,11 +788,17 @@ em {
 }
 .idPicgroup {
 	position: absolute;
-	top: 68px;
+	top: 200px;
 	right: 0;
 	width: 586px;
 	height: 536px;
+	transition: 2.1s ease all;
+	-webkit-transition: 2.1s ease all;
 }	
+#idIdentity.active .idPicgroup {
+	top: 0;
+	right: 0;
+}
 .idPicgroup span {
 	position: absolute;
 }

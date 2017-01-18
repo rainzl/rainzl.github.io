@@ -1,4 +1,4 @@
-window.onload = function (){
+(function (){
 	/*index.js*/
 	/*idBanner.js*/
 	var aIdBanner = document.getElementById('idBanner');
@@ -58,10 +58,16 @@ window.onload = function (){
 	
 	function domScroll() {
 		var idGreenDiamond = document.getElementById('idGreenDiamond');
+		var greenRoundPng = idGreenDiamond.getElementsByClassName('roundPng')[0];
 		var idMusic = document.getElementById('idMusic');
+		var musicRoundPng = idMusic.getElementsByClassName('roundPng')[0];
 		var idConcert = document.getElementById('idConcert');
+		var concertRoundPng = idConcert.getElementsByClassName('roundPng')[0];
 		var idGame = document.getElementById('idGame');
+		var gameRoundPng = idGame.getElementsByClassName('roundPng')[0];
 		var idIdentity = document.getElementById('idIdentity');
+		var identRoundPng = idIdentity.getElementsByClassName('roundPng')[0];
+		
 		
 		
 		var wH = document.documentElement.clientHeight;
@@ -71,37 +77,61 @@ window.onload = function (){
 			var idConcertRect = idConcert.getBoundingClientRect();
 			var idGameRect = idGame.getBoundingClientRect();
 			var idIdentityRect = idIdentity.getBoundingClientRect();
+			
+			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 
 			if ( 
 				(idGreenDiamondRect.top>0 && idGreenDiamondRect.top<wH)
-				|| (idGreenDiamondRect.top+idGreenDiamondRect.height>0 && idGreenDiamondRect.top+idGreenDiamondRect.height<wH)
+				|| ((idGreenDiamondRect.top+idGreenDiamondRect.height>0 && idGreenDiamondRect.top+idGreenDiamondRect.height<wH))
+				|| ((idGreenDiamondRect.top<0 && idGreenDiamondRect.top+idGreenDiamondRect.height>wH))
 				) {
-				console.log('第一屏加载');
-			} else if ( 
+				idGreenDiamond.className = 'active';
+				greenRoundPng.style.top = -(idGreenDiamondRect.top) + 'px';
+			} else {
+				idGreenDiamond.className = '';
+			}
+			if (
 				(idMusicRect.top>0 && idMusicRect.top<wH)
 				|| (idMusicRect.top+idMusicRect.height>0 && idMusicRect.top+idMusicRect.height<wH)
+				|| ((idMusicRect.top<0 && idMusicRect.top+idMusicRect.height>wH))
 				) {
-				console.log('第二屏加载');
-			} else if ( 
+				idMusic.className = 'active';
+				musicRoundPng.style.top = -(idMusicRect.top) + 'px';
+			} else {
+				idMusic.className = '';
+			}
+			if (
 				(idConcertRect.top>0 && idConcertRect.top<wH)
 				|| (idConcertRect.top+idConcertRect.height>0 && idConcertRect.top+idConcertRect.height<wH)
+				|| ((idConcertRect.top<0 && idConcertRect.top+idConcertRect.height>wH))
 				) {
-				console.log('第三屏加载');
-			} else if ( 
+				idConcert.className = 'active';
+				concertRoundPng.style.top = -(idConcertRect.top) + 'px';
+			} else {
+				idConcert.className = '';
+			}
+			if (
 				(idGameRect.top>0 && idGameRect.top<wH)
 				|| (idGameRect.top+idGameRect.height>0 && idGameRect.top+idGameRect.height<wH)
+				|| ((idGameRect.top<0 && idGameRect.top+idGameRect.height>wH))
 				) {
-				console.log('第四屏加载');
-			} else if ( 
+				idGame.className = 'active';
+				gameRoundPng.style.top = -(idGameRect.top) + 'px';
+			} else {
+				idGame.className = '';
+			}
+			if (
 				(idIdentityRect.top>0 && idIdentityRect.top<wH)
 				|| (idIdentityRect.top+idIdentityRect.height>0 && idIdentityRect.top+idIdentityRect.height<wH)
+				|| ((idIdentityRect.top<0 && idIdentityRect.top+idIdentityRect.height>wH))
 				) {
-				console.log('第五屏加载');
+				idIdentity.className = 'active';
+				identRoundPng.style.top = -(idIdentityRect.top) + 'px';
+			} else {
+				idIdentity.className = '';
 			}
 			
 		})
 		
-		
-		
 	}
-}
+})()

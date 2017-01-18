@@ -400,7 +400,7 @@ if (device) {
 		
 		canvasClick('mouseenter',function(x,y,ev){
 			var div = findEle($tabWorks.find('.imgList'),x,y);
-			
+			ev.target.ele = div;
 			div.rects = div.getBoundingClientRect();
 			fnOverEle(div,ev.clientX,ev.clientY);
 		});
@@ -408,18 +408,14 @@ if (device) {
 		
 		//移出的时候，不需要对canvas进行检测
 		$('#shoes').off('mouseleave').on('mouseleave',function(ev){
-		 	var div = findEle($tabWorks.find('.imgList'),ev.pageX,ev.pageY);
 		 	
-		 	if (!div) return; 
-			div.rects = div.getBoundingClientRect();
-			fnOutEle(div,ev.clientX,ev.clientY);
+		 	if (!ev.target.ele) return; 
+			fnOutEle(ev.target.ele,ev.clientX,ev.clientY);
 		});
 		$('#hat').off('mouseleave').on('mouseleave',function(ev){
-			var div = findEle($tabWorks.find('.imgList'),ev.pageX,ev.pageY);
 			
-			if (!div) return;
-			div.rects = div.getBoundingClientRect();
-			fnOutEle(div,ev.clientX,ev.clientY);
+			if (!ev.target.ele) return;
+			fnOutEle(ev.target.ele,ev.clientX,ev.clientY);
 		});
 		
 		function fnWorksList() {
@@ -618,7 +614,6 @@ if (device) {
 				'height':$('#hint').prop('width'),
 				'top': $('#hint').prop('top')
 			});
-			console.log($('#hint').prop('width'),$('#hint').prop('width'),$('#hint').prop('top'))
 		}
 		$('#hint').find('a').attr('href',data.href)
 		creatText(data.info,$('#hintCont')[0],isTextAnimat);

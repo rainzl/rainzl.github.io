@@ -1,4 +1,4 @@
-window.onload = function (){
+(function (){
 	
 	
 	/*music.js*/
@@ -15,6 +15,8 @@ window.onload = function (){
 		oMsBanP.innerHTML += '<span>' + '</span>';
 	}
 	msBan();
+	
+	
 	
 	for ( i=0; i<aRrMBanImg.length; i++ ){
 		aMsBanSpan[i].index = i;
@@ -109,7 +111,8 @@ window.onload = function (){
 			}
 		}
 	}
+	
 	function getStyle( obj,attr ){ return obj.currentStyle? obj.currentStyle[attr]: getComputedStyle(obj)[attr] }
 	
 	
-}
+})()

@@ -64,9 +64,9 @@ var worksLoad = [
 var worksData = [
 	{
 		id: 1,
-		img: 'img/16.jpg',
-		href: 'javascript:;',
-		name: '作品一'
+		img: 'img/works/1_greenDiamond.jpg',
+		href: 'others/works/html/greenDiamond/index.html',
+		name: 'QQ绿钻-整站(共4个页面,实现了交互)'
 	},
 	{
 		id: 2,
