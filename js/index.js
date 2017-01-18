@@ -115,18 +115,55 @@ if (device) {
 	//页面进来加载: 上下两个canvas的变化，页面透明度的变化
 	loading();
 	
-	//画头部和底部的canvas
-	htmlName === 'home'? drawHatShose('loadedData','#fff'):drawHatShose('activeData','#1e1e1e');
+	//页面进来加载: 有loading，需要执行loading动画，没有loading直接获取logo的位置
+	function loading() {
+		
+		move.css($wrap.find('.tBody')[0],'translateY','0');
+		
+		if ( $body.hasClass('loading') ) {//前两个页面有loading
+			var $bar = $('#loadingBar');
+			var $barP = $bar.find('p');
+			var $W = $bar.innerWidth()/loadData.length; 
+			var num = 0;
+			$(loadData).each(function(i,e){
+			
+				var $img = $('<img src="'+e+'"/>');
+				
+				$img.off().on('load',function(){
+					num ++;
+					var scal = (num - loadData.length)*$W;
+					move.css($barP[0],'translateX',scal);
+					if ( num === loadData.length ) {
+						setTimeout(function(){
+							$('#logo').css({'transition':'top .7s ease','-webkit-transition':'top .7s ease',})
+							$body.removeClass('loading').addClass('loaded');
+							move.css($barP[0],'translateX',-$bar.innerWidth());
+						},200)
+						return;
+					}
+				})
+			})
+		}
+		
+		setSquareHeight();
+	}
 	
-	//画logo
-	htmlName === 'home'? drawLogo('logo'):drawLogo('logo','#fff');
+	function init() {
+		//画头部和底部的canvas
+		htmlName === 'home'? drawHatShose('loadedData','#fff'):drawHatShose('activeData','#1e1e1e');
+		
+		//画logo
+		htmlName === 'home'? drawLogo('logo'):drawLogo('logo','#fff');
+		
+		//设置底部的链接列表top
+		setBlogroll ((htmlName==='home'?false:true));
+		
+		window.addEventListener('resize',setSquareHeight);
+		
+		showHtml();
+	}
 	
-	//设置底部的链接列表top
-	setBlogroll ((htmlName==='home'?false:true));
 	
-	window.addEventListener('resize',setSquareHeight);
-	
-	showHtml();
 	
 	function showHtml() {
 		if ( htmlName === 'home' ) {
@@ -295,6 +332,29 @@ if (device) {
 	//works页面操作
 	function fnWorks() {
 		var $tabWorks = $('#works');
+		var len = worksData.length;
+		var moveJson = {
+			'top': {
+				top: '-100%',
+				left: '0'
+			},
+			'bottom': {
+				top: '100%',
+				left: '0'
+			},
+			'left': {
+				top: '0',
+				left: '-100%'
+			},
+			'right': {
+				top: '0',
+				left: '100%'
+			},
+		}
+		
+		
+		rander(worksData,$tabWorks);
+		
 		
 		var listWheel = new Scroll('works');
 		listWheel.init();
@@ -329,30 +389,45 @@ if (device) {
 		listWheel.fnCanvas($('#hat'));
 		listWheel.fnCanvas($('#shoes'));
 		
+		fnWorksList();
 		
 		
 		
-		rander(worksData,$tabWorks);
-		var $aAs = $tabWorks.find('a');
-		
-		$aAs.off('mouseenter').on('mouseenter',function(){
-			$(this).css({'transform':'scale(1.3)','-webkit-transform':'scale(1.3)'});
+		canvasClick('mouseenter',function(x,y,ev){
+			var div = findEle($tabWorks.find('.imgList'),x,y);
+			
+			div.rects = div.getBoundingClientRect();
+			fnOverEle(div,ev.clientX,ev.clientY);
 		});
-		$aAs.off('mouseleave').on('mouseleave',function(){
-			$(this).css({'transform':'scale(1)','-webkit-transform':'scale(1)'});
-		});
-		canvasClick('mouseenter',function(x,y){
-			var a = findEle($tabWorks.find('a'),x,y);
-			$(a).css({'transform':'scale(1.3)','-webkit-transform':'scale(1.3)'});
-		});
+		
+		
+		//移出的时候，不需要对canvas进行检测
 		$('#shoes').off('mouseleave').on('mouseleave',function(ev){
-			var a = findEle($tabWorks.find('a'),ev.pageX,ev.pageY);
-			$(a).css({'transform':'scale(1)','-webkit-transform':'scale(1)'});
+		 	var div = findEle($tabWorks.find('.imgList'),ev.pageX,ev.pageY);
+			
+			fnOutEle(div,ev.clientX,ev.clientY);
 		});
 		$('#hat').off('mouseleave').on('mouseleave',function(ev){
-			var a = findEle($tabWorks.find('a'),ev.pageX,ev.pageY);
-			$(a).css({'transform':'scale(1)','-webkit-transform':'scale(1)'});
+			var div = findEle($tabWorks.find('.imgList'),ev.pageX,ev.pageY);
+			
+			fnOutEle(div,ev.clientX,ev.clientY);
 		});
+		
+		function fnWorksList() {
+			var aImgList = $tabWorks[0].getElementsByClassName('imgList');
+			console.log($tabWorks[0])
+			for ( var i=0; i<len; i++ ) {
+				aImgList[i].addEventListener('mouseenter',function(ev){
+					console.log(this)
+					this.rects = this.getBoundingClientRect();
+					fnOverEle(this,ev.clientX,ev.clientY);
+				});
+				aImgList[i].addEventListener('mouseleave',function(ev){
+					console.log(this)
+					fnOutEle(this,ev.clientX,ev.clientY);
+				});
+			}
+		}
 		
 		
 		
@@ -360,6 +435,8 @@ if (device) {
 			var a = findEle($tabWorks.find('a'),x,y);
 			window.location.href = a.href;
 		});
+		
+		
 		//点击上下canvas操作
 		function canvasClick(Event,fn) {
 			fnCanvas($('#shoes'),Event,fn);
@@ -367,15 +444,71 @@ if (device) {
 		}
 		
 		
+		//鼠标移入需要执行的方法
+		function fnOverEle(ele,x,y) {
+			var mark = ele.getElementsByTagName('mark')[0];
+			
+			var json = {
+				'left':Math.abs(x-ele.rects.left),
+				'right':Math.abs(x-(ele.rects.left+ele.rects.width)),
+				'top':Math.abs(y-ele.rects.top),
+				'bottom':Math.abs(y-(ele.rects.top+ele.rects.height))
+			}
+			
+			var t = findMinAttr(json);
+			
+			mark.style.top = moveJson[t].top;
+			mark.style.left = moveJson[t].left;
+			
+			setTimeout(function(){
+				mark.style.top = '0';
+				mark.style.left = '0';
+				mark.style.transition = 'all .5s ease';
+			},30);
+			
+		}
+		//鼠标移出需要执行的操作
+		function fnOutEle(ele,x,y) {
+			var mark = ele.getElementsByTagName('mark')[0];
+			
+			var json = {
+				'left':Math.abs(x-ele.rects.left),
+				'right':Math.abs(x-(ele.rects.left+ele.rects.width)),
+				'top':Math.abs(y-ele.rects.top),
+				'bottom':Math.abs(y-(ele.rects.top+ele.rects.height))
+			}
+			
+			var t = findMinAttr(json);
+			
+			mark.style.top = moveJson[t].top;
+			mark.style.left = moveJson[t].left;
+			
+			setTimeout(function(){
+				mark.style.transition = '';
+			},450);
+			
+		}
+		//渲染works页面
 		function rander(data,obj) {
 			var str = '';
-			for ( var i=0; i<worksData.length; i++ ) {
+			
+			for (var i=0; i<len; i++) {
+				str += '<div fileId="'+data[i].id+'" class="imgList">'
+					+'<a href="'+data[i].href+'">'
+						+'<img src="'+data[i].img+'" />'
+						+'<mark>'
+							+'<em>'+data[i].name+'</em>'
+						+'</mark>'
+					+'</a>'
+				+'</div>';
+			}
+			/*for ( var i=0; i<worksData.length; i++ ) {
 				str += '<div class="imgList">'+
 							'<a href="'+data[i].href+'">'+
 								'<img src="'+data[i].img+'" />'+
 							'</a>'+
 						'</div>';
-			}
+			}*/
 			obj.html(str);
 		}
 	}
@@ -466,38 +599,7 @@ if (device) {
 		creatText(data.info,$('#hintCont')[0],isTextAnimat);
 	}
 	
-	//页面进来加载: 有loading，需要执行loading动画，没有loading直接获取logo的位置
-	function loading() {
-		
-		move.css($wrap.find('.tBody')[0],'translateY','0');
-		
-		if ( $body.hasClass('loading') ) {//前两个页面有loading
-			var $bar = $('#loadingBar');
-			var $barP = $bar.find('p');
-			var $W = $bar.innerWidth()/loadData.length; 
-			var num = 0;
-			$(loadData).each(function(i,e){
-			
-				var $img = $('<img src="'+e+'"/>');
-				
-				$img.off().on('load',function(){
-					num ++;
-					var scal = (num - loadData.length)*$W;
-					move.css($barP[0],'translateX',scal);
-					if ( num === loadData.length ) {
-						setTimeout(function(){
-							$('#logo').css({'transition':'top .7s ease','-webkit-transition':'top .7s ease',})
-							$body.removeClass('loading').addClass('loaded');
-							move.css($barP[0],'translateX',-$bar.innerWidth());
-						},200)
-						return;
-					}
-				})
-			})
-		}
-		
-		setSquareHeight();
-	}
+	
 	//设置详情展框的位置和宽高，只是标记
 	function setSquareHeight(){
 		
@@ -620,7 +722,17 @@ if (device) {
 		}
 	}
 });
-
+function findMinAttr(json) {
+	var t = '';
+	var max = new Date().getTime();
+	for ( var s in json ) {
+		if ( json[s]<max ) {
+			t = s;
+			max = json[s];
+		}
+	}
+	return t;
+}
 document.addEventListener('touchmove',function(ev){
 	ev.preventDefault();
 })

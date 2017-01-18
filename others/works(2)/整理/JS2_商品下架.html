@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+p,
+h1 {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+body {
+	background-color: #ccc;
+}
+#wrap {
+	margin: 30px auto;
+	padding: 20px;
+	width: 600px;
+	height: 630px;
+	background-color: #fff;
+}
+#wrap h1 {
+	font-size: 20px;
+	line-height: 30px;
+}
+#showList {
+	padding-top: 2px;
+	width: 100%;
+	height: 258px;
+	background: url(img2/1.jpg) 0 bottom repeat-x #B0E0E6;
+	background-size: 150px 258px;
+	overflow: hidden;
+	position: relative;
+}
+#showList li {
+	position: relative;
+	float: left;
+	margin-right: 1px;
+	width: 149px;
+	height: 260px;
+	box-sizing: border-box;
+	background-color: #fff;
+}
+#showList li:nth-last-of-type(1) {
+	margin-right: 0;
+	width: 150px;
+}
+.setTime {
+	padding: 5px 0;
+}
+.setTime input:nth-of-type(1) {
+	width: 108px;
+	height: 20px;
+	background-color: #B0E0E6;
+	outline: none;
+	color: #6D6E6B;
+}
+.setTime input:nth-of-type(2) {
+	box-sizing: content-box;
+	margin-left: 2px;
+	padding: 0;
+	width: 30px;
+	height: 20px;
+}
+.textTime {
+	font: 14px/20px "宋体";
+	color: #808080;
+}
+#showList img {
+	margin: 5px 0;
+	width: 100%;
+}
+.describe p {
+	padding: 0 5px;
+	font: 14px/20px "宋体";
+	color: #282828;
+}
+.describe strong {
+	color: #A8A8A8;
+}
+.describe span {
+	font: 16px/20px arial;
+	font-weight: bold;
+	color: red;
+}
+#outList {
+	margin-top: 20px;
+	width: 600px;
+	height: 340px;
+	overflow: auto;
+	box-sizing: border-box;
+}
+#outList li {
+	overflow: hidden;
+	margin-bottom: 3px;
+	padding: 5px 0;
+	width: 600px;
+	text-align: center;
+	font: 16px/62px "宋体";
+	background-color: #B0E0E6;
+}
+#outList .first {
+	height: 30px;
+	margin-bottom: 5px;
+	line-height: 30px;
+}
+#outList li>span {
+	float: left;
+}
+#outList li>span:nth-of-type(1) {
+	height: 62px;
+	width: 200px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#outList li>span:nth-of-type(2) {
+	width: 250px;
+}
+#outList li>span:nth-of-type(3) {
+	width: 150px;
+}
+#outList li img {
+	width: auto;
+	height: 50px;
+	padding: 5px 10px;
+	border: 1px solid #3399FE;
+	background-color: #fff;
+}
+#outList p span {
+	color: red;
+}
+</style>
+<script type="text/javascript" src="JS/publicMain.js" ></script>
+<script>
+window.onload = function () {
+	
+	var aShow = document.querySelectorAll('#showList li');//商品展示列表
+	var aOut = document.querySelector('#outList ul');//商品下架列表
+	var aCount = document.querySelector('#count span');//下架商品总价
+	//循环每个元素，依次调用倒计时下架函数
+	for ( var i=0; i<aShow.length; i++ ) {
+		countDown(aShow[i]);
+	}
+	//-----------单个元素倒计时下架的函数-----------
+	function countDown(ele) {
+		
+//----1. 获取相关的元素---------------------------
+		var aLiBtn = ele.querySelectorAll('#showList .setTime input');//按钮
+		var aLiP = ele.querySelector('#showList p');//倒计时提示
+		var aLiImg = ele.querySelector('#showList img');//图片
+		var aLiText = ele.querySelector('#showList .describe p');//描述
+		var aLiSpan = ele.querySelector('#showList .describe span');//价格
+		var oldTime = 0;//用来存储输入框中时间的时间戳
+		
+//----2. 给按钮添加点击事件---------------------------		
+		aLiBtn[1].onclick = function () {
+//----3. 获取输入框中的时间---------------------------			
+			var dateStr = aLiBtn[0].value;
+			
+			changStr(dateStr);//将输入框中的时间转换成数字类型的年、月、日、时、分、秒
+			
+//----4. 根据输入的时间，创建一个时间变量---------------------------	
+			var oldDate = new Date(year,month,day,hour,minute,second);
+			oldTime = oldDate.getTime();
+//----5. 开始执行倒计时函数(倒计时函数每秒执行一次，所以写成函数更方便)------------			
+			fnGetTime();
+			
+			//如果时间已经过期，就不再执行定时器内的函数
+			if (oldTime <= new Date ) {
+				return;
+			}
+			//开启定时器，调用商品执行函数
+			clearInterval(ele.timer2);
+			ele.timer2 = setInterval(fnGetTime,1000);
+		}
+		//倒计时函数：到时后商品下落运动，并插入下架展示列表中-------------
+		function fnGetTime() {
+			
+//		1) new一个当前的时间和输入的时间进行对比,将时间差存入：time-----------------
+			var nowDate = new Date;//现在的时间变量
+			var nowTime = nowDate.getTime();
+			var time = oldTime - nowTime;//现在的时间戳和输入框中的时间戳之差
+			
+			var days = Math.floor(time/86400000);
+			var hours = Math.floor((time%86400000)/3600000);
+			var minutes = Math.floor((time%3600000)/60000);
+			var seconds = Math.floor((time%60000)/1000);
+//		2) 如果时间差小于或者等于0，就关闭倒计时，开始执行抖函数-----------------
+			if ( time <= 0 ) {//如果时间戳之差小于0，说明时间已到期，此时应该关闭此定时器，并且执行抖动函数
+				clearInterval(ele.timer2);
+				//抖函数开始执行
+				shake(ele,'left',20,function(){
+					
+//				a) 元素抖动完，开始下落，并且透明度变为0-----------------
+					mTween(ele,{'top':150,'opacity':0},1000,'linear',function(){
+						
+//				b) 下落完成，将此元素的信息插入对应的底部li结构中-----------------
+						var str = '<li>'
+								+ '<span>'+ aLiText.innerHTML +'</span>'
+								+ '<span><strong>'+ aLiSpan.innerHTML +'</strong></span>'
+								+ '<span><img src="'+ aLiImg.src +'"/></span>'
+							+ '</li>';
+						aOut.innerHTML += str;
+						
+//				c) 底部价格提示加和-----------------
+						aCount.innerHTML = (parseFloat(aCount.innerHTML) 
+										+ parseFloat(aLiSpan.innerHTML.substr(1))).toFixed(2);
+					});
+				});
+			} else {
+//		3) 如果时间没有到期，则显示剩余时间到时间提示中-----------------
+				aLiP.innerHTML = `剩余${days}天${hours}时${minutes}分${seconds}秒`;
+			}
+		}
+	}
+	//------将获取到的一串时间字符串拆分成年、月、日、时、分、秒的数字---------
+	var year = 0;
+	var month = 0;
+	var day = 0;
+	var hour = 0;
+	var minute = 0;
+	var second = 0;
+	function changStr(str) {
+		var strToNum = str;
+		var strToArr = [];
+		for ( var i=0; i<str.length; i++ ) {
+			strToNum = strToNum.replace('-',' ').replace(':',' ');
+		}
+		strToArr = strToNum.split(' ');
+		year = Number(strToArr[0]);
+		month = Number(strToArr[1]) - 1;
+		day = Number(strToArr[2]);
+		hour = Number(strToArr[3]);
+		minute = Number(strToArr[4]);
+		second = Number(strToArr[5]);
+	}
+	console.log('思路： 1. 先实现一个商品的运动方法：获取相关的元素');
+	console.log('	   2. 写好这个元素中该有的点击事件，为点击事件添加对应的函数');
+	console.log('	   		1) 点击的时候获取输入框中的value');
+	console.log('	   		2) 用输入框中的时间创建一个时间变量，然后转换成时间戳：oldTime');
+	console.log('	   		3) 开始执行倒计时函数');
+	console.log('	   3. 倒计时函数思路')
+	console.log('	   		1) new一个当前的时间和输入的时间进行对比,将时间差存入：time');
+	console.log('	   		2) 如果时间差小于或者等于0，就关闭倒计时，开始执行抖函数');
+	console.log('	   			a) 元素抖动完，开始下落，并且透明度变为0');
+	console.log('	   			b) 下落完成，将此元素的信息插入对应的底部li结构中');
+	console.log('	   			c) 底部价格提示加和');
+	console.log('	   		3) 如果时间没有到期，则显示剩余时间到时间提示中');
+	console.log('	   4. 循环全部商品，调下架函数，并传参，控制每组中的数据');
+}
+</script>
+
+</head>
+<body>
+	<section id="wrap">
+		<h1>限时抢购</h1>
+		<ul id="showList">
+			<li>
+				<div class="setTime">
+					<input type="text" value="2016-10-11 12:12:12" /><input type="button" value="计时" />
+				</div>
+				<p class="textTime">剩余0天0时0分0秒</p>
+				<img src="img2/2.jpg" />
+				<div class="describe">
+					<p>疯狂599，美的爆款隐藏式面板下拉微波炉</p>
+					<strong>抢购价:</strong><span>￥168.00</span>
+				</div>
+			</li>
+			<li>
+				<div class="setTime">
+					<input type="text" value="2016-10-11 12:12:12" /><input type="button" value="计时" />
+				</div>
+				<p class="textTime">剩余0天0时0分0秒</p>
+				<img src="img2/2.jpg" />
+				<div class="describe">
+					<p>疯狂599，美的爆款隐藏式面板下拉微波炉</p>
+					<strong>抢购价:</strong><span>￥168.00</span>
+				</div>
+			</li>
+			<li>
+				<div class="setTime">
+					<input type="text" value="2016-10-11 12:12:12" /><input type="button" value="计时" />
+				</div>
+				<p class="textTime">剩余0天0时0分0秒</p>
+				<img src="img2/2.jpg" />
+				<div class="describe">
+					<p>疯狂599，美的爆款隐藏式面板下拉微波炉</p>
+					<strong>抢购价:</strong><span>￥168.00</span>
+				</div>
+			</li>
+			<li>
+				<div class="setTime">
+					<input type="text" value="2016-10-11 12:12:12" /><input type="button" value="计时" />
+				</div>
+				<p class="textTime">剩余0天0时0分0秒</p>
+				<img src="img2/2.jpg" />
+				<div class="describe">
+					<p>疯狂599，美的爆款隐藏式面板下拉微波炉</p>
+					<strong>抢购价:</strong><span>￥168.00</span>
+				</div>
+			</li>
+		</ul>
+		<footer id="outList">
+			<ul>
+				<li class="first">
+					<span><strong>商品名称</strong></span>
+					<span><strong>价钱</strong></span>
+				</li>
+				<!--<li>
+					<span>疯狂599，美的爆款隐藏式面板下拉微波炉</span>
+					<span><strong>￥168.00</strong></span>
+					<span><img src="img2/2.jpg"/></span>
+				</li>-->
+			</ul>
+			<p id="count">总计:<span>0</span>元</p>
+		</footer>
+	</section>
+</body>
+</html>

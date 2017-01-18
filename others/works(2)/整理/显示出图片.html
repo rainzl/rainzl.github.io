@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#pic {
+	position: relative;
+	margin: 30px auto;
+	width: 1000px;
+	height: 1000px;
+	overflow: hidden;
+}
+#pic img {
+	position: absolute;
+	top: 0;
+	left: 0;	
+	width: 100%;
+	height: 100%;
+}
+#pic ul {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#pic li {
+	float: left;
+	width: 50px;
+	height: 50px;
+	background-color: #B0E0E6;
+}
+#pic .bgNone {
+	background-color: transparent;
+}
+</style>
+<!--1. 鼠标移入的原色。背景颜色变为透明或者display为none-->
+<script>
+	window.onload = function () {
+		var oPic = document.getElementById('pic');
+		var oImg = oPic.getElementsByTagName('img')[0];
+		var oUl = oPic.getElementsByTagName('ul')[0];
+		var oPicWidth = parseInt(getStyle( oPic,'width' ));
+		var oPicHeight = parseInt(getStyle( oPic,'height' ));
+		var oLi = oUl.getElementsByTagName('li');
+		for ( i=0; i<oPicWidth/50; i++ ) {
+			for ( j=0; j<oPicHeight/50; j++ ) {
+				oUl.innerHTML += '<li></li>'
+			}
+		}
+		for ( i=0; i<oLi.length; i++ ) {
+			oLi[i].onmouseover = function () {
+				this.className = 'bgNone';
+			}
+		}
+		
+		
+		function getStyle( obj,attr ) {
+			return obj.currentStyle? obj.currentStyle[attr]: getComputedStyle( obj )[attr] ;
+		}
+		
+	}
+</script>
+</head>
+<body>
+	<div id="pic">
+		<img src="img1/pic.jpg">
+		<ul class="shell"></ul>
+	</div>
+</body>
+</html>

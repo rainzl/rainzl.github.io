@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+body,
+h3 {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+#wrap {
+	position: relative;
+	margin: 30px auto;
+	padding: 50px;
+	width: 700px;
+	height: 420px;
+	background-color: #666;
+}
+.text {
+	padding: 20px;
+	width: 560px;
+	height: 200px;
+	font: 14px/20px "微软雅黑";
+	background-color: #fff;
+}
+#showBtn {
+	position: absolute;
+	top: 50px;
+	right: 35px;
+	width: 80px;
+	height: 30px;
+	font: 16px/30px "微软雅黑";
+	text-align: center;
+}
+.btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #B0E0E6;
+	color: #000;
+}
+.btnList {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+.btnList li {
+	background-color: #E0B03D;
+	border-top: 1px solid #fff;
+	cursor: pointer;
+}
+.btnList li:hover {
+	background-color: coral;
+	color: #fff;
+}
+#form {
+	display: none;
+	position: relative;
+	margin-top: 30px;
+	padding: 20px;
+	width: 560px;
+	height: 100px;
+	background-color: #B0E0E6;
+}
+#form h3 {
+	border-bottom: 3px solid #CCCCCC;
+	height: 30px;
+	text-align: center;
+}
+#form span {
+	float: left;
+	width: 80px;
+	font: 18px/30px "微软雅黑";
+	color: #6D6E6B;
+}
+#form .active {
+	background-color: #ccc;
+	color: #fff;
+}
+.setText {
+	padding-top: 20px;
+	font: 14px/30px "微软雅黑";
+}
+.setText li {
+	display: none;
+}
+.setText input[type="text"] {
+	margin: 0 20px;
+	width: 160px;
+	height: 30px;
+}
+.setText input[type="button"] {
+	height: 30px;
+	width: 80px;
+	font: 14px/30px "微软雅黑";
+	box-sizing: content-box;
+}
+#form .close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	border: 1px solid #808080;
+	width: 12px;
+	height: 12px;
+	text-align: center;
+	background-color: #CCCCCC;
+	font: 10px/10px "微软雅黑";
+	cursor: pointer;
+}
+.setText .show {
+	display: block;
+}
+</style>
+</head>
+<body>
+	<section id="wrap">
+		<article class="text">
+			今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好
+			今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好
+			今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好
+		</article>
+		<form id="form">
+			<h3>
+				<span>查找</span>
+				<span>替换</span>
+			</h3>
+			<ul class="setText">
+				<li>
+					<input type="text" />
+					<input type="button" value="查找" />
+				</li>
+				<li>
+					<input type="text" />
+					<input type="text" />
+					<input type="button" value="替换" />
+				</li>
+			</ul>
+			<span class="close">x</span>
+		</form>
+		<div id="showBtn">
+			<a class="btn" href="javascript:;">展开</a>
+			<ul class="btnList">
+				<li>查找</li>
+				<li>替换</li>
+			</ul>
+		</div>
+	</section>
+	<script type="text/javascript" src="../publicJS/miaoV.js" ></script>
+	<script>
+	window.onload = function () {
+		var oText = getEle('#wrap .text');//文字展示元素
+		var oShowBtn = getEle('#showBtn .btn');//点击此按钮，展开查找和替换按钮列表
+		var oBtnList = getEle('#showBtn .btnList');//右上角按钮列表
+		var oForm = getEle('#form');//底部功能表单
+		var oFormH3 = getEle('#form h3');//文字设置部分功能名称
+		var aFormH3s = Array.from(oFormH3.getElementsByTagName('span'));
+		var oFormSet = getEle('#form .setText');//设置文字功能列表
+		var aFormSets = Array.from(oFormSet.getElementsByTagName('li'));
+		var oFormClose = getEle('#form .close');//关闭设置表单按钮
+		
+		//console.log(oShowBtn);
+		//文字查找和替换功能函数
+		var strOld = oText.innerHTML;
+		aFormSets.forEach(function (item) {
+			var aIpts = Array.from(item.getElementsByTagName('input'));
+			if ( aIpts.length == 2 ) {
+				//文字查找功能函数
+				aIpts[aIpts.length-1].onclick = function (){
+					oText.innerHTML = strOld;
+					
+					var str = aIpts[0].value;
+					if ( str.trim().length == 0 ) {
+						alert('输入框没有东西吧');
+						return;
+					} else if (strOld.includes(str)) {
+						for ( var i=0; i<strOld.length; i++ ) {
+							strOld = strOld.replace('<mark>','').replace('</mark>','');
+						}
+						var strNew = strOld.split(str).join('<mark>'+str+'</mark>');
+						oText.innerHTML = strNew;
+						aIpts[0].value = '';
+					} else {
+						alert('没有您要找的内容');
+						return;
+					}
+				}
+			} else {
+				//文字替换功能函数
+				aIpts[aIpts.length-1].onclick = function (){
+					oText.innerHTML = strOld;
+					var strO = aIpts[0].value;
+					var strN = aIpts[1].value;
+					
+					if ( strO.trim().length == 0 || strN.trim().length == 0 ) {
+						alert('输入框没有东西吧');
+						return;
+					} else if (strOld.includes(strO)) {
+						var strNew = strOld.split(strO).join('<mark>'+strN+'</mark>');
+						oText.innerHTML = strNew;
+						aIpts[0].value = '';
+						aIpts[1].value = '';
+						strOld = strOld.split(strO).join(strN);
+					} else {
+						alert('没有您要找的内容');
+						return;
+					}
+				}
+			}
+		});
+		
+		
+		
+		
+		//当前功能列表显示函数
+		var fnNum = 0;
+		fnShow();
+		function fnShow() {
+			for (var i=0; i<aFormSets.length; i++) {
+				if ( i==fnNum ) {
+					aFormH3s[i].className = 'active';
+					aFormSets[i].className = 'show';
+				} else {
+					aFormH3s[i].className = '';
+					aFormSets[i].className = '';
+				}
+			}
+		}
+		//点击文字设置名称，切换设置页面
+		aFormH3s.forEach(function(item,i){
+			item.onclick = function () {
+				fnNum = i;
+				fnShow();
+			}
+		});
+		
+		//点击右上角设置或者替换按钮，展示底部编辑框
+		var aBtnLists = Array.from(oBtnList.getElementsByTagName('li'));
+		aBtnLists.forEach(function (item,i) {
+			item.onclick = function (){
+				oForm.style.display = 'block';
+				oBtnList.style.display = '';
+				fnNum = i;
+				fnShow();
+			}
+		});
+		//点击右上角关闭按钮，底部编辑框隐藏
+		oFormClose.onclick = function () {
+			oForm.style.display = '';
+		}
+		
+		
+		
+		//点击'展开'按钮，显示按钮列表
+		oShowBtn.onOff = true;
+		oShowBtn.onclick = function () {
+			oBtnList.style.display = 'block';
+		}
+	}
+	</script>
+</body>
+</html>

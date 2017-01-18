@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+#wrap {
+	width: 600px;
+	min-height: 300px;
+	margin: 100px auto;
+}
+#box {
+	position: relative;
+	display: none;
+}
+#file {
+	width: 200px;
+	height: 50px;
+	border: 2px solid #000;
+	text-align: center;
+	font: 20px/50px "宋体";
+	display: block;
+	margin: 100px auto 0;
+}
+#file input {
+	display: none;
+}
+#box canvas {
+	display: block;
+	background-color: #ccc;
+	margin: 30px auto;
+	position: relative;
+}
+#clipBtn {
+	display: block;
+	margin: 10px auto;
+	height: 40px;
+	width: 200px;
+}
+#resize {
+	display: none;
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	border: 2px solid #02a4c7;
+	background: rgba(2,164,199,.2);
+	top: 80px;
+	left: 240px;
+}
+#resize button {
+	position: absolute;
+	width: 40px;
+	top: -22px;
+}
+#resize button:nth-of-type(1) {
+	left: 0;
+}
+#resize button:nth-of-type(2) {
+	right: 0;
+}
+#resize span {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	cursor: se-resize;
+}
+</style>
+</head>
+<body>
+	<section id="wrap">
+		<label id="file"><input type="file" />上传图片</label>
+		<div id="box">
+			<button id="clipBtn">裁切</button>
+			<canvas></canvas>
+			<div id="resize">
+				<button>取消</button>
+				<button>确定</button>
+				<span></span>
+			</div>
+		</div>
+	</section>
+<script src="JS/publicMain.js"></script>
+<script>
+(function(d){
+	var oFile = d.querySelector('#file input'),
+		oBox = d.getElementById('box'),
+		oClipBtn = d.getElementById('clipBtn'),
+		oCanvas = oBox.getElementsByTagName('canvas')[0],
+		oResize = d.getElementById('resize'),
+		oReSpan = oResize.getElementsByTagName('span')[0],
+		aReBtns = oResize.getElementsByTagName('button');
+	var cxt = oCanvas.getContext('2d');
+	var positionX = 0,
+		positionY = 0;
+	//取消函数，选框隐藏
+	aReBtns[0].onclick = function () {
+		oResize.style.display = 'none';
+	}
+	//裁切确认事件函数，确认后：1. 获取选区图片信息，重新绘制画布 2. 选框隐藏; 3. 继续调用裁切函数
+	aReBtns[1].onclick = function () {
+		var x = oResize.offsetLeft - oCanvas.offsetLeft,
+			y = oResize.offsetTop - oCanvas.offsetTop,
+			w = oResize.offsetWidth,
+			h = oResize.offsetHeight;
+		var imgData = cxt.getImageData(x,y,w,h);
+		cxt.clearRect(0,0,oCanvas.width,oCanvas.height);
+		oCanvas.width = w;
+		oCanvas.height = h;
+		cxt.putImageData(imgData,0,0);
+		aReBtns[0].onclick();
+		mouseMove (oResize);
+	}
+	//点击裁切按钮： 1. 选框显示 2. 设置选框宽高并且在canvas中居中  3. 执行选框拖拽移动函数 
+	oClipBtn.onclick = function (){
+		oResize.style.display = 'block';
+		oResize.style.width = '100px';
+		oResize.style.height = '100px';
+		oResize.style.left = (oCanvas.width - oResize.offsetWidth)/2 + oCanvas.offsetLeft + 'px';
+		oResize.style.top = (oCanvas.height - oResize.offsetHeight)/2 + oCanvas.offsetTop + 'px';
+		mouseMove (oResize);
+	}
+	//拖动选框右下角span,放大缩小选框
+	oReSpan.onmousedown = function (ev){
+		var ev = ev || event;
+		
+		var startX = ev.clientX,
+			startY = ev.clientY;
+		var wid = css(this.parentNode,'width'),
+			hei = css(this.parentNode,'height');
+		oBox.onmousemove = function (ev) {
+			var ev = ev || event;
+			
+			var x = ev.clientX - startX + wid,
+				y = ev.clientY - startY + hei;
+				
+			positionX = oCanvas.offsetLeft + oCanvas.clientWidth,
+			positionY = oCanvas.offsetTop + oCanvas.clientHeight;
+			var minX = 100,
+				minY = 100,
+				maxX = positionX - oResize.offsetLeft,
+				maxY = positionY - oResize.offsetTop;
+			x = x<=minX? minX: x;
+			x = x>=maxX? maxX: x;
+			y = y<=minY? minY: y;
+			y = y>=maxY? maxY: y;
+			
+			oResize.style.width = x + 'px';
+			oResize.style.height = y + 'px';
+		}
+		oBox.onmouseup = function () {
+			oBox.onmousemove = null;
+			oBox.onmouseup = null;
+		}
+		ev.cancelBubble = true;
+		return false;
+	}
+	
+	//选框拖拽移动函数 
+	function mouseMove (obj){
+		obj.onmousedown = function (ev) {
+			var ev = ev || event;
+			var startX = ev.clientX,
+				startY = ev.clientY;
+			var oLeft = css(obj,'left'),
+				oTop = css(obj,'top');
+			obj.onmousemove = function (ev) {
+				var ev = ev || event;
+				var x = ev.clientX - startX + oLeft,
+					y = ev.clientY - startY + oTop;
+				positionX = oCanvas.offsetLeft + oCanvas.clientWidth,
+				positionY = oCanvas.offsetTop + oCanvas.clientHeight;
+				x <= oCanvas.offsetLeft? x = oCanvas.offsetLeft: '';
+				x >= positionX - obj.offsetWidth? x = oCanvas.offsetLeft + oCanvas.offsetWidth - obj.offsetWidth: '';
+				y <= oCanvas.offsetTop? y = oCanvas.offsetTop: '';
+				y >= positionY - obj.offsetHeight? y = oCanvas.offsetTop + oCanvas.offsetHeight - obj.offsetHeight: '';
+				obj.style.left = x + 'px';
+				obj.style.top = y + 'px';
+			}
+			obj.onmouseup = function () {
+				this.onmousemove = null;
+				this.onmouseup = null;
+			}
+			return false;
+		}
+	}
+	//上传图片事件函数
+	oFile.onchange = function (ev){
+		var ev = ev || event;
+		var fileReader = new FileReader();
+		
+		fileReader.readAsDataURL(ev.target.files[0]);
+		
+		fileReader.onload = function (ev){
+			var img = new Image();
+			img.src = this.result;
+			img.onload = function (){
+				oCanvas.width = img.width;
+				oCanvas.height = img.height;
+				cxt.drawImage(img,0,0,oCanvas.width,oCanvas.height);
+				oBox.style.display = 'block';
+				oFile.parentNode.style.display = 'none';
+			}
+		}
+	}
+		
+	
+})(document)
+</script>
+</body>
+</html>

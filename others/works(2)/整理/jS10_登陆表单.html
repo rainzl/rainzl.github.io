@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+p {
+	margin: 0;
+}
+a {
+	text-decoration: none;
+}
+input,
+label,
+p {
+	float: left;
+}
+#land {
+	margin: 50px auto;
+	padding: 30px 20px;
+	width: 500px;
+	background-color: #CCCCCC;
+	border: 1px solid #999999;
+}
+#land li {
+	position: relative;
+	padding: 15px 0;
+	height: 50px;
+}
+#land p {
+	position: absolute;
+	top: 0;
+	left: 86%;
+	display: none;
+	margin-left: 20px;
+	padding: 10px;
+	width: 260px;
+	font: 14px/26px "宋体";
+	background-color: #F6F7DF;
+}
+#land input[type="text"],
+#land input[type="password"] {
+	padding: 0 10px;
+	width: 320px;
+	height: 50px;
+	border: 1px solid #ccc;
+	font: 16px/50px "宋体";
+}
+#land label {
+	width: 70px;
+	height: 50px;
+	padding-right: 15px;
+	font: 18px/50px "宋体";
+	text-align: right;
+}
+#land .read {
+	padding: 0;
+}
+#land .read input {
+	margin-top: 16px;
+}
+#land .read p {
+	top: 4px;
+	left: 80px;
+	background-color: transparent;
+	display: block;
+	font: 14px/16px "宋体";
+}
+.btn {
+	text-align: center;
+}
+.btn a {
+	display: inline-block;
+	margin: 0  10px;
+	width: 80px;
+	height: 50px;
+	font: 20px/50px "宋体";
+	background-color: #669966;
+	color: #fff;
+}
+</style>
+</head>
+<body>
+	<form id="land" action="JS1_登录框.html">
+		<ul>
+			<li>
+				<label for="name">用户名:</label><input type="text" id="name" name="name" placeholder="请设置用户名" />
+				<p>设置后不可更改<br>中英文均可,最长14个英文或7个汉字</p>
+			</li>
+			<li>
+				<label for="passwd">密码:</label><input type="password" id="passwd" name="passwd" placeholder="设置登录密码" />
+				<p>长度为6~14个字符<br>支持数字，大小写字母和标点符号<br>不允许有空格</p>
+			</li>
+			<li class="read">
+				<label></label><input type="checkbox" name="read" value="read" /><p>阅读并接受《百度用户协议》</p>
+			</li>
+			<li class="btn">
+				<!--<input type="submit" value="注册" />
+				<input type="reset" value="重置" />-->
+				<a href="javascript:;" id="submit">注册</a>
+				<a href="javascript:;" id="reset">重置</a>
+			</li>
+		</ul>
+	</form>
+<script>
+	var oForm = document.getElementById('land');
+	oForm.passwd.onfocus = oForm.name.onfocus = function () {
+		this.nextElementSibling.style.display = 'block';
+	}
+	oForm.passwd.onblur = oForm.name.onblur = function () {
+		this.nextElementSibling.style.display = '';
+	}
+	var oSubmit = document.getElementById('submit');
+	var oReset = document.getElementById('reset');
+	oReset.onclick = function () {
+		if ( confirm('是否要重置所有内容?') ) {
+			oForm.reset();
+		}
+	}
+	oSubmit.onclick = function () {
+		if ( oForm.read.checked ) {
+			if ( oForm.name.value.trim() == '' ) {
+				oForm.name.focus();
+				alert('用户名不能为空');
+				return;
+			}
+			if ( oForm.passwd.value.trim() == '' ) {
+				alert('密码不能为空');
+				oForm.passwd.focus();
+				return;
+			}
+			oForm.submit();
+		} else {
+			oForm.read.focus();
+			alert('用户协议勾选不能为空');
+			return;
+		}
+		oForm.submit();
+	}
+	/*oForm.onreset = function () {
+		return confirm('是否要重置所有内容?');
+	}*/
+	/*oForm.onsubmit = function () {
+		
+		if ( oForm.read.checked ) {
+			if ( oForm.name.value.trim() == '' ) {
+				alert('用户名不能为空');
+				return false;
+			}
+			if ( oForm.passwd.value.trim() == '' ) {
+				alert('密码不能为空');
+				return false;
+			}
+		} else {
+			alert('用户协议勾选不能为空');
+			return false;
+		}
+	}*/
+	
+</script>
+</body>
+</html>

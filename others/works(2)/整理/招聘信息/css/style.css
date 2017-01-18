@@ -1,0 +1,52 @@
+body,ul,dd,p{margin:0;padding:0;}
+li{list-style:none;}
+body,div,p,li{font-family:"Lucida Grande",Verdana,Lucida,Arial,Helvetica,Microsoft Yahei,simsun,sans-serif;font-size:12px;color:#333;}
+img,a{border:0;}
+a:link,a:visited,a:active{color:#333;text-decoration:none;}
+a:hover{color:#e70;text-decoration:none;}
+
+
+/*list.html*/
+
+#wrap { width: 920px; margin: 20px auto 0; background: url(../img/c_bg.gif) repeat-y 190px 0;}
+.left { float: left; width: 160px; }
+.left h2 { font-size: 16px; margin-bottom: 30px; }
+.left li { margin-bottom: 5px; font-family: "微软雅黑"; }
+.left li a { color: #333; font-size: 14px; display: block; text-decoration: none;height: 25px;display: block;line-height: 25px; text-align: center; }
+.left li.focus a,.left li a:hover { color: #fff; background: #328fbe; }
+
+.right { float: right; width: 700px; }
+.right .title { padding: 50px 0 20px;}
+.right .info { font-family: "微软雅黑";}
+.right .zp span { font-size: 13px; font-weight: bold; margin-right: 30px;}
+.right .zp .date { position: relative; left: 30px; font-weight: normal; }
+.right .yq {color: #666;line-height: 24px; margin-bottom: 37px; padding-top: 6px;}
+.right .yq a {color: #328fbe;}
+
+.clear { clear: both; font-size: 0px;width: 0px;height: 1px;visibility: hidden;line-height: 0;}
+
+.pages { width: 700px;height: 26px;border: 1px solid #d6d6d6;background: #e2e2e2; margin: 30px 0 40px; position: relative;}
+.pages .prev { position: absolute;left: 13px;top: 7px;}
+.pages .next { position: absolute; right: 13px;top: 7px;}
+.pages p {padding-left: 62px;}
+.pages p span {float: left; margin-top: 3px; margin-left: 2px;}
+.pages p span a {display: block; width: 20px; height: 20px; text-align: center; line-height: 20px;}
+.pages p span.focus a,.pages p a:hover {background: #666; color: #fff; }
+
+/*list.html*/
+
+
+/*content.html*/
+
+.content h2 {font-size: 16px;font-weight: bold;color: #328fbe;font-family: "微软雅黑";padding-bottom: 8px;}
+
+.content span {float: left;line-height: 24px;color: #666;}
+.content span.l {width: 443px;}
+
+.content dl,.content p {margin-top:26px;}
+.content dl dt {line-height:28px;}
+.content dl dd {line-height:24px;}
+
+.content {padding-bottom: 20px;}
+
+/*content.html*/

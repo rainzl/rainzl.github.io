@@ -1,0 +1,1875 @@
+@charset "utf-8";
+/*reset.css start*/
+body,
+h1,
+h2,
+h3,
+h4,
+dl,
+dd,
+p {
+	margin: 0;
+}
+body {
+	min-width: 1228px;
+	font-family: Arial,Tahoma,"hiragino sans gb",Helvetica;
+	color: #4e4f4e;
+}
+ul,
+ol {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+li {
+	vertical-align: top;
+}
+img {
+	border: none;
+	vertical-align: top;
+}
+a {
+	text-decoration: none;
+}
+table {
+	border-collapse: collapse;
+}
+th,
+td {
+	padding: 0;
+}
+em {
+	font-style: normal;
+}
+/*reset.css end*/
+
+/*public.css start*/
+.clearfix {
+	zoom: 1;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.wrap {
+	margin: 0 auto;
+	width: 980px;
+}
+.iconGif {
+	background: url(../img/background/h1.gif) no-repeat;
+}
+.indexPng {
+	background: url(../img/background/indexPng.png) no-repeat;
+}
+.roundPng {
+	background: url(../img/background/rounds.png) no-repeat;
+}
+.sctpng {
+	background: url(../img/background/sct1move.png) no-repeat;
+}
+.allSmallPng {
+	background: url(../img/background/allSmall.png) no-repeat;
+}
+.Btnpng {
+	background: url(../img/background/sprite_btn.png) no-repeat;
+}
+.msPng {
+	background: url(../img/background/musicH3.png) no-repeat ;
+}
+.msImg {
+	background: url(../img/background/msImg.png) no-repeat;
+}
+.gdMinImgs {
+	background: url(../img/background/gradeMinImgs.jpg) no-repeat;
+}
+.gfImgs {
+	background: url(../img/background/greenfeeImgs.png) no-repeat;
+}
+.idContent {
+	position: absolute;
+	font: 14px/24px "微软雅黑";
+}
+.idContent h2 {
+	width: 100%;
+	height: 100px;
+	line-height: 300px;
+	overflow: hidden;
+}
+.idContent p {
+	padding: 30px 0 20px;
+	color: #888888;
+}
+.idContent a {
+	display: block;
+	color: #666666;
+	text-decoration: underline;
+}
+.idContent a:hover {
+	color: #555555;
+}
+#fixed {
+	position: fixed;
+	top: 50%;
+	right: 40px;
+	margin-top: -48px;
+	width: 29px;
+	height: 97px;
+	background-position: 0 -190px;
+	z-index: 3;
+}
+#fixed .fixedTop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 29px;
+	height: 24px;	
+}
+#fixed .fixedCenter {
+	position: absolute;
+	top: 31px;
+	left: 0;
+	width: 29px;
+	height: 35px;	
+}
+#fixed .fixedBtm {
+	position: absolute;
+	top: 73px;
+	left: 0;
+	width: 24px;
+	height: 35px;	
+}
+/*public.css end*/
+
+/*index.css(id) start*/
+	/*index header start*/
+#Header {
+	position: relative;
+	width: 100%;
+	height: 80px;
+	background-color: #333;
+	z-index: 2;
+}
+#Header h1 {
+	float: left;
+}
+#Header h1 a {
+	float: left;
+	overflow: hidden;
+	margin: 20px 36px 20px 0;
+	width: 146px;
+	height: 40px;
+	line-height: 300px;
+	background-position: 0 0;
+}
+.nav {
+	float: left;
+}
+.nav a {
+	float: left;
+	padding: 1px 12px 0;
+	margin-bottom: 1px;
+	height: 76px;
+	line-height: 76px;
+	font-size: 14px;
+	color: #bdbdbd;
+}
+.nav a:hover {
+	border-bottom: 2px solid #9de25e;
+	background-color: #090909;
+	color: #a5ee61;
+}
+.nav .navActive {
+	border-bottom: 2px solid #9de25e;
+	background-color: #090909;
+	color: #a5ee61;
+}
+.login {
+	position: relative;
+	float: right;
+	width: 200px;
+	height: 80px;
+	border-left: 1px solid #2f2f2f;
+	background-color: #090909;
+	
+}
+.login:hover .loginDrop {
+	padding: 0 30px 0 10px;
+	width: 160px;
+	height: 300px;
+}
+.loginImg {
+	float: left;
+	margin: 23px 9px;
+	width: 33px;
+	height: 33px;
+}
+.loginImg img {
+	width: 100%;
+	height: 100%;
+}
+.loginText {
+	float: left;
+	padding-top: 17px;
+	width: 140px;
+}
+.loginText a:hover {
+	text-decoration: underline;
+}
+.loginBar {
+	width: 100%;
+	height: 21px;
+	font: 12px/21px arial,"微软雅黑";
+}
+.loginUser {
+	float: left;
+	color: #adbebe;
+	margin-right: 5px;
+}
+.loginDiam {
+	float: left;
+	margin-top: 6px;
+	width: 19px;
+	height: 13px;
+	background-position: -20px 0;
+}
+.loginCentre {
+	color: #ffffff;
+	margin-right: 5px;
+}
+.loginDredge {
+	color: #42950f;
+}
+.loginDrop {
+	position: absolute;
+	top: 80px;
+	left: 0;
+	padding: 0 30px 0 10px;
+	width: 160px;
+	height: 0;
+	background-color: rgba( 9,9,9,.7 );
+	font-size: 12px;
+	overflow: hidden;
+	transition: .5s;
+}
+.loginDrop p {
+	padding-top: 15px;
+}
+.loginDrText {
+	line-height: 20px;
+	color: #bebebe;
+}
+.loginDrBtn {
+	width: 129px;
+	height: 35px;
+}
+.loginDrBtn a {
+	float: left;
+	width: 129px;
+	height: 35px;
+	background-color: #31c27c;
+	border-radius: 5px;
+	font-size: 15px;
+	line-height: 35px;
+	text-indent: 9px;
+	color: #fff;
+}
+.loginDrA {
+	height: 28px;
+	line-height: 28px;
+}
+.loginDrA a {
+	float: left;
+	color: #ffffff;
+}
+.loginDrA span {
+	float: left;
+	margin: 9px 4px 0;
+	height: 11px;
+	border-left: 1px solid #29462a;
+}
+.loginDrop .loginDrEquit {
+	position: absolute;
+	bottom: 16px;
+	right: 30px;
+	line-height: 16px;
+	color: #fff;
+}
+.loginBarb {
+	text-align: center;
+	font: 12px/80px "微软雅黑";
+}
+.loginBarb span {
+	color: #fff;
+}
+.loginBarb a {
+	color: #42a41b;
+}
+.loginBarb a:hover {
+	text-decoration: underline;
+	color: #9b9b9b;
+}
+	/*index header end*/
+	
+	/*index idBanner*/
+#idBanner {
+	background-color: #0c513f;
+}
+.Banner {
+	position: relative;
+	width: 100%;
+	height: 300px;
+	z-index: 1;
+}
+.Banner mark {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	margin-left: -79px;
+	width: 158px;
+	height: 30px;
+	background-position: 0 -13px;
+	filter: alpha ( opacity=50px);
+	opacity: .5;
+}
+.Banner p {
+	position: absolute;
+	bottom: 8px;
+	left: 50%;
+	margin-left: -79px;
+	width: 158px;
+	height: 12px;
+	text-align: center;
+}
+.Banner P span {
+	display: inline-block;
+	vertical-align: top;
+	width: 12px;
+	height: 12px;
+	margin: 0 4px;
+	border-radius: 6px;
+	background-position: 0 0;
+	background-color: rgba(255,255,255,.3);
+	cursor: pointer;
+}
+.Banner .carouselActive {
+	background-color: rgba(255,255,255,.8);
+}
+	/*index idBanner end*/
+	/*index idLead start*/
+#idLead {
+	width: 100%;
+	height: 78px;
+	border-top: 1px solid #e7e7e7;
+	border-bottom: 1px solid #e5e4e4;
+}
+#idLead .wrap {
+	width: 979px;
+	border-right: 1px solid #ededed;
+}
+#idLead li {
+	float: left;
+	position: relative;
+	padding-left: 145px;
+	padding-top: 18px;
+	border-left: 1px solid #ededed;
+	width: 180px;
+	height: 60px;
+}
+#idLead h3 {
+	width: 170px;
+	font: normal normal 18px/26px "微软雅黑";
+	color: #6f9e09;
+}	
+#idLead p {
+	width: 170px;
+	font-size: 12px;
+	line-height: 20px;
+	word-spacing: 2px;
+	color: #b2b1b1;
+}
+#idLead li span {
+	position: absolute;
+	top: 17px;
+	left: 88px;
+	width: 42px;
+	height: 42px;
+}
+.whatgreen {
+	background-position: 0 -90px;
+}
+.wheregreen {
+	background-position: -45px -90px;
+}
+.howgreen {
+	background-position: -90px -90px;
+}	
+	/*index idLead end*/
+	/*index idGreenDiamond start*/
+#idGreenDiamond {
+	height: 878px;
+	background: url(../img/background/greenDiamond.jpg) no-repeat center;
+	background-color: #e9e9e9;
+	overflow: hidden;
+}
+#idGreenDiamond .wrap {
+	position: relative;
+	padding-top: 161px;
+}
+#idGreenDiamond h2 {
+	position: absolute;
+	top: 105px;
+	left: 50%;
+	margin-left: -58px;
+	width: 116px;
+	height: 56px;
+	line-height: 200px;
+	overflow: hidden;
+	background-position: 0 -662px;
+}
+#idGreenDiamond p {
+	line-height: 26px;
+	font-size: 14px;
+	text-align: center;
+	color: #888888;
+}
+.lRounds {
+	position: absolute;
+	top: 328px;
+	left: 54px;
+	width: 100%;
+	height: 353px;
+	background-position: center 0;
+}
+.sct1Move {
+	position: absolute;
+	top: 220px;
+	left: 50%;
+	margin-left: -511px;
+	width: 1022px;
+	height: 544px;
+}
+.sct1Move span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -50px;
+	margin-left: -60px;
+	transition: .5s ease;
+	-webkit-transition: .5s ease;
+}
+.HQL {
+	width: 85px;
+	height: 85px;
+	background-position: -420px -630px;
+}
+.hand {
+	width: 116px;
+	height: 116px;
+	background-position: -210px -210px;
+}
+.stat {
+	width: 137px;
+	height: 137px;
+	background-position: 0 -209px;
+}
+.horn {
+	width: 69px;
+	height: 68px;
+	background-position: -630px -630px;
+}
+.add {
+	width: 94px;
+	height: 95px;
+	background-position: 0 -420px;
+}
+.cloudM {
+	width: 118px;
+	height: 117px;
+	background-position: -420px -210px;
+}
+.cloud {
+	width: 60px;
+	height: 60px;
+	background-position: -210px -420px;
+}
+.HQb {
+	width: 110px;
+	height: 111px;
+	background-position: -630px -210px;
+}
+.crown {
+	width: 42px;
+	height: 42px;
+	background-position: -315px -420px;
+}
+.sctiMoveMin {
+	width: 46px;
+	height: 45px;
+	background-position: -105px -420px;
+}
+#idGreenDiamond.active .HQL {
+	top: 0;
+	left: 143px;
+}
+#idGreenDiamond.active .hand {
+	top: 175px;
+	left: 11px;
+}
+#idGreenDiamond.active .stat {
+	top: 407px;
+	left: 61px;
+}
+#idGreenDiamond.active .horn {
+	top: 400px;
+	left: 457px;
+}
+#idGreenDiamond.active .add {
+	top: 440px;
+	right: 194px;
+}
+#idGreenDiamond.active .cloudM {
+	top: 351px;
+	right: 0;
+}
+#idGreenDiamond.active .cloud {
+	top: 207px;
+	right: 222px;
+}
+#idGreenDiamond.active .HQb {
+	top: 2px;
+	right: 58px;
+}
+#idGreenDiamond.active .crown {
+	top: 96px;
+	right: 263px;
+}
+#idGreenDiamond.active .sctiMoveMin {
+	top: 241px;
+	right: 111px;
+}
+	/*index idGreenDiamond end*/
+	
+	/*index idMusic start*/
+#idMusic {
+	width: 100%;
+	height: 706px;
+	background: url(../img/background/indexMusic.png) repeat;
+	overflow: hidden;
+}
+#idMusic .wrap {
+	position: relative;
+}
+#idMusic .idContent {
+	top: 160px;
+	left: 3px;
+	width: 245px;
+}
+#idMusic .idContent h2 {
+	background-position: 0 -50px;
+}
+#idMusic .sctR {
+	position: absolute;
+	top: 168px;
+	right: 12px;
+	width: 341px;
+	height: 341px;
+	background: url(../img/background/music_cd.png) no-repeat 0 0 ;
+}
+.sctR .mRounds {
+	position: absolute;
+	top: -75px;
+	left: -92px;
+	width: 440px;
+	height: 486px;
+	background-position: 0 -352px;
+}
+.sctR .write {
+	position: absolute;
+	top: -168px;
+	right: -20px;
+	width: 115px;
+	height: 175px;
+	background: url(../img/background/indexMusicWrite.png) no-repeat 0 0 ;
+	transition: .8s ease;
+	-webkit-transition: .8s ease;
+}
+#idMusic.active .sctR .write {
+	top: 50px;
+	right: -8px;
+} 
+.sctR .aroundCd span {
+	position: absolute;
+	top: 110px;
+	left: 110px;
+	width: 116px;
+	height: 116px;
+	-webkit-transition: .5s ease;
+	transition: .5s ease;
+}
+.sctR .HQcd {
+	background-position: -420px -420px;
+}
+.sctR .cloudMusic {
+	background-position: -630px -420px;
+}
+.sctR .cloudSpace {
+	background-position: -210px -630px;
+}
+.sctR .choosSong {
+	background-position: 0 -630px;
+}
+.idMusic.active .sctR .HQcd {
+	top: -115px;
+	left: -112px;
+}
+.idMusic.active .sctR .cloudMusic {
+	top: 22px;
+	left: -209px;
+}
+.idMusic.active .sctR .cloudSpace {
+	top: 189px;
+	left: -211px;
+}
+.idMusic.active .sctR .choosSong {
+	top: 328px;
+	left: -121px;
+}
+
+	/*index idMusic end*/
+	/*index idConcert start*/
+#idConcert {
+	width: 100%;
+	height: 687px;
+	background: url(../img/background/indexConcert.jpg) no-repeat center 0 #eae8e9;
+	overflow: hidden;
+}
+#idConcert .wrap {
+	position: relative;
+}
+.CbigRounds {
+	position: absolute;
+	top: 257px;
+	left: -30px;
+	width: 597px;
+	height: 600px;
+}
+.CbigRounds span {
+	position: absolute;
+}
+.CRticket {
+	top: 0;
+	right: 0;
+	width: 111px;
+	height: 110px;
+	background-position: -420px 0;
+}
+.CRconcert {
+	top: 73px;
+	left: 56px;
+	width: 127px;
+	height: 127px;
+	background-position: -630px 0;
+}
+.CRfree {
+	top: 319px;
+	left: 0;
+	width: 203px;
+	height: 203px;
+	background-position: 0 -840px;
+}
+.cRounds {
+	position: absolute;
+	top: 267px;
+	left: -10px;
+	width: 715px;
+	height: 313px;
+	background-position: 0 -838px;
+}
+#idConcert .idContent {
+	top: 147px;
+	right: -7px;
+	width: 297px;
+}
+ #idConcert .idContent h2 {
+	background-position: 0 -153px;
+}
+
+	/*index idConcert end*/
+	/*index idGame start*/
+#idGame {
+	overflow: hidden;
+	width: 100%;
+	height: 707px;
+	background: url(../img/background/indexGame.png) no-repeat center;
+}
+#idGame .wrap {
+	position: relative;
+}
+#idGame .idContent {
+	top: 218px;
+	left: 2px;
+	width: 240px;
+}
+#idGame .idContent h2 {
+	background-position: 0 -255px;
+}
+#idGame .roundPng {
+	position: absolute;
+	top: 289px;
+	right: -84px;
+	width: 715px;
+	height: 305px;
+	background-position: 0 -1151px;
+}	
+.gRounds {
+	position: absolute;
+	top: 80px;
+	right: 0;
+	width: 626px;
+	height: 226px;
+}
+.gRounds span {
+	position: absolute;
+}
+.GRrecom {
+	top: 84px;
+	left: 0;
+	width: 132px;
+	height: 132px;
+	background-position: -230px -840px;
+}
+.GRgift {
+	top: 0;
+	left: 220px;
+	width: 158px;
+	height: 157px;
+	background-position: -400px -840px;
+}
+.GRnew {
+	bottom: 0;
+	right: 30px;
+	width: 132px;
+	height: 132px;
+	background-position: -600px -840px;
+}
+	/*index idGame end*/
+	/*index idIdentity start*/
+#idIdentity {
+	width: 100%;
+	height: 706px;
+	background: url(../img/background/indexIdentity.jpg) no-repeat center #f9f9f9;
+}
+#idIdentity .wrap {
+	position: relative;
+}
+#idIdentity .idContent {
+	top: 228px;
+	left: 4px;
+	width: 260px;
+}
+#idIdentity .idContent h2 {
+	background-position: 0 -459px;
+}
+.idPicgroup {
+	position: absolute;
+	top: 68px;
+	right: 0;
+	width: 586px;
+	height: 536px;
+}	
+.idPicgroup span {
+	position: absolute;
+}
+.iPBanner {
+	top: 30px;
+	left: 0;
+	width: 127px;
+	height: 126px;
+	background-position: 0 -1050px;
+}
+.iPMark {
+	top: 0;
+	right: 46px;
+	width: 96px;
+	height: 96px;
+	background-position: -142px -1050px;
+}	
+.iPNew {
+	top: 242px;
+	right: 122px;
+	width: 96px;
+	height: 96px;
+	background-position: -250px -1050px;
+}
+.iPskin {
+	bottom: 0;
+	left: 66px;
+	width: 171px;
+	height: 171px;
+	background-position: -360px -1050px;
+}
+#idIdentity .roundPng {
+	position: absolute;
+	top: 203px;
+	right: -10px;
+	width: 715px;
+	height: 282px;
+	background-position: 0 -1783px;
+}	
+	/*index idIdentity end*/
+	/*index idStep start*/
+#idStep {
+	width: 100%;
+	height: 679px;
+	background: url(../img/background/indexStep.png) center center;
+}
+#idStep .wrap {
+	position: relative;
+}
+#idStep h2 {
+	position: absolute;
+	top: 89px;
+	left: 305px;
+	width: 394px;
+	height: 100px;
+	line-height: 300px;
+	background-position: 0 -560px;
+	overflow: hidden;
+}
+.stepUl {
+	padding: 357px 0 0 71px;
+	margin-right: -124px;
+}
+.stepUl li {
+	float: left;
+	margin-right: 135px;
+	width: 208px;
+	font-size: 16px;
+	line-height: 18px;
+	color: #888888;
+}
+.stepUl a {
+	display: block;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666666;
+}
+.stepUl a:hover {
+	text-decoration: underline;
+	color: #555555;
+}
+.idStepBtn {
+	position: absolute;
+	top: 518px;
+	left: 50%;
+	margin-left: -130px;
+	width: 259px;
+	height: 60px;
+	line-height: 300px;
+	overflow: hidden;
+}
+.idStepBtn mark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba( 119,141,106,.5 );
+	display: none;
+}
+.idStepBtn:hover mark {
+	display: inline;
+}
+
+	/*index idStep end*/
+	/*index idEnd start*/
+#idEnd {
+	width: 100%;
+	height: 80px;
+	background-color: #f5f5f5;
+}
+#idEnd .wrap {
+	padding-top: 21px;
+	font: 12px/18px "微软雅黑";
+}
+#idEnd li {
+	float: left;
+}
+#idEnd li h3 {
+	font-size: 14px;
+	font-size: 12px;
+	font-weight: normal;
+}
+#idEnd h3 a {
+	font-size: 14px;
+	color: #4d4d4d;
+}
+#idEnd h3 a:hover {
+	text-decoration: underline;
+	color: #42a41b;
+}
+#idEnd li p {
+	color: #8b8b8b;
+}
+.endL {
+	float: left;
+	margin-left: 29px;
+	padding-left: 26px;
+	height: 42px;
+	width: 150px;
+	background-position: 0 3px;
+}
+.idEndBtn {
+	float: left;
+	overflow: hidden;
+	margin: 6px 48px 0 15px;
+	width: 94px;
+	height: 28px;
+	line-height: 100px;
+	background-position: 0 -36px;
+}
+.idEndBtn:active {
+	background-position: 0 -163px;
+}
+.endC {
+	float: left;
+	margin-left: 39px;
+	padding-left: 25px;
+	height: 42px;
+	width: 150px;
+	background-position: 0 3px;
+}
+.endR {
+	position: relative;
+	padding: 0px 0 0 48px;
+	border-left: 1px solid #e4e4e4;
+	height: 40px;
+	line-height: 38px;
+	color: #8b8b8b;
+}
+.endR .iconGif {
+	position: absolute;
+	top: 2px;
+	right: -138px;
+	overflow: hidden;
+	background-position: 0 -44px;
+	width: 123px;
+	height: 36px;
+	line-height: 100px;
+}
+	/*index idEnd end*/
+	/*index Footer start*/
+#Footer {
+	padding-top: 30px;
+	width: 100%;
+	height: 108px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 26px;
+	color: #888888;
+}
+#Footer a {
+	color: #888;
+}
+#Footer a:hover {
+	text-decoration: underline;
+	color: #42a41b;
+}
+.footerNav a {
+	margin: 0 7px 0 7px;
+}
+	/*index Footer end*/
+/*index.css end*/
+/*music.css(ms) start*/
+	/*music msLead start*/
+#msLead {
+	padding-top: 20px;
+}
+#msLead .wrap {
+	height: 78px;
+	background: url(../img/background/musicLead.png) no-repeat;
+	background-position: 0 0;
+}
+#msLead h2 {
+	float: left;
+	margin-right: 60px;
+	height: 70px;
+	width: 460px;
+}
+#msLead .msLeadLast {
+	margin: 0;
+}
+#msLead h2 a {
+	float: left;
+	height: 70px;
+	width: 460px;
+	line-height: 200px;
+	overflow: hidden;
+}
+	/*music msLead  end*/
+	/*music msQual start*/
+#msQual .wrap {
+	padding-top: 2px;
+	height: 240px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.msH3 {
+	overflow: hidden;
+	margin-top: 30px;
+	width: 449px;
+	height: 27px;
+	line-height: 100px;
+}
+#msQual .msH3 {
+	background-position: 0 -81px;
+}
+.msQContent {
+	padding-top: 20px;
+}
+.msQualL {
+	float: left;
+	margin-left: 22px;	
+}
+.msQualL p {
+	padding: 1px 0 9px 0;
+}
+.msQualL strong {
+	float: left;
+	margin-right: 10px;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: normal;
+}
+.msQualL span {
+	float: left;
+	width: 383px;
+	font-size: 12px;
+	line-height: 18px;
+	color: #9e9e9e;
+}	
+#msQual .msColorRed {
+	color: #fe7b10;
+}
+#msQual .msColorGreen {
+	color: #42a41b;
+}
+.msQualL .msQualtitl {
+	font-size: 14px;
+	line-height: 20px;
+	color: #4d4d4d;
+}
+.msRedMark {
+	display: inline-block;
+	vertical-align: top;
+	margin: 3px 1px 0  2px;
+	width: 15px;
+	height: 9px;
+	background-position: 0 -70px;
+}
+.msGreenMark {
+	display: inline-block;
+	vertical-align: top;
+	margin: 3px 1px 0  2px;
+	width: 15px;
+	height: 9px;
+	background-position: 0 -80px;
+}
+.msQualR {
+	float: left;
+	margin-left: 18px;
+	width: 394px;
+}
+.msQualR audio {
+	display: none;
+}
+.msQualR p {
+	width: 394px;
+	height: 21px;
+	font: 12px/20px arial,"微软雅黑";
+}
+.msQualR p span {
+	float: left;
+	padding: 0 14px 0 12px;
+	position: relative;
+	color: #4e4e4e;
+	cursor: pointer;
+}
+.msQualR p span:hover {
+	color: #42a41b;
+}
+.msQualR .msColorRed:hover {
+	color: #fe7b10;
+}
+.msQualR span a {
+	position: absolute;
+	width: 9px;
+	height: 12px;
+	top: 3px;
+	left: 0;
+	background-position: -295px 0;
+}
+.msQualRpic {
+	position: relative;
+	margin-top: 12px;
+	width: 394px;
+	height: 83px;
+	background-position: 0 -221px;
+}
+.msQualRpic mark {
+	position: absolute;
+	top: -1px;
+	left: 1px;
+	width: 6px;
+	height: 87px;
+	background-position: -398px -217px;
+}
+	/*music msQual  end*/
+	/*music msCloud  start*/
+#msCloud .wrap {
+	height: 259px;
+	border-bottom: 1px solid #e5e5e5;
+}	
+#msCloud .msH3 {
+	background-position: 0 -109px;
+}
+.msContList {
+	margin-right: -95px;
+}
+.msContList li {
+	float: left;
+	margin-right: 95px;
+	width: 260px;
+	text-align: center;
+}
+.msContList .msImg {
+	display: inline-block;
+	vertical-align: top;
+	width: 114px;
+	height: 106px;
+}
+.msCloudTit {
+	display: block;
+	font-size: 14px;
+	line-height: 30px;
+	font-weight: normal;
+	color: #4e4e4e;
+}
+.msCloudTit:hover {
+	text-decoration: underline;
+	color: #42a41b;
+}
+.msContList p {
+	font-size: 12px;
+	line-height: 18px;
+	color: #9e9e9e;
+}
+.msBtn {
+	display: inline-block;
+	width: 179px;
+	height: 36px;
+	font-size: 16px;
+	line-height: 36px;
+	color: #4d4d4d;
+}
+#msCloud .msImg {
+	margin: 17px 0 8px;
+}
+.msCloudfirst .msImg {
+	background-position: -1px 0;
+}
+.msCloudsecond .msImg {
+	background-position: -122px 0;
+}
+.msCloudthird .msImg {
+	background-position: -242px 0;
+}
+	/*music msCloud end*/
+	/*music msSpace start*/
+#msSpace .wrap {
+	height: 282px;
+	border-bottom: 1px solid #ebebeb;
+}	
+#msSpace .msH3 {
+	background-position: 0 -137px;
+}
+#msSpace .msContList {
+	margin-right: -70px;
+}
+#msSpace .msContList li {
+	width: 280px;
+	margin-right: 70px;
+}
+#msSpace .msImg {
+	margin: 41px 0  12px;
+}
+.msSpacefirst .msImg {
+	background-position: -2px -124px;
+}
+.msSpacesecond .msImg {
+	background-position: -122px -124px;
+}
+.msSpacethird .msImg {
+	background-position: -242px -124px;
+}
+#msSpace .msBtn {
+	background-position: -295px -13px;
+}	
+#msSpace .msContList p {
+	line-height: 32px;
+}
+	/*music msSpace end*/
+	/*music msOnclick start*/
+#msOnclick .wrap {
+	height: 280px;
+	border-bottom: 1px solid #ebebeb;
+}	
+#msOnclick .msH3 {
+	background-position: 0 -165px;
+}
+#msOnclick .msImg {
+	margin: 34px 0  7px;
+}
+.msOnclickfirst .msImg {
+	background-position: -2px -240px;
+}
+.msOnclicksecond .msImg {
+	background-position: -122px -240px;
+}
+.msOnclickthird .msImg {
+	background-position: -242px -240px;
+}	
+	/*music msOnclick end*/
+	/*music msDownload start*/
+#msDownload {
+	padding-bottom: 21px;
+}
+#msDownload .wrap {
+	height: 182px;
+	border-bottom: 1px solid #ebebeb;
+}	
+#msDownload .msH3 {
+	background-position: 0 -193px;
+}
+#msDownload .msContList {
+	padding-top: 10px;
+	padding: 10px 0 0 82px;
+}
+#msDownload .msImg {
+	float: left;
+	width: 110px;
+	background-position: 0 -360px;
+}
+.msDownR {
+	float: left;
+	padding: 25px 0 0 27px;
+	width: 520px;
+}
+	/*music msDownload end*/
+/*music.css end*/
+/*game.css(gm) start*/
+.gameTitimg {
+	background: url(../img/background/gameTits.jpg) no-repeat;
+}
+#gmLead {
+	margin-top: 20px;
+	height: 60px;
+}
+#gmLead .wrap {
+	height: 58px;
+	border: 1px solid #e5e5e5;
+	line-height: 200px;
+}
+#gmLead h2 {
+	overflow: hidden;
+	float: left;
+	width: 292px;
+	height: 58px;
+	background-position: 0 0;
+}
+#gmLead p {
+	overflow: hidden;
+	margin: 4px 17px 0 0;
+	width: 182px;
+	height: 47px;
+	float: right;
+	background-position: -304px 0;
+}
+#gmContent {
+	padding-bottom: 20px;
+}
+#gmContent a:hover {
+	text-decoration: underline;
+	color: #42a41b;
+}
+.gmContLi {
+	margin-right: -37px;
+}
+#gmContent h2 {
+	overflow:hidden;
+	margin: 20px 0 10px;
+	height: 24px;
+	line-height: 200px;
+}
+.gmContOne h2 {
+	background-position: 0 -59px;
+}
+.gmContList {
+	width: 100%;
+	line-height: 20px;
+}
+.gmContList li {
+	overflow: hidden;
+	float: left;
+	margin-right: 36px;
+	padding: 10px 0;
+	width: 170px;
+}
+.gmContList img {
+	width: 100%;
+	height: 100px;
+}
+.gmContList h3 {
+	padding-top: 4px;
+	height: 20px;
+	font-size: 12px;
+}
+.gmContList h3 a {
+	color: #4e4e4e;
+}
+.gmContList p {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 20px;
+	font-size: 12px;
+	color: #9e9e9e;
+}
+.gmContList .gmContMax {
+	width: 363px;
+}
+.gmContList .gmContMax img {
+	height: 264px;
+}
+#gmContent .gmContTwo h2 {
+	margin: 20px 0 10px;
+	background-position: 0 -84px;
+}
+.gmContTwo .gmContList li {
+	padding-bottom: 10px;
+}
+.gmContTwo .gmContList h3 {
+	font-weight: normal;
+}
+.gmContTwo .gmContList p {
+	line-height: 26px;
+}
+.gmContTwo .gmContList p a {
+	color: #9e9e9e;
+}
+/*game.css end*/
+
+/*grades.css(gd) start*/
+#gdLead {
+	height: 70px;
+}
+#gdLead h2 {
+	float: left;
+	height: 50px;
+	text-align: center;
+	font-size: 25px;
+	font: 25px/50px "微软雅黑";
+}
+#gdLead a {
+	position: relative;
+	float: left;
+	width: 326px;
+	border-right: 1px dashed #b1d38f;
+	height: 50px;
+	background-color: #bae390;
+	color: #ffffff;
+}
+#gdLead mark {
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -10px;
+	background-color: transparent;
+}
+#gdLead .gdLeadWidthMin {
+	width: 325px;
+}
+#gdLead .gdLeadBordNone {
+	border: none;
+}
+#gdLead .gdLeadActive {
+	background-color: #8ac651;
+}
+#gdLead .gdLeadActive mark {
+	border: solid 20px;
+	border-color: #8ac651 #fff #fff #FFF;
+}
+.greenBord {
+	float: left;
+	margin-top: 20px;
+	height: 16px;
+	width: 16px;
+	border-left: solid 4px #98c55f;
+}
+.gdTit {
+	float: left;
+	height: 58px;
+	font: bold 16px/56px "微软雅黑";
+	color: #333333;
+}
+#gdGrade header p {
+	float: left;
+	padding-left: 5px;
+	font: 12px/58px "微软雅黑";
+	color: #9a9a9a;
+}
+.gdTab,
+.gdTab td,
+.gdTab th {
+	border: 1px solid #d3d3d3;
+	text-align: center;
+	font-size: 12px;
+	color: #4e4f4e;
+}
+.gdTab {
+	width: 980px;
+}
+.gdTab th,
+.gdTab td {
+	height: 48px;
+}
+.gdColorfe7b5a {
+	color: #fe7b10;
+}
+.gdTab .gdColorfe7b5a {
+	font-weight: bold;
+	color: #fe7b10;
+}
+#gdGrowth .gdTit {
+	height: 56px;
+}
+.gdGrowthPoint {
+	width: 100%;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.gdGrowthPoint * {
+	float: left;
+}
+.gdGrowthPoint em {
+	float: none;
+	font-style: normal;
+}
+.gdGrowthPoint span {
+	position: relative;
+	height: 39px;
+	font: 12px/39px "微软雅黑";
+	background-color: #e7e7e7;
+	color: #ff6161;
+}
+.gdGrowthPoint mark {
+	position: absolute;
+	top: 39px;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -8px;
+	border: 8px solid;
+	border-color: #e7e7e7 #fff #fff #fff;
+	background-color: transparent;
+}
+.gdGrowPOne {
+	width: 120px;
+	margin-right: 4px;
+}
+.gdGrowPTwo {
+	width: 466px;
+}
+.gdGrowthPoint .gdGrowPThree {
+	width: 140px;
+	font-weight: bold;
+}
+.gdGrowthPoint .gdGrowPFour {
+	width: 139px;
+	font-weight: bold;
+}
+.gdGrowthPoint .gdPlus {
+	margin: 11px 20px 8px;
+	width: 20px;
+	height: 20px;
+	background-position: 0 0;
+}
+.gdGrowthPoint .gdMinus {
+	padding: 0;
+	margin: 11px 15px 8px;
+	width: 20px;
+	height: 20px;
+	background-position: 0 -30px;
+}
+.gdGrowthPoint .gdColorBlack {
+	color: #4e4f4e;
+}
+.gdGrowthPoint .gdColorGreen {
+	color: #42a41b;
+}
+.gdColorGreen {
+	color: #42a41b;
+}
+.gdTableMin {
+	float: left;
+	margin-right: 7px;
+	width: 590px;
+}
+.gdTableMin td {
+	padding: 15px 4px;
+	border: 1px solid #d3d3d3;
+	height: 18px;
+	line-height: 18px;
+	text-align: left;
+	font-size: 12px;
+	color: #4e4f4e;
+}
+.gdTableMinOne {
+	width: 64px;
+}
+.gdTableMinTwo {
+	width: 78px;
+}
+.gdTableMinThree {
+	width: 119px;
+}
+.gdTableMinFour {
+	width: 101px;
+}
+.gdTableMinFive {
+	width: 71px;
+}
+.gdTableMin p {
+	color: #9e9e9e;
+}
+.gdGrowR {
+	float: left;
+	margin-left: 52px;
+	padding: 20px 10px;
+	width: 117px;
+	height: 424px;
+	border: 1px solid #d3d3d3;
+	line-height: 18px;
+	font-size: 12px;
+	color: #4e4f4e;
+}
+.gdGradFoot {
+	padding-top: 20px;
+	font: 12px/24px "微软雅黑";
+	color: #4e4f4e;
+}
+.gdBgColor {
+	background-color: #fafafa;
+}
+#gdGradeSame {
+	padding-bottom: 10px;
+}
+#gdGradeSame .gdTit {
+	height: 56px;
+}
+#gdGradeSame .gdTab {
+	margin-bottom: 20px;
+}
+#gdGradeSame .gdTab th {
+	text-align: left;
+	padding-left: 25px;
+}
+.gdBgImgRound {
+	position: relative;
+}
+#gdGradeSame .gdTabTit th {
+	height: 24px;
+	line-height: 24px;
+}
+#gdGradeSame .gdTabTit h4 {
+	float: left;
+	font-size: 16px;
+}
+#gdGradeSame td,
+#gdGradeSame th {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	height: 18px;
+	line-height: 18px;
+}
+#gdGradeSame .gdTab em {
+	font-style: normal;
+	display: inline-block;
+	vertical-align: top;
+	width: 12px;
+	height: 18px;
+	background: url(../img/background/gradeYesNo.png) no-repeat;
+}
+#gdGradeSame .gdBgRight {
+	background-position: 0 -18px;
+}
+#gdGradeSame .gdBgWrong {
+	background-position: 0 0;
+}
+.gdBgImgRound span {
+	position: absolute;
+	top: 17px;
+	left: 11px;
+	width: 3px;
+	height: 3px;
+	background-color: #98c55f;
+}
+#gdGradeSame .gdTabSamOne {
+	width: 310px;
+}
+#gdGradeSame .gdTabSamTwo {
+	width: 82px;
+}
+#gdGradeSame .gdTabSamThree {
+	width: 69px;
+}
+#gdGradeSame .gdTabSamFour {
+	width: 68px;
+}
+#gdGradeSame .gdTabSamFive {
+	width: 69px;
+}
+#gdGradeSame .gdTabSamSix {
+	width: 68px;
+}
+#gdGradeSame .gdTabSamSeven {
+	width: 70px;
+}
+#gdGradeSame .gdTabSamEight {
+	width: 69px;
+}
+#gdGradeSame .gdTabSamNine {
+	width: 69px;
+}
+/*grades.css end*/
+/*greenfee.css(gf) start*/
+#gfHow header {
+	padding-top: 15px;
+}
+#gfHow .greenBord {
+	margin-top: 15px;
+}
+#gfHow .gdTit {
+	line-height: 46px;
+	height: 46px;
+}
+.gfHowCont {
+	color: #4d4d4d;
+	font-size: 12px;
+	line-height: 18px;
+}
+.gfHowCont dt {
+	float: left;
+	margin-bottom: 20px;
+	width: 117px;
+	text-align: right;
+	font-weight: bold;
+}
+.gfHowCont dd {
+	float: left;
+	margin-bottom: 20px;
+	width: 863px;
+}
+.gfHowCont .gfHowLast {
+	margin: 0;
+}
+.gfHowTab {
+	width: 100%;
+}
+.gfHowTab td,
+.gfHowTab th {
+	border: 1px solid #d3d3d3;
+	padding: 12px 20px;
+	line-height: 20px;
+	font-size: 12px;
+} 
+.gfHowTabOne {
+	width: 169px;
+}
+.Color9e9e9e {
+	color: #9e9e9e;
+}
+.gfHint {
+	line-height: 48px;
+	font-size: 12px;
+}
+.gfHowNav {
+	font-size: 12px;
+	line-height: 52px;
+	height: 55px;
+	overflow: hidden;
+}
+#gfHowNav a:hover {
+	text-decoration: underline;
+}
+#gfAlone header {
+	padding-top: 15px;
+}
+#gfAlone .greenBord {
+	margin-top: 15px;
+}
+#gfAlone .gdTit {
+	line-height: 46px;
+	height: 46px;
+}
+.gfHowBtn {
+	float: left;
+	width: 113px;
+	height: 35px;
+	margin-right: 10px;
+	background-position: -630px -210px;
+	line-height: 200px;
+	overflow: hidden;
+}
+.gfAloneCont {
+	margin-right: -68px;
+	height: 490px;
+	overflow: hidden;
+}
+.gfAloneCont li {
+	float: left;
+	width: 210px;
+	margin-right: 52px;
+	margin-bottom: 8px;
+}
+.gfAloneCont div {
+	float: left;
+	width: 100%;
+	height: 196px;
+}
+.gfAloneCont p {
+	float: left;
+	width: 100%;
+	height: 46px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 46px;
+	color: #4d4d4d;
+}
+.gfAloneContOne div {
+	background-position: 0 0;
+}
+.gfAloneContTwo div {
+	background-position: -210px 0;
+}
+.gfAloneContThree div {
+	background-position: -420px 0;
+}
+.gfAloneContFour div {
+	background-position: -630px 0;
+}
+.gfAloneContFive div {
+	background-position: 0 -210px;
+}
+.gfAloneContSix div {
+	background-position: -210px -210px;
+}
+.gfAloneContSeven div {
+	background-position: -420px -210px;
+}
+#gfVS header {
+	padding-top: 15px;
+}
+#gfVS .greenBord {
+	margin-top: 15px;
+}
+#gfVS .gdTit {
+	line-height: 46px;
+	height: 46px;
+}
+.gfVSTab {
+	width: 980px;
+	text-align: center;
+}
+.gfVSTab  a:hover {
+	text-decoration: underline;
+}
+.gfVSTab td,
+.gfVSTab th {
+	border: 1px solid #d3d3d3;
+	padding: 10px 0;
+	height: 18px;
+	font-size: 12px;
+	line-height: 18px;
+	color: #4d4d4d;
+}
+.gfVSTab .gdColorfe7b5a th {
+	color: #fe7b5a;
+}
+.gfVSTabTit {
+	font-weight: bold;
+}
+.gfVSTabOne {
+	width: 310px;
+}
+.gfVSTabTwo {
+	width: 443px;
+}
+#gfQuestions {
+	padding-bottom: 31px;
+}
+#gfQuestions header {
+	padding-top: 15px;
+}
+#gfQuestions .greenBord {
+	margin-top: 15px;
+}
+#gfQuestions .gdTit {
+	line-height: 46px;
+	height: 46px;
+}
+.gfQuestionList{
+	padding-bottom: 21px;
+}
+.gfQuestContActive {
+	display: block;
+}
+.gfQuestionBtnActive {
+	transform: rotate(180deg);
+}
+.gfQuestion {
+	height: 18px;
+	font-size: 12px;
+	line-height: 20px;
+}
+.gfQuestionBtn {
+	float: left;
+	margin-top: 2px;
+	width: 15px;
+	height: 14px;
+	background-position: 0 -170px;
+	transition: .5s;
+}
+.gfQuestion p {
+	float: left;
+	margin-left: 10px;
+	color: #4e4f4e;
+}
+.gfQuestCont {
+	padding: 9px 0 1px 25px;
+	font-size: 12px;
+	line-height: 22px;
+	color: #787878;
+	display: none;
+}
+.gfQuestCont ol {
+	margin: 0 0 0 35px;
+	list-style-type: decimal;
+	-webkit-margin-before: 1em;
+ 	-webkit-margin-after: 1em;
+}
+.gfQuestCont ul {
+	margin: 0 0 0 35px;
+	list-style-type: disc;
+}
+/*greenfee.css end*/

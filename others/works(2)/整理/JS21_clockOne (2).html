@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+body {
+	background-color: #ccc;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#clock {
+	position: relative;
+	margin: 50px auto;
+	width: 500px;
+	height: 500px;
+	border-radius: 50%;
+	border: 5px solid #000;
+	background-color: #FFFFFF;
+	perspective-origin: 1000px;
+	background: url(../JS4/tabImg/bg2.jpg) no-repeat;
+}
+#list li{
+	position: absolute;
+	top: 0;
+	left: 247px;
+	width: 6px;
+	transform-origin: center 250px 0;
+}
+#list .min {
+	height: 15px;
+	background-color: #808080;
+}
+#list .max {
+	height: 30px;
+	background-color: #000000;
+}
+.hour {
+	position: absolute;
+	left: 240px;
+	top: 128px;
+	width: 20px;
+	height: 120px;
+	background-color: #282828;
+	transform-origin: center 120px 0;
+}
+.mintes {
+	position: absolute;
+	left: 244px;
+	top: 88px;
+	width: 12px;
+	height: 160px;
+	background-color: green;
+	transform-origin: center 160px 0;
+}
+.second {
+	position: absolute;
+	left: 247px;
+	top: 38px;
+	width: 6px;
+	height: 210px;
+	background-color: red;
+	transform-origin: center 210px 0;
+}
+#clock mark {
+	position: absolute;
+	top: 235px;
+	left: 235px;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	background-color: #000000;
+	box-shadow: 0 0 5px rgba(0,0,0,.8);
+}
+</style>
+<script>
+	window.onload = function () {
+		//加载完生成时钟的刻度
+		var aList = document.querySelector('#list');
+		var str = '';
+		for ( var i=0; i<60; i++ ) {
+			if ( i%5 == 0 ) {
+				str += '<li class="max" style="transform: rotateZ('+ i*6 +'deg);" ></li>';
+			} else {
+				str += '<li class="min" style="transform: rotateZ('+ i*6 +'deg);" ></li>';
+			}
+		}
+		aList.innerHTML = str;
+		
+		//获取三个指针元素
+		var aHour = document.querySelector('#clock .hour');
+		var aMinte = document.querySelector('#clock .mintes');
+		var aSecond = document.querySelector('#clock .second');
+		
+		clock();
+		//获取现在的时间
+		timer = setInterval(clock,1000);
+		
+		function clock(){
+			var oDate = new Date;
+			var hour = oDate.getHours()*30+(oDate.getMinutes()/60*30);
+			var minte = oDate.getMinutes()*6;
+			var second = oDate.getSeconds()*6;
+			aHour.style.transform = 'rotateZ('+ hour +'deg)';
+			aMinte.style.transform = 'rotateZ('+ minte +'deg)';
+			aSecond.style.transform = 'rotateZ('+ second +'deg)';
+		}
+		//console.log(hour,minte,second);
+		
+	}
+</script>
+</head>
+<body>
+	<section id="clock">
+		<ul id="list"></ul>
+		<span class="hour"></span>
+		<span class="mintes"></span>
+		<span class="second"></span>
+		<mark></mark>
+	</section>
+</body>
+</html>

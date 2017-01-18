@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+body {
+	background-color: #ccc;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#wrap {
+	position: relative;
+	margin: 50px auto;
+	width: 600px;
+	height: 300px;
+	text-align: center;
+	background-color: #fff;
+}
+#wrap ul {
+	width: 500px;
+}
+#wrap ul li {
+	position: absolute;
+	border: 5px solid #fff;
+	border-radius: 50%;
+	background-color: #00BFFF;
+	font: bold 100px/300px "宋体";
+	color: #fff;
+}
+#wrap ul li:nth-of-type(1) {
+	left: 0;
+	top: -150px;
+	height: 150px;
+	width: 150px;
+	opacity: 0;
+	z-index: 8;
+}
+#wrap ul li:nth-of-type(2) {
+	left: 0;
+	top: 0;
+	height: 150px;
+	width: 150px;
+	opacity: 0;
+	z-index: 7;
+}
+#wrap ul li:nth-of-type(3) {
+	left: 0;
+	top: 40px;
+	height: 190px;
+	width: 190px;
+	opacity: .3;
+	z-index: 4;
+}
+#wrap ul li:nth-of-type(4) {
+	left: 50px;
+	top: 20px;
+	height: 230px;
+	width: 230px;
+	opacity: .5;
+	z-index: 7;
+}
+#wrap ul li:nth-of-type(5) {
+	left: 150px;
+	top: 0;
+	width: 290px;
+	height: 290px;
+	z-index: 8;
+}
+#wrap ul li:nth-of-type(6) {
+	left: 310px;
+	top: 20px;
+	height: 230px;
+	width: 230px;
+	opacity: .5;
+	z-index: 6;
+}
+#wrap ul li:nth-of-type(7) {
+	left: 400px;
+	top: 40px;
+	height: 190px;
+	width: 190px;
+	opacity: .3;
+	z-index: 5;
+}
+
+#wrap ul li:nth-of-type(8) {
+	left: 440px;
+	top: 0;
+	height: 150px;
+	width: 150px;
+	opacity: 0;
+	z-index: 6;
+}
+.prev {
+	position: absolute;
+	top: 120px;
+	left: -70px;
+	width: 50px;
+	height: 50px;
+	border: 1px solid #666666;
+	font: bold 38px/50px "宋体";
+	color: #fff;
+	background-color: rgba(0,0,0,.5);
+}
+.next {
+	position: absolute;
+	top: 120px;
+	right: -70px;
+	width: 50px;
+	height: 50px;
+	border: 1px solid #666666;
+	font: bold 38px/50px "宋体";
+	color: #fff;
+	background-color: rgba(0,0,0,.5);
+}
+</style>
+</head>
+<body>
+<section id="wrap">
+	<ul>
+		<li><span>1</span></li>
+		<li><span>2</span></li>
+		<li><span>3</span></li>
+		<li><span>4</span></li>
+		<li><span>5</span></li>
+		<li><span>6</span></li>
+		<li><span>7</span></li>
+		<li><span>8</span></li>
+	</ul>
+	<span class="prev"><</span>
+	<span class="next">></span>
+</section>
+<script type="text/javascript" src="JS/publicMain.js" ></script>
+<script>
+
+var aLis = getEle('#wrap li');
+var oPrev = getEle('#wrap .prev');
+var oNext = getEle('#wrap .next');
+var liWid = css(aLis[0],'width') + 10;
+
+var arr = [];
+for ( var i=0; i<aLis.length; i++ ) {
+	var left = css(aLis[i],'left');
+	var oTop = css(aLis[i],'top');
+	var opacity = css(aLis[i],'opacity');
+	var width = css(aLis[i],'width');
+	var height = css(aLis[i],'height');
+	var zIndex = css(aLis[i],'zIndex');
+	arr.push({'left':left,'top':oTop,'opacity':opacity,'width':width,'height':height,'zIndex':zIndex});
+}
+
+oPrev.onclick = function(){
+	arr.push(arr.shift());
+	eleTab();
+}
+oNext.onclick = function() {
+	arr.unshift(arr.pop());
+	eleTab();
+}
+function eleTab() {
+	aLis.forEach(function(item,i){
+		item.style.zIndex = arr[i].zIndex;
+		mTween(item,{'left':arr[i].left,'top':arr[i].top,'opacity':arr[i].opacity,'width':arr[i].width,'height':arr[i].height},400,'linear');
+	});
+}
+
+</script>
+</body>
+</html>

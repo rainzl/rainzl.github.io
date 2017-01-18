@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+body,
+h1,
+p {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+img {
+	border: none;
+	vertical-align: top;
+}
+html {
+	width: 100%;
+	height: 100%;
+}
+body {
+	width: 100%;
+	height: 100%;
+}
+#header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 85px;
+	z-index: 3;
+}
+.logo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 12px 0 0 34px;
+	width: 142px;
+	height: 64px;
+}
+.logo a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	line-height: 200px;
+	background: url(xunleiImg/logo.png) no-repeat ;
+	background-size: 142px auto;
+	overflow: hidden;
+}
+#nav {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 486px;
+	height: 84px;
+}
+#nav li {
+	float: left;
+	position: relative;
+	width: 162px;
+	height: 84px;
+	text-align: center;
+}
+#nav li>a {
+	position: absolute;
+    width: 136px;
+    height: 38px;
+    text-align: center;
+    line-height: 38px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -19px 0 0 -68px;
+    border: 1px solid transparent;
+    font-size: 16px;
+    color: #fff;
+    z-index: 2;
+}
+#nav li>a:hover {
+	border: 1px solid #fff;
+}
+#nav i {
+	display: inline-block;
+    position: relative;
+    top: 3px;
+    margin-right: 13px;
+    width: 29px;
+    height: 19px;
+    cursor: pointer;
+	background: url(xunleiImg/head_spr.png) no-repeat;
+}
+#nav li:nth-of-type(2) i {
+	background-position: -54px 0;;
+}
+#nav li:nth-of-type(3) i {
+	background-position: 0 -24px;;
+}
+.more {
+	position: absolute;
+	top: 0;
+	right: -162px;
+	padding-top: 100px;
+	width: 162px;
+	height: 739px;
+	background: rgba(0,0,0,0.5);
+	z-index: 1;
+}
+.more div  {
+	width: 162px;
+}
+.more a {
+	display: block;
+	padding-bottom: 45px;
+	width: 162px;
+	height: 24px;
+	font-size: 18px;
+    line-height: 24px;
+	color: #c5c8d0;
+}
+.round {
+	position: absolute;
+	left: 18px; 
+	top: 0px;
+	width: 12px;
+    height: 12px;
+    background: url(xunleiImg/head_spr.png) no-repeat -36px 0;
+   	font-size: 0;
+    line-height: 0;
+    opacity: 0;
+}
+#endNav {
+	position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -162px;
+	width: 325px;
+	height: 84px;
+	border-bottom: 3px solid rgba(255,255,255,0.2);
+	z-index: 2;
+}
+#endNav a {
+	float: left;
+	margin-right: 15px;
+	width: 70px;
+	height: 80px;
+	background: url(xunleiImg/ic_spr.png) no-repeat;
+}
+#endNav a:nth-of-type(1) {
+	background-position: -606px 0;
+}
+#endNav a:nth-of-type(2) {
+	background-position: 0 0;
+}
+#endNav a:nth-of-type(3) {
+	background-position: -224px 0;
+}
+#endNav a:nth-of-type(4) {
+	background-position: -406px 0;
+}
+#endNav a:nth-last-of-type(1) {
+	margin: 0;
+}
+#endNav span {
+    position: absolute;
+    height: 3px;
+    width: 70px;
+    left: 0;
+    bottom: -3px;
+    background: #fff;
+}
+#img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	z-index: 1;
+	text-align: center;
+}
+#img li {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	opacity: 0;
+}
+#img img {
+	/*position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -450px 0px 0px -800px;*/
+	height: 602px;
+	width: auto;
+	z-index: 1;
+}
+#img p {
+	position: absolute;
+	top: 120px;
+	left: 50%;
+	margin-left: -232px;
+	width: 464px;
+	height: 74px;
+	line-height: 300px;
+	background: url(xunleiImg/txt_3.png) no-repeat;
+	background-size: 100% 100%;
+	z-index: 2;
+	overflow: hidden;
+}
+#img a {
+	position: absolute;
+	top: 220px;
+	left: 50%;
+	margin-left: -75px;
+    width: 148px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    text-align: center;
+    border-color: rgba(0,0,0,0.6);
+    color: #000;
+	/*border-color: rgba(255,255,255,0.3);
+    color: #fff;*/
+    z-index: 3;
+}
+</style>
+<script type="text/javascript" src="../publicJS/miaoV.js" ></script>
+<script>
+	window.onload = function () {
+		//导航显示更多：移入展开下拉列表;鼠标移入下拉项，蓝色原点移动
+		var aNavMore = document.querySelector('#nav .navMore');
+		var aMore = document.querySelector('#nav .more');
+		var aMoreDiv = aMore.getElementsByTagName('div')[0];
+		var aMoreAs = aMore.getElementsByTagName('a');
+		var aMoreSpan = aMore.getElementsByTagName('span')[0];
+		var timer = 0;
+		var timer2 = 0;
+		var timerTime = 0;
+		
+		addEventListener('size',fnNormal);
+		//循环鼠标移入每个子导航
+		for ( var i=0; i<aMoreAs.length; i++ ) {
+			aMoreAs[i].index = i;
+			aMoreAs[i].onmouseover = function (){
+				clearTimeout(timerTime);
+				aMoreSpanTop = this.index*69 + 106;
+				mTween(aMoreSpan,{'top':aMoreSpanTop},200,'linear',function(){
+					aMoreSpan.style.opacity = 100;
+				});
+			}
+			aMoreAs[i].onmouseout = function (){
+				timerTime = setTimeout(
+					function () {
+						aMoreSpan.style.opacity = 0;
+					},300
+				);
+			}
+		}
+		
+		//导航更多鼠标移入
+		aMore.onmouseover = aNavMore.onmouseover = function () {
+			var speed = parseInt(getStyle(aMore,'right'));
+			clearTimeout(timer2);
+			clearInterval(timer);
+			timer = setInterval(
+				function () {
+					speed += 5;
+					if ( speed >= 0 ) {
+						clearInterval(timer);
+						speed = 0;
+					}
+					aMore.style.right = speed + 'px';
+				},20
+			);
+		}
+		//导航更多鼠标移出
+		aMore.onmouseout = aNavMore.onmouseout = function () {
+			var speed = parseInt(getStyle(aMore,'right'));
+			timer2 = setTimeout(
+				function(){
+					clearInterval(timer);
+					timer = setInterval(
+						function () {
+							speed -= 5;
+							if ( speed <= -162 ) {
+								clearInterval(timer);
+								speed = -162;
+							}
+							aMore.style.right = speed + 'px';
+						},20
+					);
+				},200
+			);
+		}
+		
+		//底部图标导航显示
+		var aFootNavA = document.querySelectorAll('#endNav a');
+		var oFootNavSpan = document.querySelector('#endNav span');
+		var aImg = document.querySelectorAll('#img li');
+		var aImgs = document.querySelectorAll('#img img');
+		
+		function fnNormal() {
+			var html = document.getElementsByTagName('html')[0];
+			var htmlHeig = css(html,'height');
+			var htmlWid = css(html,'width');
+			for ( var i=0; i<aImgs.length; i++ ) {
+				aImgs[i].style.height = htmlHeig + 'px';
+				aImg[i].style.width = htmlWid + 'px';
+			}
+		}
+		
+		
+		var imgTimer = 0;
+		var num = 0;
+		moveNav();
+		imgTimer = setInterval(
+			function () {
+				num ++;
+				num %= aFootNavA.length;
+				moveNav();
+			},2000
+		);
+		for ( var i=0; i<aFootNavA.length; i++ ) {
+			(function(n) {
+				aFootNavA[n].onmouseover = function () {
+					clearInterval(imgTimer);
+					num = n;
+					moveNav();
+				}
+				aFootNavA[n].onmouseout = function () {
+					num = n;
+					imgTimer = setInterval(
+						function () {
+							num ++;
+							num %= aFootNavA.length;
+							moveNav();
+						},2000
+					);
+				}
+			})(i);
+		}
+		
+		function moveNav() {
+			for ( var i=0; i<aFootNavA.length; i++ ) {
+				aFootNavA[i].style.backgroundPositionY = '0';
+				mTween(aImg[i],{'opacity':0},400,'linear');
+			}
+			var Left = num*85;
+			aFootNavA[num].style.backgroundPositionY = '-108px';
+			mTween(oFootNavSpan,{'left':Left},400,'linear');
+			mTween(aImg[num],{'opacity':100},400,'linear');
+		}
+		
+		//获取样式函数
+		function getStyle( obj,attr ) {
+			return obj.currentStyle? obj.currentStyle[attr]: getComputedStyle(obj)[attr];
+		}
+	}
+</script>
+</head>
+<body>
+	<header id="header">
+		<h1 class="logo"><a href="javascript:;">迅雷</a></h1>
+		<ul id="nav">
+			<li><a href="javascript:;"><i></i>产品中心</a></li>
+			<li><a href="javascript:;"><i></i>新闻中心</a></li>
+			<li>
+				<a class="navMore" href="javascript:;"><i></i>更多</a>
+				<aside class="more">
+					<div>
+						<span class="round"></span>
+						<a href="javascript:;">星域CDN</a>
+						<a href="javascript:;">人力资源</a>
+						<a href="javascript:;">投资关系</a>
+						<a href="javascript:;">关于迅雷</a>
+						<a href="javascript:;">联系我们</a>
+					</div>
+				</aside>
+			</li>
+		</ul>
+	</header>
+	<div id="endNav">
+		<a href="javascript:;"></a>
+		<a href="javascript:;"></a>
+		<a href="javascript:;"></a>
+		<a href="javascript:;"></a>
+		<span class="beeline"></span>
+	</div>
+	<ul id="img">
+		<li class="active">
+			<img src="xunleiImg/bg1.jpg" />
+			<p>精彩，一下就有</p>
+			<a href="javascript:;">迅雷</a>
+		</li>
+		<li>
+			<img src="xunleiImg/bg2.jpg" />
+			<p>炽热追速之心</p>
+			<a href="javascript:;">手机迅雷</a>
+		</li>
+		<li>
+			<img src="xunleiImg/bg3.jpg" />
+			<p>快，让生活慢下来</p>
+			<a href="javascript:;">迅雷会员</a>
+		</li>
+		<li>
+			<img src="xunleiImg/bg4.jpg" />
+			<p>流畅画质 乐无止境</p>
+			<a href="javascript:;">迅雷影音</a>
+		</li>
+	</ul>
+</body>
+</html>

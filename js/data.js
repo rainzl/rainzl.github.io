@@ -65,42 +65,50 @@ var worksData = [
 	{
 		id: 1,
 		img: 'img/16.jpg',
-		href: 'javascript:;'
+		href: 'javascript:;',
+		name: '作品一'
 	},
 	{
 		id: 2,
 		img: 'img/17.jpg',
-		href: 'javascript:;'
+		href: 'javascript:;',
+		name: '作品一'
 	},
 	{
 		id: 3,
 		img: 'img/18.jpg',
-		href: 'javascript:;'
+		href: 'javascript:;',
+		name: '作品一'
 	},
 	{
 		id: 4,
 		img: 'img/3.jpg',
-		href: 'javascript:;'
+		href: 'javascript:;',
+		name: '作品一'
 	},
 	{
 		id: 5,
 		img: 'img/4.jpg',
-		href: 'javascript:;'
+		href: 'javascript:;',
+		name: '作品一'
 	},
 	{
 		id: 6,
 		img: 'img/18.jpg',
-		href: 'javascript:;'
+		href: 'javascript:;',
+		name: '作品一'
 	},
 	{
 		id: 7,
 		img: 'img/3.jpg',
-		href: 'javascript:;'
+		href: 'javascript:;',
+		name: '作品一'
 	},
 	{
 		id: 8,
 		img: 'img/4.jpg',
-		href: 'javascript:;'
+		href: 'javascript:;',
+		name: '作品一'
 	}
 	
 ];

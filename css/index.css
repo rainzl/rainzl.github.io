@@ -23,6 +23,7 @@ a {
 }
 img {
 	vertical-align: middle;
+	border: none;
 }
 
 /* public css*/
@@ -321,7 +322,7 @@ body.contact #logo {
 }
 #home .subCode {
 	position: absolute;
-	top: 70%;
+	top: 65%;
 	left: 0;
 	width: 100%;
 	height: 10px;
@@ -357,21 +358,43 @@ body.contact #logo {
 	clear: both;
 }
 #works .imgList {
+	box-sizing: border-box;
 	float: left;
-	width: 50%;
+	padding: 5px;
+	width: 25%;
 	overflow: hidden;
+	text-align: center;
 }
 #works a {
+	position: relative;
 	display: block;
 	width: 100%;
 	transition: 3.3s ease all;
 	-webkit-transition: 3.3s ease all;
+	overflow: hidden;
 }
 #works img {
 	width: 100%;
 	height: auto;
 }
-	
+#works mark {
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(150,150,200,.6);
+}
+#works em {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -15px;
+	height: 30px;
+	width: 100%;
+	font: 20px/30px "微软雅黑";
+	color: #fff;
+}	
 	
 	
 #footer,
@@ -756,6 +779,12 @@ body.contact #hint .smallSwitch .rightTwo {
     color: #787878;
     vertical-align: bottom;
 }
+@media screen and (max-width: 1200px) {
+	#works .imgList {
+		padding: 6px;
+		width: 50%;
+	}
+}
 
 
 @media screen and (max-width: 1200px),
@@ -763,6 +792,9 @@ screen and (max-height: 700px) {
 	#logo {
 		width: 80px;
 		height: 80px;
+	}
+	#loadingBar {
+		margin-top: 60px;
 	}
 	#menu .btn {
 		top: 10px;
@@ -809,9 +841,8 @@ screen and (max-height: 700px) {
 	#logo {
 		/*position: absolute*/
 	}
-	
-	#works .imgList {
-		width: 100%;
+	#works em {
+		font-size: 26px;
 	}
 }
 @media screen and (max-width: 500px),
@@ -829,6 +860,10 @@ screen and (max-height: 700px) {
 	}
 	#footer .blogroll {
 		display: none;
+	}
+	#works .imgList {
+		padding: 6px;
+		width: 100%;
 	}
 } 
 
@@ -853,7 +888,7 @@ screen and (max-height: 700px) {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-top: 60px;
+	margin-top: 80px;
 	width: 60px;
 	height: 6px;
 	border: 1px solid #ccc;

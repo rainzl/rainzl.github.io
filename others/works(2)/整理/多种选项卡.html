@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+body {
+	text-align: center;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+section {
+	margin: 50px;
+	width: 300px;
+	background-color: #ddd;
+	text-align: center;
+	display: inline-block;
+}
+.nav {
+	width: 300px;
+	height: 30px;
+	overflow: hidden;
+}
+.nav span {
+	box-sizing: border-box;
+	float: left;
+	border: 1px solid #bbb;
+	width: 100px;
+	height: 30px;
+	background-color: #ccc;
+	line-height: 30px;
+	cursor: pointer;
+}
+.nav .active {
+	background-color: yellow;
+}
+.content {
+	width: 300px;
+	height: 200px;
+	font: bold 20px/200px "宋体";
+}
+.content .hid {
+	display: none;
+}
+.content .show {
+	display: block;
+}
+footer {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<section id="box1">
+		<nav class="nav">
+			<span class="active">选项一</span>
+			<span>选项二</span>
+			<span>选项三</span>
+		</nav>
+		<ul class="content">
+			<li class="show">内容一</li>
+			<li class="hid">内容二</li>
+			<li class="hid">内容三</li>
+		</ul>
+	</section>
+	<section id="box2">
+		<nav class="nav">
+			<span class="active">选项一</span>
+			<span>选项二</span>
+			<span>选项三</span>
+		</nav>
+		<ul class="content">
+			<li class="show">内容一</li>
+			<li class="hid">内容二</li>
+			<li class="hid">内容三</li>
+		</ul>
+	</section>
+	<footer>
+		<input type="button" value="自动播放全部" />
+		<input type="button" value="自动播放第一个" />
+		<input type="button" value="自动播放第二个" />
+		<input type="button" value="停止自动播放" />
+		<input type="button" value="播放模式取反" />
+	</footer>
+<script src="js4/choseKa.js"></script>
+<script>
+(function(){
+	var footer = document.getElementsByTagName('footer')[0];
+	var footInput = footer.getElementsByTagName('input');
+	
+	var sct1 = new Tab('box1');
+	var sct2 = new Tab('box2');
+	
+	sct1.init();//初始化
+	sct2.init();//初始化
+	
+	footInput[0].onclick = function () {
+		sct1.autoPlay();
+		sct2.autoPlay();
+	}
+	footInput[1].onclick = function () {
+		sct1.autoPlay();
+		sct2.stop();
+	}
+	footInput[2].onclick = function () {
+		sct1.stop();
+		sct2.autoPlay();
+	}
+	footInput[3].onclick = function () {
+		sct1.stop();
+		sct2.stop();
+	}
+	footInput[4].onclick = function () {
+		sct1.onOff()? sct1.stop(): sct1.autoPlay();
+		sct2.onOff()? sct2.stop(): sct2.autoPlay();
+	}
+})()
+</script>
+</body>
+</html>

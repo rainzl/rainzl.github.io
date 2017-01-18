@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+body,
+p {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+#wrap {
+	margin: 50px auto;
+	padding: 10px 0;
+	width: 600px;
+	font: 16px/30px "宋体";
+	background-color: #eee;
+}
+#wrap li {
+	overflow: hidden;
+	padding: 10px 20px;
+}
+#wrap li:nth-of-type(even) {
+	background-color: #E2E7FC;
+}
+#wrap strong {
+	float: left;
+	width: 86px;
+}
+#wrap span {
+	padding: 0 5px;
+	cursor: pointer;
+}
+#wrap .checked p {
+	float: left;	
+}
+#wrap .checked div {
+	position: relative;
+	float: left;
+	border: 1px solid #5D9FC8;
+	padding-right: 15px;	
+	margin: 0 5px;
+	text-align: center;
+	font: 12px/28px "宋体";
+}
+#wrap .checked a {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 10px;
+	height: 10px;
+	color: #666666;
+	font: 10px/1 arial;
+}
+</style>
+</head>
+<body>
+	<ul id="wrap">
+		<li class="checked">
+			<p>你的选择：</p>
+		</li>
+		<li>
+			<strong>品牌:</strong>
+			<div>
+				<span>小米</span>
+				<span>苹果</span>
+				<span>三星</span>
+				<span>华为</span>
+				<span>酷派</span>
+				<span>联想</span>
+			</div>
+			
+		</li>
+		<li>
+			<strong>价格:</strong>
+			<div>
+				<span>499元以下</span>
+				<span>500-999元</span>
+				<span>1000-1999元</span>
+				<span>2000-2999元</span>
+			</div>
+		</li>
+		<li>
+			<strong>手机特色:</strong>
+			<div>
+				<span>学生机</span>
+				<span>国产</span>
+				<span>智能</span>
+				<span>千元机</span>
+				<span>商务</span>
+				<span>老人机</span>
+			</div>
+			
+		</li>
+		<li>
+			<strong>手机配置:</strong>
+			<div>
+				<span>电信3G</span>
+				<span>双核</span>
+				<span>拍照</span>
+				<span>四核</span>
+			</div>
+		</li>
+	</ul>
+<script>
+(function(){
+	var oWrap = document.getElementById('wrap');
+	var aLis = oWrap.children;
+	var oChecked = oWrap.getElementsByClassName('checked')[0];
+	var aCheckSpan = oChecked.getElementsByTagName('span');
+	var aCheckDiv = oChecked.getElementsByTagName('div');
+	for ( var i=0; i<aLis.length; i++ ) {
+		if ( i != 0 ) {
+			var aSpan = aLis[i].getElementsByTagName('span');
+			for (var j=0; j<aSpan.length; j++) {
+				aSpan[j].mark = i;
+				aSpan[j].onclick = function () {
+					var span = this.cloneNode(true);
+					span.mark = this.mark;
+					if ( findMark(aCheckSpan,this) ) {
+						aCheckDiv[findMark(aCheckSpan,this)-1].replaceChild(span,aCheckSpan[findMark(aCheckSpan,this)-1]);
+					} else {
+						var div = document.createElement('div');
+						var a = document.createElement('a');
+						
+						a.innerHTML = 'x';
+						a.href = 'javascript:;'
+						a.onclick = function () {
+							oChecked.removeChild(this.parentNode);
+						}
+						div.mark = span.mark;
+						div.appendChild(span);
+						div.appendChild(a);
+						oChecked.appendChild(div);
+						var arr = Array.from(aCheckDiv);
+						arr.sort(function(a,b){
+							return a.mark - b.mark;
+						});
+						for ( var i= 0; i<arr.length; i++ ) {
+							oChecked.appendChild(arr[i]);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	function findMark(arr,obj) {
+		for ( var i=0; i<arr.length; i++ ) {
+			if ( arr[i].mark == obj.mark ) {
+				return i + 1;
+			}
+		}
+	}
+})()
+</script>
+</body>
+</html>

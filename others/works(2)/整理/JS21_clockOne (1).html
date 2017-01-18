@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	height: 100%;
+	background: url(img21/bg.png) no-repeat center center;
+}
+#time {
+	position: absolute;
+	width: 520px;
+	height: 520px;
+	left: 50%;
+	top: 50%;
+	margin-left: -260px;
+	margin-top: -260px;
+	text-align: center;
+}
+#time img {
+	display: inline-block;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	margin: 20px auto;
+}
+#time .title {
+	display: block;
+	margin: 60px auto 30px;
+}
+.date {
+	width: 25px;
+	height: 36px;
+}
+</style>
+<script type="text/javascript" src="../publicJS/miaoV.js" ></script>
+<script>
+arr = ['seven','one','two','three','four','five','six'];
+window.onload = function () {
+	var oTime = document.getElementById('time');
+	var oImgDate = oTime.getElementsByClassName('date');
+	var oImgWeek = oTime.getElementsByClassName('week')[0];
+	
+	var oDate = new Date;
+	var year = oDate.getFullYear();
+	var month = dbNum(oDate.getMonth()+1);
+	var day = dbNum(oDate.getDate());
+	var hour = dbNum(oDate.getHours());
+	var minute = dbNum(oDate.getMinutes());
+	var second = dbNum(oDate.getSeconds());
+	var start = year+month+day+hour+minute+second;
+	var startWeek = oDate.getDay();
+	var timer = 0;
+	//时间日期初始化
+	for ( var i=0; i<start.length; i++ ) {
+		oImgDate[i].src = 'img21/'+start[i]+'.png';
+	}
+	//星期初始化
+	oImgWeek.src = 'img21/'+arr[startWeek]+'.png';
+	
+	//定时器：每隔一秒钟获取一次时间
+	timer = setInterval(
+		function(){
+			var oDate = new Date;
+			var year = oDate.getFullYear();
+			var month = dbNum(oDate.getMonth()+1);
+			var day = dbNum(oDate.getDate());
+			var hour = dbNum(oDate.getHours());
+			var minute = dbNum(oDate.getMinutes());
+			var second = dbNum(oDate.getSeconds());
+			var str = year+month+day+hour+minute+second;
+			var week = dbNum(oDate.getDay());
+			//日期与执行前的数字对比。不同的元素执行change函数
+			for ( var i=0; i<str.length; i++ ) {
+				if ( str[i] != start[i] ) {
+					change(oImgDate[i],str[i]);
+				}
+			}
+			//星期与执行前的数字对比。不同的元素执行change函数
+			if (startWeek != week) {
+				change(oImgWeek,arr[week]);
+				startWeek = week;
+			}
+			//切换图片函数
+			function change(ele,img){
+				mTween(ele,{'height':0,'bottom':18},200,'linear',function(){
+					ele.src = 'img21/'+img+'.png';
+					mTween(ele,{'height':36,'bottom':0},200,'linear');
+					start = str;
+				});
+			}
+		},1000
+	);
+	
+	function dbNum(num){
+		return num < 10? '0'+ num: ''+ num;
+	}
+}
+</script>
+</head>
+<body>
+<section id="time">
+	<img class="title" src="img21/title.png" />
+	<img class="date" src="img21/0.png" />
+	<img class="date" src="img21/0.png" />
+	<img class="date" src="img21/0.png" />
+	<img class="date" src="img21/0.png" />
+	<img src="img21/year.png" />
+	<img class="date" src="img21/0.png" />
+	<img class="date" src="img21/0.png" />
+	<img src="img21/month.png" />
+	<img class="date" src="img21/0.png" />
+	<img class="date" src="img21/0.png" />
+	<img src="img21/seven.png" />
+	<br />
+	<img class="date" src="img21/0.png" />
+	<img class="date" src="img21/0.png" />
+	<img src="img21/sign.png" />
+	<img class="date" src="img21/0.png" />
+	<img class="date" src="img21/0.png" />
+	<img src="img21/sign.png" />
+	<img class="date" src="img21/0.png" />
+	<img class="date" src="img21/0.png" />
+	<br />
+	<img src="img21/week.png" />
+	<img class="week" src="img21/one.png" />
+	
+</section>
+</body>
+</html>

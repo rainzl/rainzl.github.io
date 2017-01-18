@@ -124,7 +124,7 @@
 			
 			_this.nextBtn();
 			
-		},1600)
+		},2200)
 	}
 	TabImg.prototype.fnSubCode = function () {
 		var _this = this;

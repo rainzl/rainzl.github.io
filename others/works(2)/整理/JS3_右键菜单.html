@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	* {margin: 0; padding: 0;}
+	h2 {font-size: 12px; font-weight: normal; height: 30px; line-height: 30px; width: 133px; padding-left: 15px;}
+	.active {border: 1px solid #999; height: 28px; line-height: 28px; background: #ccc; cursor: default;}
+	ul {width: 150px; background: #99F; border: 1px solid #888;}
+	li {position: relative; list-style: none; float: left;}
+	li.active h2 {border: 1px solid #999; height: 28px; line-height: 28px; background: #ccc; cursor: default;}
+	li.active span {border-color: #ccc #ccc #ccc #333;}
+	#menu {position: absolute; display: none;}
+	#menu ul {position: absolute; top: 0; left: 145px; display: none;}
+	span {display: block; width: 0; height: 0; border-width: 4px; border-style: solid; border-color: #99F #99F #99F #333; font-size: 0; line-height: 0; float: right; position: absolute; top: 10px; right: 15px;}
+	li h2.active span{border-color: #ccc #ccc #ccc #333;}
+</style>
+</head>
+
+<body>
+	<ul id="menu">
+		<li><h2>显示卡属性</h2></li>
+		<li><h2>查看<span></span></h2>
+			<ul>
+				<li><h2>大图标</h2></li>
+				<li><h2>中等图标</h2></li>
+				<li><h2>小图标</h2></li>
+				<li><h2>自动排列图标</h2></li>
+				<li><h2>将图标与网格对齐</h2></li>
+				<li><h2>显示桌面图标</h2></li>
+				<li><h2>显示桌面小工具</h2></li>
+			</ul>
+		</li>
+		<li><h2>排序方式<span></span></h2>
+			<ul>
+				<li><h2>名称</h2></li>
+				<li><h2>类型</h2></li>
+				<li><h2>项目类型</h2></li>
+				<li><h2>修改日期</h2></li>
+			</ul>
+		</li>
+		<li><h2>刷新</h2></li>
+		<li><h2>图形选项<span></span></h2>
+			<ul>
+				<li><h2>屏面适应<span></span></h2>
+					<ul>
+						<li><h2>保持显示缩放比</h2></li>
+					</ul>
+				</li>
+				<li><h2>快捷键<span></span></h2>
+					<ul>
+						<li><h2>启用</h2></li>
+						<li><h2>禁用</h2></li>
+					</ul>
+				</li>
+				<li><h2>系统拖盘图标<span></span></h2>
+					<ul>
+						<li><h2>启用</h2></li>
+						<li><h2>禁用</h2></li>
+					</ul>
+				</li>
+				<li><h2>气球通知<span></span></h2>
+					<ul>
+						<li><h2>图形属性通知<span></span></h2>
+							<ul>
+								<li><h2>启用</h2></li>
+								<li><h2>禁用</h2></li>
+							</ul>
+						</li>
+						<li><h2>最佳分辨率通知<span></span></h2>
+							<ul>
+								<li><h2>启用</h2></li>
+								<li><h2>禁用</h2></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><h2>旋转<span></span></h2>
+					<ul>
+						<li><h2>旋转至正常</h2></li>
+						<li><h2>旋转至90度</h2></li>
+						<li><h2>旋转至180度</h2></li>
+						<li><h2>旋转至270度</h2></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><h2>个性化</h2></li>
+	</ul>
+<script src="JS/publicMain.js"></script>
+<script>
+(function(d){
+	var menu = d.getElementById('menu');
+	var aLis = menu.children;
+	window.addEventListener('contextmenu',rightClick);
+	showMain(menu);
+	
+	//点击window，关闭右键菜单
+	window.onclick = function (){
+		menu.style.display = 'none';
+	}
+	
+	//菜单中每一项的点击事件冒泡
+	menu.addEventListener('click',cancel);
+	function cancel(ev){
+		var ev = ev || event;
+		ev.cancelBubble = true;
+	}
+	//鼠标右键，显示菜单列表
+	function rightClick(ev) {
+		var ev = ev || event;
+		menu.style.display = 'block';
+		menu.style.top = ev.pageY + 'px';
+		menu.style.left = ev.pageX + 'px';
+		
+		ev.preventDefault();
+	}
+	
+	function showMain(obj) {
+		var aLis = obj.children;
+		aLis = [...aLis];
+		aLis.forEach(function(item,i){
+			var oH2 = item.getElementsByTagName('h2')[0];
+			var oUl = item.getElementsByTagName('ul')[0];
+			item.onmousemove = function (){
+				if (oUl) {
+					oUl.style.display = 'block';
+					showMain(oUl);
+				}
+				oH2.className = 'active';
+			}
+			item.onmouseout = function (){
+				var _this = this;
+				if (oUl) {
+					oUl.style.display = 'none';
+				}
+				oH2.className = '';
+			}
+		});
+	}
+	
+})(document)
+</script>
+</body>
+</html>
+

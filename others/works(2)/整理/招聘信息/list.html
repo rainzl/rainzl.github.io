@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>招贤纳士-社会招聘</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/data.js"></script>
+</head>
+<body>
+  <div id="wrap">
+  	<div class="left">
+    	<h2>招贤纳士</h2>
+      <ul>
+      	<!--<li><a href="javascript:;">社会招聘</a></li>
+      	<li class="focus"><a href="javascript:;">校园招聘</a></li> -->
+      </ul>
+    </div>
+  	<div class="right">
+    	<div class="title">
+      	<img src="img/shzp.gif" />
+      </div>
+      <div class="info">
+
+       <!--<p class="zp">
+        	<span><a href="">{{head}}</a></span>
+          <span>{{num}}</span>
+         	<span class="date">{{date}}</span>
+        </p>
+      	<p class="yq">{{datail}}[<a href="{{link}}">查看详情</a>]
+       </p>-->
+
+      </div>
+      <div class="pages">
+        <span class="prev">
+          <a href="javascript:;">
+            <img src="img/pre.gif">
+          </a>
+        </span>
+        <span class="next">
+          <a href="javascript:;">
+            <img src="img/next.gif">
+          </a>
+        </span>
+        <p>
+          <!--<span class="focus">
+            <a href="javascript:;">1</a>
+          </span>
+          <span>
+            <a href="javascript:;">2</a>
+          </span>
+          <span>
+            <a href="javascript:;">3</a>
+          </span>-->
+        </p>
+        
+      </div>
+      
+    </div>
+    <div class="clear"></div>
+  </div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+
+	var oWrap = document.getElementById('wrap');
+	var oTitle = oWrap.getElementsByClassName('title')[0],
+		oImg = oTitle.getElementsByTagName('img')[0],
+		oInfo = oWrap.getElementsByClassName('info')[0],
+		oPage = oWrap.getElementsByClassName('pages')[0],
+		oPageP = oPage.getElementsByTagName('p')[0],
+		oNext = oPage.getElementsByClassName('next')[0],
+		oPrev = oPage.getElementsByClassName('prev')[0];
+	var add = 'content.html';
+	var search = window.location.search? getSearch(window.location.search,'lx'): 'sh';
+	var hash = window.location.hash? parseInt(window.location.hash.split('=')[1]): 1;
+	var pageNum = 0;
+	var num = 3;
+	var unit = unitInfo();
+	
+	creatInfo(search,unit,hash);
+	creatNav(search);//main.js中引用的函数
+	creatPageN(aData[search].text);//生成页脚
+	window.onhashchange = function (){
+		hash = parseInt(window.location.hash.split('=')[1]);
+		creatInfo(search,unit,hash);
+	}
+	pageChange();
+	
+	
+	//改变页码函数
+	function pageChange() {
+		var oldNum = 0;
+		var aSpans = oPageP.getElementsByTagName('span');
+		oNext.onclick = function (){
+			pageNum++;
+			pageNum = pageNum > aSpans.length - 1? aSpans.length - 1:pageNum;
+			showSpan();
+		}
+		oPrev.onclick = function (){
+			pageNum--;
+			pageNum = pageNum < 0? 0:pageNum;
+			showSpan();
+		}
+		for (var i=0; i<aSpans.length; i++) {
+			aSpans[i].index = i;
+			aSpans[i].onclick = function () {
+				pageNum = this.index;
+				showSpan();
+			};
+		}
+		
+		function showSpan() {
+			window.location.hash = '#id='+ (pageNum+1);
+			aSpans[oldNum].className = '';
+			aSpans[pageNum].className = 'focus';
+			oldNum = pageNum;
+		}
+	}
+	
+	//生成主页面中招聘信息展示列表，并且生成页脚
+	function creatInfo(search,unit,hash) {
+		var arrTemp = [];
+		var img = aData[search].img,
+			name = aData[search].name,
+			txt = aData[search].text;
+		var numMax = hash*num;
+		oImg.src = img;
+		if (numMax>txt.length) {
+			numMax=txt.length
+		}
+		for ( var i=(hash-1)*num; i<numMax; i++ ){
+			var infoTemp = txt[i].info[0].l.join(' ');
+			if ( infoTemp.length>100 ){
+				infoTemp = infoTemp.substring(0,100)+'...';
+			}
+			var ut = unit.replace('{{head}}',txt[i].zw)
+					.replace('{{num}}','需求人数:'+ txt[i].rs + '人')
+					.replace('{{date}}',aData.date(txt[i].sj))
+					.replace('{{datail}}',infoTemp)
+					.replace('{{link}}',add+'?lx='+name+"#id="+i);
+			arrTemp.push(ut);
+		}
+		oInfo.innerHTML = arrTemp.join('');
+	}
+	
+	//生成页脚的函数
+	function creatPageN(txt) {
+		for ( var i=0; i<Math.ceil(txt.length/num); i++ ) {
+			var span = document.createElement('span');
+			var a = document.createElement('a');
+			a.innerHTML = i+1;
+			span.appendChild(a);
+			
+			if ( i === pageNum ){
+				span.className = 'focus';
+			}
+			oPageP.appendChild(span);
+		}
+	}
+	
+	//招聘信息展示列表单个的模板
+	function unitInfo() {
+		var nodes = oInfo.childNodes;
+		var nuit = null;
+		for (var i=0; i<nodes.length; i++) {
+			if (nodes[i].nodeType === 8 ) {
+				unit = nodes[i].nodeValue; 
+			}
+		}	
+		return unit;
+	}
+	
+	function getSearch(search,key){
+		if (search) {
+			var arr = search.substr(1).split('&');
+			var val ;
+			arr.forEach(function(item,i){
+				var arr = item.split('=');
+				if (arr[0] == key) {
+					val = arr[1];
+				}
+			});
+			return val;
+		}
+	}
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+h2,p {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+textarea,
+input {
+	outline: none;
+}
+textarea {
+	resize: none;
+}
+#message {
+	margin: 30px auto;
+	padding: 10px 20px;
+	width: 600px;
+	background-color: #ccc;
+}
+#message input {
+	width: 100%;
+	height: 36px;
+	box-sizing: border-box;
+}
+#message textarea {
+	margin: 10px 0 5px;
+	width: 100%;
+	height: 100px;
+	box-sizing: border-box;
+	overflow: auto;
+}
+.list {
+	width: 100%;
+}
+.list h2 {
+	margin: 10px 0;
+	padding: 0 10px;
+	height: 36px;
+	font: bold 20px/36px "宋体";
+	background-color: #D9E3CA;
+}
+.list li {
+	
+}
+.list header {
+	padding-left:10px;
+	height: 30px;
+	background-color: #dedede;
+	font: 12px/30px "宋体";
+}
+.list span {
+	float: left;
+}
+.list a {
+	text-decoration: none;
+	float: right;
+	background-color: #A8A8A8;
+	padding: 0 10px;
+}
+.list time {
+	padding: 0 10px;
+	float: right;
+}
+.list p {
+	padding: 10px;
+	border-bottom: 1px solid #f9f9f9;
+	font: 16px/30px "宋体";
+	background-color: #d6d6d6;
+	overflow: hidden;
+	word-break: break-all;
+}
+.hint {
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background-color: #fcfcfc;
+}
+</style>
+</head>
+<body>
+	<section id="message">
+		<input type="text" />
+		<textarea></textarea>
+		<input type="button" value="提交" />
+		<div class="list">
+			<h2>留言内容</h2>
+			<div class="hint">
+				快来抢沙发
+			</div>
+			<ul></ul>
+		</div>
+	</section>
+<script src="../JS7/JS/publicMain.js"></script>
+<script>
+var msgName = document.querySelector('#message input[type="text"]');
+var msgText = document.querySelector('#message textarea');
+var msgBtn = document.querySelector('#message input[type="button"]');
+var oUl = document.querySelector('#message .list ul');
+var aLi = oUl.children;
+var oList = document.querySelector('.list');
+var aAs = Array.from(oUl.getElementsByTagName('a'));
+
+msgBtn.onclick = function () {
+	
+	var oHint = oList.getElementsByTagName('div')[0];
+	var nameTemp = msgName.value;
+	var textTemp = msgText.value;
+	var li = document.createElement('li');
+	var header = document.createElement('header');
+	var span = document.createElement('span');
+	var time = document.createElement('time');
+	var p = document.createElement('p');
+	var a = document.createElement('a');
+	var div = document.createElement('div');
+	if ( nameTemp.trim() == '' || textTemp.trim() == '' ) {
+		alert('信息请输入完整');
+		return;
+	}
+	a.onclick = function () {
+		console.log(aLi.length);
+		if ( aLi.length <= 1 ) {
+			div.setAttribute('class','hint');
+			div.innerHTML = '快来抢沙发';
+			oUl.parentNode.insertBefore(div,oUl);
+		}	
+		oUl.removeChild(this.parentNode.parentNode);
+	}
+	
+	span.innerHTML = nameTemp;
+	time.innerHTML = getTime();
+	a.innerHTML = '删除';
+	p.innerHTML = textTemp;
+	header.appendChild(span);
+	header.appendChild(a);
+	header.appendChild(time);
+	li.appendChild(header);
+	li.appendChild(p);
+	
+	var first = oUl.firstElementChild;
+	if ( first ) {
+		oUl.insertBefore(li,first);
+	} else {
+		oHint.parentNode.removeChild(oHint);
+		oUl.appendChild(li);
+	}
+	var liHei = li.clientHeight;
+	var hei = p.clientHeight-20;
+	css(li,'height',liHei);
+	css(p,'height',0);
+	mTween(p,{'height':hei},600,'bounceOut');
+	msgName.value = msgText.value = '';
+};
+function getTime() {
+	var oData = new Date();
+	var year = oData.getFullYear();
+	var month = toDb(oData.getMonth() + 1);
+	var day = toDb(oData.getDate());
+	var hour = toDb(oData.getHours());
+	var minute = toDb(oData.getMinutes());
+	var second = toDb(oData.getSeconds());
+	return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+	
+}
+function toDb(num){
+	return num<10? '0'+num: '' + num;
+}
+/*function fn(3) {
+	if ( nub>0 ) {
+		nub--;
+		//fn(2);
+		function fn(2) {
+			if ( nub>0 ) {
+				nub--;
+				//fn(1);
+				function fn(1) {
+					if ( nub>0 ) {
+						nub--;
+						console.log(nub);//0
+						nub--;
+						console.log(nub);//-1
+					}
+				}	
+				console.log(nub);//1
+				nub--;
+				console.log(nub);//0
+			}
+		}
+		console.log(nub);//2
+		nub--;
+		//fn(nub);
+		function fn(1) {
+			console.log(nub);//0
+			console.log(nub);//-1
+		}
+		console.log(nub);//1
+	}
+}*/
+/*function fn(nub) {
+	if ( nub>0 ) {
+		nub--;
+		fn(nub);    
+		console.log(nub);
+		nub--;
+		fn(nub);
+		console.log(nub);
+	}
+}
+fn(3);*/
+</script>
+</body>
+</html>

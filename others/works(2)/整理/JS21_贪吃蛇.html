@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<link href="css21/index.css" rel="stylesheet" />
+<style>
+/*table {
+	margin: 30px auto;
+	border-collapse: collapse;
+	border: 1px solid #ccc;
+}
+tr {
+	border: 1px solid #ccc;
+}
+td {
+	width: 5px;
+	height: 5px;
+	border: 1px solid #ccc;
+}
+.sHead {
+	background-color: #669900;
+}
+.sBody {
+	background-color: #ccc;
+}*/
+</style>
+</head>
+<body>
+	<div id="snake">
+		<div class="info">贪吃蛇</div>
+		<div id="map"></div>
+		<div class="help">
+			<div class="left">
+				<div><span></span>蓝瘦</div>
+				<div><span></span>香菇</div>
+				<div id="start"><span></span>神奇</div>
+				<div><span></span>小心</div>
+			</div>
+			<div class="right">
+				<span>战绩:<i id="score">0</i>分</span>
+			</div>
+		</div>
+	</div>
+	<!--<table id="tab"></table>-->
+<script>
+(function(d){
+	var colors = ['#81ff9c','#f72ab5','#ebff1d','#20f5fb'];
+	var spans = d.querySelectorAll('.left span');
+	spans = [...spans];
+	spans.forEach(function(item,i){
+		item.style.backgroundColor = colors[i];
+	});
+})(document)
+
+
+
+/*(function(d){
+	var tab = d.getElementById('tab');
+	
+	creatTab();
+	var body = tab.tBodies[0];
+	var arr = [0,1,2];
+	
+	
+	snakeMove();
+	function snakeMove(){
+		var rows = body.rows;
+		for ( var i=0; i<arr.length; i++ ) {
+			if (i=arr.length-1) { 
+				rows[0].cells[i+3].className = 'sHead';
+			} else {
+				console.log(i);
+				rows[0].cells[i+3].className = 'sBody';
+			}
+		}
+	}
+	function creatTab(){
+		var tbody = d.createElement('tbody');
+		for ( var i=0; i<60;i++ ){
+			var tr = d.createElement('tr');
+			for ( var j=0; j<60;j++ ){
+				var td = d.createElement('td');
+				tr.appendChild(td);
+			}
+			tbody.appendChild(tr);
+		}
+		tab.appendChild(tbody);
+	}
+})(document)*/
+</script>
+<script src="JS21/snake.js"></script>
+</body>
+</html>

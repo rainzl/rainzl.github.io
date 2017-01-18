@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link href="css/index.css" rel="stylesheet"  type="text/css" />
+<script>
+	window.onload = function (){
+		var aTop_right = document.getElementById('top_right');
+		var oTop_h2 = aTop_right.getElementsByTagName('h2')[0];
+		var oTop_img = aTop_right.getElementsByTagName('img')[0];
+		var oTop_p = aTop_right.getElementsByTagName('p')[0];
+		var aTop_span = aTop_right.getElementsByTagName('span');
+		var aNum = document.getElementById('num');
+		var aNum_a = aNum.getElementsByTagName('a');
+		var aRr_img = [ 'img/img-2.png','img/img-3.png','img/img-1.png','img/img-1.jpg','img/img-2.jpg' ];
+		var aRr_h2 = [ '时尚名媛','随便','WHAT`S NEW','汪星人','圣彼得堡' ];
+		var num = 0;
+		
+		//初始化
+		for ( i=0; i<aRr_img.length; i++ ){
+			aNum.innerHTML += '<a href="javascript:;">' + [i + 1] + '</a>'
+		}
+		oTop_h2.innerHTML = aRr_h2[num];
+		oTop_img.src = aRr_img[num];
+		for ( i=0; i<aNum_a.length; i++ ){
+			aNum_a[i].className = '';
+		}
+		aNum_a[num].className = 'num_active';
+		
+		
+		
+		// 图片下标的点击事件
+		for ( i=0; i<aRr_img.length; i++){
+			aNum_a[i].index = i;
+			aNum_a[i].onclick = function (){
+				for ( i=0; i<aRr_img.length; i++ ){
+					aNum_a[i].className = '';
+				}
+				oTop_img.src = aRr_img[this.index];
+				this.className = 'num_active';
+			}
+		
+		}
+		
+		//上一个的点击事件
+		
+		aTop_span[0].onclick = function (){
+			num --;
+			if ( num == -1 ){
+				num = 0;
+			}
+			oTop_h2.innerHTML = aRr_h2[num];
+			oTop_img.src = aRr_img[num];
+			for ( i=0; i<aNum_a.length; i++ ){
+				aNum_a[i].className = '';
+			}
+			aNum_a[num].className = 'num_active';
+		}
+		//下一个的点击事件
+		
+		aTop_span[1].onclick = function (){
+			num ++;
+			if ( num == aRr_img.length ){
+				num = aRr_img.length - 1;
+			}
+			oTop_h2.innerHTML = aRr_h2[num];
+			oTop_img.src = aRr_img[num];
+			for ( i=0; i<aNum_a.length; i++ ){
+				aNum_a[i].className = '';
+			}
+			aNum_a[num].className = 'num_active';
+		}
+		
+		
+		
+	}
+</script>
+
+</head>
+<body>
+		<header>
+			<div id="head">
+				<ul class="clear">
+					<li class="first">街头</li>
+					<li>时装</li>
+					<li>秀</li>
+				</ul>
+				<div>
+					<span>S/S COLLECTIONS FASHION WEEK</span>
+					<h1></h1>
+				</div>
+			</div>
+		</header>
+		<nav>
+			<span class="a_class nav_active">明年春夏穿什么 FASHION SHOW</span>
+			<a class="a_class" href="javascript:;">今年秋冬穿什么 LOOK OF THE DAY</a>
+			<a class="a_class" href="javascript:;">明星达人穿什么  SUPER STAR</a>
+		</nav>
+		<article id="t_body">
+			<div id="top" class="clear">
+				<div id="top_left" class="font_ari">
+					<div class="color_87ae3a font_39">纽约9月21日</div>
+					<div class="bg_relative">
+						<div class="bg_bottom"></div>
+						<h2>WHAT'S NEW</h2>
+						<p>悼念会办的轰动极了，女星们虽说都是素女星们虽说都是素色装扮现身，可在女星们虽说都是素细节上还是花了心思凯特的深V“豪乳”赚足了眼球和闪光灯。</p>
+						<img src="img/img-1.png" />
+					</div>
+					<ul>
+						<li><a href="javascript:;">非凡的梦境：Chanel2010秋冬高级定制系列</a></li>
+						<li><a href="javascript:;">非凡的梦境：Chanel2010秋冬高级定制系列</a></li>
+						<li><a href="javascript:;">非凡的梦境：Chanel2010秋冬高级定制系列</a></li>
+						<li><a href="javascript:;">非凡的梦境：Chanel2010秋冬高级定制系列</a></li>
+						<li><a href="javascript:;">非凡的梦境：Chanel2010秋冬高级定制系列</a></li>
+					</ul>
+					<strong><a href="javascript:;">点击查看更多明星信息</a></strong>
+				</div>
+				<div id="top_right">
+					<h2>时尚名媛达芙妮—尼斯因鞋跟太高摔跤</h2>
+					<img src="img/img-2.png" />
+					<p>Alexander MoQueen的悼念会办的轰动极了，女星们虽说都是素色装扮现身，可在细节上还是花了不少心思。凯特的深V“豪乳”赚足了眼球和闪光灯。[<a href="javascript:;">详情</a>]</p>
+					<div id="num">
+						
+					</div>
+					<span class="prev"></span>
+					<span class="next"></span>
+				</div>
+			</div>
+			<div id="center">
+				<div id="center1" class="clear">
+					<img src="img/img-3.png"  />
+					<div class="cent">
+						<h2 class="color_87ae3a">10秋冬抢镜有高招围嘴项链露心机</h2>
+						<p class="cont">很多昔日迷人的女星如今脸部褶子成堆胸部走型、粗腰肥腿、惨相让人震惊。让我们必须要警惕起来，如何不让最性感的部位下垂，让自己看起来老了几十岁，一起抢救身体曲线吧！</p>
+					</div>
+					<ul class="cont">
+						<li><a href="javascript:;">尚周刊 模特火拼2011时尚杂志封面</a></li>
+						<li><a href="javascript:;">尚周刊 模特火拼2011时尚杂志封面</a></li>
+						<li>
+							<a href="javascript:;">尚周刊 模特火拼2011时尚杂志封面</a>
+							<a class="right" href="javascript:;">[更多]</a>
+						</li>
+					</ul>
+				</div>
+				<div id="center2">
+					<a href="javascript:;"></a><img src="img/img-4.png"  /></a>
+					<a href="javascript:;"><img src="img/img-5.png"  /></a>
+					<a href="javascript:;"><img src="img/img-6.png"  /></a>
+					<a href="javascript:;"><img src="img/img-7.png"  /></a>
+					<a href="javascript:;"><img src="img/img-8.png"  /></a>
+					<a href="javascript:;"><img src="img/img-9.png"  /></a>
+					<a href="javascript:;"><img src="img/img-10.png"  /></a>
+					<a href="javascript:;"><img src="img/img-11.png"  /></a>
+					<a href="javascript:;"><img class="last" src="img/img-13.png"  /></a>
+					<span class="prev"><</span>
+					<span class="next">></span>
+				</div>
+			</div>
+			<ul id="center3" class="clear">
+				<li>
+					<a href="javascript:;"><img src="img/img-14.png" /></a>
+					<h3><a href="javascript:;">COSTELLO TAGLIAPI</a></h3>
+				</li>
+				<li>
+					<a href="javascript:;"><img src="img/img-14.png" /></a>
+					<h3><a href="javascript:;">COSTELLO TAGLIAPI</a></h3>
+				</li>
+				<li>
+					<a href="javascript:;"><img src="img/img-14.png" /></a>
+					<h3><a href="javascript:;">COSTELLO TAGLIAPI</a></h3>
+				</li>
+				<li>
+					<a href="javascript:;"><img src="img/img-14.png" /></a>
+					<h3><a href="javascript:;">COSTELLO TAGLIAPI</a></h3>
+				</li>
+				<li>
+					<a href="javascript:;"><img src="img/img-14.png" /></a>
+					<h3><a href="javascript:;">COSTELLO TAGLIAPI</a></h3>
+				</li>
+			</ul>
+		</article>
+		<footer>
+			Copyright 2010 Sohu.com Inc. All Rights Reserved.搜狐公司 版权所有
+		</footer>
+	<!--[ if IE 6 ]>
+		<script src="js/DD_belatedPNG_0.0.8a.js"></script>
+		<script>
+			DD_belatedPNG.fix('*');
+		</script>
+	<![endif] -->
+		
+		
+</body>
+</html>

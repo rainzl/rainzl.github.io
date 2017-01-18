@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+ul {
+	margin: 0;
+	padding: 10px;
+	list-style: none;
+	float: left;
+	width: 400px;
+}
+.wrap {
+	margin: 0 auto;
+	overflow: hidden;
+	width: 420px;
+	text-align: center;
+	background-color: #ddd;
+}
+#list li {
+	margin: 5px;
+	width: 190px;
+	height: 190px;
+	background: url(img3/loading.gif) no-repeat;
+	float: left;
+}
+#list img {
+	width: 190px;
+	height: 190px;
+	opacity: 0;
+}
+#btn {
+	width: 100px;
+	height: 30px;
+}
+</style>
+</head>
+<body>
+	<section class="wrap">
+		<ul id="list"></ul>
+		<input id="btn" type="button"value="加载更多图片 " />
+	</section>
+<script src="JS/publicMain.js"></script>
+<script>
+var data = [
+	{'img':'img3/img1.gif'},
+	{'img':'img3/img2.gif'},
+	{'img':'img3/img3.gif'},
+	{'img':'img3/img4.gif'},
+	{'img':'img3/img5.gif'},
+	{'img':'img3/img6.gif'},
+	{'img':'img3/img7.gif'},
+	{'img':'img3/img8.gif'},
+	{'img':'img3/img9.gif'},
+	{'img':'img3/img10.gif'},
+	{'img':'img3/img11.gif'},
+	{'img':'img3/img12.gif'},
+	{'img':'img3/img1.gif'},
+	{'img':'img3/img2.gif'},
+	{'img':'img3/img3.gif'},
+	{'img':'img3/img4.gif'},
+	{'img':'img3/img5.gif'},
+	{'img':'img3/img6.gif'},
+	{'img':'img3/img7.gif'},
+	{'img':'img3/img8.gif'},
+	{'img':'img3/img9.gif'},
+	{'img':'img3/img10.gif'},
+	{'img':'img3/img11.gif'},
+	{'img':'img3/img12.gif'}
+];
+var oList = document.getElementById('list');
+var oBtn = document.getElementById('btn');
+var start = 0;
+var len = 10;
+var aLis = oList.children;
+
+
+creatLi();
+show();
+oBtn.onclick = creatLi;
+function creatLi() {
+	var end = start + len;
+	if ( end >= data.length ) {
+		end = data.length;
+		oBtn.value = '没有更多图片了';
+		oBtn.disabled = true;
+	}
+	for ( var i=start; i<end; i++ ) {
+		var li = document.createElement('li');
+		li.createImg = true;
+		li.dataset.img = data[i].img;
+		oList.appendChild(li);
+	}
+	start = end;
+}
+window.onscroll = show;
+window.onresize = show;
+function show() {
+	for ( var i=0; i<aLis.length; i++ ) {
+		var windowH = document.documentElement.clientHeight || document.body.clientHeight ;
+		var oTop = aLis[i].getBoundingClientRect().top;
+		
+		if ( oTop + aLis[i].offsetHeight > 0 && windowH - oTop > 0 && aLis[i].createImg ) {
+			aLis[i].createImg = false;
+			var img = document.createElement('img');
+			img.src = aLis[i].dataset.img;
+			mTween(img,{'opacity':100},600,'linear');
+			aLis[i].appendChild(img);
+		}
+	}
+}
+
+
+</script>
+</body>
+</html>

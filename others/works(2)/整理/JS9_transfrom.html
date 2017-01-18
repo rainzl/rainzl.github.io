@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+ul {
+	position: relative;
+	margin: 20px auto;
+	padding: 0;
+	width: 620px;
+	height: 480px;
+	list-style: none;
+	perspective: 1000px;
+	background-size: 620px 480px;
+}
+#list li {
+	position: absolute;
+	width: 62px;
+	height: 48px;
+	background: url(img9/1.jpg) no-repeat;
+}
+</style>
+</head>
+<body>
+	<ul id="list"></ul>
+<script src="JS/publicMain.js"></script>
+<script>
+var data = [
+	'img9/1.jpg','img9/2.jpg','img9/3.jpg','img9/4.jpg','img9/5.jpg'
+];
+(function(d){
+	//-初始化一些变量和方法-----------------
+	var oList = d.getElementById('list');
+	var aLis = oList.children;
+	var liW = 62,
+		liH = 48;
+	var num = 10;
+		
+	//--初始化主要逻辑--------------
+	//oList.style.background = `url(${data[0]}) no-repeat`;
+	
+	createLi();
+	//move();
+	
+	//-需求函数化---------------------
+	function boom(){
+		//console.log(data.push(data.shift()))
+		data.push(data.shift());
+		
+		//oList.style.background = `url(${data[0]}) no-repeat`;
+		for ( var i=0; i<aLis.length; i++ ) {
+			var distX = (aLis[i].oLeft - this.oLeft)/liW,
+				distY = (aLis[i].oTop - this.oTop)/liH;
+			distX = distX == 0? 0.5: distX;
+			distY = distY == 0? 0.5: distY;
+			
+			move(aLis[i],distX,distY);
+		}
+		
+	}
+	function move(obj,distX,distY) {
+		var dist = num-Math.abs(distX) + num-Math.abs(distY),
+			distZ = Math.sqrt((num-Math.abs(distX))*(num-Math.abs(distX))+(num-Math.abs(distY))*(num-Math.abs(distY))),
+			delay = Math.abs(distX) + Math.abs(distY);
+			
+		var rotateX = (100*distZ+360)*(Math.random()-0.5),
+			rotateY = (100*distZ+360)*(Math.random()-0.5);
+			
+		var translateX = distZ*liW/25*distX/Math.abs(distX),
+			translateY = distZ*liH/25*distY/Math.abs(distY);
+			translateZ = distZ*50+200;
+		
+		setTimeout(
+			function(){
+				//obj.style.boxShadow = '0 0 10px #fbad49';
+				mTween(obj,
+					{	
+						'translateX':translateX,
+						'translateY':translateY,
+						'translateZ':translateZ,
+						'rotateX':rotateX,
+						'rotateY':rotateY,
+						'opacity':0
+					},
+					delay*50+500,'linear',function(){
+						styleLi(obj);
+					}
+				);
+			},delay*30
+		);
+	}
+	function styleLi(obj){
+		obj.style.cssText = ``;
+		obj.style.background = `url(${data[0]}) no-repeat`;
+		obj.style.top = obj.oTop + 'px';
+		obj.style.left = obj.oLeft + 'px';
+		obj.style.backgroundPosition = (-obj.oLeft) + 'px '+ (-obj.oTop) + 'px';
+		obj.style.backgroundSize = `620px 480px`;
+	}
+	function createLi() {
+		for (var i=0; i<100; i++) {
+			var li = d.createElement('li');
+				li.oTop = parseInt(i/num)*liH,
+				li.oLeft = i%num*liW;
+			styleLi(li);
+			li.onclick = boom;
+			oList.appendChild(li);
+		}
+	}
+})(document)
+</script>
+</body>
+</html>

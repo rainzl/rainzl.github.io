@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link href="css/wangeMuisc.css" rel="stylesheet" />
+<script src="js/html5shiv.js"></script>
+<!--[if IE 6]>
+<script src="JS/DD_belatedPNG_0.0.8a.js"></script>
+<script>
+	DD_belatedPNG.fix('.img p');
+		DD_belatedPNG.fix('.recomImg a em');
+		DD_belatedPNG.fix('.recomImg span');
+		DD_belatedPNG.fix('.recomImg mark');
+		DD_belatedPNG.fix('.recomImg .btnRecom ');
+		DD_belatedPNG.fix('#prev');
+		DD_belatedPNG.fix('#next');
+		DD_belatedPNG.fix('.img .carouselText');
+		DD_belatedPNG.fix('.carouselText a:hover');
+		DD_belatedPNG.fix('.cdImg em');
+		DD_belatedPNG.fix('.rankListTitleL em');
+		cdImg
+</script>
+<![endif]-->
+<script>
+window.onload = function () {
+	var oRank = document.getElementById('rank');
+	var aRankDl = oRank.getElementsByTagName('dl');
+	var aRr = [];
+	for ( i=0; i<aRankDl.length; i++ ) {
+		var oRankDd = aRankDl[i].getElementsByTagName('dd');
+		for ( j=0; j<oRankDd.length; j++ ) {
+			if ( j%2 == 0 ) {
+			oRankDd[j].className += ' rankListEven';
+			}
+		}
+	}
+}
+</script>
+</head>
+<body>
+	<header id="header">
+		<div class="wrap clearfix">
+			<h1 class="logo"><a href="wangeMusic.html">网易云音乐</a></h1>
+			<ul class="nav"  style="overflow: hidden; height: 70px;">
+				<li class=" navFirst navWidth98">
+					<a href="#">
+						<div><mark></mark></div>
+						<span class="navLeft"></span>
+						<span class="navText">发现音乐</span>
+						<span class="navRight"></span>
+					</a>
+				</li>
+				<li class="active navWidth98">
+					<a href="#">
+						<div><mark></mark></div>
+						<span class="navLeft"></span>
+						<span class="navText">我的音乐</span>
+						<span class="navRight"></span>
+					</a>
+				</li>
+				<li class="navWidth70">
+					<a href="#">
+						<div><mark></mark></div>
+						<span class="navLeft"></span>
+						<span class="navText">朋友</span>
+						<span class="navRight"></span>
+					</a>
+				</li>
+				<li class="navLast navWidth112">
+					<a href="#">
+						<div><mark></mark></div>
+						<span class="navLeft"></span>
+						<span class="navText">下载客户端</span>
+						<span class="navRight"></span>
+						<div><span class="hot"></span></div>
+					</a>
+				</li>
+			</ul>
+			<div class="container">
+				<form>
+					<div class="search">
+						<input class="submit" type="submit" name="submit" value="" />
+						<input class="text" type="text" name="text" placeholder="单曲" />
+					</div>
+				</form>
+				<div class="login">
+					<a class="loginLink" href="#">登陆</a>
+					<ul>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<nav id="subNav">
+		<div class="wrap">
+			<nav class="subNavList clearfix">
+				<a class="subNavActive" href="#">推荐</a>
+				<a href="#">排行榜</a>
+				<a href="#">歌单</a>
+				<a href="#">主播电台</a>
+				<a href="#">歌手</a>
+				<a href="#">新碟上架</a>
+			</nav>
+		</div>
+	</nav>
+	<div id="carousel">
+		<div class="wrap img">
+			<a href="#"><img src="img/img1/banner.jpg" ></a>
+			<p class="carouselText"><a href="#"></a>PC 安卓 iPone WP iPad Mac 溜达客户端</p>
+			<p class="groundMark">
+				<mark></mark>
+				<mark class="groundMarkActive"></mark>
+				<mark></mark>
+			</p>
+			<span id="prev"></span>
+			<span id="next"></span>
+		</div>
+	</div>
+	<article id="content" class="wrap clearfix">
+		<div class="contentLeft">
+			<section>
+				<header class="contHeader clearfix">
+					<h2><a href="#">热门推荐</a></h2>
+					<p>
+						<span><a href="#">华语</a></span>
+						<span><a href="#">流行</a></span>
+						<span><a href="#">摇滚</a></span>
+						<span><a href="#">民谣</a></span>
+						<span class="contHeaderLast"><a href="#">电子</a></span>
+					</p>
+					<a class="more" href="#">更多</a>
+				</header>
+				<ul class="hotRecom clearfix">
+					<li>
+						<div class="recomImg">
+							<a href="#">
+								<img src="img/img1/img.jpg" />
+								<em></em>
+							</a>
+							<mark></mark>
+							<span>88万</span>
+							<a class="btnRecom" href="#"></a>
+						</div>
+						<p><a href="#">岁月未存慈悲，原你始终不疑真心</a></p>
+					</li>
+					<li>
+						<div class="recomImg">
+							<a href="#">
+								<img src="img/img1/img.jpg" />
+								<em></em>
+							</a>
+							<mark></mark>
+							<span>88万</span>
+							<a class="btnRecom" href="#"></a>
+						</div>
+						<p><a href="#">岁月未存慈悲，原你始终不疑真心</a></p>
+					</li>
+					<li>
+						<div class="recomImg">
+							<a href="#">
+								<img src="img/img1/img.jpg" />
+								<em></em>
+							</a>
+							<mark></mark>
+							<span>88万</span>
+							<a class="btnRecom" href="#"></a>
+						</div>
+						<p class="clearfix"><a class="tvshow" href="#">电台节目</a><a href="#">经典逃难 1981</a></p>
+					</li>
+					<li>
+						<div class="recomImg">
+							<a href="#">
+								<img src="img/img1/img.jpg" />
+								<em></em>
+							</a>
+							<mark></mark>
+							<span>88万</span>
+							<a class="btnRecom" href="#"></a>
+						</div>
+						<p><a href="#">岁月未存慈悲，原你始终不疑真心</a></p>
+					</li>
+					<li>
+						<div class="recomImg">
+							<a href="#">
+								<img src="img/img1/img.jpg" />
+								<em></em>
+							</a>
+							<mark></mark>
+							<span>88万</span>
+							<a class="btnRecom" href="#"></a>
+						</div>
+						<p><a href="#">岁月未存慈悲，原你始终不疑真心</a></p>
+					</li>
+					<li>
+						<div class="recomImg">
+							<a href="#">
+								<img src="img/img1/img.jpg" />
+								<em></em>
+							</a>
+							<mark></mark>
+							<span>88万</span>
+							<a class="btnRecom" href="#"></a>
+						</div>
+						<p><a href="#">岁月未存慈悲，原你始终不疑真心</a></p>
+					</li>
+					<li>
+						<div class="recomImg">
+							<a href="#">
+								<img src="img/img1/img.jpg" />
+								<em></em>
+							</a>
+							<mark></mark>
+							<span>88万</span>
+							<a class="btnRecom" href="#"></a>
+						</div>
+						<p><a href="#">岁月未存慈悲，原你始终不疑真心</a></p>
+					</li>
+					<li>
+						<div class="recomImg">
+							<a href="#">
+								<img src="img/img1/img.jpg" />
+								<em></em>
+							</a>
+							<mark></mark>
+							<span>88万</span>
+							<a class="btnRecom" href="#"></a>
+						</div>
+						<p><a href="#">岁月未存慈悲，原你始终不疑真心</a></p>
+					</li>
+				</ul>
+				<a class="bannerImg" href="#"><img src="img/img1/img-2.jpg"></a>
+			</section>
+			<section>
+				<header class="contHeader clearfix">
+					<h2><a href="#">新碟上架</a></h2>
+					<a class="more" href="#">更多</a>
+				</header>
+				<div class="newCd">
+					<ul class="clearfix">
+						<li>
+							<div class="cdImg">
+								<a href="#">
+									<img src="img/img1/img-3.jpg">
+									<em></em>
+									<span></span>
+								</a>
+							</div>
+							<h3><a href="#">十三亿分贝 第二期</a></h3>
+							<P><a href="#">群星</a></P>
+						</li>
+						<li>
+							<div class="cdImg">
+								<a href="#">
+									<img src="img/img1/img-3.jpg">
+									<em></em>
+									<span></span>
+								</a>
+							</div>
+							<h3><a href="#">十三亿分贝 第二期</a></h3>
+							<P><a href="#">群星</a></P>
+						</li>
+						<li>
+							<div class="cdImg">
+								<a href="#">
+									<img src="img/img1/img-3.jpg">
+									<em></em>
+									<span></span>
+								</a>
+							</div>
+							<h3><a href="#">十三亿分贝 第二期</a></h3>
+							<P><a href="#">群星</a></P>
+						</li>
+						<li>
+							<div class="cdImg">
+								<a href="#">
+									<img src="img/img1/img-3.jpg">
+									<em></em>
+									<span></span>
+								</a>
+							</div>
+							<h3><a href="#">十三亿分贝 第二期</a></h3>
+							<P><a href="#">群星</a></P>
+						</li>
+						<li>
+							<div class="cdImg">
+								<a href="#">
+									<img src="img/img1/img-3.jpg">
+									<em></em>
+									<span></span>
+								</a>
+							</div>
+							<h3><a href="#">十三亿分贝 第二期</a></h3>
+							<P><a href="#">群星</a></P>
+						</li>
+					</ul>
+					<span id="cdPrev"></span>
+					<span id="cdNext"></span>
+				</div>
+			</section>
+			<section id="rank">
+				<header class="contHeader clearfix">
+					<h2><a href="#">榜单</a></h2>
+					<a class="more" href="#">更多</a>
+				</header>
+				<div class="rankList clearfix">
+					<div class="rankListCont">
+						<dl class="clearfix">
+							<dt class="rankListTitle clearfix">
+								<a class="rankListTitleL" href="#">
+									<img src="img/img1/img-4.jpg">
+									<em></em>
+								</a>
+								<span class="rankListTitleR">
+									<strong><a href="#">云音乐飙升榜</a></strong>
+									<span class="clearfix">
+										<a class="startBtn" href="#"></a>
+										<a class="addMusic" href="#"></a>
+									</span>
+								</span>
+							</dt>
+							<dd>
+								<span class="redNumber">1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span  class="redNumber">1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span  class="redNumber">1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd class="rankListLast">
+								<a href="#">查看全部></a>
+							</dd>
+						</dl>
+					</div>
+					<div class="rankListCont">
+						<dl class="clearfix">
+							<dt class="rankListTitle clearfix">
+								<a class="rankListTitleL" href="#">
+									<img src="img/img1/img-4.jpg">
+									<em></em>
+								</a>
+								<span class="rankListTitleR">
+									<strong><a href="#">云音乐飙升榜</a></strong>
+									<span class="clearfix">
+										<a class="startBtn" href="#"></a>
+										<a class="addMusic" href="#"></a>
+									</span>
+								</span>
+							</dt>
+							<dd>
+								<span class="redNumber">1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span  class="redNumber">1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span  class="redNumber">1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd class="rankListLast">
+								<a href="#">查看全部></a>
+							</dd>
+						</dl>
+					</div>
+					<div class="rankListCont">
+						<dl class="clearfix">
+							<dt class="rankListTitle clearfix">
+								<a class="rankListTitleL" href="#">
+									<img src="img/img1/img-4.jpg">
+									<em></em>
+								</a>
+								<span class="rankListTitleR">
+									<strong><a href="#">云音乐飙升榜</a></strong>
+									<span class="clearfix">
+										<a class="startBtn" href="#"></a>
+										<a class="addMusic" href="#"></a>
+									</span>
+								</span>
+							</dt>
+							<dd>
+								<span class="redNumber">1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span  class="redNumber">1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span  class="redNumber">1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd>
+								<span>1</span>
+								<a href="#">耿耿于怀</a>
+							</dd>
+							<dd class="rankListLast">
+								<a href="#">查看全部></a>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="contentRight">
+			<div class="loginBar">
+				<div>
+					<p>登陆网易云音乐，可以享受无限收藏的乐趣，并且无限同步到手机</p>
+					<a href="#">用户登陆</a>
+				</div>
+			</div>
+			<section>
+				<header class="contRightHeader clearfix">
+					<h2>入驻歌手</h2>
+					<a href="#">查看全部></a>
+				</header>
+				<ul class="singerList">
+					<li>
+						<a class="singerListImg" href="#"><img src="img/img1/img-5.jpg"></a>
+						<div>
+							<strong><a href="#">张惠妹aMEI</a></strong>
+							<span>台湾歌手张惠妹</span>
+						</div>
+					</li>
+					<li>
+						<a class="singerListImg" href="#"><img src="img/img1/img-5.jpg"></a>
+						<div>
+							<strong><a href="#">张惠妹aMEI</a></strong>
+							<span>台湾歌手张惠妹</span>
+						</div>
+					</li>
+					<li>
+						<a class="singerListImg" href="#"><img src="img/img1/img-5.jpg"></a>
+						<div>
+							<strong><a href="#">张惠妹aMEI</a></strong>
+							<span>台湾歌手张惠妹</span>
+						</div>
+					</li>
+					<li>
+						<a class="singerListImg" href="#"><img src="img/img1/img-5.jpg"></a>
+						<div>
+							<strong><a href="#">张惠妹aMEI</a></strong>
+							<span>台湾歌手张惠妹</span>
+						</div>
+					</li>
+					<li>
+						<a class="singerListImg" href="#"><img src="img/img1/img-5.jpg"></a>
+						<div>
+							<strong><a href="#">张惠妹aMEI</a></strong>
+							<span>台湾歌手张惠妹</span>
+						</div>
+					</li>
+				</ul>
+				<footer class="singerFooter">
+					<a href="#">申请成为网易音乐人</a>
+				</footer>
+			</section>
+			<section>
+				<header class="contRightHeader clearfix">
+					<h2>热门DJ</h2>
+				</header>
+				<ul class="hotDjList">
+					<li class="clearfix">
+						<a class="hotDjListImg" href="#"><img src="img/img1/img-6.jpg"></a>
+						<div>
+							<h4 class="clearfix"><a href="#">灵伟</a><a class="hotDjListMark" href="#"></a></h4>
+							<p>电台DJ、资深乐评人</p>
+						</div>
+					</li>
+					<li class="clearfix">
+						<a class="hotDjListImg" href="#"><img src="img/img1/img-6.jpg"></a>
+						<div>
+							<h4 class="clearfix"><a href="#">灵伟</a><a class="hotDjListMark" href="#"></a></h4>
+							<p>电台DJ、资深乐评人</p>
+						</div>
+					</li>
+					<li class="clearfix">
+						<a class="hotDjListImg" href="#"><img src="img/img1/img-6.jpg"></a>
+						<div>
+							<h4 class="clearfix"><a href="#">灵伟</a><a class="hotDjListMark" href="#"></a></h4>
+							<p>电台DJ、资深乐评人</p>
+						</div>
+					</li>
+					<li class="clearfix">
+						<a class="hotDjListImg" href="#"><img src="img/img1/img-6.jpg"></a>
+						<div>
+							<h4 class="clearfix"><a href="#">灵伟</a><a class="hotDjListMark" href="#"></a></h4>
+							<p>电台DJ、资深乐评人</p>
+						</div>
+					</li>
+					<li class="clearfix">
+						<a class="hotDjListImg" href="#"><img src="img/img1/img-6.jpg"></a>
+						<div>
+							<h4 class="clearfix"><a href="#">灵伟</a><a class="hotDjListMark" href="#"></a></h4>
+							<p>电台DJ、资深乐评人</p>
+						</div>
+					</li>
+				</ul>
+			</section>
+		</div>
+		<a class="fixed" href="#"></a>
+	</article>
+	<footer id="footer">
+		<ul class="wrap footerList clearfix">
+			<li class="footerLeft">
+				<h4><a href="#">独立音乐人招募计划</a></h4>
+				<p>加入我们 即将与超过亿万乐迷互动</p>
+			</li>
+			<li class="footerCenter">
+				<h4><a href="#">独立音乐人招募计划</a></h4>
+				<p>加入我们 即将与超过亿万乐迷互动</p>
+			</li>			
+			<li class="footerRight">
+				<p>
+					<a href="#">关于网易</a>-<a href="#">客户服务</a>-<a href="#">服务条款</a>-<a href="#">网站导航</a>
+					<span>网易公司版权所有&copy;1997-2016</span>
+				</p>
+				<p class="clearfix">
+					<span class="footerRightL">网络文化经营许可证：浙网文(2016)0155-055</span>
+					<span class="footerRightR"><a href="#">意见反馈</a></span>
+				</p>
+			</li>
+		</ul>
+	</footer>
+</body>
+</html>

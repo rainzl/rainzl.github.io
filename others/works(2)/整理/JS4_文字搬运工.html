@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+.wrap {
+	margin: 50px auto;
+	width: 500px;
+	height: 200px;
+}
+#text {
+	float: left;
+	vertical-align: middle;
+	width: 194px;
+	height: 200px;
+	resize: none;
+}
+.center {
+	float: left;
+	width: 100px;
+	text-align: center;
+}
+.center input {
+	width: 80px;
+	height: 30px;
+}
+.proBar {
+	margin-top: 20px;
+	font-size: 0;
+	display: none;
+}
+.proBar span {
+	display: inline-block;
+	margin: 0 2px;
+	width: 6px;
+	height: 10px;
+	background-color: #E0B03D;
+}
+.proBar .active {
+	background-color: coral;
+}
+.progress {
+	margin: 10px auto;
+	width: 85px;
+	height: 20px;
+}
+.progress span {
+	display: block;
+	width: 0;
+	height: 100%;
+	background-color: #DED6E7;
+}
+#text2 {
+	float: left;
+	vertical-align: middle;
+	width: 200px;
+	height: 200px;
+	background-color: #B0E0E6;
+}
+</style>
+</head>
+<body>
+	<section class="wrap">
+		<textarea id="text"></textarea>
+		<div class="center">
+			<input type="button" value="开始复制" />
+			
+			<p class="hint">0/0</p>
+			<div class="proBar">
+				<span class="active"></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="progress"><span></span></div>
+		</div>
+		<div id="text2"></div>
+	</section>
+</body>
+<script type="text/javascript" src="../publicJS/miaoV.js" ></script>
+<script>
+var oBtn = document.getElementsByTagName('input')[0];//获取的开始复制按钮
+var oText1 = document.getElementById('text');//左边的文本框
+var oText2 = document.getElementById('text2');//右边的文本框
+var oProBar = document.querySelector('.proBar');//点状进度条
+var aProBars = document.querySelectorAll('.proBar span');//点状进度条中的小方格
+var oProSpan = document.querySelector('.progress span');//条形进度条
+var oHint = document.querySelector('.hint');//数字进度元素
+var timer = 0;//存储文字运动的定时器编码
+var timerBar = 0;//存储点状进度条运动的定时器编码
+var str = '';//存储第一次从左侧文本框中获取的字符串
+var strText1 = '';//存储左侧文本框更新的字符串
+var strText2 = '';//存储右侧文本框更新的字符串
+var proBarNum = 0;//存储点状形进度条的执行的第几个
+/*-----点击开始复制按钮------*/
+oBtn.onclick = function () {
+	strText1 = '';//每次点击清除左侧文本框中的内容
+	strText2 = '';//每次点击清除右侧文本框中的内容
+	str = oText1.value;//获取右侧文本框中的数据
+	strText1 = str;//将获取到的数据赋给负责(存储左侧文本框更新的数据)的变量
+	if (str.length == 0) {//判断左侧文本框内没有字符串，本次操作返回
+		return;
+	}
+	oProBar.style.display = 'block';//显示点状进度条
+	oProSpan.style.width = (strText2.length/str.length)*100 + '%';//条形进度条的宽度初始化
+	timer = setInterval(//文字运动的定时器
+		textMove,200
+	);
+	timerBar = setInterval(//点状进度条运动的定时器
+		proBarMove,80
+	); 
+}
+/*-------点状进度条运动的函数-------*/
+function proBarMove() {
+	proBarNum++;//每次此变量+1
+	proBarNum %= aProBars.length; //控制变量值的循环
+	for ( var i=0; i<aProBars.length; i++ ) {//清除进度条中所有子元素class,当前运动到的除外
+		i == proBarNum? aProBars[proBarNum].className = 'active': aProBars[i].className = ''; 
+	}
+}
+/*-------文字搬运的函数-------*/
+function textMove() {
+	strText2 = strText2 + strText1.substring(0,1);//截取左侧文本框中的第一个文字存入保存右侧数据的变量中
+	strText1 = strText1.slice(1);//截取左侧文本框中的第一个以后的所有文字，存入原来的变量中
+	
+	oProSpan.style.width = (strText2.length/str.length)*100 + '%';//条形进度条宽度赋值
+	oText1.value = strText1;//为左侧文本框赋值
+	oText2.innerHTML = strText2;//为右侧文本框赋值
+	oHint.innerHTML = strText1.length + '/' + str.length;//数字进度提示
+	
+	
+	if ( strText1.length == 0 ) {//当左侧文本框的文字没有时
+		clearInterval(timer);//关闭文字运动定时器
+		clearInterval(timerBar);//关闭点状进度条定时器
+		oProBar.style.display = 'none';//点状进度条消失
+		return;
+	}
+	
+}
+
+
+</script>
+</html>
