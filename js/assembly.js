@@ -108,7 +108,7 @@
 			
 			_this.nextBtn();
 			
-		},2200)
+		},2600)
 	}
 	TabImg.prototype.fnSubCode = function () {
 		var _this = this;
@@ -162,7 +162,7 @@
 		
 		this.subCodeClear(this.index%this.settings.data.length);
 		
-		move.mTween(this.settings.imgParObj,{'translateX': -this.width*this.index},400,'linear');
+		move.mTween(this.settings.imgParObj,{'translateX': -this.width*this.index},800,'linear');
 		
 		this.settings.callBack([this.settings.imgParObj]);
 	}
