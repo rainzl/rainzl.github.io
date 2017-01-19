@@ -72,6 +72,9 @@ body {
 body.contact #bg {
 	background-position: center top;
 }
+body.about #bg {
+	background-position: center bottom;
+}
 body.about #bg,
 body.contact #bg {
 	opacity: 1;
