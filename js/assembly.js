@@ -37,6 +37,7 @@
 		this.settings.nextBtn && this.overOutPar();
 		this.touchFn();
 		this.imgs = this.obj.getElementsByTagName('img');
+		
 		var _this = this;
 		//如果home不存在，window上的resize事件绑定
 		
@@ -69,40 +70,23 @@
 		
 		var touchs = ev.changedTouches[0];
 		disX = touchs.pageX - startX;
-		if ( disX>0 ) {
-			num = this.index -1;
-			num = num<0? this.settings.data.length-1: num;
-			this.imgs[1].parentNode.setAttribute('fileId',this.settings.data[this.index].id);
-			this.imgs[1].src = this.settings.data[this.index].img;
-			
-			this.imgs[0].parentNode.setAttribute('fileId',this.settings.data[num].id);
-			this.imgs[0].src = this.settings.data[num].img;
-			move.css(this.settings.imgParObj,'translateX',-this.width+disX);
+		num = this.index;
+		if (-this.width*num+disX>0) {
+			num = this.settings.data.length;
+		} 
 		
-		} else if ( disX<0 ) {
-			num = this.index +1;
-			num %= this.settings.data.length;
-			this.imgs[0].parentNode.setAttribute('fileId',this.settings.data[this.index].id);
-			this.imgs[0].src = this.settings.data[this.index].img;
-			
-			this.imgs[1].parentNode.setAttribute('fileId',this.settings.data[num].id);
-			this.imgs[1].src = this.settings.data[num].img;
-			move.css(this.settings.imgParObj,'translateX',disX);
+		if (-this.width*num+disX<-this.width*(this.settings.data.length)) {
+			num = 0;
 		}
+		move.css(this.settings.imgParObj,'translateX',-this.width*num+disX);
 		return disX;
 	}
 	TabImg.prototype.touchsEnd = function (disX) {
-		var _this = this;
+		
 		if ( Math.abs(disX) >= this.width/3 ) {
-			disX>0? move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear'):
-				move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear');
-			this.index = num;
-			
-		} else if (Math.abs(disX)>=1) {
-			disX>0? move.mTween(this.settings.imgParObj,{'translateX': -this.width},400,'linear'):
-			move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear');
+			this.index = disX>0?num-1:num+1; 
 		}
-		this.subCodeClear(this.index);
+		this.changeImg();
 		this.setTime()
 	}
 	TabImg.prototype.overOutPar = function () {
@@ -130,12 +114,8 @@
 		var _this = this;
 		for ( var i=0; i<this.subCode.length; i++ ) {
 			this.subCode[i].addEventListener('click',function(){
-				var activeObj = tools.getByClass('active',_this.settings.subParCode)[0];
-				if ( activeObj.index > this.index ) {
-					_this.prevBtn(this.index);
-				} else if (activeObj.index < this.index ) {
-					_this.nextBtn(this.index);
-				}
+				_this.index = this.index;
+				_this.changeImg();
 			});
 			
 		}
@@ -156,41 +136,41 @@
 			return;
 		};
 		
-		var _this = this;
-		num = typeof(num) === 'undefined'? this.index +1: num;
+		this.index ++;
 		
-		num %= this.settings.data.length;
-		move.css(this.settings.imgParObj,'translateX',0);
-		this.imgs[0].parentNode.setAttribute('fileId',this.settings.data[this.index].id);
-		this.imgs[0].src = this.settings.data[this.index].img;
+		if(this.index===this.settings.data.length+1){ 
+			this.index%=this.settings.data.length;
+			move.css(this.settings.imgParObj,'translateX',0);
+		}
 		
-		this.subCodeClear(num);
-		this.imgs[1].parentNode.setAttribute('fileId',this.settings.data[num].id);
-		this.imgs[1].src = this.settings.data[num].img;
-		move.mTween(this.settings.imgParObj,{'translateX': -this.width},500,'linear');
-		this.index = num;
-		this.settings.callBack();
+		this.changeImg();
 	}
 	TabImg.prototype.prevBtn = function (num) {
-		num = typeof(num) === 'undefined'? this.index -1: num;
-		num = num<0? this.settings.data.length-1: num;
 		
-		move.css(this.settings.imgParObj,'translateX',-this.width);
-		this.imgs[1].parentNode.setAttribute('fileId',data[this.index].id);
-		this.imgs[1].src = this.settings.data[this.index].img;
+		this.index--;
 		
-		this.subCodeClear(num);
-		this.imgs[0].parentNode.setAttribute('fileId',data[num].id);
-		this.imgs[0].src = this.settings.data[num].img;
-		move.mTween(this.settings.imgParObj,{'translateX': 0},400,'linear');
-		this.index = num;
-		this.settings.callBack();
+		if ( this.index < 0 ) {
+			this.index = this.settings.data.length-1;
+			
+			move.css(this.settings.imgParObj,'translateX',-this.width*this.settings.data.length);
+		}
+		
+		this.changeImg();
+		
 	}
-	
+	TabImg.prototype.changeImg = function() {
+		
+		this.subCodeClear(this.index%this.settings.data.length);
+		
+		move.mTween(this.settings.imgParObj,{'translateX': -this.width*this.index},400,'linear');
+		
+		this.settings.callBack([this.settings.imgParObj]);
+	}
 	TabImg.prototype.subCodeClear = function (num) {
 		for ( var i=0; i<this.subCode.length; i++ ) {
 			tools.rmClass(this.subCode[i],'active');
 		}
+		
 		tools.addClass(this.subCode[num],'active');
 	}
 	

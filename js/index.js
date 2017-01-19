@@ -11,6 +11,12 @@ var shoes = new drawHat('shoes',shoesTop);
 var lastHatstatus = 'loading';
 var hash = (window.location.hash && window.location.hash.substr(1)) || 'home';
 var r = 20; 
+var dW = document.documentElement.clientWidth || document.body.clientWidth;//可视区宽度
+
+window.addEventListener('resize',fnRsize);
+function fnRsize(){
+	dW = document.documentElement.clientWidth || document.body.clientWidth;
+}
 
 if (device) {
 	(function(){
@@ -50,7 +56,7 @@ if (device) {
 	navRound('nav');
 	
 	//页面切换,执行的操作
-	factory(global,htmlName,window[htmlName+'Load']);
+	factory(global,htmlName,window[htmlName+'Data']);
 	
 	//点击导航,导航旋转
 	function navRound(id) {
@@ -95,8 +101,9 @@ if (device) {
 				$wrap.find('.tBody').attr('id',className);//替换tBody上的id
 				htmlName = className;
 				//页面切换,执行的操作
-				factory(global,htmlName,window[htmlName+'Load']);
+				factory(global,htmlName,window[htmlName+'Data']);
 			});
+			
 			move.mTween($navBg[0],{'rotate':-index*90},disIndex*400,'linear');
 			move.mTween($navList[0],{'rotate':-(index*90-45)},disIndex*400,'linear');
 			for ( var i=0; i<$a.length; i++ ) {
@@ -109,8 +116,7 @@ if (device) {
 	
 	
 })(window,function(global,htmlName,loadData){
-	
-	
+
 	
 	//页面进来加载: 上下两个canvas的变化，页面透明度的变化
 	loading();
@@ -125,21 +131,25 @@ if (device) {
 			var $barP = $bar.find('p');
 			var $W = $bar.innerWidth()/loadData.length; 
 			var num = 0;
+			var imgArr = [];
 			$(loadData).each(function(i,e){
 			
-				var $img = $('<img src="'+e+'"/>');
+				var $img = $('<img src="'+e.img+'"/>');
 				
 				$img.off().on('load',function(){
+					
+					imgArr.push(this);
 					num ++;
 					var scal = (num - loadData.length)*$W;
 					move.css($barP[0],'translateX',scal);
 					if ( num === loadData.length ) {
-						init();
 						setTimeout(function(){
 							$('#logo').css({'transition':'top .7s ease','-webkit-transition':'top .7s ease',})
 							$body.removeClass('loading').addClass('loaded');
 							move.css($barP[0],'translateX',-$bar.innerWidth());
-						},200)
+							
+						},200);
+						init(imgArr);
 						return;
 					}
 				})
@@ -149,7 +159,7 @@ if (device) {
 		}
 	}
 	
-	function init() {
+	function init(imgArr) {
 		//画头部和底部的canvas
 		htmlName === 'home'? drawHatShose('loadedData','#fff'):drawHatShose('activeData','#1e1e1e');
 		
@@ -163,19 +173,17 @@ if (device) {
 		
 		window.addEventListener('resize',setSquareHeight);
 		
-		showHtml();
-		
+		showHtml(imgArr);
 		
 	}
 	
 	
 	
-	function showHtml() {
+	function showHtml(imgArr) {
 		if ( htmlName === 'home' ) {
-			fnHome();
+			fnHome(imgArr);
 		} else if ( htmlName === 'works') {
-			fnHome = null;
-			fnWorks();
+			fnWorks(imgArr);
 		} else if ( htmlName === 'about') {
 			fnAbout();
 		} else if ( htmlName === 'contact') {
@@ -187,18 +195,18 @@ if (device) {
 	
 //------页面主体内容的操作开始---------------------
 	//home页面操作
-	function fnHome() {
+	function fnHome(imgArr) {
 		var $tabHome = $('#home');
 		
 		//渲染页面
-		rander(data,$tabHome);
+		rander(loadData,$tabHome);
 		
 		var $productList = $('#home').find('.productList').find('li');
 		
 		var imgTab = new TabImg('home');
 		//图片切换
 		imgTab.init({
-			data: data,
+			data: loadData,
 			imgParObj: $tabHome.find('.productList')[0],
 			subParCode: $tabHome.find('.subCode')[0],
 			nextBtn: $tabHome.find('.next')[0],
@@ -247,19 +255,21 @@ if (device) {
 		
 		//点击图片，弹出/隐藏详情框
 		;(function(factory) {
-			var $productList = $('#home').find('.productList').find('li');
-			$productList[0].parentNode.onOff = true;
-			$productList.closest('ul').on('click',function(ev){
+			var $productListP = $('#home').find('.productList');
+			var $productList = $productListP.find('li');
+			$productListP[0].onOff = true;
+			
+			$('#home').find('.productList').on('click',function(ev){
 				var li = findEle($productList,ev.pageX,ev.pageY);
 				var fileId = $(li).attr('fileId');
-				factory($productList,fileId);
+				factory($productListP,$productList,fileId);
 			})
 			$('#hat').off('click').click(function(ev){
 				var ev = ev || event;
 				if (ImgEvent(this,ev.pageX,ev.pageY)) {
 					var li = findEle($productList,ev.pageX,ev.pageY);
 					var fileId = $(li).attr('fileId');
-					factory($productList,fileId);
+					factory($productListP,$productList,fileId);
 				}
 			})
 			$('#shoes').off('click').click(function(ev){
@@ -269,35 +279,36 @@ if (device) {
 					var li = findEle($productList,ev.pageX,ev.pageY);
 					var fileId = $(li).attr('fileId');
 					
-					factory($productList,fileId);
+					factory($productListP,$productList,fileId);
 				}
 			})
-		})(function($productList,fileId){
+		})(function($productListP,$productList,fileId){
 			
-			if ( $productList[0].parentNode.onOff ) {
+			if ( $productListP[0].onOff ) {
 				
-				fnProductShow(fileId);
+				fnProductShow($productListP,fileId);
 			} else {
-				fnProductHid();
+				fnProductHid($productListP);
 			}
 		});
 		//弹出详情框
-		function fnProductShow(fileId) {
+		function fnProductShow($productListP,fileId) {
 			if (!$('#home')[0]) return;
-			$('#home').find('.productList')[0].onOff = false;
+			$productListP[0].onOff = false;
 			
-			var index = tools.arrIndexOf(fileId,data);
+			var index = tools.arrIndexOf(fileId,loadData);
 			hat.init({now:'activeData',last:'loadedData'},{time:500});
 			shoes.init({now:'activeData',last:'loadedData'},{onOff:true,time:500});
 			
 			
-			fnShowHint(data[index],true,false);
+			fnShowHint(loadData[index],true,false);
 			
 			
 			$('#footer').find('.blogroll').addClass('top');
+			
 		}
 		//隐藏详情框
-		function fnProductHid() {
+		function fnProductHid($productListP) {
 			if ($('#home').find('.productList')[0] && !$('#home').find('.productList')[0].onOff) {
 				hat.init({now:'loadedData',last:'activeData'},{time:500});
 				shoes.init({now:'loadedData',last:'activeData'},{onOff:true,time:500});
@@ -309,9 +320,8 @@ if (device) {
 					'top': Math.round($body.innerHeight()*.4),
 					'opacity': 0
 				},500,'linear',function(){
-					$('#home').find('.productList')[0].onOff = true;
+					$productListP[0].onOff = true;
 				});
-				
 				
 				$('#footer').find('.blogroll').removeClass('top');
 			}
@@ -319,25 +329,47 @@ if (device) {
 		
 		
 		function rander(data,obj) {
-			var str = '';
 			
-			str += '<span class="prev" style="display:'+(device?"none":"block")+'"></span>'+
-					'<span class="next" style="display:'+(device?"none":"block")+'"></span><ul class="productList" id="idBannerImg">';
-			str +=	'<li fileId="'+data[0].id+'"><img src="'+data[0].img+'"/></li><li fileId="'+data[1].id+'"><img src="'+data[1].img+'"/></li>'	
-			str +=	'</ul><p style="display:'+(device?"none":"block")+'" class="subCode"></p>';
-			
+			var str = '<span class="prev" style="display:'+(device?"none":"block")+'"></span>'+
+					'<span class="next" style="display:'+(device?"none":"block")+'"></span>';
+				
 			$tabHome.html(str);
+			
+			var ul = document.createElement('ul');
+			var p = document.createElement('p');
+			
+			ul.className = "productList";
+			ul.id="idBannerImg";
+			p.className = 'subCode';
+			p.style.display = (device?"none":"block");
+			ul.style.width = dW*(data.length+1)+'px';
+			for ( var i=0; i<=data.length; i++ ) {
+				var li = document.createElement('li');
+				li.style.width = dW+'px';
+				li.setAttribute('fileId',data[i%data.length].id);
+				li.appendChild(imgArr[i%data.length].cloneNode());
+				ul.appendChild(li);
+				
+				if ( i<data.length ) {
+					var oI = document.createElement('i');
+					p.appendChild(oI);
+				}
+				
+			}
+			
+			
+			$tabHome[0].appendChild(ul);
+			$tabHome[0].appendChild(p);
+			
 			$('#hint').find('.hintBtn').html('WEBSITE<span><mark>WEBSITE</mark></span>');
 			$('#hint').find('h3').html('Product').css('color','#222');
 			
-			//$('#hint').find('.hintBtn').html('RESUME<span><mark>RESUME</mark></span>');
-			//$('#hint').find('h3').html('About').css('color','#222');
 		}
 	}
 	//works页面操作
-	function fnWorks() {
+	function fnWorks(imgArr) {
 		var $tabWorks = $('#works');
-		var len = worksData.length;
+		var len = loadData.length;
 		var moveJson = {
 			'top': {
 				top: '-100%',
@@ -358,7 +390,7 @@ if (device) {
 		}
 		
 		
-		rander(worksData,$tabWorks);
+		rander(loadData,$tabWorks);
 		
 		
 		var listWheel = new Scroll('works');
@@ -507,7 +539,7 @@ if (device) {
 		var $tabAbout = $('#about');
 		
 		$tabAbout.html('');
-		fnShowHint(aboutData,false,true);
+		fnShowHint(loadData,false,true);
 		
 		$('#hint').find('.hintBtn').html('RESUME<span><mark>RESUME</mark></span>');
 		$('#hint').find('h3').html('About').css('color','#222');

@@ -1,4 +1,4 @@
-var data = [
+var homeData = [
 	{
 		id: 1,
 		img: 'img/music.jpg',
@@ -48,19 +48,19 @@ var data = [
 		href: 'others/telePhone/index.html'
 	}
 ];
-var homeLoad = [
+/*var homeLoad = [
 	'img/music.png',
 	'img/baidu.png',
 	'img/media.png',
 	'img/telePhone.png'
-];
-var worksLoad = [
+];*/
+/*var worksLoad = [
 	'img/16.jpg',
 	'img/17.jpg',
 	'img/18.jpg',
 	'img/3.jpg',
 	'img/4.jpg'
-];
+];*/
 var worksData = [
 	{
 		id: 1,
