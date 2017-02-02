@@ -20,6 +20,7 @@ textarea {
 a {
 	text-decoration: none;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	outline: none;
 }
 img {
 	vertical-align: middle;
@@ -353,7 +354,7 @@ body.contact #logo {
 	top: 0;
 	left: 0;
 	margin-top: 100px;
-	transition: .1s;
+	/*transition: .1s;*/
 }
 #works:after {
 	content: '';

@@ -70,45 +70,93 @@ var worksData = [
 	},
 	{
 		id: 2,
-		img: 'img/17.jpg',
-		href: 'javascript:;',
-		name: '作品一'
+		img: 'img/works/2_wangyiyun.jpg',
+		href: 'others/works/html/wangyiyun/wangeMusic1.html',
+		name: '网易云音乐首页'
 	},
 	{
 		id: 3,
-		img: 'img/18.jpg',
-		href: 'javascript:;',
-		name: '作品一'
+		img: 'img/works/3_chinaTV.jpg',
+		href: 'others/works/html/chinaTV/index.html',
+		name: '中视卫视电视有限责任公司'
 	},
 	{
 		id: 4,
-		img: 'img/3.jpg',
-		href: 'javascript:;',
-		name: '作品一'
+		img: 'img/works/4_fashionWeek.jpg',
+		href: 'others/works/html/fashionWeek/index.html',
+		name: '2011春夏国际时装周'
 	},
 	{
 		id: 5,
-		img: 'img/4.jpg',
-		href: 'javascript:;',
-		name: '作品一'
+		img: 'img/works/5_snake.jpg',
+		href: 'others/works/js/snake/index.html',
+		name: '贪吃蛇'
 	},
 	{
 		id: 6,
-		img: 'img/18.jpg',
-		href: 'javascript:;',
-		name: '作品一'
+		img: 'img/works/6_xunlei.jpg',
+		href: 'others/works/js/xunlei/index.html',
+		name: '迅雷产品中心'
 	},
 	{
 		id: 7,
-		img: 'img/3.jpg',
-		href: 'javascript:;',
-		name: '作品一'
+		img: 'img/works/7_clipPic.jpg',
+		href: 'others/works/js/clipPicture/index.html',
+		name: '图片裁切'
 	},
 	{
 		id: 8,
-		img: 'img/4.jpg',
-		href: 'javascript:;',
-		name: '作品一'
+		img: 'img/works/8_picBool.jpg',
+		href: 'others/works/js/picBool/index.html',
+		name: '图片爆炸'
+	},
+	{
+		id: 9,
+		img: 'img/works/9_textFindReplace.jpg',
+		href: 'others/works/js/textFindReplace/index.html',
+		name: '文字查找替换'
+	},
+	{
+		id: 10,
+		img: 'img/works/10_textMove.jpg',
+		href: 'others/works/js/textMove/index.html',
+		name: '文字搬运工'
+	},
+	{
+		id: 11,
+		img: 'img/works/11_reactTodos.jpg',
+		href: 'others/works/js/reactTodos/index.html',
+		name: 'react框架留言板'
+	},
+	{
+		id: 12,
+		img: 'img/works/12_regexpForm.jpg',
+		href: 'others/works/js/12_regexpForm/index.html',
+		name: '正则—信息验证'
+	},
+	{
+		id: 13,
+		img: 'img/works/13_picReload.jpg',
+		href: 'others/works/js/picReload/index.html',
+		name: '图片预加载'
+	},
+	{
+		id: 14,
+		img: 'img/works/8_picBool.jpg',
+		href: 'others/works/js/picBool/index.html',
+		name: '图片爆炸效果'
+	},
+	{
+		id: 15,
+		img: 'img/works/8_picBool.jpg',
+		href: 'others/works/js/picBool/index.html',
+		name: '图片爆炸效果'
+	},
+	{
+		id: 16,
+		img: 'img/works/8_picBool.jpg',
+		href: 'others/works/js/picBool/index.html',
+		name: '图片爆炸效果'
 	}
 	
 ];

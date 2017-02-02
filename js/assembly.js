@@ -25,68 +25,89 @@
 			subParCode: null,
 			nextBtn: null,
 			prevBtn: null,
-			callBack: function(){}
+			device: false,//判断是移动端还是pc端
+			callBack: function(){},
+			id: id
 		}
 	}
 	TabImg.prototype.init = function (json) {
-		this.settings = tools.extend(this.settings,json);
-		this.randerSubCode();
-		this.settings.subParCode && this.fnSubCode();
-		this.settings.nextBtn && this.nextPrevBtn();
-		this.setTime();
-		this.settings.nextBtn && this.overOutPar();
-		this.touchFn();
-		this.imgs = this.obj.getElementsByTagName('img');
+		//if ( this.obj.prevHome !== this.obj ) {
+			console.log(1)
+			this.settings = tools.extend(this.settings,json);
+			this.randerSubCode();
+			this.settings.subParCode && this.fnSubCode();
+			this.settings.nextBtn && this.nextPrevBtn();
+			this.setTime();
+			!this.settings.device && this.overOutPar();
+			this.touchFn();
+			this.imgs = this.obj.getElementsByTagName('img');
+			
+			var _this = this;
+			//如果home不存在，window上的resize事件绑定
+			
+			window.addEventListener('resize',fnRsize);
+			function fnRsize(){
+				_this.width = document.documentElement.clientWidth || document.body.clientWidth;
+			}
+		//}
 		
-		var _this = this;
-		//如果home不存在，window上的resize事件绑定
-		
-		window.addEventListener('resize',fnRsize);
-		function fnRsize(){
-			_this.width = document.documentElement.clientWidth || document.body.clientWidth;
-		}
+		//this.obj.prevHome = this.obj;
 	}
 	TabImg.prototype.touchFn = function () {
-		var startX, disX, num = 0;
 		var _this = this;
+		this.settings.imgParObj.touchNum = {
+			startX: 0,
+			disX: 0,
+			num: 0
+		}
+		
 		this.settings.imgParObj.addEventListener('touchstart',function(ev){
-			startX = _this.touchStart(ev);
-			disX = 0;
+			if (!document.getElementById(_this.settings.id)) {return}
+			_this.touchStart(ev);
+			_this.settings.imgParObj.touchNum.disX = 0;
 		});
 		this.settings.imgParObj.addEventListener('touchmove',function(ev){
-			disX = _this.touchsMove(ev,disX,startX);
+			if (!document.getElementById(_this.settings.id)) {return}
+			_this.touchsMove(ev);
 		});
-		this.settings.imgParObj.addEventListener('touchend',function(){
-			_this.touchsEnd(disX);
+		this.settings.imgParObj.addEventListener('touchend',function(ev){
+			if (!document.getElementById(_this.settings.id)) {return}
+			_this.touchsEnd(ev);
 		});
 		
 	}
 	TabImg.prototype.touchStart = function (ev) {
 		var touchs = ev.changedTouches[0];
+		//清除move函数上的定时器
+		clearInterval(this.settings.imgParObj.timer);
+		//清除下一张的定时器
 		clearInterval(this.obj.timer);
-		return touchs.pageX;
+		this.settings.imgParObj.touchNum.startX = touchs.pageX;
 	}
-	TabImg.prototype.touchsMove = function(ev,disX,startX) {
+	TabImg.prototype.touchsMove = function(ev) {
 		
 		var touchs = ev.changedTouches[0];
-		disX = touchs.pageX - startX;
-		num = this.index;
-		if (-this.width*num+disX>0) {
-			num = this.settings.data.length;
+		this.settings.imgParObj.touchNum.disX = touchs.pageX - this.settings.imgParObj.touchNum.startX;
+		this.settings.imgParObj.touchNum.num = this.index;
+		if (-this.width*this.settings.imgParObj.touchNum.num+this.settings.imgParObj.touchNum.disX>0) {
+			this.settings.imgParObj.touchNum.num = this.settings.data.length;
 		} 
 		
-		if (-this.width*num+disX<-this.width*(this.settings.data.length)) {
-			num = 0;
+		if (-this.width*this.settings.imgParObj.touchNum.num+this.settings.imgParObj.touchNum.disX<-this.width*(this.settings.data.length)) {
+			this.settings.imgParObj.touchNum.num = 0;
 		}
-		move.css(this.settings.imgParObj,'translateX',-this.width*num+disX);
-		return disX;
+		move.css(this.settings.imgParObj,'translateX',-this.width*this.settings.imgParObj.touchNum.num+this.settings.imgParObj.touchNum.disX);
 	}
-	TabImg.prototype.touchsEnd = function (disX) {
+	TabImg.prototype.touchsEnd = function () {
 		
-		if ( Math.abs(disX) >= this.width/3 ) {
-			this.index = disX>0?num-1:num+1; 
+		if ( Math.abs(this.settings.imgParObj.touchNum.disX) !== 0 ) {
+			if ( Math.abs(this.settings.imgParObj.touchNum.disX) >= this.width/3 ) {
+				this.index = this.settings.imgParObj.touchNum.disX>0?this.settings.imgParObj.touchNum.num-1:this.settings.imgParObj.touchNum.num+1; 
+			} else {
+				this.index = this.settings.imgParObj.touchNum.num;
+			}
+			this.changeImg(200);
 		}
-		this.changeImg();
 		this.setTime()
 	}
 	TabImg.prototype.overOutPar = function () {
@@ -158,11 +179,12 @@
 		this.changeImg();
 		
 	}
-	TabImg.prototype.changeImg = function() {
+	TabImg.prototype.changeImg = function(delay) {
 		
+		delay = delay || 400;
 		this.subCodeClear(this.index%this.settings.data.length);
 		
-		move.mTween(this.settings.imgParObj,{'translateX': -this.width*this.index},800,'linear');
+		move.mTween(this.settings.imgParObj,{'translateX': -this.width*this.index},delay,'linear');
 		
 		this.settings.callBack([this.settings.imgParObj]);
 	}
@@ -212,7 +234,8 @@
 	window.Scroll = function (id) {
 		this.obj = document.getElementById(id);
 		this.settings = {
-			wheelObj: window
+			wheelObj: window,
+			id:id
 		};
 	}
 	Scroll.prototype = {
@@ -237,10 +260,12 @@
 			})
 		},
 		wheel: function(callBack) {
+			var _this = this;
 			this.settings.wheelObj.addEventListener('DOMMouseScroll',fnWheel);
 			this.settings.wheelObj.addEventListener('mousewheel',fnWheel);
 			
 			function fnWheel(ev){
+				if (!document.getElementById(_this.settings.id)) return;
 				var upDown;
 				if ( ev.detail ) {
 					/*ev.detail: 火狐版*/
@@ -255,63 +280,87 @@
 		},
 		touchFn: function (obj,callBack) {
 			var _this = this;
-			var settings = {
+			this.obj.settings = {
 				disY:0,nowY:0,lastTime:0,disTime:0,lastMouse:0,disMouse:0
 			}
 			
 			move.css(this.obj,'translateZ',.01);//作用：优化用3d
 			
-			obj.addEventListener('touchstart',fnStart);
-			obj.addEventListener('touchmove',fnMove);
-			obj.addEventListener('touchend',fnEnd);
+			//如果已经绑定过了，就不再绑定
+			if ( this.obj.workprev !== this.obj) {
+				obj.addEventListener('touchstart',fnStart);
+				document.addEventListener('touchmove',fnMove);
+				document.addEventListener('touchend',fnEnd);
+			}
+			
+			this.obj.workprev = this.obj;
 			
 			function fnStart(ev) {
-				_this.fnStart(ev,settings);
+				if (!document.getElementById(_this.settings.id)) {return}
+				_this.fnStart(ev);
+				
 			}
 			function fnMove(ev) {
-				_this.fnMove(ev,settings);
+				if (!document.getElementById(_this.settings.id)) {return}
+				_this.fnMove(ev);
 			}
 			function fnEnd(ev) {
-				_this.fnEnd(ev,settings);
+				if (!document.getElementById(_this.settings.id)) {return}
+				_this.fnEnd(ev);
 			}
 			
 		},
-		fnStart: function(ev,settings) {
+		fnStart: function(ev) {
+			
 			var touchs = ev.changedTouches[0];
-			settings.disTime = settings.disMouse = 0;
-			settings.disY = touchs.pageY - move.css(this.obj,'translateY');
-			ev.preventDefault();
+			this.obj.settings.disTime = this.obj.settings.disMouse = 0;
+			this.obj.settings.disY = touchs.pageY - move.css(this.obj,'translateY');
+			
 		},
-		fnMove: function(ev,settings) {
+		fnMove: function(ev) {
+			
 			var touchs = ev.changedTouches[0];
 			var nowTime = new Date().getTime();
 			var nowMouse = touchs.pageY;
-			settings.nowY = touchs.pageY - settings.disY;
 			
-			if ( settings.nowY>window.innerHeight/3 ) {
-				settings.nowY = window.innerHeight/3;
-			} else if (settings.nowY<=-(this.obj.scrollHeight+140-window.innerHeight*2/3)) {
-				settings.nowY = -(this.obj.scrollHeight+140-window.innerHeight*2/3);
+			if (this.obj.settings.nowY === touchs.pageY - this.obj.settings.disY) return;
+			this.obj.settings.nowY = touchs.pageY - this.obj.settings.disY;
+			
+			if ( this.obj.settings.nowY>window.innerHeight/3 ) {
+				
+				this.obj.settings.nowY = window.innerHeight/3;
+			} else if (this.obj.settings.nowY<=-(this.obj.scrollHeight+140-window.innerHeight*2/3)) {
+				
+				this.obj.settings.nowY = -(this.obj.scrollHeight+140-window.innerHeight*2/3);
 			}
-			move.css(this.obj,'translateY',settings.nowY);
-			settings.disTime = nowTime - settings.lastTime;
-			settings.lastTime = nowTime;
-			settings.disMouse = nowMouse - settings.lastMouse;
-			settings.lastMouse = nowMouse;
+			
+			move.css(this.obj,'translateY',this.obj.settings.nowY);
+			this.obj.settings.disTime = nowTime - this.obj.settings.lastTime;
+			this.obj.settings.lastTime = nowTime;
+			this.obj.settings.disMouse = nowMouse - this.obj.settings.lastMouse;
+			this.obj.settings.lastMouse = nowMouse;
 		},
 		fnEnd: function(ev,settings) {
-			if ( settings.disMouse === 0 && settings.disTime === 0 ) return;
-			var s = settings.disMouse / settings.disTime;
-			s = (isNaN(s) || s == 0 )? 0.01: s;
-			var target = parseInt(Math.abs(s*100))*(Math.abs(s*10)/(s*10));
 			
-			settings.nowY  = target + settings.nowY;
-			if ( settings.nowY>=0 ) {
-				settings.nowY = 0;
-			} else if (settings.nowY<=-(this.obj.scrollHeight+140-window.innerHeight)) {
-				settings.nowY=-(this.obj.scrollHeight+140-window.innerHeight);
+			if ( this.obj.settings.disMouse === 0 && this.obj.settings.disTime === 0 ) return;
+			var startY = 0;
+			var s = (this.obj.settings.disMouse / this.obj.settings.disTime) + '';
+			
+			var target = (isNaN(s) || s == 0 || s === '-Infinity' || s === 'Infinity' )? 0: parseInt(Math.abs(s*100))*(Math.abs(s*10)/(s*10));
+			
+			startY = this.obj.settings.nowY;
+			
+			this.obj.settings.nowY  = target + this.obj.settings.nowY;
+			
+			if ( this.obj.settings.nowY>=0 ) {
+				this.obj.settings.nowY = 0;
+			} else if (this.obj.settings.nowY <= -(this.obj.scrollHeight+140-window.innerHeight)) {
+				this.obj.settings.nowY = -(this.obj.scrollHeight+140-window.innerHeight);
 			}
-			move.mTween(this.obj,{'translateY':settings.nowY},settings.nowY*30,'easeOut');
+			
+			target = Math.round(Math.abs(startY-this.obj.settings.nowY)/10);
+			
+			move.mTween(this.obj,{'translateY':this.obj.settings.nowY},target*10,'linear');
 		},
 		extend: function (obj1,obj2,onOff) {
 			if ( arguments.length === 1 && window.toString.call(arguments[0]) === '[object Object]' ) {

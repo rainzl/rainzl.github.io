@@ -16,13 +16,19 @@ ul {
 a {
 	text-decoration: none;
 }
+body {
+	width: 100%;
+	height: 100%;
+	background: url(img/timg.jpg) no-repeat;
+	background-size: cover;
+}
 #wrap {
 	position: relative;
 	margin: 30px auto;
 	padding: 50px;
 	width: 700px;
 	height: 420px;
-	background-color: #666;
+	background-color: rgba(0,0,0,.3);
 }
 .text {
 	padding: 20px;
@@ -85,6 +91,7 @@ a {
 	width: 80px;
 	font: 18px/30px "微软雅黑";
 	color: #6D6E6B;
+	cursor: pointer;
 }
 #form .active {
 	background-color: #ccc;
@@ -128,9 +135,7 @@ a {
 <body>
 	<section id="wrap">
 		<article class="text">
-			今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好
-			今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好
-			今天天气真好今天天气真好今天天气真好今天天气真好今天天气真好
+			从南边来了个喇嘛，提拉着五斤塔嘛。从北边来个哑吧，腰里别着个喇叭，提拉塔嘛的喇嘛，要拿塔嘛换别喇叭哑巴的喇叭，别喇叭的哑巴，不愿意拿喇叭换提拉塔嘛喇嘛的塔嘛。提拉塔嘛的喇嘛拿塔嘛打了别喇叭的哑巴一塔嘛，别喇叭的哑巴，拿喇叭打了提拉塔嘛的喇嘛一喇叭。也不知提拉塔嘛的喇嘛拿塔嘛打坏了别喇叭哑巴的喇叭。也不知别喇叭的哑巴拿喇巴打坏了提拉塔嘛喇嘛的塔嘛。提拉塔嘛的喇嘛敦塔嘛，别喇叭的哑巴吹喇叭。
 		</article>
 		<form id="form">
 			<h3>
@@ -158,18 +163,18 @@ a {
 			</ul>
 		</div>
 	</section>
-	<script type="text/javascript" src="../publicJS/miaoV.js" ></script>
+	<script src="../../../../js/tools.js"></script>
 	<script>
 	window.onload = function () {
-		var oText = getEle('#wrap .text');//文字展示元素
-		var oShowBtn = getEle('#showBtn .btn');//点击此按钮，展开查找和替换按钮列表
-		var oBtnList = getEle('#showBtn .btnList');//右上角按钮列表
-		var oForm = getEle('#form');//底部功能表单
-		var oFormH3 = getEle('#form h3');//文字设置部分功能名称
+		var oText = tools.$('#wrap .text');//文字展示元素
+		var oShowBtn = tools.$('#showBtn .btn');//点击此按钮，展开查找和替换按钮列表
+		var oBtnList = tools.$('#showBtn .btnList');//右上角按钮列表
+		var oForm = tools.$('#form');//底部功能表单
+		var oFormH3 = tools.$('#form h3');//文字设置部分功能名称
 		var aFormH3s = Array.from(oFormH3.getElementsByTagName('span'));
-		var oFormSet = getEle('#form .setText');//设置文字功能列表
+		var oFormSet = tools.$('#form .setText');//设置文字功能列表
 		var aFormSets = Array.from(oFormSet.getElementsByTagName('li'));
-		var oFormClose = getEle('#form .close');//关闭设置表单按钮
+		var oFormClose = tools.$('#form .close');//关闭设置表单按钮
 		
 		//console.log(oShowBtn);
 		//文字查找和替换功能函数

@@ -205,6 +205,8 @@ var move = (function(){
 			}
 		},
 		mTween: function (obj,attr,times,type,callBack){
+			if (obj.mTweenOnOff) return;
+			obj.mTweenOnOff = true;
 			var t = 0;//当前步数
 			var b = {};//元素移动的初始位置
 			var c = {};//初始位置和当前位置的差值
@@ -222,6 +224,7 @@ var move = (function(){
 						moveFn.css(obj,s,attr[s]);
 					}
 					clearInterval(obj.timer);
+					obj.mTweenOnOff = false;
 					setTimeout(
 						function () {
 							callBack&&callBack();

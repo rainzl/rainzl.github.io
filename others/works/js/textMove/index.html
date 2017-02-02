@@ -4,16 +4,44 @@
 	<meta charset="UTF-8">
 	<title></title>
 <style>
+input,
+textarea {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	outline: none;
+}
+body,
+h1 {
+	margin: 0;
+}
+body {
+	background: url(img/1.jpg) no-repeat;
+	background-size: cover;
+}
+.tBody {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	padding: 30px 30px 60px;
+	background-color: rgba(230,230,230,.2);
+}
+.tBody h1 {
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	color: #172c5a;
+}
 .wrap {
-	margin: 50px auto;
-	width: 500px;
-	height: 200px;
+	width: 700px;
+	height: 300px;
 }
 #text {
 	float: left;
 	vertical-align: middle;
-	width: 194px;
-	height: 200px;
+	width: 296px;
+	height: 300px;
 	resize: none;
 }
 .center {
@@ -43,7 +71,10 @@
 .progress {
 	margin: 10px auto;
 	width: 85px;
-	height: 20px;
+	height: 8px;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	overflow: hidden;
 }
 .progress span {
 	display: block;
@@ -52,37 +83,41 @@
 	background-color: #DED6E7;
 }
 #text2 {
-	float: left;
+	float: right;
 	vertical-align: middle;
-	width: 200px;
-	height: 200px;
-	background-color: #B0E0E6;
+	width: 300px;
+	height: 300px;
+	background-color: rgba(138,149,158,.7);
+	color: #333;
 }
 </style>
 </head>
 <body>
-	<section class="wrap">
-		<textarea id="text"></textarea>
-		<div class="center">
-			<input type="button" value="开始复制" />
-			
-			<p class="hint">0/0</p>
-			<div class="proBar">
-				<span class="active"></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
+	<section class="tBody">
+		<h1>文字搬运工</h1>
+		<section class="wrap">
+			<textarea id="text" placeholder="输入需要复制到右侧的内容"></textarea>
+			<div class="center">
+				<input type="button" value="开始复制" />
+				
+				<p class="hint">0/0</p>
+				<div class="progress"><span></span></div>
+				<div class="proBar">
+					<span class="active"></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
 			</div>
-			<div class="progress"><span></span></div>
-		</div>
-		<div id="text2"></div>
+			<div id="text2"></div>
+		</section>
 	</section>
+	
 </body>
-<script type="text/javascript" src="../publicJS/miaoV.js" ></script>
 <script>
 var oBtn = document.getElementsByTagName('input')[0];//获取的开始复制按钮
 var oText1 = document.getElementById('text');//左边的文本框

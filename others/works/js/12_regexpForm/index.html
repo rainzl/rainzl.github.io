@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<title></title>
 <style>
-p {
+body
+,p {
 	margin: 0;
 }
 ul {
@@ -16,11 +17,17 @@ dl {
 	margin: 0 auto;
 	width: 600px;
 }
+body {
+	height: 100%;
+	width: 100%;
+	background: url(img/1.jpg) no-repeat;
+	background-size: cover;
+}
 #form {
-	margin: 50px auto;
+	margin: 50px auto 20px;
 	padding: 50px;
 	width: 600px;
-	background-color: #ddd;
+	background-color: rgba(221,221,221,.7);
 	text-align: center;
 }
 #form li {
@@ -46,13 +53,16 @@ dl {
 	text-align: left;
 	font-size: 12px;
 	line-height: 18px;
-	color: #666;
+	color: #333;
 }
 #submit {
 	margin-top: 10px;
 	height: 30px;
 	width: 100px;
 	cursor: pointer;
+}
+.hint dt {
+	color: red;
 }
 </style>
 </head>
@@ -87,9 +97,9 @@ dl {
 		</ul>
 		<input id="submit" type="submit" value="开始验证" />
 	</form>
-	<div>
+	<div class="hint">
 		<dl>
-			<dt>表单说明</dt>
+			<dt>表单说明:</dt>
 			<dd>电话号码： 只能填写正确的电话号码</dd>
 			<dd>身份证号码： 只能填写正确的身份证号码</dd>
 			<dd>邮箱：邮箱名称最少两位，只能以com/cn/com.cn结尾 </dd>

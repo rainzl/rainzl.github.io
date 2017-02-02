@@ -4,15 +4,36 @@
 	<meta charset="UTF-8">
 	<title></title>
 <style>
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+#mark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(img/bg.jpg) no-repeat;
+	opacity: .5;
+	z-index: 0;
+}
 ul {
-	position: relative;
-	margin: 20px auto;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);	
 	padding: 0;
+	border: 5px solid #fff;
 	width: 620px;
 	height: 480px;
 	list-style: none;
 	perspective: 1000px;
 	background-size: 620px 480px;
+	background-color: rgba(255,255,255,.5);
+	z-index: 10;
 }
 #list li {
 	position: absolute;
@@ -24,10 +45,11 @@ ul {
 </head>
 <body>
 	<ul id="list"></ul>
-<script src="JS/publicMain.js"></script>
+	<div id="mark"></div>
+<script src="../../../../js/move.js"></script>
 <script>
 var data = [
-	'img9/1.jpg','img9/2.jpg','img9/3.jpg','img9/4.jpg','img9/5.jpg'
+	'img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg'
 ];
 (function(d){
 	//-初始化一些变量和方法-----------------
@@ -41,7 +63,7 @@ var data = [
 	//oList.style.background = `url(${data[0]}) no-repeat`;
 	
 	createLi();
-	//move();
+	//moveFn();
 	
 	//-需求函数化---------------------
 	function boom(){
@@ -55,11 +77,11 @@ var data = [
 			distX = distX == 0? 0.5: distX;
 			distY = distY == 0? 0.5: distY;
 			
-			move(aLis[i],distX,distY);
+			moveFn(aLis[i],distX,distY);
 		}
 		
 	}
-	function move(obj,distX,distY) {
+	function moveFn(obj,distX,distY) {
 		var dist = num-Math.abs(distX) + num-Math.abs(distY),
 			distZ = Math.sqrt((num-Math.abs(distX))*(num-Math.abs(distX))+(num-Math.abs(distY))*(num-Math.abs(distY))),
 			delay = Math.abs(distX) + Math.abs(distY);
@@ -73,8 +95,8 @@ var data = [
 		
 		setTimeout(
 			function(){
-				//obj.style.boxShadow = '0 0 10px #fbad49';
-				mTween(obj,
+				//obj.style.boxShadow = '0 0 10px #fbad49';	
+				move.mTween(obj,
 					{	
 						'translateX':translateX,
 						'translateY':translateY,
@@ -97,6 +119,12 @@ var data = [
 		obj.style.left = obj.oLeft + 'px';
 		obj.style.backgroundPosition = (-obj.oLeft) + 'px '+ (-obj.oTop) + 'px';
 		obj.style.backgroundSize = `620px 480px`;
+		move.css(obj,'translateX',0);
+		move.css(obj,'translateY',0);
+		move.css(obj,'translateZ',0);
+		move.css(obj,'rotateX',0);
+		move.css(obj,'rotateY',0);
+	
 	}
 	function createLi() {
 		for (var i=0; i<100; i++) {

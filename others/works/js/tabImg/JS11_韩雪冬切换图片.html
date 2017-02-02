@@ -134,22 +134,23 @@ ul {
 	<span class="prev"><</span>
 	<span class="next">></span>
 </section>
-<script type="text/javascript" src="JS/publicMain.js" ></script>
+<script src="../../../../js/tools.js"></script>
+<script src="../../../../js/move.js"></script>
 <script>
 
-var aLis = getEle('#wrap li');
-var oPrev = getEle('#wrap .prev');
-var oNext = getEle('#wrap .next');
-var liWid = css(aLis[0],'width') + 10;
+var aLis = tools.$('#wrap li');
+var oPrev = tools.$('#wrap .prev');
+var oNext = tools.$('#wrap .next');
+var liWid = move.css(aLis[0],'width') + 10;
 
 var arr = [];
 for ( var i=0; i<aLis.length; i++ ) {
-	var left = css(aLis[i],'left');
-	var oTop = css(aLis[i],'top');
-	var opacity = css(aLis[i],'opacity');
-	var width = css(aLis[i],'width');
-	var height = css(aLis[i],'height');
-	var zIndex = css(aLis[i],'zIndex');
+	var left = move.css(aLis[i],'left');
+	var oTop = move.css(aLis[i],'top');
+	var opacity = move.css(aLis[i],'opacity');
+	var width = move.css(aLis[i],'width');
+	var height = move.css(aLis[i],'height');
+	var zIndex = move.css(aLis[i],'zIndex');
 	arr.push({'left':left,'top':oTop,'opacity':opacity,'width':width,'height':height,'zIndex':zIndex});
 }
 
@@ -164,7 +165,7 @@ oNext.onclick = function() {
 function eleTab() {
 	aLis.forEach(function(item,i){
 		item.style.zIndex = arr[i].zIndex;
-		mTween(item,{'left':arr[i].left,'top':arr[i].top,'opacity':arr[i].opacity,'width':arr[i].width,'height':arr[i].height},400,'linear');
+		move.mTween(item,{'left':arr[i].left,'top':arr[i].top,'opacity':arr[i].opacity,'width':arr[i].width,'height':arr[i].height},400,'linear');
 	});
 }
 

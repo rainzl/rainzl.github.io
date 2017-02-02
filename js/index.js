@@ -90,6 +90,7 @@ if (device) {
 				$body.removeClass(htmlName).addClass(className);//替换body上的class
 				if ( className === 'home' || className === 'works' ) {
 					lastHatstatus = 'loading';
+					
 					$('#logo').css({'transition':'','-webkit-transition':''});
 					$('#hint').css({
 						'width':'0',
@@ -124,7 +125,15 @@ if (device) {
 	//页面进来加载: 有loading，需要执行loading动画，没有loading直接获取logo的位置
 	function loading() {
 		
+		//页面回到顶部
 		move.css($wrap.find('.tBody')[0],'translateY','0');
+		
+		//画头部和底部的canvas
+		htmlName === 'home'? drawHatShose('loadedData','#fff'):drawHatShose('activeData','#1e1e1e');
+		
+		//画logo
+		htmlName === 'home'? drawLogo('logo'):drawLogo('logo','#fff');
+		
 		
 		if ( $body.hasClass('loading') ) {//前两个页面有loading
 			var $bar = $('#loadingBar');
@@ -160,11 +169,7 @@ if (device) {
 	}
 	
 	function init(imgArr) {
-		//画头部和底部的canvas
-		htmlName === 'home'? drawHatShose('loadedData','#fff'):drawHatShose('activeData','#1e1e1e');
 		
-		//画logo
-		htmlName === 'home'? drawLogo('logo'):drawLogo('logo','#fff');
 		
 		//设置底部的链接列表top
 		setBlogroll ((htmlName==='home'?false:true));
@@ -198,6 +203,25 @@ if (device) {
 	function fnHome(imgArr) {
 		var $tabHome = $('#home');
 		
+		
+		//加载完先清掉canvas上的所有事件
+		clearEvent($('#hat'),'touchstart');
+		clearEvent($('#shoes'),'touchstart');
+		clearEvent($('#hat'),'touchmove');
+		clearEvent($('#shoes'),'touchmove');
+		clearEvent($('#hat'),'touchend');
+		clearEvent($('#shoes'),'touchend');
+		
+		clearEvent($('.tBody'),'touchstart');
+		clearEvent($('.tBody'),'touchmove');
+		clearEvent($('.tBody'),'touchend');
+		
+		/*clearEvent($(window),'mousewheel');
+		clearEvent($(window),'DOMMouseScroll');*/
+		
+		
+		
+		
 		//渲染页面
 		rander(loadData,$tabHome);
 		
@@ -211,42 +235,31 @@ if (device) {
 			subParCode: $tabHome.find('.subCode')[0],
 			nextBtn: $tabHome.find('.next')[0],
 			prevBtn: $tabHome.find('.prev')[0],
+			device: device,
 			callBack: fnProductHid
 		})
 		imgTab.extend({
 			addEvent:function(obj) {
-				var startX, disX, num = 0;
+				var $productListP = $('#home').find('.productList');
 				var _this = this;
+				
 				obj.off('touchstart').on('touchstart',function(ev){
 					var ev = ev || event;
 					
 					if (ImgEvent(obj[0],ev.changedTouches[0].pageX,ev.changedTouches[0].pageY)){
-						startX = _this.touchStart(ev);
+						_this.touchStart(ev);
 					}
 					ev.preventDefault();
 				});
 				obj.off('touchmove').on('touchmove',function(ev){
 					var ev = ev || event;
-					disX = _this.touchsMove(ev,disX,startX);
+					_this.touchsMove(ev);
 					
 				});
 				obj.off('touchend').on('touchend',function(ev){
 					var ev = ev || event;
-					_this.touchsEnd(disX);
+					_this.touchsEnd();
 					
-					if ( (typeof disX==='undefined' || Math.abs(disX)<1) && ImgEvent(obj[0],ev.changedTouches[0].pageX,ev.changedTouches[0].pageY) ) {
-						//--------------
-						var li = findEle($productList,ev.changedTouches[0].pageX,ev.changedTouches[0].pageY);
-						var fileId = $(li).attr('fileId');
-						
-						if ( $productList[0].parentNode.onOff ) {
-							
-							fnProductShow(fileId);
-						} else {
-							fnProductHid();
-						}
-						//--------------
-					}
 				});
 			}
 		})
@@ -254,35 +267,61 @@ if (device) {
 		imgTab.addEvent($('#shoes'));
 		
 		//点击图片，弹出/隐藏详情框
-		;(function(factory) {
+		;(function(factory,Event) {
+			
 			var $productListP = $('#home').find('.productList');
 			var $productList = $productListP.find('li');
 			$productListP[0].onOff = true;
 			
-			$('#home').find('.productList').on('click',function(ev){
-				var li = findEle($productList,ev.pageX,ev.pageY);
-				var fileId = $(li).attr('fileId');
-				factory($productListP,$productList,fileId);
-			})
-			$('#hat').off('click').click(function(ev){
-				var ev = ev || event;
-				if (ImgEvent(this,ev.pageX,ev.pageY)) {
-					var li = findEle($productList,ev.pageX,ev.pageY);
-					var fileId = $(li).attr('fileId');
-					factory($productListP,$productList,fileId);
-				}
-			})
-			$('#shoes').off('click').click(function(ev){
-				var ev = ev || event;
-				if (ImgEvent(this,ev.pageX,ev.pageY)) {
+			
+			if( Event === 'click' ) {
+				$productListP.on(Event,function(ev){
 					
-					var li = findEle($productList,ev.pageX,ev.pageY);
-					var fileId = $(li).attr('fileId');
+					factory($productListP,$productList,ev.pageX,ev.pageY);
+				})
+				canvasClick(Event,function(x,y,ev){
 					
-					factory($productListP,$productList,fileId);
+					factory($productListP,$productList,x,y);
+				});
+			} else if (Event === 'mousestart') {
+				var startX, startY, disX, disY;
+				
+				$productListP.on('touchstart',fnStart);
+				$productListP.on('touchmove',fnMove);
+				$productListP.on('touchend',fnEnd);
+				
+				canvasClick('touchstart',function(x,y,ev){
+					fnStart(ev)
+				});
+				$('#shoes').on('touchmove',fnMove);
+				$('#hat').on('touchmove',fnMove);
+				$('#shoes').on('touchend',fnEnd);
+				$('#hat').on('touchend',fnEnd);
+				
+				function fnStart(ev) {
+					var tag = ev.changedTouches? ev.changedTouches[0]: ev;					
+					startX = tag.pageX;
+					startY = tag.pageY;
+					disX = 0, disY = 0;
 				}
-			})
-		})(function($productListP,$productList,fileId){
+				function fnMove(ev) {
+					var tag = ev.changedTouches? ev.changedTouches[0]: ev;
+					disX = tag.pageX-startX;
+					disY = tag.pageY-startY;
+				}
+				function fnEnd(ev) {
+					
+					if (!disX&&!disY){
+						factory($productListP,$productList,startX,startX);
+					}
+				}
+				
+			}
+			
+			
+		})(function($productListP,$productList,x,y){
+			var li = findEle($productList,x,y);
+			var fileId = $(li).attr('fileId');
 			
 			if ( $productListP[0].onOff ) {
 				
@@ -290,10 +329,11 @@ if (device) {
 			} else {
 				fnProductHid($productListP);
 			}
-		});
+		},device?'mousestart':'click');
 		//弹出详情框
 		function fnProductShow($productListP,fileId) {
-			if (!$('#home')[0]) return;
+			if (!$('#home')[0] || !$productListP[0].onOff) return;
+			
 			$productListP[0].onOff = false;
 			
 			var index = tools.arrIndexOf(fileId,loadData);
@@ -309,7 +349,11 @@ if (device) {
 		}
 		//隐藏详情框
 		function fnProductHid($productListP) {
-			if ($('#home').find('.productList')[0] && !$('#home').find('.productList')[0].onOff) {
+			//if ($productListP[0].onOff) return;
+			
+			if ($productListP[0] && !$productListP[0].onOff) {
+				
+				
 				hat.init({now:'loadedData',last:'activeData'},{time:500});
 				shoes.init({now:'loadedData',last:'activeData'},{onOff:true,time:500});
 				
@@ -397,50 +441,40 @@ if (device) {
 		listWheel.init();
 		listWheel.extend({
 			fnCanvas: function(obj){
-				//this.touchFn(obj);
-				var settings = {
-					disY:0,nowY:0,lastTime:0,disTime:0,lastMouse:0,disMouse:0
-				}
+				
 				var _this = this;
 				
 				fnCanvas(obj,'touchstart',function(x,y,ev){
-					var a = findEle($tabWorks.find('a'),x,y);
-					window.location.href = a.href;
 					
-					_this.fnStart(ev,settings);
+					_this.fnStart(ev);
 				})
 				
-				obj.off('touchmove').on('touchmove',function(ev){
-					var ev = ev || event;
-					_this.fnMove(ev,settings);
-				})
+				
 				obj.off('touchend').on('touchend',function(ev){
-					var ev = ev || event;
-						
-					_this.fnEnd(ev,settings);
+					if ( _this.obj.settings.disMouse === 0 && _this.obj.settings.disTime === 0 ) {
+						var a = findEle($tabWorks.find('a'),ev.changedTouches[0].pageX,ev.changedTouches[0].pageY);
+						window.location.href = a.href;
+					}
 				})
-				
 				
 			}
 		})
 		listWheel.fnCanvas($('#hat'));
 		listWheel.fnCanvas($('#shoes'));
 		
+		
+		//li列表的鼠标移入移出事件函数
 		fnWorksList();
-		
-		
-		
+		//canvas的鼠标移入移出事件函数
 		canvasClick('mouseenter',function(x,y,ev){
 			var div = findEle($tabWorks.find('.imgList'),x,y);
 			ev.target.ele = div;
-			div.rects = div.getBoundingClientRect();
+			div && (div.rects = div.getBoundingClientRect());
 			fnOverEle(div,ev.clientX,ev.clientY);
 		});
 		
-		
 		//移出的时候，不需要对canvas进行检测
 		$('#shoes').off('mouseleave').on('mouseleave',function(ev){
-		 	
 		 	if (!ev.target.ele) return; 
 			fnOutEle(ev.target.ele,ev.clientX,ev.clientY);
 		});
@@ -449,6 +483,8 @@ if (device) {
 			if (!ev.target.ele) return;
 			fnOutEle(ev.target.ele,ev.clientX,ev.clientY);
 		});
+		
+		
 		
 		function fnWorksList() {
 			var aImgList = $tabWorks[0].getElementsByClassName('imgList');
@@ -522,7 +558,7 @@ if (device) {
 			
 			for (var i=0; i<len; i++) {
 				str += '<div fileId="'+data[i].id+'" class="imgList">'
-					+'<a href="'+data[i].href+'">'
+					+'<a href="'+data[i].href+'" target="_blank">'
 						+'<img src="'+data[i].img+'" />'
 						+'<mark>'
 							+'<em>'+data[i].name+'</em>'
@@ -625,6 +661,9 @@ if (device) {
 			if (ImgEvent(this,tag.pageX,tag.pageY)) {
 				fn(tag.pageX,tag.pageY,ev);
 			}
+			if (Event === 'touchstart') {
+				ev.preventDefault();
+			}
 		})
 	}
 	
@@ -647,6 +686,7 @@ if (device) {
 				'top': $('#hint').prop('top')
 			});
 		}
+		
 		$('#hint').find('a').attr('href',data.href)
 		creatText(data.info,$('#hintCont')[0],isTextAnimat);
 	}
@@ -690,8 +730,10 @@ if (device) {
 	//画头部和底部的canvas
 	function drawHatShose(nowStatus,color) {
 		color = color || '#fff';
+		
 		hat.init({now:nowStatus,last:lastHatstatus},{time:700,color:color});
 		shoes.init({now:nowStatus,last:lastHatstatus},{time:700,onOff:true});
+		
 		lastHatstatus = nowStatus;
 	}
 	
@@ -786,6 +828,7 @@ function findMinAttr(json) {
 	return t;
 }
 document.addEventListener('touchmove',function(ev){
+	
 	ev.preventDefault();
 })
 function mobilecheck() {

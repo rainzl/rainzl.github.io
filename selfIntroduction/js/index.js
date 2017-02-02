@@ -116,34 +116,34 @@
 	
 	//滚轮事件，切换显示内容
 	function fnWheel(down,delay) {
-		
+		console.log(onOff)
 		if (!onOff) return;
 		var nowNum = num;
-		console.log(onOff);
+		
 		onOff = false;
-		console.log(onOff);
+		
 		delay = delay || 800;
 		
 		if ( down ) {
 			num ++;
 			if (num > aLis.length-1){
 				num = aLis.length-1;
-				//onOff = true;
+				onOff = true;
 				return;
 			};
 			origin = 'top';
-			deg = -90;
+			deg = -110;
 			//aLis[nowNum].style.transformOrigin = 'top';
 			//move.mTween(aLis[nowNum],{'rotateX':-90},800,'easeOut');
 		} else {
 			num --;
 			if(num < 0){
 				num = 0;
-				//onOff = true;
+				onOff = true;
 				return;
 			};
 			origin = 'bottom';
-			deg = 90;
+			deg = 110;
 		}
 		
 		aLis[num].style.zIndex = 10;
@@ -151,6 +151,7 @@
 			onOff = true;
 			aLis[num].style.zIndex = 0;
 			initLis();
+			
 		})
 		aLis[nowNum].style.transformOrigin = origin;
 		move.mTween(aLis[nowNum],{'rotateX':deg},delay,'easeOut');
@@ -216,12 +217,11 @@
 		}
 		function fnEnd(obj) {
 			if (!onOff || deg ===0 ) return;
-			console.log(deg)
+			
 			move.mTween(aLis[num],{'rotateX':90*(deg/Math.abs(deg))},800,'easeOut')
 			
-			console.log(onOff)
 			onOff = false;
-			console.log(onOff)
+			
 			move.mTween(aLis[nowNum],{'translateY':0},800,'easeOut',function(){
 				onOff = true;
 				aLis[nowNum].style.zIndex = 0;

@@ -4,23 +4,38 @@
 	<meta charset="UTF-8">
 	<title></title>
 <style>
+body {
+	width: 100%;
+	height: 100%;
+	background: url(../xunlei/xunleiImg/bg3.jpg) no-repeat;
+	overflow: hidden;
+}
+#hint {
+	width: 300px;
+	margin: 30px auto 0;
+	text-align: center;
+	color: #666;
+}
 #wrap {
+	padding: 10px;
 	width: 600px;
-	min-height: 300px;
-	margin: 100px auto;
+	min-height: 450px;
+	margin: 0 auto;
+	background-color: #fff;
 }
 #box {
 	position: relative;
 	display: none;
 }
 #file {
+	height: 40px;
 	width: 200px;
-	height: 50px;
-	border: 2px solid #000;
+	border: 2px solid #bbb;
 	text-align: center;
-	font: 20px/50px "宋体";
+	font: 20px/40px "宋体";
 	display: block;
-	margin: 100px auto 0;
+	margin: 0 auto;
+	background-color: #ddd;
 }
 #file input {
 	display: none;
@@ -30,10 +45,11 @@
 	background-color: #ccc;
 	margin: 30px auto;
 	position: relative;
+	overflow: hidden;
 }
 #clipBtn {
 	display: block;
-	margin: 10px auto;
+	margin: 0 auto;
 	height: 40px;
 	width: 200px;
 }
@@ -69,6 +85,11 @@
 </style>
 </head>
 <body>
+	<div id="hint">
+		*温情提示: 不要上传大于500*400的图片<br />
+		选区右下角改变选区大小<br />
+		点击完成
+	</div>
 	<section id="wrap">
 		<label id="file"><input type="file" />上传图片</label>
 		<div id="box">
@@ -81,7 +102,7 @@
 			</div>
 		</div>
 	</section>
-<script src="JS/publicMain.js"></script>
+<script src="../../../../js/move.js"></script>
 <script>
 (function(d){
 	var oFile = d.querySelector('#file input'),
@@ -127,8 +148,8 @@
 		
 		var startX = ev.clientX,
 			startY = ev.clientY;
-		var wid = css(this.parentNode,'width'),
-			hei = css(this.parentNode,'height');
+		var wid = move.css(this.parentNode,'width'),
+			hei = move.css(this.parentNode,'height');
 		oBox.onmousemove = function (ev) {
 			var ev = ev || event;
 			
@@ -163,8 +184,8 @@
 			var ev = ev || event;
 			var startX = ev.clientX,
 				startY = ev.clientY;
-			var oLeft = css(obj,'left'),
-				oTop = css(obj,'top');
+			var oLeft = move.css(obj,'left'),
+				oTop = move.css(obj,'top');
 			obj.onmousemove = function (ev) {
 				var ev = ev || event;
 				var x = ev.clientX - startX + oLeft,

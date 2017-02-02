@@ -653,7 +653,9 @@ section a:hover {
 }
 .rankListCont dd span {
 	float: left;
-	margin: 0 14px 0 18px;
+	margin: 0 14px 0 15px;
+	width: 20px;
+	text-align: center;
 	color: #666666;
 }
 .rankListCont .redNumber {

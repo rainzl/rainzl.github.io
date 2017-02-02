@@ -1,0 +1,76 @@
+body {
+	margin: 0;
+	background-color: #E8FFFB;
+}
+#snake {
+	margin: 0 auto;
+	width: 800px;
+	border: 2px solid #fd5c3b;
+} 
+.info {
+	height: 68px;
+	border-bottom: 2px solid #fd5c3b;
+	text-align: center;
+	font: 28px/60px arial;
+}
+#map {
+	border-bottom: 2px solid #fd5c3b;
+}
+#map table {
+	margin: 0 auto;
+	border-bottom: 2px solid #fd5c3b;
+}
+#map table td {
+	width: 22px;
+	height: 22px;
+	border: 1px solid #fec489;
+	background-color: #fff;
+}
+#map table td.snake {
+	background-color: #728cff;
+}
+#map table td.food {
+	background-color: #81ff9c;
+}
+#map table td.block {
+	background-color: #f72ab5;
+}
+#map table td.skate {
+	background-color: #ebff1d;
+}
+#map table td.break {
+	background-color: #20f5fb;
+}
+.help {
+	height: 50px;
+	display: flex;
+}
+.left {
+	width: 75%;
+	display: flex;
+	border-right: 1px solid red;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.left div {
+	height: 50px;
+	display: flex;
+	align-items: center;
+}
+.left div span {
+	display: block;
+	margin-right: 5px;
+	height: 22px;
+	width: 22px;
+	border: 1px solid #fbe2f9;
+	text-align: center;
+	background-color: blue;
+	color: #666;
+}
+.right {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

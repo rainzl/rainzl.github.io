@@ -83,7 +83,8 @@
 		this.settings = {
 			onOff: false,
 			time: 600,
-			color: '#fff'
+			color: '#fff',
+			callBack: function(){}
 		}
 		this.loading = [
 				{
@@ -180,14 +181,18 @@
 		init: function (status,json) {
 			
 			this.settings = tools.extend(this.settings,json)
-			var time = time || 600;
+			
 			if ( status.last ) {
-				this.zbjTween(this[status.last],this[status.now],this.settings.time,this.linear);
+				this.zbjTween(this[status.last],this[status.now],this.settings.time,this.linear,this.settings.callBack);
 			} else {
 				this.draw(this[status.now]);
 			}
 		},
 		zbjTween: function (obj,attr,times,type,callBack) {
+			
+			if (this.c.zbjTweenOnOff) return;
+			this.c.zbjTweenOnOff = true;
+			
 			var _this = this;
 			var t = 0;//当前步数
 			var b = [];//元素移动的初始位置
@@ -218,6 +223,8 @@
 					
 					clearInterval(obj.timer);
 					obj = attr;
+					
+					_this.c.zbjTweenOnOff = false;
 					if (callBack && typeof callBack == 'function') {
 						setTimeout(callBack,20);
 					}
