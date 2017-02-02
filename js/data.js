@@ -131,7 +131,7 @@ var worksData = [
 	{
 		id: 12,
 		img: 'img/works/12_regexpForm.jpg',
-		href: 'others/works/js/12_regexpForm/index.html',
+		href: 'others/works/js/regexpForm/index.html',
 		name: '正则—信息验证'
 	},
 	{
@@ -142,21 +142,21 @@ var worksData = [
 	},
 	{
 		id: 14,
-		img: 'img/works/8_picBool.jpg',
-		href: 'others/works/js/picBool/index.html',
-		name: '图片爆炸效果'
+		img: 'img/works/14_tabImg.jpg',
+		href: 'others/works/js/tabImg/index.html',
+		name: '旋转效果轮播图'
 	},
 	{
 		id: 15,
-		img: 'img/works/8_picBool.jpg',
-		href: 'others/works/js/picBool/index.html',
-		name: '图片爆炸效果'
+		img: 'img/works/15_dataOperations.jpg',
+		href: 'others/works/js/dataOperations/index.html',
+		name: '表格数据增删查'
 	},
 	{
 		id: 16,
-		img: 'img/works/8_picBool.jpg',
-		href: 'others/works/js/picBool/index.html',
-		name: '图片爆炸效果'
+		img: 'img/works/16_canvasClock.jpg',
+		href: 'others/works/js/canvasClock/index.html',
+		name: 'canvas时钟'
 	}
 	
 ];

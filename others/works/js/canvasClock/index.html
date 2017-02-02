@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+body {
+	margin: 0;
+	background: url(img/bg.jpg) no-repeat;
+	background-size: cover;
+	text-align: center;
+}
+canvas {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+</style>
+</head>
+<body>
+	<canvas id="canvas" width="400" height="400"></canvas>
+<script>
+(function(d){
+	//---------用来初始化一些变量和方法------------------
+	var canvas = d.getElementById('canvas'),
+		cxt = canvas.getContext('2d');
+	var dH = document.documentElement.clientHeight || document.body.clientHeight;
+	var dW = document.documentElement.clientWidth || document.body.clientWidth;
+	canvas.width = canvas.height =	(dH>dW? dW * .7: dH * .7);
+	var	W = cxt.canvas.width, H = cxt.canvas.height;
+	var r= W/2;
+	var remH = H/400,
+		remW = W/400;
+	
+	
+	//---------初始化主要逻辑------------------
+	var img = new Image();
+	img.src = 'img/1.png';
+	img.onload = function() {
+		timeMove(img);
+		setInterval(function(){
+			timeMove(img);
+		},50);
+	}
+	
+	
+	
+	//---------需求函数化---------------
+	
+	//需求1： 绘制外框
+	function drawCir(cxt) {
+		cxt.save();
+		cxt.translate(r,r);
+		cxt.beginPath();
+		cxt.lineWidth = 10*remW;
+		cxt.arc(0,0,r-(5*remW),0,2*Math.PI);
+		cxt.strokeStyle = '#fff'
+		cxt.stroke();
+		cxt.restore();
+	}
+	function drawImg(cxt,img) {
+		cxt.save();
+		cxt.translate(r,r);
+		cxt.beginPath();
+		cxt.drawImage(img,-(r-(5*remW)),-(r-(5*remW)),2*(r-(5*remW)),2*(r-(5*remW)))
+		//cxt.arc(0,0,r-(5*remW),0,2*Math.PI);
+		cxt.stroke();
+		cxt.restore();
+	}
+	//需求2：绘制数字
+	function drawNum(cxt) {
+		var arr = [3,4,5,6,7,8,9,10,11,12,1,2];
+		
+		cxt.save();
+		cxt.translate(r,r);
+		cxt.beginPath();
+		cxt.font = `${18*remW}px Arial`;
+		cxt.textBaseline = 'middle';
+		cxt.textAlign = 'center';
+		arr.forEach(function(item,i){
+			var rad = 2*Math.PI/12 * i;
+			var x = Math.cos(rad)*(r-33*remW),
+				y = Math.sin(rad)*(r-33*remW);
+				
+			cxt.fillText(item,x,y);
+		});
+		cxt.stroke();
+		cxt.restore();
+	}
+	//需求3: 绘制刻度
+	function drawPoint(cxt){
+		cxt.save();
+		cxt.translate(r,r);
+		for ( var i=0; i<60; i++ ) {
+			cxt.beginPath();
+			var rad = 2*Math.PI/60*i;
+			var x = Math.cos(rad)*(r-18*remW),
+				y =	Math.sin(rad)*(r-18*remW);
+			var R = 0;
+			if ( i%5 == 0 ) {
+				cxt.fillStyle = '#333';
+				R = 3*remW;
+			} else {
+				cxt.fillStyle = '#999';
+				R = 2*remW;
+			}
+			cxt.arc(x,y,R,0,2*Math.PI);
+			cxt.fill();
+		}
+		cxt.restore();
+	}
+	//--需求4：绘制时针-------------------
+	function drawHours(cxt,hour) {
+		var rad = 2*Math.PI / 12 * hour;
+		cxt.save();
+		cxt.translate(r,r);
+		cxt.beginPath();
+		cxt.rotate(rad);
+		cxt.lineTo(0,10*remW);
+		cxt.lineTo(0,-r*3/5);
+		cxt.lineCap = 'round';
+		cxt.lineWidth = 6*remW;
+		cxt.stroke();
+		cxt.restore();
+	}
+	//--需求5：绘制分针-------------------
+	function drawMins(cxt,minute) {
+		var rad = 2*Math.PI / 60 * minute;
+		cxt.save();
+		cxt.translate(r,r);
+		cxt.beginPath();
+		cxt.rotate(rad);
+		cxt.lineTo(0,15*remW);
+		cxt.lineTo(0,-r*4/5);
+		cxt.lineCap = 'round';
+		cxt.lineWidth = 4*remW;
+		cxt.stroke();
+		cxt.restore();
+	}
+	//--需求6：绘制秒针-------------------
+	function drawSecond(cxt,second) {
+		var rad = 2*Math.PI / 60 * second;
+		cxt.save();
+		cxt.translate(r,r);
+		cxt.beginPath();
+		cxt.rotate(rad);
+		cxt.lineTo(-3*remW,20*remW);
+		cxt.lineTo(3*remW,20*remW);
+		cxt.lineTo(1*remW,-(r-30*remW));
+		cxt.lineTo(-1*remW,-(r-30*remW));
+		cxt.fillStyle = '#f00';
+		cxt.fill();
+		cxt.restore();
+	}
+	//--需求7：绘制中心点-------------------
+	function drawCenter(cxt){
+		cxt.save();
+		cxt.translate(r,r);
+		cxt.beginPath();
+		cxt.arc(0,0,5*remW,0,2*Math.PI);
+		cxt.fillStyle = '#fafafa';
+		cxt.fill();
+		cxt.restore();
+	}
+	//--需求8: 让时间动起来---------------------
+	function timeMove(img) {
+		var oDate = new Date();
+		var s = oDate.getSeconds(),
+			m = oDate.getMinutes()+s/60,
+			h = oDate.getHours()+m/60;
+		cxt.clearRect(0,0,W,H);
+		drawCir(cxt);
+		drawImg(cxt,img);
+		drawNum(cxt);
+		drawPoint(cxt);
+		drawHours(cxt,h);
+		drawMins(cxt,m);
+		drawSecond(cxt,s);
+		drawCenter(cxt);
+	}
+	
+})(document)
+
+</script>
+</body>
+</html>
