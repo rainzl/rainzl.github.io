@@ -116,7 +116,7 @@
 	
 	//滚轮事件，切换显示内容
 	function fnWheel(down,delay) {
-		console.log(onOff)
+		
 		if (!onOff) return;
 		var nowNum = num;
 		
@@ -132,7 +132,7 @@
 				return;
 			};
 			origin = 'top';
-			deg = -110;
+			deg = -90;
 			//aLis[nowNum].style.transformOrigin = 'top';
 			//move.mTween(aLis[nowNum],{'rotateX':-90},800,'easeOut');
 		} else {
@@ -143,10 +143,11 @@
 				return;
 			};
 			origin = 'bottom';
-			deg = 110;
+			deg = 90;
 		}
 		
 		aLis[num].style.zIndex = 10;
+		
 		move.mTween(aLis[num],{'translateY':0},delay,'easeOut',function(){
 			onOff = true;
 			aLis[num].style.zIndex = 0;
@@ -154,6 +155,8 @@
 			
 		})
 		aLis[nowNum].style.transformOrigin = origin;
+		
+		aLis[nowNum].style.opacity = '0';
 		move.mTween(aLis[nowNum],{'rotateX':deg},delay,'easeOut');
 		
 		
@@ -214,11 +217,13 @@
 			
 			aLis[num].style.transformOrigin = origin;
 			move.css(aLis[num],'rotateX',deg);
+			aLis[num].style.opacity = deg/90;
 		}
 		function fnEnd(obj) {
 			if (!onOff || deg ===0 ) return;
 			
 			move.mTween(aLis[num],{'rotateX':90*(deg/Math.abs(deg))},800,'easeOut')
+			aLis[num].style.opacity = 0;
 			
 			onOff = false;
 			
@@ -341,13 +346,13 @@
 			for ( var i=0;i<aIntDl.length; i++ ) {
 				aIntDl[i].style.margin = 50/r+'rem auto';
 			}
-			for ( var i=0; i<aAddDt.length; i++ ) {
+			/*for ( var i=0; i<aAddDt.length; i++ ) {
 				aAddDt[i].style.fontSize = 16/r+'rem';
 				aAddDt[i].style.lineHeight = 20/r+'rem';
 			}
 			for ( var i=0; i<aAddDd.length; i++ ) {
 				aAddDd[i].style.fontSize = 30/r+'rem';
-			}
+			}*/
 			for ( var i=0; i<aDesDt.length; i++ ) {
 				aDesDt[i].style.marginBottom = 50/r+'rem';
 			}

@@ -68,10 +68,9 @@ body {
 	width: 100%;
 	height: 20%;
 	text-align: center;
-	/*background: #fff;*/
 	display: table;
 	z-index: 0;
-	opacity: .8;
+	transition: opacity .8s ease;
 }
 #info li:nth-of-type(1) {
 	z-index: 10;
@@ -88,6 +87,7 @@ body {
 #info dt {
 	font-size: 30px;
 	line-height: 50px;
+	color: #fff;
 }
 #info dd {
 	margin: 6px 6px;
@@ -96,9 +96,6 @@ body {
 	font-size: 16px;
 	line-height: 30px;
 	background-color: #ddd;
-}
-#info .describe dd {
-	background-color: transparent;
 }
 .welcome h1 {
 	height: 100px;
@@ -123,7 +120,7 @@ body {
 #info .portrait img {
 	width: 100%;
 	height: 100%;
-	background: url(../img/195.JPG) no-repeat center;
+	background: url(../img/3r.jpg) no-repeat center;
 	background-size: cover;
 	border-radius: 50%;
 }
@@ -132,24 +129,6 @@ body {
 }
 #info .interest dl {
 	margin: 50px auto;
-}
-#info .add {
-	background-color: rgba(43,184,123,.6);
-	
-}
-#info .add dt {
-	font-size: 36px;
-	color: #ddd;
-	text-align: left;
-}
-#info .add dd{
-	font-size: 26px;
-	background-color: transparent;
-	text-align: left;
-}
-#info .add dd a {
-	font-size: inherit;
-	color: inherit;
 }
 #info .skill {
 	background-color: rgba(38,117,110,.6);
@@ -162,10 +141,39 @@ body {
 #info .describe {
 	background-color: rgba(69,41,210,.6);
 }
-#info .describe dt,
-#info .describe dd {
-	color: #ddd;
+.describe p {
+	padding: 10px 5px;
+	text-indent: 2em;
+	text-align: left;
 }
-#subCode {
+#info .add {
+	background-color: rgba(43,184,123,.6);
 	
+}
+#info .add dt {
+	font-size: 36px;
+	/*color: #ddd;*/
+	/*text-align: left;*/
+}
+#info .add dd{
+	/*font-size: 26px;*/
+	/*background-color: transparent;*/
+	/*text-align: left;*/
+}
+#info .add dd a {
+	font-size: inherit;
+	color: inherit;
+}
+.add .cell {
+	position: relative;
+}
+.addTitle {
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 60px;
+	font-size: 50px;
+	color: #ccc;
+	text-shadow: 0 0 3px #fff;
 }
