@@ -77,6 +77,7 @@
 		this.c = document.getElementById(id);
 		this.W = this.c.offsetWidth/10;
 		this.H = this.c.offsetHeight/10;
+		console.log(yH)
 		yH = yH || this.H*3.3;
 		this.cxt = this.c.getContext('2d');
 		//this.onOff = false;

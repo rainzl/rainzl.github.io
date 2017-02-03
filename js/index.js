@@ -129,7 +129,13 @@ if (device) {
 		move.css($wrap.find('.tBody')[0],'translateY','0');
 		
 		//画头部和底部的canvas
-		htmlName === 'home'? drawHatShose('loadedData','#fff'):drawHatShose('activeData','#1e1e1e');
+		if (htmlName === 'home') {
+			drawHatShose('loadedData','#fff')
+		} else if (htmlName === 'works') {
+			drawHatShose('loadingData','#1e1e1e')
+		} else {
+			drawHatShose('activeData','#1e1e1e');
+		}
 		
 		//画logo
 		htmlName === 'home'? drawLogo('logo'):drawLogo('logo','#fff');
@@ -439,16 +445,12 @@ if (device) {
 		
 		var listWheel = new Scroll('works');
 		listWheel.init();
-		listWheel.extend({
+		/*listWheel.extend({
 			fnCanvas: function(obj){
-				
 				var _this = this;
-				
 				fnCanvas(obj,'touchstart',function(x,y,ev){
-					
 					_this.fnStart(ev);
 				})
-				
 				
 				obj.off('touchend').on('touchend',function(ev){
 					if ( _this.obj.settings.disMouse === 0 && _this.obj.settings.disTime === 0 ) {
@@ -456,25 +458,25 @@ if (device) {
 						window.location.href = a.href;
 					}
 				})
-				
 			}
 		})
 		listWheel.fnCanvas($('#hat'));
-		listWheel.fnCanvas($('#shoes'));
+		listWheel.fnCanvas($('#shoes'));*/
 		
 		
 		//li列表的鼠标移入移出事件函数
 		fnWorksList();
+		
 		//canvas的鼠标移入移出事件函数
-		canvasClick('mouseenter',function(x,y,ev){
+		/*canvasClick('mouseenter',function(x,y,ev){
 			var div = findEle($tabWorks.find('.imgList'),x,y);
 			ev.target.ele = div;
 			div && (div.rects = div.getBoundingClientRect());
 			fnOverEle(div,ev.clientX,ev.clientY);
-		});
+		});*/
 		
 		//移出的时候，不需要对canvas进行检测
-		$('#shoes').off('mouseleave').on('mouseleave',function(ev){
+		/*$('#shoes').off('mouseleave').on('mouseleave',function(ev){
 		 	if (!ev.target.ele) return; 
 			fnOutEle(ev.target.ele,ev.clientX,ev.clientY);
 		});
@@ -482,7 +484,7 @@ if (device) {
 			
 			if (!ev.target.ele) return;
 			fnOutEle(ev.target.ele,ev.clientX,ev.clientY);
-		});
+		});*/
 		
 		
 		
@@ -490,12 +492,11 @@ if (device) {
 			var aImgList = $tabWorks[0].getElementsByClassName('imgList');
 			for ( var i=0; i<len; i++ ) {
 				aImgList[i].addEventListener('mouseenter',function(ev){
-					
 					this.rects = this.getBoundingClientRect();
+					
 					fnOverEle(this,ev.clientX,ev.clientY);
 				});
 				aImgList[i].addEventListener('mouseleave',function(ev){
-					
 					fnOutEle(this,ev.clientX,ev.clientY);
 				});
 			}
@@ -503,10 +504,10 @@ if (device) {
 		
 		
 		
-		canvasClick('click',function(x,y){
+		/*canvasClick('click',function(x,y){
 			var a = findEle($tabWorks.find('a'),x,y);
 			window.location.href = a.href;
-		});
+		});*/
 		
 		
 		//鼠标移入需要执行的方法
@@ -521,14 +522,15 @@ if (device) {
 			
 			var t = findMinAttr(json);
 			
+			mark.style.transition = '';
 			mark.style.top = moveJson[t].top;
 			mark.style.left = moveJson[t].left;
 			
 			setTimeout(function(){
+				mark.style.transition = 'all .5s ease';
 				mark.style.top = '0';
 				mark.style.left = '0';
-				mark.style.transition = 'all .5s ease';
-			},30);
+			},10);
 			
 		}
 		//鼠标移出需要执行的操作
@@ -547,15 +549,11 @@ if (device) {
 			mark.style.top = moveJson[t].top;
 			mark.style.left = moveJson[t].left;
 			
-			setTimeout(function(){
-				mark.style.transition = '';
-			},450);
-			
 		}
 		//渲染works页面
 		function rander(data,obj) {
 			var str = '';
-			
+			str += '<div class="worksLists">';
 			for (var i=0; i<len; i++) {
 				str += '<div fileId="'+data[i].id+'" class="imgList">'
 					+'<a href="'+data[i].href+'" target="_blank">'
@@ -566,6 +564,7 @@ if (device) {
 					+'</a>'
 				+'</div>';
 			}
+			str += '</div>';
 			obj.html(str);
 		}
 	}

@@ -415,6 +415,17 @@ body.contact #logo {
 	z-index: 10;
 	height: 100%;
 }
+
+body.works #hat {
+	height: 70px;
+}
+body.works #footer,
+body.works #shoes {
+	height: 72px;
+}
+
+
+ 
 #nav {
 	position: absolute;
 	left: 50%;

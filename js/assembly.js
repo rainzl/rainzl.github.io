@@ -32,7 +32,7 @@
 	}
 	TabImg.prototype.init = function (json) {
 		//if ( this.obj.prevHome !== this.obj ) {
-			console.log(1)
+			
 			this.settings = tools.extend(this.settings,json);
 			this.randerSubCode();
 			this.settings.subParCode && this.fnSubCode();
