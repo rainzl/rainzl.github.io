@@ -546,8 +546,10 @@ if (device) {
 			
 			var t = findMinAttr(json);
 			
-			mark.style.top = moveJson[t].top;
-			mark.style.left = moveJson[t].left;
+			setTimeout(function(){
+				mark.style.top = moveJson[t].top;
+				mark.style.left = moveJson[t].left;
+			},10);
 			
 		}
 		//渲染works页面
