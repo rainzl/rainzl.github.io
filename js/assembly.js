@@ -326,12 +326,17 @@
 			if (this.obj.settings.nowY === touchs.pageY - this.obj.settings.disY) return;
 			this.obj.settings.nowY = touchs.pageY - this.obj.settings.disY;
 			
-			if ( this.obj.settings.nowY>window.innerHeight/3 ) {
+			if (this.obj.settings.nowY>0) {
+				this.obj.settings.nowY = this.obj.settings.nowY/3;
+				if ( this.obj.settings.nowY>window.innerHeight/3 ) {
 				
-				this.obj.settings.nowY = window.innerHeight/3;
-			} else if (this.obj.settings.nowY<=-(this.obj.scrollHeight+140-window.innerHeight*2/3)) {
-				
-				this.obj.settings.nowY = -(this.obj.scrollHeight+140-window.innerHeight*2/3);
+					this.obj.settings.nowY = window.innerHeight/3;
+				}
+			} else if (this.obj.settings.nowY<=-(this.obj.scrollHeight+140-window.innerHeight)) {
+				this.obj.settings.nowY = (this.obj.settings.nowY+(this.obj.scrollHeight+140-window.innerHeight))/3 - (this.obj.scrollHeight+140-window.innerHeight);
+				if (this.obj.settings.nowY<=-(this.obj.scrollHeight+140-window.innerHeight*2/3)) {
+					this.obj.settings.nowY = -(this.obj.scrollHeight+140-window.innerHeight*2/3);
+				}
 			}
 			
 			move.css(this.obj,'translateY',this.obj.settings.nowY);
@@ -360,7 +365,7 @@
 			
 			target = Math.round(Math.abs(startY-this.obj.settings.nowY)/10);
 			
-			move.mTween(this.obj,{'translateY':this.obj.settings.nowY},target*10,'linear');
+			move.mTween(this.obj,{'translateY':this.obj.settings.nowY},target*10,'easeOut');
 		},
 		extend: function (obj1,obj2,onOff) {
 			if ( arguments.length === 1 && window.toString.call(arguments[0]) === '[object Object]' ) {

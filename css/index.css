@@ -593,6 +593,8 @@ body.works #shoes {
 	background-color: #fff;
 	transform: translateX(-50%) rotate(45deg);
 	-webkit-transform: translateX(-50%) rotate(45deg);
+	transition: opacity .02s ease;
+	-webkit-transition: opacity .02s ease;
 	opacity: 0;
 	overflow: hidden;
 }

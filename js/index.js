@@ -38,10 +38,9 @@ if (device) {
 		$('#hint').find('.hintBtn')[0].style.lineHeight = 30/r + 'rem';
 		$('#hint').find('.hintBtn').find('mark')[0].style.width = 92/r + 'rem';
 		$('#footer').find('.blogroll').hide();
-		
 	})()
 }
-
+setSquareHeight();
 
 	
 
@@ -75,6 +74,10 @@ if (device) {
 		}
 		window.addEventListener('hashchange',function(){
 			hash = (window.location.hash && window.location.hash.substr(1)) || 'home';
+			
+			$('#hint').css('opacity','20');
+			
+			
 			for ( var i=0; i<$a.length; i++ ) {
 				if ( $($a[i]).hasClass(hash) ) {
 					index = $($a[i]).index();
@@ -84,7 +87,9 @@ if (device) {
 			var disIndex = Math.abs(lastIndex-index);
 			
 			$($a[index]).addClass('active').siblings().removeClass('active');
-				move.mTween($navBase[0],{'rotate':-(index*90-45)},disIndex*400,'linear',function(){
+			
+			//导航运动
+			move.mTween($navBase[0],{'rotate':-(index*90-45)},disIndex*400,'linear',function(){
 				//画导航背景
 				drawNav('navConvas',-index*90);
 				$body.removeClass(htmlName).addClass(className);//替换body上的class
@@ -180,9 +185,9 @@ if (device) {
 		//设置底部的链接列表top
 		setBlogroll ((htmlName==='home'?false:true));
 		
-		setSquareHeight();
+		//setSquareHeight();
 		
-		window.addEventListener('resize',setSquareHeight);
+		//window.addEventListener('resize',setSquareHeight);
 		
 		showHtml(imgArr);
 		
@@ -598,12 +603,20 @@ if (device) {
 		
 		render();
 		$tabContact.html('');
-		$hint.css({
+		
+		$hint.css('opacity','1');
+		move.mTween($hint[0],
+			{'width':$('#hint').prop('width'),
+			'height':$('#hint').prop('width'),
+			'top': $('#hint').prop('top')},
+			500,'linear'
+		);
+		/*$hint.stop().animate({
 			'opacity': '1',
 			'width':$('#hint').prop('width'),
 			'height':$('#hint').prop('width'),
 			'top': $('#hint').prop('top')
-		});
+		},500,'linear');*/
 		
 		clearEvent($('#hat'),'mouseenter');
 		clearEvent($('#shoes'),'mouseenter');
@@ -671,22 +684,20 @@ if (device) {
 	
 	//页面hint的相关操作
 	function fnShowHint(data,isObjAnimat,isTextAnimat) {
+		$('#hint').css('opacity','1');
+		move.mTween($('#hint')[0],
+			{'width':$('#hint').prop('width'),
+			'height':$('#hint').prop('width'),
+			'top': $('#hint').prop('top')},
+			500,'linear'
+		);
+		/*$('#hint').stop().animate({
+			'opacity': '1',
+			'width':$('#hint').prop('width'),
+			'height':$('#hint').prop('width'),
+			'top': $('#hint').prop('top')
+		},500,'linear');*/
 		
-		if (isObjAnimat) {
-			$('#hint').animate({
-				'opacity': '1',
-				'width':$('#hint').prop('width'),
-				'height':$('#hint').prop('width'),
-				'top': $('#hint').prop('top')
-			},500);
-		} else {
-			$('#hint').css({
-				'opacity': '1',
-				'width':$('#hint').prop('width'),
-				'height':$('#hint').prop('width'),
-				'top': $('#hint').prop('top')
-			});
-		}
 		
 		$('#hint').find('a').attr('href',data.href)
 		creatText(data.info,$('#hintCont')[0],isTextAnimat);
@@ -694,7 +705,7 @@ if (device) {
 	
 	
 	//设置详情展框的位置和宽高，只是标记
-	function setSquareHeight(){
+	/*function setSquareHeight(){
 		
 		//获取顶部的logo
 		var $top = $('#logo').offset().top;
@@ -724,7 +735,7 @@ if (device) {
 		$('#hint').prop('width',a);
 		$('#hint').prop('top',hintTop);
 		$('#hint').css({'width':0,'height':0,'top':'40%'});
-	}
+	}*/
 	
 	
 	
@@ -840,6 +851,38 @@ function mobilecheck() {
     return check;
 }
 
+//设置详情展框的位置和宽高，只是标记
+	function setSquareHeight(){
+		
+		//获取顶部的logo
+		var $top = $('#logo').offset().top;
+		//logo斜边的长度
+		var $logoC = $('#logo').outerWidth();
+		//logo的边长
+		var $logoA = Math.round(Math.sqrt($logoC*$logoC/2));
+		//logo顶点到document顶部的距离
+		var disTop = 30-((Math.sqrt(2*$logoA*$logoA)-$logoA)/2);
+		
+		//获取底部的nav列表
+		var $NavObj = $('#nav').find('.navList');
+		var $NavTop = $NavObj.offset().top;
+		var $NavHeight = $NavObj.outerHeight()/2;
+		
+		var c = $NavTop+$NavHeight-(30-disTop);
+		
+		var a = Math.sqrt(Math.pow(c,2)/2);
+		
+		var hintTop = (c-a)/2 + disTop;
+		
+		$('#hint').css({
+					'transition': '',
+					'-webkit-transition': ''
+				});
+		$('#hint').css({'width':a,'height':a});
+		$('#hint').prop('width',a);
+		$('#hint').prop('top',hintTop);
+		$('#hint').css({'width':0,'height':0,'top':'40%'});
+	}
 
 //重写------------end------------------------
 
