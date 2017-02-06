@@ -124,6 +124,16 @@ body.contact #logo {
 	background-color: #1e1e1e;
 	border: 1px solid #1e1e1e;
 }
+.gitLink {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 149px;
+	height: 149px;
+	background: url(../img/bg/forkme.png);
+	z-index: 105;
+	cursor: pointer;
+}
 #menu {
 	position: absolute;
 	top: 0;
