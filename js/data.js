@@ -163,9 +163,9 @@ var worksData = [
 var aboutData = {
 	href: 'selfIntroduction/selfIntroduction.html',
 	info: [
-		'个人介绍',
 		'毕业院校: 河北北方学院',
 		'工作年限: 3年',
-		'兴趣爱好: 旅游、看书、coding'
+		'兴趣爱好: 旅游、跑步、看书',
+		'我相信: 好的人，好的事，有追求，终相遇'
 	]
 };
