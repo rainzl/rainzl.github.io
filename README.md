@@ -1,12 +1,18 @@
 # rainzl.github.io
 -项目说明-
+
 项目名称: 张兵军个人网站
+
 开发环境: Hbuilder
+
 运行环境: Chrome、Firefox、Edge、pad、移动端
+
 运用技术: JavaScript、jQuery、Html5、CSS3、media、web优化(CDN)
+
 开发周期: 28天
 
 技术描述: 
+
 	主页面使用jQuery开发，其他页面使用原生javascript进行开发;
 	页面中的轮播图以及屏幕拖动是用原生封装的小组件，在assembly.js中；
 	开发中用到的js文件: 
@@ -20,6 +26,7 @@
 		1. 减少资源加载次数
 		2. 将资源放在CDN上
 项目描述:
+
 	本网站分为四个主要展示页面
 		1. 主要作品页，交互点：
 			1) 轮播图(支持左右切换，点击小标切换，移动端滑屏切换)
