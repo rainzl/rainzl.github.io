@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<style>
+body {
+	margin: 0;
+}
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+#bg {
+	height: 100%;
+	background: url(bg/bg/bg.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+#view {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	-webkit-perspective: 300px;
+	perspective: 300px;
+}
+#main,
+#z,
+#box {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+#box span {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -585px 0 0 -64.5px;
+	width: 129px;
+	height: 1170px;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+</style>
+</head>
+<script src="data.js"></script>
+<script src="move.js"></script>
+<script>
+var fns = (function(){
+	function setView() {
+		v();
+		window.addEventListener(window.orientation? 'orientationchange': 'resize',v);
+		function v() {
+			var height = document.documentElement.clientHeight;
+			var view = document.getElementById('view')
+			var main = document.getElementById('main')
+			var deg = 52.5;
+			var R = Math.round(Math.tan(deg/180*Math.PI)*height/2);
+			view.style.perspective = view.style.WebkitPerspective = R;
+			move.css(main,'translateZ',R);
+		}
+	}
+	
+	
+	//生成背景
+	function createBg(box) {
+		var w = 129;
+		var deg = 360/imgData.length;
+		var R = Math.round(Math.tan((180 - deg)/2*Math.PI/180) * 64.5) - 1;
+		var startDeg = 180;
+		
+		move.css(box, 'rotateX', 0);
+		for ( var i=0; i<imgData.length; i++ ) {
+			var span = document.createElement('span');
+			
+			span.style.background = 'url('+imgData[i]+') no-repeat';
+			move.css(span,'rotateY',startDeg)
+			move.css(span,'translateZ',-R);
+			
+			box.appendChild(span);	
+			startDeg -= deg;
+		}
+		
+	}
+	
+	//手机重力检测
+	function setRotate(box,z) {
+		//var box = document.querySelector('#box');
+		//var z = document.querySelector('#z');
+		
+		var startDeg = {x:0,y:0}; //开始的角度
+		var startDevice = {x:0,y:0}; //开始的位置
+		window.isStart = true;
+		var lastTime = Date.now();
+		var startZ = move.css(z,"translateZ");
+		var scale = 129/18;
+		var dir = window.orientation;
+		
+		//当设备的方向变化时执行
+		window.addEventListener('orientationchange', function(e) {
+			dir = window.orientation;
+			console.log(dir);
+			window.isStart = false;
+			move.mTween(
+				box,
+				{'rotateX':0},
+				500,
+				"easeOut"
+			);
+		});
+		window.addEventListener('deviceorientation', function(e) {
+			var nowTime = Date.now();
+			if(nowTime - lastTime < 30){
+				return;
+			}
+			lastTime = nowTime;
+			var beta = Math.round(e.beta);
+			var gamma = Math.round(e.gamma);
+			var alpha = Math.round(e.alpha);
+			var nowDevice = {x:0,y:0}
+			switch(dir){
+				case 0:
+					var x = beta;
+					var y = gamma;
+					break;
+				case 90:
+					var x = -gamma;
+					var y = beta;
+					break;
+				case -90:
+					var x = -gamma;
+					var y = -beta;
+					break;
+				case 180:
+					var x = -beta;
+					var y = -gamma;
+					break;
+			}
+	
+			if(isStart){
+				isStart = false;
+				startDevice.x = x;
+				startDevice.y = y;
+				startDeg.x = move.css(box,"rotateX");
+				startDeg.y = move.css(box,"rotateY");
+			} else {
+				nowDevice.x = x;
+				nowDevice.y = y;
+				var disDevice = {};
+				disDevice.x = nowDevice.x - startDevice.x;
+				disDevice.y = nowDevice.y - startDevice.y;
+				var deg = {};
+				deg.x = startDeg.x + disDevice.x;
+				deg.y = startDeg.y + disDevice.y;
+				console.log(startDeg);
+				
+				if(deg.x > 40){
+					deg.x = 40;
+				} else if(deg.x < -40) {
+					deg.x = -40;
+				}
+				var disZ = Math.round(Math.abs(deg.y - move.css(box,"rotateY"))*scale);
+				move.mTween(
+					box,
+					{'rotateX':deg.x,'rotateY':deg.y},
+					500,
+					"easeOut"
+				);
+				move.mTween(
+					z,
+					{'translateZ': (startZ - disZ)},
+					200,
+					"easeOut",
+					function(){
+						move.mTween(
+							z,
+							{'translateZ':startZ},
+							400,
+							"easeOut"
+						);
+					}
+				);
+			}
+	
+		});
+	}
+	return {
+		setView:setView,
+		createBg:createBg,
+		setRotate:setRotate	
+	}
+})()
+
+//touch改变视角
+document.addEventListener('touchmove',function(ev){
+	ev.preventDefault()
+})
+
+//页面加载所有逻辑的入口
+window.onload = function () {
+	var box = document.getElementById('box');
+	var z = document.querySelector('#z');
+	fns.setView();  //设置视角和景深
+	
+	move.css(z, 'translateZ', -150);
+	fns.createBg(box); //生成背景
+	fns.setRotate(box,z); //手机重力检测
+}
+
+
+</script>
+<body>
+<div id="bg"></div>
+<div id="view">
+	<section id="main">
+		<div id="z">
+			<div id="box"></div>
+		</div>
+	</section>
+</div>
+</body>
+</html>

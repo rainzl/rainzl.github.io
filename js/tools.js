@@ -219,6 +219,29 @@ var tools = (function(){
 					}
 				}
 			}
+		},
+		//测试浏览器版本
+		userAgent:function(){
+			var userA = window.navigator.userAgent;
+			if(userA.indexOf("Chrome") >= 0){
+				var index = userA.indexOf("Chrome")+7;
+				var indexEnd = userA.indexOf(" Safari");
+				var v = userA.substring(index,indexEnd);
+				document.body.innerHTML = "chrome "+v;
+			} else if(userA.indexOf("Firefox") >= 0) {
+				var index = userA.indexOf("Firefox")+8;
+				var v = userA.substring(index);
+				document.body.innerHTML = "Firefox " + v;
+			} else if(userA.indexOf("MSIE") >= 0){
+				var index = userA.indexOf("MSIE") + 5; 
+				var	indexEnd =  userA.indexOf(";",index);
+				var v = userA.substring(index,indexEnd);
+				document.body.innerHTML = "IE " + v;
+			} else if(userA.indexOf("rv:11")){
+				document.body.innerHTML = "IE 11.0";
+			} else {
+				document.body.innerHTML = userA;
+			}
 		}
 		
 	};

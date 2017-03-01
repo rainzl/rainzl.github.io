@@ -118,9 +118,9 @@ var worksData = [
 	},
 	{
 		id: 10,
-		img: 'img/works/10_textMove.jpg',
-		href: 'others/works/js/textMove/index.html',
-		name: '文字搬运工'
+		img: 'img/works/10_mobleVr.jpg',
+		href: 'others/works/js/mobleVr/index.html',
+		name: '淘宝造物节部分效果'
 	},
 	{
 		id: 11,
